@@ -136,5 +136,6 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
     end    
     fitness = sum(fitness);
     fitness(end) = 1-fitness(end)/numberOfOptions;
+    disp('Fitness Calculated')
 end
 
