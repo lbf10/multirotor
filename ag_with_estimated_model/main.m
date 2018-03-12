@@ -1,13 +1,13 @@
 %% Script to train control parameters using GA
-% Author: Leonardo B. Farçoni
+% Author: Leonardo B. Farï¿½oni
 % Creation: 06/03/2018
 matlabrc
-addpath(genpath('../multiControl_v2.0/'))
+addpath(genpath('../multiControl/'))
 warning('on','all')
 
 %% Algorithms to train
 attitudeController = 'PID';
-controlAllocator = 'PI Passive';
+controlAllocator = 'Adaptive';
 attitudeReference = 'PI Passive';
 
 %% Select nvars according to algorithms
@@ -138,6 +138,7 @@ ub = 1e5*ones(1,12);
             lb = [lb,-inf(1,102)];
             ub = [ub,inf(1,102)];
             nvars = 111;
+        case 'Adaptive Direct'
         case 'SOSMC Active'
             c = 2*[1,1,0.001];
             alpha = 0.1*[1,1,0.001];
@@ -222,10 +223,21 @@ ub = 1e5*ones(1,12);
     end
 fitnessfcn = @(x) controlFitness(attitudeController, controlAllocator, attitudeReference, x);
 %% Start GA
-poolobj = parpool(70);
-options = gaoptimset('UseParallel',false,'PopulationSize',200,'Generations',100,'Display','diagnose','InitialPopulation',initialPopulation);
+poolobj = parpool(4);
+iterFilename = [attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
+options = gaoptimset('UseParallel',false,'PopulationSize',200,'Generations',200,'Display','diagnose','InitialPopulation',initialPopulation,'OutputFcn',@(options,state,flag) saveIter(options,state,flag,iterFilename));
 [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = gamultiobj(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
 delete(poolobj)
 filename = [attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'.mat'];
 finishDate = datestr(now);
 save(filename,'attitudeController','controlAllocator','attitudeReference','bestIndividual','bestFitness','EXITFLAG','OUTPUT','POPULATION','SCORES','finishDate');
+
+function saveIter(options,state,flag,iterFilename)
+    if exist(iterFilename, 'file') == 2
+        m = matfile(iterFilename,'Writable', true);
+        m.state = [m.state; state];
+        m.flag = [m.flag; flag];
+    else
+        save(iterFilename,'state','flag');
+    end
+end
