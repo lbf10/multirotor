@@ -911,7 +911,7 @@ classdef multicontrol < multicopter
                         grid on
                         title('Roll angle');
                         xlabel('time [s]');
-                        ylabel('Roll [°]');
+                        ylabel('Roll [ï¿½]');
                         plot(obj.trajectory_.time,trajectoryEulerAttitude(1,:),'--g')
                         hold on
                         plot(log.time,rollVector,'b')
@@ -921,7 +921,7 @@ classdef multicontrol < multicopter
                         grid on
                         title('Pitch angle');
                         xlabel('time [s]');
-                        ylabel('Pitch [°]');
+                        ylabel('Pitch [ï¿½]');
                         plot(obj.trajectory_.time,trajectoryEulerAttitude(2,:),'--g')
                         hold on
                         plot(log.time,pitchVector,'b')
@@ -931,7 +931,7 @@ classdef multicontrol < multicopter
                         grid on
                         title('Yaw angle');
                         xlabel('time [s]');
-                        ylabel('Yaw [°]');
+                        ylabel('Yaw [ï¿½]');
                         plot(obj.trajectory_.time,trajectoryEulerAttitude(3,:),'--g') 
                         hold on
                         plot(log.time,yawVector,'b')
@@ -948,7 +948,7 @@ classdef multicontrol < multicopter
                     if obj.verbose_ == true
                         disp('Simulation terminated. Position error too large, indicating simulation divergence')
                     end
-                    obj.updateMetrics(100*(endTime-currentTime)/currentTime);
+                    obj.updateMetrics(1e4*(endTime-currentTime)/currentTime);
                 else
                     if obj.verbose_ == true
                         disp('Simulation ended normaly.')
@@ -1391,7 +1391,7 @@ classdef multicontrol < multicopter
                 plot(obj.log_.time,eulerVector(1,:));
                 title('Roll angle');
                 xlabel('time [s]');
-                ylabel('Roll [°]');
+                ylabel('Roll [ï¿½]');
                 legend('Desired','Executed','location','best');                
             end
             if ~isempty(pitchAx)
@@ -1402,7 +1402,7 @@ classdef multicontrol < multicopter
                 plot(obj.log_.time,eulerVector(2,:));
                 title('Pitch angle');
                 xlabel('time [s]');
-                ylabel('Pitch [°]');
+                ylabel('Pitch [ï¿½]');
                 legend('Desired','Executed','location','best');                
             end
             if ~isempty(yawAx)
@@ -1413,7 +1413,7 @@ classdef multicontrol < multicopter
                 plot(obj.log_.time,eulerVector(3,:));
                 title('Yaw angle');
                 xlabel('time [s]');
-                ylabel('Yaw [°]');
+                ylabel('Yaw [ï¿½]');
                 legend('Desired','Executed','location','best');                
             end
             if ~isempty(rollSpeedAx)
@@ -2552,18 +2552,18 @@ classdef multicontrol < multicopter
                     Bp = eye(3)/obj.inertia();
                     if ~obj.isRunning()
                         obj.controlConfig_{index}.P = lyap(obj.controlConfig_{index}.Am',obj.controlConfig_{index}.Q);
-                        % Discretização do erro delta
+                        % Discretizaï¿½ï¿½o do erro delta
                         sysEdelta = ss(Am,Bp,eye(3),0);
                         sysEdeltaD = c2d(sysEdelta,obj.controlTimeStep_);
                         obj.controlConfig_{index}.AmEd = sysEdeltaD.A;
                         obj.controlConfig_{index}.BpEd = sysEdeltaD.B;
-                        % Discretização do estado desejado Xm
+                        % Discretizaï¿½ï¿½o do estado desejado Xm
                         sysXm = ss(Am,Bm,eye(3),0);
                         sysXmD = c2d(sysXm,obj.controlTimeStep_);
                         obj.controlConfig_{index}.AmXd = sysXmD.A;
                         obj.controlConfig_{index}.BmXd = sysXmD.B;
                         
-                        % Variáveis auxiliares
+                        % Variï¿½veis auxiliares
                         obj.controlConfig_{index}.eDelta = zeros(3,1);
                         obj.controlConfig_{index}.xm = zeros(3,1);
                         obj.controlConfig_{index}.r = zeros(3,1);
@@ -2634,21 +2634,21 @@ classdef multicontrol < multicopter
                     Bm = [eye(3)/obj.mass(),zeros(3,3);zeros(3,3),eye(3)];
                     if ~obj.isRunning()
                         obj.controlConfig_{index}.P = lyap(obj.controlConfig_{index}.Am',obj.controlConfig_{index}.Q);                        
-                        % Cálculo Bp  
+                        % Cï¿½lculo Bp  
                         Bp = [eye(3)/obj.mass_,zeros(3);zeros(3),obj.inertia()\eye(3)];
                         obj.controlConfig_{index}.Bp = Bp;
-                        % Discretização do erro delta
+                        % Discretizaï¿½ï¿½o do erro delta
                         sysEdelta = ss(Am,Bp,eye(6),0);
                         sysEdeltaD = c2d(sysEdelta,obj.controlTimeStep_);
                         obj.controlConfig_{index}.AmEd = sysEdeltaD.A;
                         obj.controlConfig_{index}.BpEd = sysEdeltaD.B;
-                        % Discretização do estado desejado Xm
+                        % Discretizaï¿½ï¿½o do estado desejado Xm
                         sysXm = ss(Am,Bm,eye(6),0);
                         sysXmD = c2d(sysXm,obj.controlTimeStep_);
                         obj.controlConfig_{index}.AmXd = sysXmD.A;
                         obj.controlConfig_{index}.BmXd = sysXmD.B;
                         
-                        % Variáveis auxiliares
+                        % Variï¿½veis auxiliares
                         obj.controlConfig_{index}.eDelta = zeros(6,1);
                         obj.controlConfig_{index}.zm = [0;0;1;0;0;0];
                         obj.controlConfig_{index}.lambda = ones(6,1);
@@ -2726,7 +2726,7 @@ classdef multicontrol < multicopter
                     Bm = [eye(3)/obj.mass(),zeros(3,3);zeros(3,3),eye(3)];
                     if ~obj.isRunning()
                         obj.controlConfig_{index}.P = lyap(obj.controlConfig_{index}.Am',obj.controlConfig_{index}.Q);                        
-                        % Cálculo Bp
+                        % Cï¿½lculo Bp
                         Mf = zeros(3,obj.numberOfRotors_);
                         Mt = zeros(3,obj.numberOfRotors_);
                         for it=1:obj.numberOfRotors_
@@ -2735,18 +2735,18 @@ classdef multicontrol < multicopter
                         end
                         Bp = [Mf/obj.mass();obj.inertia()\Mt];
                         obj.controlConfig_{index}.Bp = Bp;
-                        % Discretização do erro delta
+                        % Discretizaï¿½ï¿½o do erro delta
                         sysEdelta = ss(Am,Bp,eye(6),0);
                         sysEdeltaD = c2d(sysEdelta,obj.controlTimeStep_);
                         obj.controlConfig_{index}.AmEd = sysEdeltaD.A;
                         obj.controlConfig_{index}.BpEd = sysEdeltaD.B;
-                        % Discretização do estado desejado Xm
+                        % Discretizaï¿½ï¿½o do estado desejado Xm
                         sysXm = ss(Am,Bm,eye(6),0);
                         sysXmD = c2d(sysXm,obj.controlTimeStep_);
                         obj.controlConfig_{index}.AmXd = sysXmD.A;
                         obj.controlConfig_{index}.BmXd = sysXmD.B;
                         
-                        % Variáveis auxiliares
+                        % Variï¿½veis auxiliares
                         obj.controlConfig_{index}.eDelta = zeros(6,1);
                         obj.controlConfig_{index}.zm = [0;0;1;0;0;0];
                         obj.controlConfig_{index}.lambda = ones(obj.numberOfRotors(),1);
@@ -2841,7 +2841,7 @@ classdef multicontrol < multicopter
                         Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                     end
                     H = [Mf;Mt];
-                    invH = pinv(H);                     
+                    invH = pinv(H);                
                     [omega_square]=invH*[desiredImpulse;desiredTorque];
                     omega_square(omega_square<0) = 0;
                     for it=1:obj.numberOfRotors_

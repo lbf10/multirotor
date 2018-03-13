@@ -138,7 +138,6 @@ ub = 1e5*ones(1,12);
             lb = [lb,-inf(1,102)];
             ub = [ub,inf(1,102)];
             nvars = 111;
-        case 'Adaptive Direct'
         case 'SOSMC Active'
             c = 2*[1,1,0.001];
             alpha = 0.1*[1,1,0.001];
@@ -221,23 +220,17 @@ ub = 1e5*ones(1,12);
             ub = [ub,zeros(1,6)];
             nvars = nvars + 6;
     end
+initialPopulation = [initialPopulation;initialPopulation;initialPopulation;initialPopulation];
 fitnessfcn = @(x) controlFitness(attitudeController, controlAllocator, attitudeReference, x);
 %% Start GA
-poolobj = parpool(4);
+poolobj = parpool(64);
+addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m','../multiControl/'})
+filename = [attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_result.mat'];
 iterFilename = [attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
-options = gaoptimset('UseParallel',false,'PopulationSize',200,'Generations',200,'Display','diagnose','InitialPopulation',initialPopulation,'OutputFcn',@(options,state,flag) saveIter(options,state,flag,iterFilename));
+outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
+options = gaoptimset('UseParallel',false,'PopulationSize',500,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction);
 [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = gamultiobj(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
 delete(poolobj)
-filename = [attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'.mat'];
+
 finishDate = datestr(now);
 save(filename,'attitudeController','controlAllocator','attitudeReference','bestIndividual','bestFitness','EXITFLAG','OUTPUT','POPULATION','SCORES','finishDate');
-
-function saveIter(options,state,flag,iterFilename)
-    if exist(iterFilename, 'file') == 2
-        m = matfile(iterFilename,'Writable', true);
-        m.state = [m.state; state];
-        m.flag = [m.flag; flag];
-    else
-        save(iterFilename,'state','flag');
-    end
-end
