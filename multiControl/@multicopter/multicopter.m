@@ -2,8 +2,8 @@ classdef multicopter < handle
     %MULTICOPTER Simulation class for a multicopter of arbitrary number of
     %rotors. Model version 2.0 
     %
-    %   University of São Paulo - USP
-    %   Author: Leonardo Borges Farçoni                       
+    %   University of Sï¿½o Paulo - USP
+    %   Author: Leonardo Borges Farï¿½oni                       
     %   e-mail: leonardo.farconi@gmail.com                    
     %   Professor Advisor: Marco H. Terra and Roberto Inoue   
     %   E-mail: terra@sc.usp.br and rsinoue@ufscar.br         
@@ -1667,7 +1667,7 @@ classdef multicopter < handle
                     if isempty(obj.rotor_(rotorID(it)).liftCoeff.fit)
                         rotorLiftCoeffValue(it) = obj.rotor_(rotorID(it)).liftCoeff.data;
                     else
-                        rotorLiftCoeffValue(it) = obj.rotor_(rotorID(it)).liftCoeff.fit(obj.previousState_.rotor(rotorID(it)).speed);
+                        rotorLiftCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).liftCoeff.fit(obj.previousState_.rotor(rotorID(it)).speed));
                     end
                 end
             else
@@ -1681,7 +1681,7 @@ classdef multicopter < handle
                             if isempty(obj.rotor_(rotorID(it)).liftCoeff.fit)
                                 rotorLiftCoeffValue(it) = obj.rotor_(rotorID(it)).liftCoeff.data;
                             else
-                                rotorLiftCoeffValue(it) = obj.rotor_(rotorID(it)).liftCoeff.fit(varargin{1});
+                                rotorLiftCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).liftCoeff.fit(varargin{1}));
                             end
                         end
                     else
@@ -1690,7 +1690,7 @@ classdef multicopter < handle
                                 if isempty(obj.rotor_(rotorID(it)).liftCoeff.fit)
                                     rotorLiftCoeffValue(it) = obj.rotor_(rotorID(it)).liftCoeff.data;
                                 else
-                                    rotorLiftCoeffValue(it) = obj.rotor_(rotorID(it)).liftCoeff.fit(varargin{1}(it));
+                                    rotorLiftCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).liftCoeff.fit(varargin{1}(it)));
                                 end
                             end
                         else
@@ -1719,7 +1719,7 @@ classdef multicopter < handle
                     if isempty(obj.rotor_(rotorID(it)).dragCoeff.fit)
                         rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.data;
                     else
-                        rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.fit(obj.previousState_.rotor(rotorID(it)).speed);
+                        rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(obj.previousState_.rotor(rotorID(it)).speed));
                     end
                 end
             else
@@ -1733,7 +1733,7 @@ classdef multicopter < handle
                             if isempty(obj.rotor_(rotorID(it)).dragCoeff.fit)
                                 rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.data;
                             else
-                                rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.fit(varargin{1});
+                                rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(varargin{1}));
                             end
                         end
                     else
@@ -1742,7 +1742,7 @@ classdef multicopter < handle
                                 if isempty(obj.rotor_(rotorID(it)).dragCoeff.fit)
                                     rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.data;
                                 else
-                                    rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.fit(varargin{1}(it));
+                                    rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(varargin{1}(it)));
                                 end
                             end
                         else

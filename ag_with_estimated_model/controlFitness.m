@@ -21,21 +21,21 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
                 {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(2,''motor loss'',0)','setRotorStatus(3,''motor loss'',0)','setRotorStatus(4,''motor loss'',0)'}};
       
     numberOfOptions = length(endTimes)*length(yawGoTos)*size(payloads,1)*length(disturbances)*length(failures);
-    options = zeros(numberOfOptions,5);
+    options = cell(numberOfOptions,5);
     it = 1;
     for it1 = 1:length(endTimes)
         for it2 = 1:length(yawGoTos)
             for it3 = 1:size(payloads,1)
                 for it4 = 1:length(disturbances)
                     for it5 = 1:length(failures)
-                        options(it,:) = [it1,it2,it3,it4,it5];
+                        options(it,:) = {endTimes(it1),yawGoTos(it2),payloads(it3,:),disturbances(it4),failures{it5}};
                         it = it + 1;
                     end
                 end
             end
         end
     end
-    fitness = zeros(numberOfOptions,7);
+    fitness = zeros(numberOfOptions,5);
     
     parfor it = 1:numberOfOptions
         % Creates simulation class
@@ -98,8 +98,10 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
                     0.00000201512348657737
                     0.00000203398711313428
                     0.00000136514255905061];
-        multirotor.setRotorLiftCoeff(1:8,[speed, liftCoeff],'poly2');
-        multirotor.setRotorDragCoeff(1:8,[speed, dragCoeff],'poly2');
+%         multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'poly2');
+%         multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'poly2');
+        multirotor.setRotorLiftCoeff(1:8,mean(liftCoeff));
+        multirotor.setRotorDragCoeff(1:8,mean(dragCoeff));
         % Define rotor inertia
         multirotor.setRotorInertia(1:8,0.00047935*ones(1,8));
         % Sets rotors rotation direction for control allocation
@@ -110,32 +112,40 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         multirotor = paramsToMultirotor(attitudeController, controlAllocator, attitudeReference, multirotor, x);
         option = options(it,:);
         
-        endTime = endTimes(option(1));
-        [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto',yawGoTos(option(2)));
+        endTime = option{1};
+        [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto',option{2});
         multirotor.setTrajectory('waypoints',waypoints,time);
-        position = payloads(option(3),2:4);
-        mass = payloads(option(3),1);
+        payload = option{3};
+        position = payload(2:4);
+        mass = payload(1);
         multirotor.setPayload(position,mass,eye(3)*2*mass*payloadRadius*payloadRadius/5);
         crossTime1 = num2str(endTime/4);
         crossTime2 = num2str(3*endTime/4);
-        if disturbances(option(4)) ~= 0
-            multirotor.setLinearDisturbance(['@(t) [0;1;0]*',num2str(disturbances(option(4))),'*(exp(-(t-',crossTime1,')^2/(0.5))+exp(-(t-',crossTime2,')^2/(0.5)))']);
+        disturbance = option{4};
+        if disturbance ~= 0
+            multirotor.setLinearDisturbance(['@(t) [0;1;0]*',num2str(disturbance),'*(exp(-(t-',crossTime1,')^2/(0.5))+exp(-(t-',crossTime2,')^2/(0.5)))']);
         end
-        nFails = length(failures{option(5)});
+        failure = option{5}
+        nFails = length(failure);
         step = endTime/4/(1+nFails);
-        multirotor.addCommand(failures{option(5)},endTime/8+step:step:3*endTime/8-0.000001);
+        multirotor.addCommand(failure,endTime/8+step:step:3*endTime/8-0.000001);
         
         try
             multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);
             metrics = multirotor.metrics();
-            fitness(it,:) = [metrics.RMSPositionError,metrics.maxPositionError, real(metrics.RMSAngularError), real(metrics.maxAngularError), metrics.energy, metrics.maxPower, metrics.missionSuccess];
+            %fitness(it,:) = [metrics.RMSPositionError,metrics.maxPositionError, real(metrics.RMSAngularError), real(metrics.maxAngularError), metrics.energy, metrics.maxPower, metrics.missionSuccess];            
+            fitness(it,:) = [metrics.RMSPositionError,metrics.maxPositionError, real(metrics.RMSAngularError), real(metrics.maxAngularError), metrics.missionSuccess];
         catch
-            fitness(it,:) = [endTime*5,endTime*10, pi/2, pi, 1e10, 1e10, 0];
+            fitness(it,:) = [endTime*5,endTime*10, pi/2, pi, 0];
         end
+%         multirotor.plotSim()
+%         multirotor.metrics()
+%         pause
+        
         %disp(it)
     end    
     fitness = sum(fitness);
     fitness(end) = 1-fitness(end)/numberOfOptions;
-    disp('Fitness Calculated')
+    disp(['Fitness Calculated ',datestr(now)])
 end
 
