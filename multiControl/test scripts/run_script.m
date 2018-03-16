@@ -101,7 +101,7 @@ multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 % kd = 15*[0.25 0.25 0.25];
 kp = 300*[1 1 1];
 ki = 10*[1 1 1];
-kd = 30*[1 1 1];
+kd = 20*[1 1 1];
 multirotor.configController('PID',kp,ki,kd);
 
 % R-LQR attitude controller
@@ -193,14 +193,15 @@ multirotor.configController('Adaptive Direct',Am,Q,gamma1,gamma2,gamma3,gamma4);
 % Adaptive control allocation
 multirotor.configControlAllocator('Adaptive',-2e12*eye(6));
 multirotor.configControlAllocator('Passive NMAC',1,0);
+multirotor.configControlAllocator('Active NMAC',1,0);
 
 % Configure simulator
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setControlTimeStep(0.1);
 multirotor.setTimeStep(0.001);
 multirotor.setController('PID');
-multirotor.setControlAllocator('Passive NMAC');
-multirotor.setAttitudeReferenceCA('Passive NMAC');
+multirotor.setControlAllocator('Active NMAC');
+multirotor.setAttitudeReferenceCA('Active NMAC');
 multirotor.configFDD(1,0.1)
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
 % multirotor.setTrajectory('waypoints',[0.2*[1 1 1 0]',0.4*[1 1 1 0]'],[15 30]);
@@ -225,7 +226,7 @@ endTime = 30;
 % [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'sinusoidal',0,pi/2,endTime);
 [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, '360');
 multirotor.setTrajectory('waypoints',waypoints,time);
-% multirotor.addCommand({'setRotorStatus(1,''motor loss'',0)'},5)
+multirotor.addCommand({'setRotorStatus(1,''motor loss'',0)'},5)
 % multirotor.addCommand({'setRotorStatus(2,''motor loss'',0)'},5)
 % multirotor.addCommand({'setRotorStatus(3,''motor loss'',0)'},5)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0)'},5)
@@ -237,5 +238,5 @@ multirotor.setSimEffects('solver euler')
 % multirotor.setLinearDisturbance('@(t) [1;0;0]*3*exp(-(t-5)^2/(0.5))')
 
 %% Run simulator
-multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.3,'angularPrecision',15);
+multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);
 multirotor.plotSim();
