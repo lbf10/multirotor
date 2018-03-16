@@ -155,8 +155,8 @@ function multirotor = paramsToMultirotor(attitudeController, controlAllocator, a
     multirotor.setController(attitudeController);
     multirotor.setControlAllocator(controlAllocator);
     multirotor.setAttitudeReferenceCA(attitudeReference);
-    multirotor.setControlTimeStep(0.1);
-    multirotor.setTimeStep(0.01);
+    multirotor.setControlTimeStep(0.05);
+    multirotor.setTimeStep(0.005);
     multirotor.configFDD(0.9,0.5);
     multirotor.setSimEffects('motor dynamics off')
     multirotor.setSimEffects('solver euler')

@@ -8,17 +8,17 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
     endTimes = [30];
     yawGoTos = [0,2*pi];
     payloads = [0, 0, 0, 0
-               0.5*mass, 0, 0, 0
-               0.5*mass, -payloadRadius/(2*sqrt(2)), -payloadRadius/(2*sqrt(2)), -payloadRadius
+               %0.5*mass, 0, 0, 0
+               %0.5*mass, -payloadRadius/(2*sqrt(2)), -payloadRadius/(2*sqrt(2)), -payloadRadius
                1*mass, 0, 0, 0
                1*mass, -payloadRadius/(2*sqrt(2)), -payloadRadius/(2*sqrt(2)), -payloadRadius];
     disturbances = [0,5];
     failures = {{''}
                 {'setRotorStatus(1,''motor loss'',0)'}
                 {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(2,''motor loss'',0)'}
-                {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(6,''motor loss'',0)'}
-                {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(2,''motor loss'',0)','setRotorStatus(3,''motor loss'',0)'}
-                {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(2,''motor loss'',0)','setRotorStatus(3,''motor loss'',0)','setRotorStatus(4,''motor loss'',0)'}};
+                {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(6,''motor loss'',0.4)'}
+                {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(2,''motor loss'',0)','setRotorStatus(3,''motor loss'',0)'}};
+                %{'setRotorStatus(1,''motor loss'',0)','setRotorStatus(2,''motor loss'',0)','setRotorStatus(3,''motor loss'',0)','setRotorStatus(4,''motor loss'',0)'}};
       
     numberOfOptions = length(endTimes)*length(yawGoTos)*size(payloads,1)*length(disturbances)*length(failures);
     options = cell(numberOfOptions,5);
