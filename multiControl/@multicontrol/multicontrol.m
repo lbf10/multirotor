@@ -55,7 +55,6 @@ classdef multicontrol < multicopter
                        
             % Creates multicopter
             obj = obj@multicopter(N);
-            
             obj.attitudeControllers_ = {'PID',...
                                         'RLQ-R Passive',...
                                         'RLQ-R Passive Modified',...
@@ -80,6 +79,9 @@ classdef multicontrol < multicopter
                                         'RPI Passive',...
                                         'RPI Active',...
                                         'Adaptive',...
+                                        'CLS Passive',...
+                                        'Passive NMAC',...
+                                        'Active NMAC',...
                                         'None'};            
         
             % Sets variables sizes and empties
@@ -257,13 +259,14 @@ classdef multicontrol < multicopter
                 while it<=length(varargin)
                     switch varargin{it}
                         case 'Adaptive' % Adaptive control allocator
+                            index = 5;
                             if obj.inputsOK(varargin,it,1)
                                 it = it+1;
                                 if isnumeric(varargin{it})
-                                    obj.allocationConfig_{5}.Am = varargin{it};
+                                    obj.allocationConfig_{index}.Am = varargin{it};
                                     if obj.verbose_ == true
                                         disp('Adaptive control allocator gain set to: ')
-                                        disp(obj.allocationConfig_{5}.Am);
+                                        disp(obj.allocationConfig_{index}.Am);
                                     end
                                 else
                                     warning('Adaptive gain must be numeric. Skipping this control allocation configuration');
@@ -271,6 +274,50 @@ classdef multicontrol < multicopter
                                 it = it+1;
                             else
                                 warning('Missing argument for adaptive allocator. Skipping configuration.');
+                            end
+                        case 'Passive NMAC' % Passive Null-Space-Based Maneuverability/Attitude Contest (NMAC)
+                            index = 7;
+                            if obj.inputsOK(varargin,it,1)
+                                it = it+1;
+                                if isnumeric(varargin{it}) & isscalar(varargin{it})
+                                    if isnumeric(varargin{it+1}) & isscalar(varargin{it+1})
+                                        obj.allocationConfig_{index}.R = varargin{it};
+                                        obj.allocationConfig_{index}.Q = varargin{it+1};
+                                        if obj.verbose_ == true
+                                            disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.R)])
+                                            disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.Q)])
+                                        end
+                                    else
+                                        warning('Attitude factor must be numeric and scalar. Skipping this control allocation configuration');
+                                    end
+                                else
+                                    warning('Maneuverability factor must be numeric and scalar. Skipping this control allocation configuration');
+                                end
+                                it = it+2;
+                            else
+                                warning('Missing argument for Passive NMAC allocator. Skipping configuration.');
+                            end
+                            case 'Active NMAC' % Active Null-Space-Based Maneuverability/Attitude Contest (NMAC)
+                            index = 8;
+                            if obj.inputsOK(varargin,it,1)
+                                it = it+1;
+                                if isnumeric(varargin{it}) & isscalar(varargin{it})
+                                    if isnumeric(varargin{it+1}) & isscalar(varargin{it+1})
+                                        obj.allocationConfig_{index}.R = varargin{it};
+                                        obj.allocationConfig_{index}.Q = varargin{it+1};
+                                        if obj.verbose_ == true
+                                            disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.R)])
+                                            disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.Q)])
+                                        end
+                                    else
+                                        warning('Attitude factor must be numeric and scalar. Skipping this control allocation configuration');
+                                    end
+                                else
+                                    warning('Maneuverability factor must be numeric and scalar. Skipping this control allocation configuration');
+                                end
+                                it = it+2;
+                            else
+                                warning('Missing argument for Active NMAC allocator. Skipping configuration.');
                             end
                         otherwise
                             warning('Control Allocation type not expected. Skipping configuration');
@@ -1621,7 +1668,7 @@ classdef multicontrol < multicopter
             invQyd = Qyd';
             Tcd = invQyd*desiredImpulse;
             switch obj.attReferenceAlg_
-                case 1 %PI Passive
+                case 1 % PI Passive
                     % Calculate aircraft inverse control model
                     Mf = [];
                     for it=1:obj.numberOfRotors_
@@ -1633,7 +1680,7 @@ classdef multicontrol < multicopter
                     [omega_square] = invMf*Tcd;
                     % Step 3 - If any rotor speed is less than zero, assumes it is zero
                     omega_square(omega_square<0) = 0;
-                case 2 %PI Active
+                case 2 % PI Active
                     % Calculate aircraft inverse control model
                     Mf = [];
                     for it=1:obj.numberOfRotors_
@@ -1649,7 +1696,7 @@ classdef multicontrol < multicopter
                     [omega_square] = invMf*Tcd;
                     % Step 3 - If any rotor speed is less than zero, assumes it is zero
                     omega_square(omega_square<0) = 0;
-                case 3 %RPI Passive
+                case 3 % RPI Passive
                     tau = Tcd;
                     Mf = [];
                     for it=1:obj.numberOfRotors_
@@ -1677,7 +1724,7 @@ classdef multicontrol < multicopter
                             end
                         end
                     end
-                case 4 %RPI Active
+                case 4 % RPI Active
                     tau = Tcd;
                     Mf = [];
                     for it=1:obj.numberOfRotors_
@@ -1716,11 +1763,33 @@ classdef multicontrol < multicopter
                             end
                         end
                     end
-                case 5 %Adaptive
+                case 5 % Adaptive
                     error('Control allocation method not implemented')
+                case 7 % Passive NMAC
+                    index = 7;
+                    Mf = [];
+                    Mt = [];
+                    for it=1:obj.numberOfRotors_
+                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                    end
+                    maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
+                    minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
+                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                    N = null(Mt);
+                    R = obj.allocationConfig_{index}.R;
+                    Q = obj.allocationConfig_{index}.Q;
+                    v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*Tcd));
+                    omega_square = N*v;
+                    lessIndex = omega_square<minSpeeds;
+                    greaterIndex = omega_square>maxSpeeds;
+                    omega_square(lessIndex) = minSpeeds(lessIndex);
+                    omega_square(greaterIndex) = maxSpeeds(greaterIndex);
+                case 8 % Active NMAC
+                    
                 otherwise
                     error('No allocation method available')
-            end  
+            end              
             % Step 4 - Find the force vector that the aircraft is capable of
             % generating
             Tc = Mf*omega_square;
@@ -1767,6 +1836,7 @@ classdef multicontrol < multicopter
                     errorVector = [qe(2); qe(3); qe(4)];
                     obj.controlConfig_{1}.ierror = obj.controlConfig_{1}.ierror+errorVector*obj.controlTimeStep_;
                     attitudeControlOutput = obj.inertiaTensor_*(-reshape(obj.controlConfig_{1}.kd,[3 1]).*obj.previousAngularVelocity()+reshape(obj.controlConfig_{1}.kp,[3 1]).*errorVector+reshape(obj.controlConfig_{1}.ki,[3 1]).*obj.controlConfig_{1}.ierror);
+                    %torqueD = attitudeControlOutput
                 case 2 %'RLQ-R Passive'
                     index = 2;
                     q = obj.previousState_.attitude; %Current attitude
@@ -2841,9 +2911,23 @@ classdef multicontrol < multicopter
                         Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                     end
                     H = [Mf;Mt];
-                    invH = pinv(H);                
+                    invH = pinv(H);   
                     [omega_square]=invH*[desiredImpulse;desiredTorque];
                     omega_square(omega_square<0) = 0;
+                    
+                    invMf = pinv(Mf);
+                    invMt = pinv(Mt);
+                    osquare_f = invMf*desiredImpulse
+                    badTorque = Mf*osquare_f
+                    desiredTorque = desiredTorque + badTorque
+                    osquare_t = invH*[0;0;0;desiredTorque]
+                    osquare = osquare_f + osquare_t;
+%                     omega_square = osquare;
+%                     omega_square(omega_square<0) = 0;
+%                     
+%                     osquare_t = osquare_t - min(0,min(osquare_t));
+%                     desiredTorque
+%                     realizedTorque = 
                     for it=1:obj.numberOfRotors_
                         allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
                     end
@@ -3063,6 +3147,51 @@ classdef multicontrol < multicopter
 %                     for it=1:obj.numberOfRotors_
 %                         allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
 %                     end
+                case 6 % 'CLS Passive'
+                    Mf = [];
+                    Mt = [];
+                    for it=1:obj.numberOfRotors_
+                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                    end
+                    H = [Mf;Mt];
+                    
+                    maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
+                    minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
+                    omega_square = lsqlin(H,[desiredImpulse;desiredTorque],[],[],[],[],minSpeeds,maxSpeeds)
+                    
+                    for it=1:obj.numberOfRotors_
+                        allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
+                    end
+                case 7 % Passive NMAC
+                    index = 7;
+                    Mf = [];
+                    Mt = [];
+                    for it=1:obj.numberOfRotors_
+                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                    end
+                    maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
+                    minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
+                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                    N = null(Mt);
+                    R = obj.allocationConfig_{index}.R;
+                    Q = obj.allocationConfig_{index}.Q;
+                    v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*desiredImpulse));
+                    b2 = N*v;
+                    utau = pinv(Mt)*desiredTorque;
+                    c = (desiredImpulse-Mf*utau)'*Mf*b2/(norm(Mf*b2)^2);
+                    omega_square = utau+b2*c;
+                    
+                    lessIndex = omega_square<minSpeeds;
+                    greaterIndex = omega_square>maxSpeeds;
+                    omega_square(lessIndex) = minSpeeds(lessIndex);
+                    omega_square(greaterIndex) = maxSpeeds(greaterIndex);
+                    for it=1:obj.numberOfRotors_
+                        allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
+                    end
+                case 8 % Active NMAC
+                    index = 8;
                 otherwise
                     allocatorOutput = controllerOutput.attitudeController; 
             end
@@ -3143,12 +3272,38 @@ classdef multicontrol < multicopter
                     error('Cannot run. Configure adaptive control allocation.')
                     result = false;
                 else
-                    if isempty(obj.allocationConfig_{5})
+                    if isempty(obj.allocationConfig_{obj.attReferenceAlg_})
                         error('Cannot run. Configure adaptive control allocation.')
                         result = false;                    
                     end
                 end
-            end            
+            end
+            
+            if ~isempty(strfind(obj.controlAllocators_{obj.allocationAlg_},'Passive NMAC')) || ...
+                    ~isempty(strfind(obj.controlAllocators_{obj.attReferenceAlg_},'Passive NMAC'))
+                if isempty(obj.allocationConfig_)
+                    error('Cannot run. Configure Passive NMAC control allocation and/or attitude reference.')
+                    result = false;
+                else
+                    if isempty(obj.allocationConfig_{obj.attReferenceAlg_})
+                        error('Cannot run. Configure Passive NMAC control allocation and/or attitude reference.')
+                        result = false;                    
+                    end
+                end
+            end
+            
+            if ~isempty(strfind(obj.controlAllocators_{obj.allocationAlg_},'Active NMAC')) || ...
+                    ~isempty(strfind(obj.controlAllocators_{obj.attReferenceAlg_},'Active NMAC'))
+                if isempty(obj.allocationConfig_)
+                    error('Cannot run. Configure Active NMAC control allocation and/or attitude reference.')
+                    result = false;
+                else
+                    if isempty(obj.allocationConfig_{obj.attReferenceAlg_})
+                        error('Cannot run. Configure Active NMAC control allocation and/or attitude reference.')
+                        result = false;                    
+                    end
+                end
+            end
         end  
         function evalCommands(obj, indexes)
         %UNTITLED Summary of this function goes here
