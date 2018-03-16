@@ -108,7 +108,10 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         rotationDirection = [1 -1 1 -1 -1 1 -1 1]';
         multirotor.setRotorDirection(1:8,rotationDirection);
         multirotor.setRotorMaxSpeed(1:8,750*ones(1,8));
-        multirotor.setRotorMinSpeed(1:8,328*ones(1,8));
+        %multirotor.setRotorMinSpeed(1:8,328*ones(1,8));
+        multirotor.setRotorMinSpeed(1:8,0*ones(1,8));
+        multirotor.configControlAllocator('Passive NMAC',1,0);
+        multirotor.configControlAllocator('Active NMAC',1,0);
         multirotor = paramsToMultirotor(attitudeController, controlAllocator, attitudeReference, multirotor, x);
         option = options(it,:);
         

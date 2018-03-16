@@ -1786,7 +1786,39 @@ classdef multicontrol < multicopter
                     omega_square(lessIndex) = minSpeeds(lessIndex);
                     omega_square(greaterIndex) = maxSpeeds(greaterIndex);
                 case 8 % Active NMAC
-                    
+                    index = 8;
+                    Mf = [];
+                    Mt = [];
+                    for it=1:obj.numberOfRotors_
+                        if strcmp('stuck',diagnosis{it}.status{1})
+                            Mf = [Mf [0 0 0]'];
+                            Mt = [Mt [0 0 0]'];
+                        else
+                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                        end
+                    end
+                    maxSpeeds = zeros(obj.numberOfRotors_,1);
+                    minSpeeds = zeros(obj.numberOfRotors_,1);
+                    for it=1:obj.numberOfRotors_
+                        if strcmp('stuck',diagnosis{it}.status{1})
+                            maxSpeeds(it,:) = 0;
+                            minSpeeds(it,:) = 0;
+                        else
+                            maxSpeeds(it,:) = (obj.rotorMaxSpeed(it)*diagnosis{it}.motorEfficiency)^2;
+                            minSpeeds(it,:) = (obj.rotorMinSpeed(it)*diagnosis{it}.motorEfficiency)^2;
+                        end
+                    end
+                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                    N = null(Mt);
+                    R = obj.allocationConfig_{index}.R;
+                    Q = obj.allocationConfig_{index}.Q;
+                    v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*Tcd));
+                    omega_square = N*v;
+                    lessIndex = omega_square<minSpeeds;
+                    greaterIndex = omega_square>maxSpeeds;
+                    omega_square(lessIndex) = minSpeeds(lessIndex);
+                    omega_square(greaterIndex) = maxSpeeds(greaterIndex);
                 otherwise
                     error('No allocation method available')
             end              
@@ -3163,7 +3195,7 @@ classdef multicontrol < multicopter
                     for it=1:obj.numberOfRotors_
                         allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
                     end
-                case 7 % Passive NMAC
+                case 7 % 'Passive NMAC'
                     index = 7;
                     Mf = [];
                     Mt = [];
@@ -3190,8 +3222,47 @@ classdef multicontrol < multicopter
                     for it=1:obj.numberOfRotors_
                         allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
                     end
-                case 8 % Active NMAC
+                case 8 % 'Active NMAC'
                     index = 8;
+                    Mf = [];
+                    Mt = [];
+                    for it=1:obj.numberOfRotors_
+                        if strcmp('stuck',diagnosis{it}.status{1})
+                            Mf = [Mf [0 0 0]'];
+                            Mt = [Mt [0 0 0]'];
+                        else
+                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                        end
+                    end
+                    maxSpeeds = zeros(obj.numberOfRotors_,1);
+                    minSpeeds = zeros(obj.numberOfRotors_,1);
+                    for it=1:obj.numberOfRotors_
+                        if strcmp('stuck',diagnosis{it}.status{1})
+                            maxSpeeds(it,:) = 0;
+                            minSpeeds(it,:) = 0;
+                        else
+                            maxSpeeds(it,:) = (obj.rotorMaxSpeed(it)*diagnosis{it}.motorEfficiency)^2;
+                            minSpeeds(it,:) = (obj.rotorMinSpeed(it)*diagnosis{it}.motorEfficiency)^2;
+                        end
+                    end
+                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                    N = null(Mt);
+                    R = obj.allocationConfig_{index}.R;
+                    Q = obj.allocationConfig_{index}.Q;
+                    v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*desiredImpulse));
+                    b2 = N*v;
+                    utau = pinv(Mt)*desiredTorque;
+                    c = (desiredImpulse-Mf*utau)'*Mf*b2/(norm(Mf*b2)^2);
+                    omega_square = utau+b2*c;
+                    
+                    lessIndex = omega_square<minSpeeds;
+                    greaterIndex = omega_square>maxSpeeds;
+                    omega_square(lessIndex) = minSpeeds(lessIndex);
+                    omega_square(greaterIndex) = maxSpeeds(greaterIndex);
+                    for it=1:obj.numberOfRotors_
+                        allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
+                    end
                 otherwise
                     allocatorOutput = controllerOutput.attitudeController; 
             end
