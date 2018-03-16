@@ -11,12 +11,12 @@ controlAllocator = 'Adaptive';
 attitudeReference = 'PI Passive';
 
 %% Select nvars according to algorithms
-initialPopulation = [54 54 54 3 3 3 15 15 15 1 1 1];
+initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
 lb = zeros(1,12);
 ub = 1e5*ones(1,12);
     switch attitudeController
         case 'PID'
-            initialPopulation = [initialPopulation [250 250 250 100 100 100 22 22 22]];
+            initialPopulation = [initialPopulation [300 300 300 10 10 10 30 30 30]];
             lb = [lb,zeros(1,9)];
             ub = [ub,1e5*ones(1,9)];
             nvars = 21;
@@ -225,8 +225,8 @@ fitnessfcn = @(x) controlFitness(attitudeController, controlAllocator, attitudeR
 %% Start GA
 poolobj = parpool(64);
 addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m','../multiControl/'})
-filename = [attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_result.mat'];
-iterFilename = [attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
+filename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_result.mat'];
+iterFilename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
 outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
 options = gaoptimset('UseParallel',false,'PopulationSize',500,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction);
 [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = gamultiobj(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
