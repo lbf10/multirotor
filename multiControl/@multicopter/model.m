@@ -21,7 +21,7 @@ function dydt = model(obj,t,y,simTime,simInput)
     %         clear index;
     %         index = abs(simInput)>obj.rotor_(i).maxSpeed;
     %         simInput(i,index(i,:)) = obj.rotor_(i).maxSpeed;
-    %         % Utilizado na vers�o 1.0
+    %         % Utilizado na vers�o 1.0
     %         %simInput(i,index(i,:)) = obj.rotor_(i).maxSpeed*(simInput(i,index(i,:))./abs(simInput(i,index(i,:))));
     %         clear index;
     %         index = abs(simInput)<obj.rotor_(i).minSpeed;
@@ -84,28 +84,68 @@ function dydt = model(obj,t,y,simTime,simInput)
     A = obj.translationalFriction_.*(eye(3)+obj.translationalFrictionPError_);
     
     %%% Rotor dynamics
-    % Relates rotor set points to rotor speeds
+    % Relates rotor set points to rotor speeds    
+    % limits rotor speed inputs based on maximum allowed acceleration rate
+    speedsMax = [obj.rotor_(rotorIDs).maxSpeed];
+    speedsMin = [obj.rotor_(rotorIDs).minSpeed];
+    
+    switch obj.simEffects_{1}
+        case 'motor dynamics tf on'
+            % Do nothing
+        otherwise
+            if isempty(obj.rotorSpeedsAux_)
+                obj.rotorSpeedsAux_ = [obj.previousState_.rotor(:).speed]';
+                obj.modelCallTimeAux_ = 0;
+            end
+            dt = max(t-obj.modelCallTimeAux_,obj.timeStep_);
+            indexes = find(~isinf([obj.rotor_(:).maxAcc])); 
+
+            if ~isempty(indexes)
+                lastRotorSpeeds = abs([obj.rotorSpeedsAux_(indexes,end)]');
+%                     MÉTODO CONSIDERANDO A POTÊNCIA NO INSTANTE, E NÃO SOMENTE A
+%                     DIFERENÇA DE POTÊNCIA
+%                     polyUp = [-ones(1,length(indexes))/4;7/4*lastRotorSpeeds+ri(indexes)./(2*dt*dc(indexes)); -5*(lastRotorSpeeds.^2)/4; -(ri(indexes)./(2*dt*dc(indexes))).*lastRotorSpeeds.^2-(1/4+[obj.rotor_(indexes).maxAcc]*1000*dt).*lastRotorSpeeds.^3]
+%                     polyDown = [-ones(1,length(indexes))/4;7/4*lastRotorSpeeds+ri(indexes)./(2*dt*dc(indexes)); -5*(lastRotorSpeeds.^2)/4; -(ri(indexes)./(2*dt*dc(indexes))).*lastRotorSpeeds.^2-(1/4-[obj.rotor_(indexes).maxAcc]*1000*dt).*lastRotorSpeeds.^3]
+%                     rootsUp = zeros(3,length(indexes));
+%                     rootsDown = zeros(3,length(indexes));
+%                     for it=1:length(indexes)
+%                        rootsUp(:,it) = roots(polyUp(:,it));
+%                        rootsDown(:,it) = roots(polyDown(:,it));
+%                     end
+%                     rootsUp
+%                     rootsDown
+%                     pause
+
+                speedsMinAux = speedsMin;
+                
+                % CONSIDERANDO A VELOCIDADE DO PASSO ANTERIOR:
+                speedsMax(indexes) = min(dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes).*(lastRotorSpeeds.^2)./ri(indexes) + lastRotorSpeeds,speedsMax(indexes));
+                speedsMinAux(indexes) = max(-dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes).*(lastRotorSpeeds.^2)./ri(indexes) + lastRotorSpeeds,speedsMin(indexes));
+                % CONSIDERANDO A VELOCIDADE MEDIA ENTRE OS PASSOS:
+                %speedsMax(indexes) = min(lastRotorSpeeds.*sqrt(2*dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes)./ri(indexes)+1),speedsMax(indexes));
+                %speedsMinAux(indexes) = max(lastRotorSpeeds.*sqrt(-2*dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes)./ri(indexes)+1),speedsMin(indexes));
+                
+                indexesInit = lastRotorSpeeds<speedsMin;
+                speedMin(indexesInit) = 0;
+                speedMin(~indexesInit) = speedsMinAux(~indexesInit);
+
+%                     speedsMax
+%                     speedsMin
+%                     pause
+            end
+    end
+
     % Limits rotor speed inputs to maximum allowed speeds
     localSetPoint = [obj.rotor_(rotorIDs).speedSetPoint].*[obj.rotor_(rotorIDs).motorEfficiency];
-    indexes = abs(localSetPoint(rotorIDs))>[obj.rotor_(rotorIDs).maxSpeed];
+    indexes = abs(localSetPoint(rotorIDs))>speedsMax;
     if any(indexes)
-        localSetPoint(indexes) = [obj.rotor_(indexes).maxSpeed].*sign(localSetPoint(indexes));
+        localSetPoint(indexes) = [speedsMax(indexes)].*sign(localSetPoint(indexes));
     end
-    indexes = abs(localSetPoint(rotorIDs))<[obj.rotor_(rotorIDs).minSpeed];
+    indexes = abs(localSetPoint(rotorIDs))<speedsMin;
     if any(indexes)
-        localSetPoint(indexes) = [obj.rotor_(indexes).minSpeed].*sign(localSetPoint(indexes));
+        localSetPoint(indexes) = [speedsMin(indexes)].*sign(localSetPoint(indexes));
     end
-%     for i=rotorIDs
-%         localSetPoint(i) = obj.rotor_(i).speedSetPoint*obj.rotor_(i).motorEfficiency;
-%         if abs(localSetPoint(i))>obj.rotor_(i).maxSpeed;
-%             localSetPoint(i) = obj.rotor_(i).maxSpeed*sign(localSetPoint(i));
-%         end
-%         % Utilizado na vers�o 1.0
-%         %simInput(i,index(i,:)) = obj.rotor_(i).maxSpeed*(simInput(i,index(i,:))./abs(simInput(i,index(i,:))));
-%         if abs(localSetPoint(i))<obj.rotor_(i).minSpeed;
-%         	localSetPoint(i) = obj.rotor_(i).minSpeed*sign(localSetPoint(i));
-%         end
-%     end     
+    obj.modelCallTimeAux_ = t;
     switch obj.simEffects_{1}
         case 'motor dynamics tf on'
             w = y(14:(13+obj.numberOfRotors_));
@@ -135,6 +175,11 @@ function dydt = model(obj,t,y,simTime,simInput)
                         w(i) = obj.previousState_.rotor(i).speed;
                 end  
             end
+%             if dt~=0
+%                 dw = (w-obj.rotorSpeedsAux_(:,end))/dt;
+%             else
+%                 dw = zeros(obj.numberOfRotors_,1);
+%             end
             obj.rotorSpeedsAux_(:,end+1) = w';
     end
     %%% Aircraft dynamics
@@ -172,4 +217,5 @@ function dydt = model(obj,t,y,simTime,simInput)
         otherwise
             % does nothing
     end
+    obj.dydtAux_ = dydt;
 end

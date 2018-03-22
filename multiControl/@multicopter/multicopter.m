@@ -78,7 +78,9 @@ classdef multicopter < handle
         % Auxiliary variables
         setPointsAux_
         rotorSpeedsAux_
+        modelCallTimeAux_
         spTimeAux_
+        dydtAux_
         % Rotor fail auxiliary variables
         % Rotor stuck function
 %         Lu
@@ -143,6 +145,7 @@ classdef multicopter < handle
                         obj.rotor_(it).maxSpeed = inf;
                         obj.rotor_(it).minSpeed = 0;
                         obj.rotor_(it).transferFunction = [250000;750;250000];
+                        obj.rotor_(it).maxAcc = 0.25;
                         obj.initialState_.rotor(it).speed = 0;
                         obj.initialState_.rotor(it).acceleration = 0;
                         
@@ -215,6 +218,7 @@ classdef multicopter < handle
             
             obj.setPointsAux_ = [];
             obj.rotorSpeedsAux_ = [];
+            obj.modelCallTimeAux_ = [];
             obj.spTimeAux_ = [];
             obj.linearDisturbance_ = [];
 %             obj.Lu = 0.98;
@@ -537,6 +541,9 @@ classdef multicopter < handle
         %   T is set so to obtain 500 rad/s and 0.75 for natural frequency
         %   and damping ratio, respectively, in case T is not specified.
         %
+        %   rotorID = ADDROTOR(P,O,I,L,D,M,m,T,A) does the same as ADDROTOR(P,O,I,L,D,M,m,T), 
+        %   but sets the rotor maximum acceleration rate to A.
+        %
         %   ADDROTOR can be used during simulation, but in most cases it is
         %   suggested to add all rotors during initial configuration and set
         %   them as fail or running acordingly. 
@@ -566,6 +573,7 @@ classdef multicopter < handle
             obj.rotor_(rotorID).maxSpeed = inf;
             obj.rotor_(rotorID).minSpeed = 0;
             obj.rotor_(rotorID).transferFunction = [250000;750;250000];
+            obj.rotor_(rotorID).maxAcc = 0.25;
             obj.initialState_.input(rotorID) = 0;
             obj.initialState_.rotor(rotorID).speed = 0;
             obj.initialState_.rotor(rotorID).acceleration = 0;
@@ -639,6 +647,9 @@ classdef multicopter < handle
         %   T is set so to obtain 500 rad/s and 0.75 for natural frequency
         %   and damping ratio, respectively, in case T is not specified.
         %
+        %   SETROTOR(P,O,I,L,D,M,m,T,A) does the same as SETROTOR(P,O,I,L,D,M,m,T), 
+        %   but sets the rotor maximum acceleration rate to A.
+        %
         %   SETROTOR may be substituded by setting rotor position,
         %   orientation, inertia, lift and drag coefficients separately
         %   using functions presented below.
@@ -675,6 +686,9 @@ classdef multicopter < handle
             end
             if length(varargin)>=8
                 obj.setRotorTF(rotorID, varargin{8});
+            end
+            if length(varargin)>=9
+                obj.setRotorMaxAcceleration(rotorID, varargin{9});
             end
         end  
         function setRotorPosition(obj, rotorID, position)
@@ -979,7 +993,37 @@ classdef multicopter < handle
                 error('Rotor TF must be an array of numeric column (3x1) vectors the same length as the vector of rotor IDs, which must not exceed the number of rotors in the multicopter!')
             end
         end     
-                    
+        function setRotorMaxAcceleration(obj, rotorID, maxAcc)
+        %SETROTORMAXACCELERATION  Configures maximum acceleration rate for specified rotor.
+        %
+        %   SETROTORMAXACCELERATION(rotorID,M) Sets rotor maximum allowed acceleration rate to M.
+        %   rotorID may be a scalar or a vector, in arbitrary order, 
+        %   specifying which rotors will be configured.
+        %   M may be a numeric scalar (including infinity) or a numeric 
+        %   vector the same length as rotorID.
+        %   Each vector position relates to the rotor ID specified at the
+        %   same position of the rotorID vector.
+        %   M = 0.25, for instance, means the power applied to the rotor
+        %   will change at most 25% per milissecond.
+        %
+        %   SETROTORMAXACCELERATION can be used during simulation.
+        %
+        %   See also ADDROTOR, SETROTORPOSITION, SETROTORORIENTATION,
+        %   SETROTORINERTIA, SETROTORLIFTCOEFF, SETROTORDRAGCOEFFICIENT, 
+        %   SETROTOR.
+        
+            if iscell(maxAcc)
+                warning('Input will be converted to numeric array.')
+                maxAcc = cell2mat(maxAcc);
+            end
+            if isvector(maxAcc) && isnumeric(maxAcc) && (length(maxAcc)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_
+                maxAcc = num2cell(maxAcc);
+                [obj.rotor_(rotorID).maxAcc] = maxAcc{:};
+            else
+                error('Maximum rotor acceleration rate must be a vector of numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
+            end
+        end
+             
         function setRotorInertiaError(obj, rotorID, error)
         %SETROTORINERTIAERROR  Configures percentage error for rotor inertia.
         %
@@ -1801,6 +1845,25 @@ classdef multicopter < handle
         
             rotorTFValue = [obj.rotor_(rotorID).transferFunction];
         end  
+        function rotorMaxAcceleration = rotorMaxAcceleration(obj, rotorID)
+        %ROTORMAXACCELERATION Returns the maximum acceleration rate of the specified rotor.
+        %
+        %   M = ROTORMAXACCELERATION(rotorID) Returns the maximum acceleration rate that the
+        %   specified rotor is capable of executing.
+        %   rotorID specifies which rotor to return the maximum speed of.
+        %   rotorID can be a single value or an array of IDs.
+        %   M is an array of size 1xN, where N = length(rotorID) and each
+        %   vector element represents the maximum allowed acceleration rate associated with 
+        %   the rotor specified by the respective rotorID. 
+        %
+        %   The acceleration rate is specified in %/milissecond of power
+        %   change in the motor.
+        %
+        %   See also ROTOR,ROTORPOSITION, ROTORORIENTATION, ROTORINERTIA, 
+        %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORDRAGCOEFF.
+        
+            rotorMaxAcceleration = [obj.rotor_(rotorID).maxAcc];
+        end        
         function motorEfficiencyValue = motorEfficiency(obj, rotorID)
         %ROTOREFFICIENCY Returns the current efficiency of the specified rotor.
         %
@@ -2601,7 +2664,7 @@ classdef multicopter < handle
                     if obj.isRunning_ == false
                         if obj.canStart()
                             % if not running already, copy initial states to previous states variable
-                            obj.previousState_ = obj.initialState_;                            
+                            obj.previousState_ = obj.initialState_; 
                             obj.previousState_.time = 0;
                             obj.isRunning_ = true;
                             firstRun = true;
@@ -2715,12 +2778,15 @@ classdef multicopter < handle
                         otherwise
                             % does nothing
                     end
-                    dydt = obj.model(obj.previousState_.time,y0,simTime,simInput);
+                    %dydt = obj.model(obj.previousState_.time,y0,simTime,simInput);
+                    dydt = obj.dydtAux_;
                     obj.previousState_.acceleration = dydt(8:10);
                     obj.previousState_.angularAcceleration = dydt(11:13);
                     if firstRun == false
                         t(1) = [];
                         output(1,:) = [];
+                    else
+                        obj.rotorSpeedsAux_(:,1) = [];
                     end
                     if obj.isLogging_ == true
                         previousLength = length(obj.log_.time);
@@ -2734,12 +2800,22 @@ classdef multicopter < handle
                                 obj.log_.input = [obj.log_.input, [simInput'; zeros(sizelog-sizeaux,size(simInput',2))]];
                             end
                         else
-                            sizeaux = size(simInput(:,2:end),1);
-                            sizelog = size(obj.log_.input,1);
-                            if sizeaux >= sizelog
-                                obj.log_.input = [[obj.log_.input; zeros(sizeaux-sizelog,size(obj.log_.input,2))],simInput(:,2:end)];
+                            if firstRun==false
+                                sizeaux = size(simInput(:,2:end),1);
+                                sizelog = size(obj.log_.input,1);
+                                if sizeaux >= sizelog
+                                    obj.log_.input = [[obj.log_.input; zeros(sizeaux-sizelog,size(obj.log_.input,2))],simInput(:,2:end)];
+                                else
+                                    obj.log_.input = [obj.log_.input, [simInput(:,2:end); zeros(sizelog-sizeaux,size(simInput(:,2:end),2))]];
+                                end
                             else
-                                obj.log_.input = [obj.log_.input, [simInput(:,2:end); zeros(sizelog-sizeaux,size(simInput(:,2:end),2))]];
+                                sizeaux = size(simInput,1);
+                                sizelog = size(obj.log_.input,1);
+                                if sizeaux >= sizelog
+                                    obj.log_.input = [[obj.log_.input; zeros(sizeaux-sizelog,size(obj.log_.input,2))],simInput];
+                                else
+                                    obj.log_.input = [obj.log_.input, [simInput; zeros(sizelog-sizeaux,size(simInput,2))]];
+                                end
                             end
                         end
                         obj.log_.time = [obj.log_.time,t'];
@@ -2753,6 +2829,7 @@ classdef multicopter < handle
                         rspeeds = [];
 %                         disp(t)
 %                         disp(obj.spTimeAux_)
+%                         pause
                         for i=t'
                             spIndex = find(i>=obj.spTimeAux_,1,'last');
                             sp = [sp;obj.setPointsAux_(:,spIndex)'];
@@ -2777,21 +2854,21 @@ classdef multicopter < handle
                                     obj.log_.rotor(i).speed = [obj.log_.rotor(i).speed,speed];
                                     accel = output(:,13+obj.numberOfRotors_+i)';
                                     obj.log_.rotor(i).acceleration = [obj.log_.rotor(i).acceleration,accel];
-                                    torque = obj.rotorLiftCoeff(i)*(speed.*abs(speed))+obj.rotorInertia(i)*accel;
+                                    torque = obj.rotorDragCoeff(i)*(speed.*abs(speed))+obj.rotorInertia(i)*accel;
                                     obj.log_.rotor(i).torque = [obj.log_.rotor(i).torque,torque];
                                     power = power + torque.*speed;
                                 otherwise
                                     speed = rspeeds(:,i)';
                                     obj.log_.rotor(i).speed = [obj.log_.rotor(i).speed,rspeeds(:,i)'];
-                                    torque = obj.rotorLiftCoeff(i)*(speed.*abs(speed));
+                                    torque = obj.rotorDragCoeff(i)*(speed.*abs(speed));
                                     obj.log_.rotor(i).torque = [obj.log_.rotor(i).torque,torque];
                                     power = power + torque.*speed;
                             end
                         end
                         obj.log_.power = [obj.log_.power, power];
-                        obj.setPointsAux_ = [];
-                        obj.rotorSpeedsAux_ = [];
-                        obj.spTimeAux_ = [];
+                        %obj.setPointsAux_ = [];
+                        %obj.rotorSpeedsAux_ = [];
+                        %obj.spTimeAux_ = [];
                         for i=(obj.numberOfRotors_+1):length(obj.log_.rotor)
                             obj.log_.rotor(i).speed = [obj.log_.rotor(i).speed,zeros(1,length(t))];
                             obj.log_.rotor(i).setPoint = [obj.log_.rotor(i).setPoint,zeros(1,length(t))];
@@ -2837,6 +2914,10 @@ classdef multicopter < handle
             obj.previousState_.time = 0;
             obj.isRunning_ = false;
             obj.setRotorOK(1:obj.numberOfRotors_);
+            obj.setPointsAux_ = [];
+            obj.rotorSpeedsAux_ = [];
+            obj.modelCallTimeAux_ = [];
+            obj.spTimeAux_ = [];
         end
         function setSimEffects(obj, varargin)
         %SIMEFFECTS Controls which simulation effects will run.
