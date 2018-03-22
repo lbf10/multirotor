@@ -224,19 +224,161 @@ classdef multicontrol < multicopter
                         case obj.attitudeControllers_{9} %% SOSMC Passive with PIDD
                             it = obj.configureSOSMC(9,varargin,it);
                         case obj.attitudeControllers_{10} %% SOSMC Passive Direct
-                            it = obj.configureSOSMC(10,varargin,it);
+                            index = 10;
+                            if obj.inputsOK(varargin,it,5)
+                                it = it+1;
+                                if isnumeric(varargin{it}) && isdiag(varargin{it}) && all(diag(varargin{it})>=0)
+                                    if isnumeric(varargin{it+1}) %& all(varargin{it+1}>=0)
+                                        if isnumeric(varargin{it+2}) %& all(varargin{it+2}>=0)
+                                            if isnumeric(varargin{it+3}) && isscalar(varargin{it+3})
+                                                if isnumeric(varargin{it+4}) && isscalar(varargin{it+4})
+                                                    obj.controlConfig_{index}.c = varargin{it};
+                                                    obj.controlConfig_{index}.lambda = varargin{it+1};
+                                                    obj.controlConfig_{index}.alpha = varargin{it+2};
+                                                    obj.allocationConfig_{index}.R = varargin{it+3};
+                                                    obj.allocationConfig_{index}.Q = varargin{it+4};
+
+                                                    if obj.verbose_ == true
+                                                        disp([obj.attitudeControllers_{index},' Attitude controller c error gain set to: ']);
+                                                        disp(obj.controlConfig_{index}.c);
+                                                        disp([obj.attitudeControllers_{index},' Attitude controller Lambda gain set to: '])
+                                                        disp(obj.controlConfig_{index}.lambda);
+                                                        disp([obj.attitudeControllers_{index},' Attitude controller Alpha gain set to: '])
+                                                        disp(obj.controlConfig_{index}.alpha);
+                                                        disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.R)])
+                                                        disp(['Attitude factor set to: ',num2str(obj.allocationConfig_{index}.Q)])
+                                                    end
+                                                else
+                                                    warning('Attitude factor must be numeric and scalar. Skipping this controller configuration');
+                                                end
+                                            else
+                                                warning('Maneuverability factor must be numeric and scalar. Skipping this controller configuration');
+                                            end
+                                        else
+                                            warning('Attitude controller Alpha gain must be a numeric matrix. Skipping this controller configuration');
+                                        end
+                                    else
+                                        warning('Attitude controller Lambda gain must be a numeric matrix. Skipping this controller configuration');
+                                    end
+                                else
+                                    warning('Attitude controller c gain must be a positive numeric diagonal matrix. Skipping this controller configuration');
+                                end
+                                it = it+2;
+                            else
+                                warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
+                            end
                         case obj.attitudeControllers_{11} %% SOSMC Active
                             it = obj.configureSOSMC(11,varargin,it);
                         case obj.attitudeControllers_{12} %% SOSMC Active with PIDD
                             it = obj.configureSOSMC(12,varargin,it);
                         case obj.attitudeControllers_{13} %% SOSMC Active Direct
-                            it = obj.configureSOSMC(13,varargin,it);
+                            index = 13;
+                            if obj.inputsOK(varargin,it,5)
+                                it = it+1;
+                                if isnumeric(varargin{it}) && isdiag(varargin{it}) && all(diag(varargin{it})>=0)
+                                    if isnumeric(varargin{it+1}) %& all(varargin{it+1}>=0)
+                                        if isnumeric(varargin{it+2}) %& all(varargin{it+2}>=0)
+                                            if isnumeric(varargin{it+3}) && isscalar(varargin{it+3})
+                                                if isnumeric(varargin{it+4}) && isscalar(varargin{it+4})
+                                                    obj.controlConfig_{index}.c = varargin{it};
+                                                    obj.controlConfig_{index}.lambda = varargin{it+1};
+                                                    obj.controlConfig_{index}.alpha = varargin{it+2};
+                                                    obj.allocationConfig_{index}.R = varargin{it+3};
+                                                    obj.allocationConfig_{index}.Q = varargin{it+4};
+
+                                                    if obj.verbose_ == true
+                                                        disp([obj.attitudeControllers_{index},' Attitude controller c error gain set to: ']);
+                                                        disp(obj.controlConfig_{index}.c);
+                                                        disp([obj.attitudeControllers_{index},' Attitude controller Lambda gain set to: '])
+                                                        disp(obj.controlConfig_{index}.lambda);
+                                                        disp([obj.attitudeControllers_{index},' Attitude controller Alpha gain set to: '])
+                                                        disp(obj.controlConfig_{index}.alpha);
+                                                        disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.R)])
+                                                        disp(['Attitude factor set to: ',num2str(obj.allocationConfig_{index}.Q)])
+                                                    end
+                                                else
+                                                    warning('Attitude factor must be numeric and scalar. Skipping this controller configuration');
+                                                end
+                                            else
+                                                warning('Maneuverability factor must be numeric and scalar. Skipping this controller configuration');
+                                            end
+                                        else
+                                            warning('Attitude controller Alpha gain must be a numeric matrix. Skipping this controller configuration');
+                                        end
+                                    else
+                                        warning('Attitude controller Lambda gain must be a numeric matrix. Skipping this controller configuration');
+                                    end
+                                else
+                                    warning('Attitude controller c gain must be a positive numeric diagonal matrix. Skipping this controller configuration');
+                                end
+                                it = it+2;
+                            else
+                                warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
+                            end
                         case obj.attitudeControllers_{14} %% Adaptive
                             it = obj.configureAdaptive(14,varargin,it);
                         case obj.attitudeControllers_{15} %% Adaptive with PIDD
                             it = obj.configureAdaptive(15,varargin,it);
                         case obj.attitudeControllers_{16} %% Adaptive Direct
-                            it = obj.configureAdaptive(16,varargin,it);
+                            index = 16;
+                            if obj.inputsOK(varargin,it,7)
+                                it = it+1;
+                                if isnumeric(varargin{it}) && all(real(eig(varargin{it}))<=0)
+                                    if isnumeric(varargin{it+1})
+                                        if isnumeric(varargin{it+2})
+                                            if isnumeric(varargin{it+3})
+                                                if isnumeric(varargin{it+4})
+                                                    if isnumeric(varargin{it+5})
+                                                        if isnumeric(varargin{it+6}) && isequal(size(varargin{it+6}),[obj.numberOfRotors(),6])
+                                                            obj.controlConfig_{index}.Am = varargin{it};
+                                                            obj.controlConfig_{index}.Q = varargin{it+1};                                     
+                                                            obj.controlConfig_{index}.gamma1 = varargin{it+2};
+                                                            obj.controlConfig_{index}.gamma2 = varargin{it+3};
+                                                            obj.controlConfig_{index}.gamma3 = varargin{it+4};
+                                                            obj.controlConfig_{index}.gamma4 = varargin{it+5};
+                                                            obj.controlConfig_{index}.B0 = varargin{it+6};
+
+                                                            if obj.verbose_ == true
+                                                                disp([obj.attitudeControllers_{index},' Adaptive reference matrix Am set to: ']);
+                                                                disp(obj.controlConfig_{index}.Am);
+                                                                disp([obj.attitudeControllers_{index},' Adaptive matrix Q set to: '])
+                                                                disp(obj.controlConfig_{index}.Q);   
+                                                                disp([obj.attitudeControllers_{index},' Adaptive gain Gamma 1 set to: '])
+                                                                disp(obj.controlConfig_{index}.gamma1);
+                                                                disp([obj.attitudeControllers_{index},' Adaptive gain Gamma 2 set to: '])
+                                                                disp(obj.controlConfig_{index}.gamma2);
+                                                                disp([obj.attitudeControllers_{index},' Adaptive gain Gamma 3 set to: '])
+                                                                disp(obj.controlConfig_{index}.gamma3);
+                                                                disp([obj.attitudeControllers_{index},' Adaptive gain Gamma 4 set to: '])
+                                                                disp(obj.controlConfig_{index}.gamma4);
+                                                                disp([obj.attitudeControllers_{index},' Adaptive initial input matrix estimate set to: '])
+                                                                disp(obj.controlConfig_{index}.B0);
+                                                            end
+                                                        else
+                                                            warning('Initial input matrix must be a numeric matrix. Skipping this controller configuration');
+                                                        end
+                                                    else
+                                                        warning('Gain Gamma 4 must be a numeric matrix. Skipping this controller configuration');
+                                                    end
+                                                else
+                                                    warning('Gain Gamma 3 must be a numeric matrix. Skipping this controller configuration');
+                                                end
+                                            else
+                                                warning('Gain Gamma 2 must be a numeric matrix. Skipping this controller configuration');
+                                            end
+                                        else
+                                            warning('Gain Gamma 1 must be a numeric matrix. Skipping this controller configuration');
+                                        end
+                                    else
+                                        warning('Q must be a numeric matrix. Skipping this controller configuration');
+                                    end
+                                else
+                                    warning('Reference matrix Am must be a numeric stable matrix. Skipping this controller configuration');
+                                end
+                                it = it+5;
+                            else
+                                warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
+                            end
                         case obj.attitudeControllers_{17} %% Markovian RLQ-R Passive Modified
                             warning('Controller not implemented. Skipping configuration');
                         case obj.attitudeControllers_{18} %% Markovian RLQ-R Active Modified
@@ -260,13 +402,25 @@ classdef multicontrol < multicopter
                     switch varargin{it}
                         case 'Adaptive' % Adaptive control allocator
                             index = 5;
-                            if obj.inputsOK(varargin,it,1)
+                            if obj.inputsOK(varargin,it,3)
                                 it = it+1;
                                 if isnumeric(varargin{it})
-                                    obj.allocationConfig_{index}.Am = varargin{it};
-                                    if obj.verbose_ == true
-                                        disp('Adaptive control allocator gain set to: ')
-                                        disp(obj.allocationConfig_{index}.Am);
+                                    if isnumeric(varargin{it+1}) && isscalar(varargin{it+1})
+                                        if isnumeric(varargin{it+2}) && isscalar(varargin{it+2})
+                                            obj.allocationConfig_{index}.Am = varargin{it};
+                                            obj.allocationConfig_{index}.R = varargin{it+1};
+                                            obj.allocationConfig_{index}.Q = varargin{it+2};
+                                            if obj.verbose_ == true
+                                                disp('Adaptive control allocator gain set to: ')
+                                                disp(obj.allocationConfig_{index}.Am);
+                                                disp(['Adaptive control allocator maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.R)])
+                                                disp(['Adaptive control allocator attitude factor set to: ',num2str(obj.allocationConfig_{index}.Q)])
+                                            end
+                                        else            
+                                            warning('Attitude factor must be numeric and scalar. Skipping this control allocation configuration');
+                                        end
+                                    else
+                                        warning('Maneuverability factor must be numeric and scalar. Skipping this control allocation configuration');
                                     end
                                 else
                                     warning('Adaptive gain must be numeric. Skipping this control allocation configuration');
@@ -277,15 +431,15 @@ classdef multicontrol < multicopter
                             end
                         case 'Passive NMAC' % Passive Null-Space-Based Maneuverability/Attitude Contest (NMAC)
                             index = 7;
-                            if obj.inputsOK(varargin,it,1)
+                            if obj.inputsOK(varargin,it,2)
                                 it = it+1;
-                                if isnumeric(varargin{it}) & isscalar(varargin{it})
-                                    if isnumeric(varargin{it+1}) & isscalar(varargin{it+1})
+                                if isnumeric(varargin{it}) && isscalar(varargin{it})
+                                    if isnumeric(varargin{it+1}) && isscalar(varargin{it+1})
                                         obj.allocationConfig_{index}.R = varargin{it};
                                         obj.allocationConfig_{index}.Q = varargin{it+1};
                                         if obj.verbose_ == true
                                             disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.R)])
-                                            disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.Q)])
+                                            disp(['Attitude factor set to: ',num2str(obj.allocationConfig_{index}.Q)])
                                         end
                                     else
                                         warning('Attitude factor must be numeric and scalar. Skipping this control allocation configuration');
@@ -297,17 +451,17 @@ classdef multicontrol < multicopter
                             else
                                 warning('Missing argument for Passive NMAC allocator. Skipping configuration.');
                             end
-                            case 'Active NMAC' % Active Null-Space-Based Maneuverability/Attitude Contest (NMAC)
+                        case 'Active NMAC' % Active Null-Space-Based Maneuverability/Attitude Contest (NMAC)
                             index = 8;
-                            if obj.inputsOK(varargin,it,1)
+                            if obj.inputsOK(varargin,it,2)
                                 it = it+1;
-                                if isnumeric(varargin{it}) & isscalar(varargin{it})
-                                    if isnumeric(varargin{it+1}) & isscalar(varargin{it+1})
+                                if isnumeric(varargin{it}) && isscalar(varargin{it})
+                                    if isnumeric(varargin{it+1}) && isscalar(varargin{it+1})
                                         obj.allocationConfig_{index}.R = varargin{it};
                                         obj.allocationConfig_{index}.Q = varargin{it+1};
                                         if obj.verbose_ == true
                                             disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.R)])
-                                            disp(['Maneuverability factor set to: ',num2str(obj.allocationConfig_{index}.Q)])
+                                            disp(['Attitude factor set to: ',num2str(obj.allocationConfig_{index}.Q)])
                                         end
                                     else
                                         warning('Attitude factor must be numeric and scalar. Skipping this control allocation configuration');
@@ -798,7 +952,7 @@ classdef multicontrol < multicopter
                 visualizeProgress = p.Results.visualizeProgress;
                 endTime = p.Results.endTime;
                 endError = p.Results.endError;
-                
+                    
                 obj.clearLog();
                 obj.startLogging();
                 if obj.isRunning()
@@ -991,11 +1145,11 @@ classdef multicontrol < multicopter
                     currentTime = currentTime + dt;
                     positionError = sqrt(sum((obj.log_.position(:,end)-obj.trajectory_.position(:,end)).^2,1));
                 end
-                if positionError>endError
+                if positionError>endError || isnan(positionError)
                     if obj.verbose_ == true
                         disp('Simulation terminated. Position error too large, indicating simulation divergence')
                     end
-                    obj.updateMetrics(1e4*(endTime-currentTime)/currentTime);
+                    obj.updateMetrics(1e5*(endTime-currentTime)/currentTime);
                 else
                     if obj.verbose_ == true
                         disp('Simulation ended normaly.')
@@ -1522,7 +1676,7 @@ classdef multicontrol < multicopter
                     axes(rSpeedAx(it))
                 end
                 grid on
-                plot(obj.log_.time,[obj.log_.input(it,:),obj.log_.input(it,end)],'--');
+                plot(obj.log_.time,obj.log_.input(it,:),'--');
                 hold on
                 plot(obj.log_.time,obj.log_.rotor(it).setPoint,'--');
                 hold on
@@ -1764,7 +1918,33 @@ classdef multicontrol < multicopter
                         end
                     end
                 case 5 % Adaptive
-                    error('Control allocation method not implemented')
+                    index = 5;
+                    if ~obj.isRunning()
+                        Mf = [];
+                        Mt = [];
+                        torqueAux = zeros(3,1);
+                        for it=1:obj.numberOfRotors_
+                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                            torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it).*obj.rotorInertia(it));
+                        end                    
+                        obj.allocationConfig_{index}.Bpest = [Mf/obj.mass();obj.inertia()\Mt];
+                    end
+                    Bpest = obj.allocationConfig_{index}.Bpest;
+                    Mf = obj.mass()*Bpest(1:3,:);
+                    Mt = obj.inertia()*Bpest(4:6,:);
+                    maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
+                    minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
+                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                    N = null(Mt);
+                    R = obj.allocationConfig_{index}.R;
+                    Q = obj.allocationConfig_{index}.Q;
+                    v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*Tcd));
+                    omega_square = N*v;
+                    lessIndex = omega_square<minSpeeds;
+                    greaterIndex = omega_square>maxSpeeds;
+                    omega_square(lessIndex) = minSpeeds(lessIndex);
+                    omega_square(greaterIndex) = maxSpeeds(greaterIndex);
                 case 7 % Passive NMAC
                     index = 7;
                     Mf = [];
@@ -2424,14 +2604,31 @@ classdef multicontrol < multicopter
                     auxA = cross(auxA,obj.previousAngularVelocity());
                     fx = [obj.inertia()\auxA; invQ*[0;0;-9.81]-obj.friction()*invQ*obj.previousState_.velocity/obj.mass_];
                     
-                    gx = [obj.inertia()\Mt;Mf/obj.mass_];
-                    invgx = pinv(gx);
+                    %gx = [obj.inertia()\Mt;Mf/obj.mass_];
+                    %invgx = pinv(gx);
                     ddxd = [desiredAngularAcceleration;desiredAcceleration];
                     
                     s = de+c*e;
                     signS = min(max(s, -1), 1);                    
                     obj.controlConfig_{index}.integral = obj.controlConfig_{index}.integral + obj.controlTimeStep_*alpha*signS; %%%%% importante
-                    ueq = invgx*(ddxd+c*de-fx);
+                    
+                    maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
+                    minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
+                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                    N = null(Mt);
+                    R = obj.allocationConfig_{index}.R;
+                    Q = obj.allocationConfig_{index}.Q;
+                    accelerations = (ddxd+c*de-fx);
+                    desiredImpulse = accelerations(4:6)*obj.mass();
+                    desiredTorque = obj.inertia()*accelerations(1:3);
+                    v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*desiredImpulse));
+                    b2 = N*v;
+                    utau = pinv(Mt)*desiredTorque;
+                    c = (desiredImpulse-Mf*utau)'*Mf*b2/(norm(Mf*b2)^2);
+                    ueq = utau+b2*c;
+                    
+                    
+                    %ueq = invgx*(ddxd+c*de-fx);
                     udis = -lambda*(signS.*(s.^2))- obj.controlConfig_{index}.integral;
                     
                     [omega_square]=ueq-udis;
@@ -2626,7 +2823,32 @@ classdef multicontrol < multicopter
                     s = de+c*e;
                     signS = min(max(s, -1), 1);  
                     obj.controlConfig_{index}.integral = obj.controlConfig_{index}.integral + obj.controlTimeStep_*alpha*signS; %%%%% importante
-                    ueq = invgx*(ddxd+c*de-fx);
+                    
+                    maxSpeeds = zeros(obj.numberOfRotors_,1);
+                    minSpeeds = zeros(obj.numberOfRotors_,1);
+                    for it=1:obj.numberOfRotors_
+                        if strcmp('stuck',diagnosis{it}.status{1})
+                            maxSpeeds(it,:) = 0;
+                            minSpeeds(it,:) = 0;
+                        else
+                            maxSpeeds(it,:) = (obj.rotorMaxSpeed(it)*diagnosis{it}.motorEfficiency)^2;
+                            minSpeeds(it,:) = (obj.rotorMinSpeed(it)*diagnosis{it}.motorEfficiency)^2;
+                        end
+                    end
+                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                    N = null(Mt);
+                    R = obj.allocationConfig_{index}.R;
+                    Q = obj.allocationConfig_{index}.Q;
+                    accelerations = (ddxd+c*de-fx);
+                    desiredImpulse = accelerations(4:6)*obj.mass();
+                    desiredTorque = obj.inertia()*accelerations(1:3);
+                    v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*desiredImpulse));
+                    b2 = N*v;
+                    utau = pinv(Mt)*desiredTorque;
+                    c = (desiredImpulse-Mf*utau)'*Mf*b2/(norm(Mf*b2)^2);
+                    ueq = utau+b2*c;
+                    
+                    %ueq = invgx*(ddxd+c*de-fx);
                     udis = -lambda*(signS.*(s.^2))- obj.controlConfig_{index}.integral;
                     
                     [omega_square]=ueq-udis;
@@ -2696,10 +2918,10 @@ classdef multicontrol < multicopter
                     % deltaU
                     previousSatInput = obj.previousInput();
                     for i=1:obj.numberOfRotors_
-                        if abs(previousSatInput(i))>obj.rotor_(i).maxSpeed;
+                        if abs(previousSatInput(i))>obj.rotor_(i).maxSpeed
                             previousSatInput(i) = obj.rotor_(i).maxSpeed*sign(previousSatInput(i));
                         end
-                        if abs(previousSatInput(i))<obj.rotor_(i).minSpeed;
+                        if abs(previousSatInput(i))<obj.rotor_(i).minSpeed
                             previousSatInput(i) = obj.rotor_(i).minSpeed*sign(previousSatInput(i));
                         end
                     end     
@@ -2853,8 +3075,11 @@ classdef multicontrol < multicopter
                         obj.controlConfig_{index}.zm = [0;0;1;0;0;0];
                         obj.controlConfig_{index}.lambda = ones(obj.numberOfRotors(),1);
                         obj.controlConfig_{index}.f = zeros(obj.numberOfRotors(),1);
-                        obj.controlConfig_{index}.Kr = pinv(Bp)*Bm;
-                        obj.controlConfig_{index}.Kx = pinv(Bp)*Am;
+                        
+                        %obj.controlConfig_{index}.Kr = pinv(Bp)*Bm;
+                        %obj.controlConfig_{index}.Kx = pinv(Bp)*Am;
+                        obj.controlConfig_{index}.Kr = obj.controlConfig_{index}.B0*Bm;
+                        obj.controlConfig_{index}.Kx = obj.controlConfig_{index}.B0*Am;
                         obj.controlConfig_{index}.u = zeros(obj.numberOfRotors(),1);
                     end                    
                     
@@ -2882,10 +3107,10 @@ classdef multicontrol < multicopter
                     % deltaU
                     previousSatInput = obj.previousInput();
                     for i=1:obj.numberOfRotors_
-                        if abs(previousSatInput(i))>obj.rotor_(i).maxSpeed;
+                        if abs(previousSatInput(i))>obj.rotor_(i).maxSpeed
                             previousSatInput(i) = obj.rotor_(i).maxSpeed*sign(previousSatInput(i));
                         end
-                        if abs(previousSatInput(i))<obj.rotor_(i).minSpeed;
+                        if abs(previousSatInput(i))<obj.rotor_(i).minSpeed
                             previousSatInput(i) = obj.rotor_(i).minSpeed*sign(previousSatInput(i));
                         end
                     end     
@@ -2912,6 +3137,11 @@ classdef multicontrol < multicopter
                     for it=1:obj.numberOfRotors_
                         attitudeControlOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
                     end
+                    
+%                     Kx = obj.controlConfig_{index}.Kx
+%                     Kr = obj.controlConfig_{index}.Kr
+%                     f = obj.controlConfig_{index}.f
+%                     lambda = obj.controlConfig_{index}.lambda
 %                     desiredTorque = obj.inertia()*desiredAngularAcceleration
 %                     executedTorque = Bp*omega_square;
 %                     executedTorque = obj.inertia()*executedTorque(4:6)
@@ -2946,20 +3176,6 @@ classdef multicontrol < multicopter
                     invH = pinv(H);   
                     [omega_square]=invH*[desiredImpulse;desiredTorque];
                     omega_square(omega_square<0) = 0;
-                    
-                    invMf = pinv(Mf);
-                    invMt = pinv(Mt);
-                    osquare_f = invMf*desiredImpulse
-                    badTorque = Mf*osquare_f
-                    desiredTorque = desiredTorque + badTorque
-                    osquare_t = invH*[0;0;0;desiredTorque]
-                    osquare = osquare_f + osquare_t;
-%                     omega_square = osquare;
-%                     omega_square(omega_square<0) = 0;
-%                     
-%                     osquare_t = osquare_t - min(0,min(osquare_t));
-%                     desiredTorque
-%                     realizedTorque = 
                     for it=1:obj.numberOfRotors_
                         allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
                     end
@@ -3085,21 +3301,59 @@ classdef multicontrol < multicopter
                         obj.allocationConfig_{index}.Apest = blkdiag(-obj.friction()/obj.mass(),auxA);
                         obj.allocationConfig_{index}.A0 = obj.allocationConfig_{index}.Apest;
                         obj.allocationConfig_{index}.Bpest = [Mf/obj.mass();obj.inertia()\Mt];
-                        obj.allocationConfig_{index}.B0 = [Mf/obj.mass();obj.inertia()\Mt];
+                        %obj.allocationConfig_{index}.B0 = [Mf/obj.mass();obj.inertia()\Mt];
+                        obj.allocationConfig_{index}.nullMt0 = null(Mt);
+                        obj.allocationConfig_{index}.Mf0 = Mf;
+                        obj.allocationConfig_{index}.pinvMt0 = pinv(Mt);
                     end
                     P = obj.allocationConfig_{index}.P;
-                    previousXest = obj.allocationConfig_{index}.Xest;
+%                     previousXest = obj.allocationConfig_{index}.Xest;
                     previousX = obj.allocationConfig_{index}.X;
                     previousApest = obj.allocationConfig_{index}.Apest;
                     previousBpest = obj.allocationConfig_{index}.Bpest;
+                    R = obj.allocationConfig_{index}.R;
+                    Q = obj.allocationConfig_{index}.Q;
+                    nullMt0 = obj.allocationConfig_{index}.nullMt0;
+                    maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
+                    minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
+                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                    pinvMt0 = obj.allocationConfig_{index}.pinvMt0;
+                    Mf0 = obj.allocationConfig_{index}.Mf0;
                     
                     previousU = obj.previousInput().^2;
-                    invB = pinv(obj.allocationConfig_{index}.B0);
-                    [omega_square]=invB*[desiredImpulse/obj.mass();obj.inertia()\desiredTorque];
-                    u = omega_square;
-                    obj.allocationConfig_{index}.X = x;
+%                     N = nullMt0;
+%                     v = (N'*(R*N+Mf0'*Q*Mf0*N))\(N'*(R*op+Mf0'*Q*desiredImpulse));
+%                     b2 = N*v;
+%                     utau = pinvMt0*desiredTorque;
+%                     c = (desiredImpulse-Mf0*utau)'*Mf0*b2/(norm(Mf0*b2)^2);
+%                     omega_square = utau+b2*c;                    
+%                     lessIndex = omega_square<minSpeeds;
+%                     greaterIndex = omega_square>maxSpeeds;
+%                     omega_square(lessIndex) = minSpeeds(lessIndex);
+%                     omega_square(greaterIndex) = maxSpeeds(greaterIndex);
+%                     u = omega_square;
+%                     obj.allocationConfig_{index}.X = x;
+
+                    Bpest = obj.allocationConfig_{index}.Bpest
+                    Mf = obj.mass()*Bpest(1:3,:);
+                    Mt = obj.inertia()*Bpest(4:6,:);
+                    N = null(Mt);
+                    v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*desiredImpulse));
+                    b2 = N*v;
+                    utau = pinv(Mt)*desiredTorque;
+                    c = (desiredImpulse-Mf*utau)'*Mf*b2/(norm(Mf*b2)^2);
+                    omega_square = utau+b2*c;
                     
-                    Am = obj.allocationConfig_{index}.Am;
+                    lessIndex = omega_square<minSpeeds;
+                    greaterIndex = omega_square>maxSpeeds;
+                    omega_square(lessIndex) = minSpeeds(lessIndex);
+                    omega_square(greaterIndex) = maxSpeeds(greaterIndex);
+                    for it=1:obj.numberOfRotors_
+                        allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
+                    end
+                    u = omega_square;
+                    
+%                     Am = obj.allocationConfig_{index}.Am;
 %                     sys = ss(Am,[previousApest-Am,previousBpest,[obj.matrixAbsoluteToBody(),zeros(3)]'],eye(6),0);
 %                     sysD = c2d(sys,obj.controlTimeStep_);
 % 
@@ -3117,68 +3371,6 @@ classdef multicontrol < multicopter
 %                     B0 = obj.allocationConfig_{index}.B0
                     obj.allocationConfig_{index}.Bpest = -P*error*u'+obj.allocationConfig_{index}.Bpest;
 %                     Best = obj.allocationConfig_{index}.Bpest
-                    
-                    invB = pinv(obj.allocationConfig_{index}.Bpest);
-                    [omega_square]=invB*[desiredImpulse/obj.mass();obj.inertia()\desiredTorque];
-                    omega_square(omega_square<0) = 0;
-                    for it=1:obj.numberOfRotors_
-                        allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
-                    end
-%                     Mf = [];
-%                     Mt = [];
-%                     torqueAux = zeros(3,1);
-%                     for it=1:obj.numberOfRotors_
-%                         Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
-%                         Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
-%                         torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
-%                     end
-%                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
-%                     auxA = [0 -auxA(3) auxA(2) ; auxA(3) 0 -auxA(1) ; -auxA(2) auxA(1) 0 ];
-%                     auxA = obj.inertia()\auxA;
-%                     
-%                     Q = obj.matrixBtoA(obj.previousAttitude());
-%                     G = [Mf;Mt];
-%                     invG = pinv(G);
-%                     
-%                     if ~obj.isRunning()
-%                         obj.allocationConfig_{5}.Gest = invG;   
-%                         obj.allocationConfig_{5}.Xest = zeros(6,1);
-%                         obj.allocationConfig_{5}.X = zeros(6,1);
-%                         obj.allocationConfig_{5}.e = zeros(6,1);
-%                         obj.allocationConfig_{5}.B = zeros(6,6);
-%                         obj.allocationConfig_{5}.tau = zeros(6,1);
-%                         obj.allocationConfig_{5}.A = zeros(6,6);
-%                     end
-%                     previousGest = obj.allocationConfig_{5}.Gest;   
-%                     previousXest = obj.allocationConfig_{5}.Xest;
-%                     previousX = obj.allocationConfig_{5}.X;
-%                     previouse = obj.allocationConfig_{5}.e;
-%                     previousB = obj.allocationConfig_{5}.B;
-%                     previoustau = obj.allocationConfig_{5}.tau;
-%                     previousA = obj.allocationConfig_{5}.A;
-%                     
-%                     obj.allocationConfig_{5}.A = [-Q*obj.friction()*Q'/obj.mass(), zeros(3,3); zeros(3,3), auxA];
-% %                     eig(obj.allocationConfig_{5}.A)
-% %                     eig(auxA)
-% %                     pause()
-%                     obj.allocationConfig_{5}.X = [obj.previousVelocity();obj.previousAngularVelocity()];
-%                     obj.allocationConfig_{5}.B = [eye(3)/obj.mass(), zeros(3,3); zeros(3,3), eye(3)/obj.inertia()];
-%                     obj.allocationConfig_{5}.tau = [desiredImpulse; desiredTorque];
-%                     
-%                     dt = obj.controlTimeStep_;
-%                     obj.allocationConfig_{5}.Xest = (eye(6)+dt*previousA)*previousX+dt*previousB*G*previousGest*previoustau+dt*[0;0;-9.81;0;0;0];
-%                     
-%                     obj.allocationConfig_{5}.e = previousX-previousXest;
-%                     error = previousX-previousXest
-%                     
-%                     obj.allocationConfig_{5}.Gest = dt*obj.allocationConfig_{5}.gamma*pinv(previousB*G)*previouse*previoustau'+previousGest;
-%                     invGest = obj.allocationConfig_{5}.Gest
-%                     
-%                     omega_square = obj.allocationConfig_{5}.Gest*obj.allocationConfig_{5}.tau;
-%                     omega_square(omega_square<0) = 0;
-%                     for it=1:obj.numberOfRotors_
-%                         allocatorOutput(it,1) = obj.rotorDirection_(it)*sqrt(omega_square(it));
-%                     end
                 case 6 % 'CLS Passive'
                     Mf = [];
                     Mt = [];
@@ -3214,6 +3406,11 @@ classdef multicontrol < multicopter
                     utau = pinv(Mt)*desiredTorque;
                     c = (desiredImpulse-Mf*utau)'*Mf*b2/(norm(Mf*b2)^2);
                     omega_square = utau+b2*c;
+                    
+%                     desiredImpulse
+%                     desiredTorque
+%                     realizedImpulse = Mf*omega_square
+%                     realizedTorque = Mt*omega_square
                     
                     lessIndex = omega_square<minSpeeds;
                     greaterIndex = omega_square>maxSpeeds;
@@ -3374,6 +3571,11 @@ classdef multicontrol < multicopter
                         result = false;                    
                     end
                 end
+            end
+            
+            if isempty(strfind(obj.controlAllocators_{obj.allocationAlg_},'Adaptive')) && ...
+                    ~isempty(strfind(obj.controlAllocators_{obj.attReferenceAlg_},'Adaptive'))
+                error('Cannot run. Adaptive reference attitude must run with adaptive control allocation.')                    
             end
         end  
         function evalCommands(obj, indexes)
@@ -3554,7 +3756,7 @@ classdef multicontrol < multicopter
                         warning('Attitude controller Lambda gain must be a numeric matrix. Skipping this controller configuration');
                     end
                 else
-                    warning('Attitude controller c gain must be a poitive numeric diagonal matrix. Skipping this controller configuration');
+                    warning('Attitude controller c gain must be a positive numeric diagonal matrix. Skipping this controller configuration');
                 end
                 it = it+2;
             else

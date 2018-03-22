@@ -6,7 +6,7 @@
 comprimento = 7;
 largura = 4;
 altura = 4;
-tmax = 30;
+tmax = 10;
 
 
 a = comprimento/2;
@@ -27,7 +27,7 @@ t = 0:0.001:tmax;
 
 % figure
 % plot3(x(t),y(t),z(t))
-% title('Posição em X, Y e Z')
+% title('Posiï¿½ï¿½o em X, Y e Z')
 % daspect([1 1 1])
 % grid on
 % figure

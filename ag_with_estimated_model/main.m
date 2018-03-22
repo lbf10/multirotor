@@ -7,18 +7,18 @@ warning('on','all')
 
 %% Algorithms to train
 attitudeController = 'PID';
-controlAllocator = 'Adaptive';
-attitudeReference = 'PI Passive';
+controlAllocator = 'Passive NMAC';
+attitudeReference = 'Passive NMAC';
 
 %% Select nvars according to algorithms
 initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
 lb = zeros(1,12);
-ub = 1e5*ones(1,12);
+ub = 1e6*ones(1,12);
     switch attitudeController
         case 'PID'
             initialPopulation = [initialPopulation [300 300 300 10 10 10 30 30 30]];
             lb = [lb,zeros(1,9)];
-            ub = [ub,1e5*ones(1,9)];
+            ub = [ub,1e6*ones(1,9)];
             nvars = 21;
         case 'RLQ-R Passive'
             P = 9e5*ones(1,6);
@@ -201,16 +201,24 @@ ub = 1e5*ones(1,12);
             ub = [ub,zeros(1,6),inf(1,30)];
             nvars = 48;
         case 'Adaptive Direct'
-            Am = -[1,1,1,1,1,1];
-            Q = 5*[1,1,1,1,1,1];
-            gamma1 = [1,1,1,1,1,1,1,1]*10000000;
-            gamma2 = [1,1,1,1,1,1,1,1]*10000000;
-            gamma3 = [1,1,1,1,1,1,1,1]*10000000;
-            gamma4 = [1,1,1,1,1,1,1,1]*10000000;
-            initialPopulation = [initialPopulation,Am,Q,gamma1,gamma2,gamma3,gamma4];
-            lb = [lb,-inf(1,6),zeros(1,38)];
-            ub = [ub,zeros(1,6),inf(1,38)];
-            nvars = 56;
+            Am = -15*[.1,.1,.1,1,1,5];
+            Q = 5e3*[1,1,1,40,40,40];
+            gamma1 = [1,1,1,1,1,1,1,1]*100;
+            gamma2 = [1,1,1,1,1,1,1,1]*1;
+            gamma3 = [1,1,1,1,1,1,1,1]*10;
+            gamma4 = [1,1,1,1,1,1,1,1]*0.05;
+            B0 = 3e3*[  -0.00001 -0.00001 4  1.5 -1.5  -1 ...
+                         0.00001 -0.00001 4  1.5  1.5 1 ...
+                         0.00001  0.00001 4 -1.5  1.5  -1 ...  
+                        -0.00001  0.00001 4 -1.5 -1.5 1 ... 
+                        -0.00001 -0.00001 4  1.5 -1.5 1 ... 
+                         0.00001 -0.00001 4  1.5  1.5  -1  ... 
+                         0.00001  0.00001 4 -1.5  1.5 1 ...  
+                        -0.00001  0.00001 4 -1.5 -1.5  -1];
+            initialPopulation = [initialPopulation,Am,Q,gamma1,gamma2,gamma3,gamma4,B0];
+            lb = [lb,-inf(1,6),zeros(1,38),-inf(1,48)];
+            ub = [ub,zeros(1,6),inf(1,38),inf(1,48)];
+            nvars = 104;
     end
     switch controlAllocator
         case 'Adaptive'
@@ -228,7 +236,7 @@ addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m'
 filename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_result.mat'];
 iterFilename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
 outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
-options = gaoptimset('UseParallel',false,'PopulationSize',500,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction);
+options = gaoptimset('UseParallel',false,'PopulationSize',600,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction);
 [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = gamultiobj(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
 delete(poolobj)
 
