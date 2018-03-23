@@ -312,14 +312,14 @@ multirotor.configFDD(1,0.1)
 
 % multirotor.setTrajectory('waypoints',[xpos; ypos; zpos; xvel; yvel; zvel; yawpos; yawvel],time);
 % multirotor.setTrajectory('gerono',7,4,4,30,'fixed',0);
-endTime = 30;
+endTime = 40;
 % [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'sinusoidal',0,pi/2,endTime);
 [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, '360');
 multirotor.setTrajectory('waypoints',waypoints,time);
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-% multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.0)'},7)
-% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.0)'},10)
-% multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.0)'},13)
+multirotor.addCommand({'setRotorStatus(5,''motor loss'',0.0)'},endTime/2)
+multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.0)'},endTime/2)
+multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.0)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(5,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
@@ -330,8 +330,8 @@ multirotor.setInitialVelocity([0;0;0]);
 multirotor.setInitialPosition([0;0;0]);
 multirotor.setInitialAngularVelocity([0;0;0]);
 multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-7.5)^2/(0.5))')
-multirotor.setRotorMaxAcceleration(1:8,0.2*[1 1 1 1 1 1 1 1]);
-multirotor.setControlDelay(0.00000001);
+multirotor.setRotorMaxAcceleration(1:8,0.25*[1 1 1 1 1 1 1 1]);
+multirotor.setControlDelay(0.10);
 %% Run simulator
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5);
 multirotor.plotSim();
