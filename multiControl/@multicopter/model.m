@@ -46,10 +46,10 @@ function dydt = model(obj,t,y,simTime,simInput)
     %%% Inputs to rotor set points
     % Used in case inputs are not necessarily rotor speeds
     % or in case of faults
-    for i=rotorIDs
-        switch obj.rotor_(i).status{2}
+    for it=rotorIDs
+        switch obj.rotor_(it).status{2}
             case 'responding'
-                obj.rotor_(i).speedSetPoint = input(i);
+                obj.rotor_(it).inputSetPoint = input(it);
             otherwise
                 % keep same set point as before
         end
@@ -57,7 +57,7 @@ function dydt = model(obj,t,y,simTime,simInput)
 
     %%% LOGs setPoints
     obj.spTimeAux_(end+1) = t;
-    obj.setPointsAux_(:,end+1) = [obj.rotor_(rotorIDs).speedSetPoint]';
+    obj.setPointsAux_(:,end+1) = [obj.rotor_(rotorIDs).inputSetPoint]';
     %%% Coefficients errors
     % Translates coefficients and their errors to auxiliary variables
     switch obj.simEffects_{1}
@@ -86,10 +86,13 @@ function dydt = model(obj,t,y,simTime,simInput)
     %%% Rotor dynamics
     % Relates rotor set points to rotor speeds    
     % limits rotor speed inputs based on maximum allowed acceleration rate
-    speedsMax = [obj.rotor_(rotorIDs).maxSpeed];
-    speedsMin = [obj.rotor_(rotorIDs).minSpeed];
+    speedsMax = [obj.rotor_(:).maxSpeed];
+    speedsMin = [obj.rotor_(:).minSpeed];
+    maxVoltages = [obj.rotor_(:).maxVoltage];
     
     switch obj.simEffects_{1}
+        case 'motor dynamics on'
+            % Do nothing
         case 'motor dynamics tf on'
             % Do nothing
         otherwise
@@ -99,87 +102,96 @@ function dydt = model(obj,t,y,simTime,simInput)
             end
             dt = max(t-obj.modelCallTimeAux_,obj.timeStep_);
             indexes = find(~isinf([obj.rotor_(:).maxAcc])); 
-
+            obj.modelCallTimeAux_ = t;
             if ~isempty(indexes)
                 lastRotorSpeeds = abs([obj.rotorSpeedsAux_(indexes,end)]');
-%                     MÉTODO CONSIDERANDO A POTÊNCIA NO INSTANTE, E NÃO SOMENTE A
-%                     DIFERENÇA DE POTÊNCIA
-%                     polyUp = [-ones(1,length(indexes))/4;7/4*lastRotorSpeeds+ri(indexes)./(2*dt*dc(indexes)); -5*(lastRotorSpeeds.^2)/4; -(ri(indexes)./(2*dt*dc(indexes))).*lastRotorSpeeds.^2-(1/4+[obj.rotor_(indexes).maxAcc]*1000*dt).*lastRotorSpeeds.^3]
-%                     polyDown = [-ones(1,length(indexes))/4;7/4*lastRotorSpeeds+ri(indexes)./(2*dt*dc(indexes)); -5*(lastRotorSpeeds.^2)/4; -(ri(indexes)./(2*dt*dc(indexes))).*lastRotorSpeeds.^2-(1/4-[obj.rotor_(indexes).maxAcc]*1000*dt).*lastRotorSpeeds.^3]
-%                     rootsUp = zeros(3,length(indexes));
-%                     rootsDown = zeros(3,length(indexes));
-%                     for it=1:length(indexes)
-%                        rootsUp(:,it) = roots(polyUp(:,it));
-%                        rootsDown(:,it) = roots(polyDown(:,it));
-%                     end
-%                     rootsUp
-%                     rootsDown
-%                     pause
-
                 speedsMinAux = speedsMin;
                 
                 % CONSIDERANDO A VELOCIDADE DO PASSO ANTERIOR:
                 speedsMax(indexes) = min(dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes).*(lastRotorSpeeds.^2)./ri(indexes) + lastRotorSpeeds,speedsMax(indexes));
                 speedsMinAux(indexes) = max(-dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes).*(lastRotorSpeeds.^2)./ri(indexes) + lastRotorSpeeds,speedsMin(indexes));
-                % CONSIDERANDO A VELOCIDADE MEDIA ENTRE OS PASSOS:
-                %speedsMax(indexes) = min(lastRotorSpeeds.*sqrt(2*dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes)./ri(indexes)+1),speedsMax(indexes));
-                %speedsMinAux(indexes) = max(lastRotorSpeeds.*sqrt(-2*dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes)./ri(indexes)+1),speedsMin(indexes));
                 
                 indexesInit = lastRotorSpeeds<speedsMin;
                 speedMin(indexesInit) = 0;
                 speedMin(~indexesInit) = speedsMinAux(~indexesInit);
-
-%                     speedsMax
-%                     speedsMin
-%                     pause
             end
     end
 
-    % Limits rotor speed inputs to maximum allowed speeds
-    localSetPoint = [obj.rotor_(rotorIDs).speedSetPoint].*[obj.rotor_(rotorIDs).motorEfficiency];
-    indexes = abs(localSetPoint(rotorIDs))>speedsMax;
-    if any(indexes)
-        localSetPoint(indexes) = [speedsMax(indexes)].*sign(localSetPoint(indexes));
-    end
-    indexes = abs(localSetPoint(rotorIDs))<speedsMin;
-    if any(indexes)
-        localSetPoint(indexes) = [speedsMin(indexes)].*sign(localSetPoint(indexes));
-    end
-    obj.modelCallTimeAux_ = t;
     switch obj.simEffects_{1}
+        case 'motor dynamics on'
+            localSetPoint = [obj.rotor_(:).inputSetPoint];
+            indexes = abs(localSetPoint(:))>maxVoltages;
+            if any(indexes)
+                localSetPoint(indexes) = [maxVoltages(indexes)].*sign(localSetPoint(indexes));
+            end
+            w = y(14:(13+obj.numberOfRotors_));
+            dw = w;
+            statuses = vertcat(obj.rotor_(:).status);
+            indexes = find(strcmp(statuses(:,1),'stuck'));
+            if ~isempty(indexes)
+                dt = [obj.rotor_(indexes).stuckTransitionPeriod];
+                dw(indexes,1) = ln(0.05).*w(indexes)./dt;
+            end
+            indexes = ~indexes;
+            if ~isempty(indexes)
+                dw(indexes,1) = (-dc(indexes).*w(indexes).*abs(w(indexes))+[obj.rotor_(indexes).Kt].*[obj.rotor_(indexes).motorEfficiency].*(localSetPoint(indexes)-60*w(indexes)./([obj.rotor_(indexes).Kv]*2*pi))./[obj.rotor_(indexes).Rm])./ri(indexes);
+            end    
+%             for it=rotorIDs
+%                 switch obj.rotor_(it).status{1}
+%                     case 'stuck'
+%                         dw(it,1) = _______;
+%                     otherwise
+%                         % Do nothing
+%                 end
+%             end
         case 'motor dynamics tf on'
+            % Limits rotor speed inputs to maximum allowed speeds
+            localSetPoint = [obj.rotor_(rotorIDs).inputSetPoint].*[obj.rotor_(rotorIDs).motorEfficiency];
+            indexes = abs(localSetPoint(rotorIDs))>speedsMax;
+            if any(indexes)
+                localSetPoint(indexes) = [speedsMax(indexes)].*sign(localSetPoint(indexes));
+            end
+            indexes = abs(localSetPoint(rotorIDs))<speedsMin;
+            if any(indexes)
+                localSetPoint(indexes) = [speedsMin(indexes)].*sign(localSetPoint(indexes));
+            end
             w = y(14:(13+obj.numberOfRotors_));
             dw = y((14+obj.numberOfRotors_):(13+2*obj.numberOfRotors_));
             ddw = dw;
-            for i=rotorIDs
-                switch obj.rotor_(i).status{1}
+            for it=rotorIDs
+                switch obj.rotor_(it).status{1}
                     case 'stuck'
-                        dt = obj.rotor_(i).stuckTransitionPeriod;
+                        dt = obj.rotor_(it).stuckTransitionPeriod;
                         e = 0.9;
                         nf = -log(0.02*sqrt(1-e^2))/(e*dt);
-                        ddw(i,1) = -nf^2*w(i)-2*e*nf*dw(i);
+                        ddw(it,1) = -nf^2*w(it)-2*e*nf*dw(it);
                     otherwise
-                        ddw(i,1) = -c(i)*w(i)-b(i)*dw(i)+a(i)*localSetPoint(i);
+                        ddw(it,1) = -c(it)*w(it)-b(it)*dw(it)+a(it)*localSetPoint(it);
                 end
             end
-        otherwise            
+        otherwise  
+            % Limits rotor speed inputs to maximum allowed speeds
+            localSetPoint = [obj.rotor_(rotorIDs).inputSetPoint].*[obj.rotor_(rotorIDs).motorEfficiency];
+            indexes = abs(localSetPoint(rotorIDs))>speedsMax;
+            if any(indexes)
+                localSetPoint(indexes) = [speedsMax(indexes)].*sign(localSetPoint(indexes));
+            end
+            indexes = abs(localSetPoint(rotorIDs))<speedsMin;
+            if any(indexes)
+                localSetPoint(indexes) = [speedsMin(indexes)].*sign(localSetPoint(indexes));
+            end          
             w = zeros(obj.numberOfRotors_,1);
             dw = w;
-            for i=rotorIDs
-                switch obj.rotor_(i).status{1}
+            for it=rotorIDs
+                switch obj.rotor_(it).status{1}
                     case 'stuck'
-                        obj.previousState_.rotor(i).speed = 0;
-                        w(i) = 0;
+                        obj.previousState_.rotor(it).speed = 0;
+                        w(it) = 0;
                     otherwise
-                        obj.previousState_.rotor(i).speed = localSetPoint(i);
-                        w(i) = obj.previousState_.rotor(i).speed;
+                        obj.previousState_.rotor(it).speed = localSetPoint(it);
+                        w(it) = obj.previousState_.rotor(it).speed;
                 end  
             end
-%             if dt~=0
-%                 dw = (w-obj.rotorSpeedsAux_(:,end))/dt;
-%             else
-%                 dw = zeros(obj.numberOfRotors_,1);
-%             end
             obj.rotorSpeedsAux_(:,end+1) = w';
     end
     %%% Aircraft dynamics
