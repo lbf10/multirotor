@@ -145,7 +145,11 @@ classdef multicopter < handle
                         obj.rotor_(it).maxSpeed = inf;
                         obj.rotor_(it).minSpeed = 0;
                         obj.rotor_(it).transferFunction = [250000;750;250000];
-                        obj.rotor_(it).maxAcc = 0.25;
+                        obj.rotor_(it).maxAcc = inf;
+                        obj.rotor_(it).Rm = 0.0975;
+                        obj.rotor_(it).Kt = 0.02498;
+                        obj.rotor_(it).Kv = 340;
+                        obj.rotor_(it).Io = 0.6/10;
                         obj.initialState_.rotor(it).speed = 0;
                         obj.initialState_.rotor(it).acceleration = 0;
                         
@@ -573,7 +577,11 @@ classdef multicopter < handle
             obj.rotor_(rotorID).maxSpeed = inf;
             obj.rotor_(rotorID).minSpeed = 0;
             obj.rotor_(rotorID).transferFunction = [250000;750;250000];
-            obj.rotor_(rotorID).maxAcc = 0.25;
+            obj.rotor_(rotorID).maxAcc = inf;
+            obj.rotor_(rotorID).Rm = 0.0975;
+            obj.rotor_(rotorID).Kt = 0.02498;
+            obj.rotor_(rotorID).Kv = 340;
+            obj.rotor_(rotorID).Io = 0.6/10;
             obj.initialState_.input(rotorID) = 0;
             obj.initialState_.rotor(rotorID).speed = 0;
             obj.initialState_.rotor(rotorID).acceleration = 0;
@@ -906,7 +914,7 @@ classdef multicopter < handle
             end
         end
         function setRotorMaxSpeed(obj, rotorID, maxSpeed)
-        %SETROTORMAXSPEED  Configures maximum speed for specified rotor.
+        %SETROTORMAXSPEED  Configures maximum speed (rad/s) for specified rotor.
         %
         %   SETROTORMAXSPEED(rotorID,M) Sets rotor maximum allowed speed to M.
         %   rotorID may be a scalar or a vector, in arbitrary order, 
@@ -934,7 +942,7 @@ classdef multicopter < handle
             end
         end
         function setRotorMinSpeed(obj, rotorID, minSpeed)
-        %SETROTORMINSPEED  Configures minimum speed for specified rotor.
+        %SETROTORMINSPEED  Configures minimum speed (rad/s) for specified rotor.
         %
         %   SETROTORMINSPEED(rotorID,M) Sets rotor minimum allowed speed to M.
         %   rotorID may be a scalar or a vector, in arbitrary order, 
@@ -1023,7 +1031,119 @@ classdef multicopter < handle
                 error('Maximum rotor acceleration rate must be a vector of numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
             end
         end
-             
+        function setRotorRm(obj, rotorID, Rm)
+        %SETROTORRM  Configures winding motor resistance (Ohms) for specified rotor.
+        %
+        %   SETROTORRM(rotorID,Rm) Sets winding resistance to Rm.
+        %   rotorID may be a scalar or a vector, in arbitrary order, 
+        %   specifying which rotors will be configured.
+        %   Rm may be a numeric scalar or a numeric 
+        %   vector the same length as rotorID of positive real numbers.
+        %   Each vector position relates to the rotor ID specified at the
+        %   same position of the rotorID vector.
+        %
+        %   SETROTORRM can be used during simulation.
+        %
+        %   See also ADDROTOR, SETROTORPOSITION, SETROTORORIENTATION,
+        %   SETROTORINERTIA, SETROTORLIFTCOEFF, SETROTORDRAGCOEFFICIENT, 
+        %   SETROTOR.
+        
+            if iscell(Rm)
+                warning('Input will be converted to numeric array.')
+                Rm = cell2mat(Rm);
+            end
+            if isvector(Rm) && isnumeric(Rm) && (length(Rm)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(Rm>=0)
+                Rm = num2cell(Rm);
+                [obj.rotor_(rotorID).maxAcc] = Rm{:};
+            else
+                error('Motor winding resistance must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
+            end
+        end
+        function setRotorKt(obj, rotorID, Kt)
+        %SETROTORKT  Configures motor torque constant (N.m/A) for specified rotor.
+        %
+        %   SETROTORKT(rotorID,Kt) Sets torque constant to Kt.
+        %   rotorID may be a scalar or a vector, in arbitrary order, 
+        %   specifying which rotors will be configured.
+        %   Kt may be a positive numeric scalar or a numeric 
+        %   vector the same length as rotorID of positive real numbers.
+        %   Each vector position relates to the rotor ID specified at the
+        %   same position of the rotorID vector.
+        %
+        %   SETROTORKT can be used during simulation.
+        %
+        %   See also ADDROTOR, SETROTORPOSITION, SETROTORORIENTATION,
+        %   SETROTORINERTIA, SETROTORLIFTCOEFF, SETROTORDRAGCOEFFICIENT, 
+        %   SETROTOR.
+        
+            if iscell(Kt)
+                warning('Input will be converted to numeric array.')
+                Kt = cell2mat(Kt);
+            end
+            if isvector(Kt) && isnumeric(Kt) && (length(Kt)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(Kt>=0)
+                Kt = num2cell(Kt);
+                [obj.rotor_(rotorID).maxAcc] = Kt{:};
+            else
+                error('Motor torque constant must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
+            end
+        end  
+        function setRotorKv(obj, rotorID, Kv)
+        %SETROTORKV  Configures motor speed constant (RPM/V) for specified rotor.
+        %
+        %   SETROTORKV(rotorID,Kv) Sets speed constant to Kv.
+        %   rotorID may be a scalar or a vector, in arbitrary order, 
+        %   specifying which rotors will be configured.
+        %   Kv may be a positive numeric scalar or a numeric 
+        %   vector the same length as rotorID of positive real numbers.
+        %   Each vector position relates to the rotor ID specified at the
+        %   same position of the rotorID vector.
+        %
+        %   SETROTORKV can be used during simulation.
+        %
+        %   See also ADDROTOR, SETROTORPOSITION, SETROTORORIENTATION,
+        %   SETROTORINERTIA, SETROTORLIFTCOEFF, SETROTORDRAGCOEFFICIENT, 
+        %   SETROTOR.
+        
+            if iscell(Kv)
+                warning('Input will be converted to numeric array.')
+                Kv = cell2mat(Kv);
+            end
+            if isvector(Kv) && isnumeric(Kv) && (length(Kv)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(Kv>=0)
+                Kv = num2cell(Kv);
+                [obj.rotor_(rotorID).maxAcc] = Kv{:};
+            else
+                error('Motor speed constant must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
+            end
+        end 
+        function setRotorIo(obj, rotorID, Io)
+        %SETROTORIO  Configures motor idle current rate (A/V) for specified rotor.
+        %
+        %   SETROTORIO(rotorID,Io) Sets idle (no-load) current rate to Io.
+        %   rotorID may be a scalar or a vector, in arbitrary order, 
+        %   specifying which rotors will be configured.
+        %   Io may be a positive numeric scalar or a numeric 
+        %   vector the same length as rotorID of positive real numbers.
+        %   Each vector position relates to the rotor ID specified at the
+        %   same position of the rotorID vector.
+        %
+        %   SETROTORIO can be used during simulation.
+        %
+        %   See also ADDROTOR, SETROTORPOSITION, SETROTORORIENTATION,
+        %   SETROTORINERTIA, SETROTORLIFTCOEFF, SETROTORDRAGCOEFFICIENT, 
+        %   SETROTOR.
+        
+            if iscell(Io)
+                warning('Input will be converted to numeric array.')
+                Io = cell2mat(Io);
+            end
+            if isvector(Io) && isnumeric(Io) && (length(Io)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(Io>=0)
+                Io = num2cell(Io);
+                [obj.rotor_(rotorID).maxAcc] = Io{:};
+            else
+                error('Motor idle current rate must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
+            end
+        end 
+        
         function setRotorInertiaError(obj, rotorID, error)
         %SETROTORINERTIAERROR  Configures percentage error for rotor inertia.
         %
@@ -1864,6 +1984,78 @@ classdef multicopter < handle
         
             rotorMaxAcceleration = [obj.rotor_(rotorID).maxAcc];
         end        
+        function rotorRm = rotorRm(obj, rotorID)
+        %ROTORRM Returns the winding resistance (Ohms) of the specified rotor.
+        %
+        %   Rm = ROTORRM(rotorID) Returns the winding resistance of rotor
+        %   rotorID.
+        %   rotorID specifies which rotor to return the resistance of.
+        %   rotorID can be a single value or an array of IDs.
+        %   Rm is an array of size 1xN, where N = length(rotorID) and each
+        %   vector element represents the winding resistance associated with 
+        %   the rotor specified by the respective rotorID. 
+        %
+        %   The winding resistance is specified in Ohms.
+        %
+        %   See also ROTOR,ROTORPOSITION, ROTORORIENTATION, ROTORINERTIA, 
+        %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORDRAGCOEFF.
+        
+            rotorRm = [obj.rotor_(rotorID).Rm];
+        end  
+        function rotorKt = rotorKt(obj, rotorID)
+        %ROTORKT Returns the torque constant (N.m/A) of the specified rotor.
+        %
+        %   Kt = ROTORKT(rotorID) Returns the torque constant of rotor
+        %   rotorID.
+        %   rotorID specifies which rotor to return the constant of.
+        %   rotorID can be a single value or an array of IDs.
+        %   Kt is an array of size 1xN, where N = length(rotorID) and each
+        %   vector element represents the torque constant associated with 
+        %   the rotor specified by the respective rotorID. 
+        %
+        %   The torque constant is specified in [N.m/A].
+        %
+        %   See also ROTOR,ROTORPOSITION, ROTORORIENTATION, ROTORINERTIA, 
+        %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORDRAGCOEFF.
+        
+            rotorKt = [obj.rotor_(rotorID).Kt];
+        end  
+        function rotorKv = rotorKv(obj, rotorID)
+        %ROTORKV Returns the speed constant (rpm/V) of the specified rotor.
+        %
+        %   Kv = ROTORKV(rotorID) Returns the speed constant of rotor
+        %   rotorID.
+        %   rotorID specifies which rotor to return the constant of.
+        %   rotorID can be a single value or an array of IDs.
+        %   Kv is an array of size 1xN, where N = length(rotorID) and each
+        %   vector element represents the speed constant associated with 
+        %   the rotor specified by the respective rotorID. 
+        %
+        %   The speed constant is specified in [rpm/V].
+        %
+        %   See also ROTOR,ROTORPOSITION, ROTORORIENTATION, ROTORINERTIA, 
+        %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORDRAGCOEFF.
+        
+            rotorKv = [obj.rotor_(rotorID).Kv];
+        end 
+        function rotorIo = rotorIo(obj, rotorID)
+        %ROTORIO Returns the idle current rate (A/V) of the specified rotor.
+        %
+        %   Io = ROTORIO(rotorID) Returns the idle current rate of rotor
+        %   rotorID.
+        %   rotorID specifies which rotor to return the idle current rate of.
+        %   rotorID can be a single value or an array of IDs.
+        %   Kv is an array of size 1xN, where N = length(rotorID) and each
+        %   vector element represents the idle current rate associated with 
+        %   the rotor specified by the respective rotorID. 
+        %
+        %   The idle current rate is specified in [A/V].
+        %
+        %   See also ROTOR,ROTORPOSITION, ROTORORIENTATION, ROTORINERTIA, 
+        %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORDRAGCOEFF.
+        
+            rotorIo = [obj.rotor_(rotorID).Io];
+        end 
         function motorEfficiencyValue = motorEfficiency(obj, rotorID)
         %ROTOREFFICIENCY Returns the current efficiency of the specified rotor.
         %
