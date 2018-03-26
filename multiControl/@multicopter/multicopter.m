@@ -218,7 +218,7 @@ classdef multicopter < handle
             
             obj.simEffects_ = {'motor dynamics tf on','solver ode45'};
                 
-            obj.opts_ = odeset('RelTol',1e-2,'AbsTol',1e-4);
+            obj.opts_ = odeset('RelTol',1e-3,'AbsTol',1e-6);
             
             obj.setPointsAux_ = [];
             obj.rotorSpeedsAux_ = [];
@@ -2918,8 +2918,8 @@ classdef multicopter < handle
                         case 'solver euler'
                             y0 = [obj.previousState_.position; obj.previousState_.attitude; obj.previousState_.velocity; obj.previousState_.angularVelocity];
                             switch obj.simEffects_{1}
-                                    case 'motor dynamics on'
-                                        y0 = [y0; [obj.previousState_.rotor(:).speed]'];
+                                case 'motor dynamics on'
+                                    y0 = [y0; [obj.previousState_.rotor(:).speed]'];
                                 case 'motor dynamics tf on'
                                     y0 = [y0; [obj.previousState_.rotor(:).speed]'; [obj.previousState_.rotor(:).acceleration]'];
                                 otherwise
