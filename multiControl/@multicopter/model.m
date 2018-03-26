@@ -224,6 +224,8 @@ function dydt = model(obj,t,y,simTime,simInput)
 
     dydt = [dPa; dq; dVa; dWb];  
     switch obj.simEffects_{1}
+        case 'motor dynamics on'
+            dydt = [dydt; dw]; 
         case 'motor dynamics tf on'
             dydt = [dydt; dw; ddw]; 
         otherwise
