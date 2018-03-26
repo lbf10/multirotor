@@ -78,6 +78,7 @@ classdef multicopter < handle
         % Auxiliary variables
         setPointsAux_
         rotorSpeedsAux_
+        rotorAccAux_
         modelCallTimeAux_
         spTimeAux_
         dydtAux_
@@ -141,7 +142,7 @@ classdef multicopter < handle
                         obj.rotor_(it).status = {'free','responding','motor ok','prop ok'};
                         obj.rotor_(it).motorEfficiency = 1;
                         obj.rotor_(it).propEfficiency = 1;
-                        obj.rotor_(it).speedSetPoint = 0;
+                        obj.rotor_(it).inputSetPoint = 0;
                         obj.rotor_(it).maxSpeed = inf;
                         obj.rotor_(it).minSpeed = 0;
                         obj.rotor_(it).transferFunction = [250000;750;250000];
@@ -150,6 +151,7 @@ classdef multicopter < handle
                         obj.rotor_(it).Kt = 0.02498;
                         obj.rotor_(it).Kv = 340;
                         obj.rotor_(it).Io = 0.6/10;
+                        obj.rotor_(it).maxVoltage = 22;
                         obj.initialState_.rotor(it).speed = 0;
                         obj.initialState_.rotor(it).acceleration = 0;
                         
@@ -222,6 +224,7 @@ classdef multicopter < handle
             
             obj.setPointsAux_ = [];
             obj.rotorSpeedsAux_ = [];
+            obj.rotorAccAux_ = [];
             obj.modelCallTimeAux_ = [];
             obj.spTimeAux_ = [];
             obj.linearDisturbance_ = [];
@@ -573,7 +576,7 @@ classdef multicopter < handle
             obj.rotor_(rotorID).status = {'free','responding','motor ok','prop ok'};
             obj.rotor_(rotorID).motorEfficiency = 1;
             obj.rotor_(rotorID).propEfficiency = 1;
-            obj.rotor_(rotorID).speedSetPoint = [];
+            obj.rotor_(rotorID).inputSetPoint = [];
             obj.rotor_(rotorID).maxSpeed = inf;
             obj.rotor_(rotorID).minSpeed = 0;
             obj.rotor_(rotorID).transferFunction = [250000;750;250000];
@@ -582,6 +585,7 @@ classdef multicopter < handle
             obj.rotor_(rotorID).Kt = 0.02498;
             obj.rotor_(rotorID).Kv = 340;
             obj.rotor_(rotorID).Io = 0.6/10;
+            obj.rotor_(rotorID).maxVoltage = 22;
             obj.initialState_.input(rotorID) = 0;
             obj.initialState_.rotor(rotorID).speed = 0;
             obj.initialState_.rotor(rotorID).acceleration = 0;
@@ -1141,6 +1145,34 @@ classdef multicopter < handle
                 [obj.rotor_(rotorID).maxAcc] = Io{:};
             else
                 error('Motor idle current rate must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
+            end
+        end 
+        function setRotorMaxVoltage(obj, rotorID, maxVoltage)
+        %SETROTORMAXVOLTAGE  Configures maximum voltage allowed on specified rotor.
+        %
+        %   SETROTORMAXVOLTAGE(rotorID,V) Sets maximum voltage to V.
+        %   rotorID may be a scalar or a vector, in arbitrary order, 
+        %   specifying which rotors will be configured.
+        %   V may be a positive numeric scalar or a numeric 
+        %   vector the same length as rotorID of positive real numbers.
+        %   Each vector position relates to the rotor ID specified at the
+        %   same position of the rotorID vector.
+        %
+        %   SETROTORMAXVOLTAGE can be used during simulation.
+        %
+        %   See also ADDROTOR, SETROTORPOSITION, SETROTORORIENTATION,
+        %   SETROTORINERTIA, SETROTORLIFTCOEFF, SETROTORDRAGCOEFFICIENT, 
+        %   SETROTOR.
+        
+            if iscell(maxVoltage)
+                warning('Input will be converted to numeric array.')
+                maxVoltage = cell2mat(maxVoltage);
+            end
+            if isvector(maxVoltage) && isnumeric(maxVoltage) && (length(maxVoltage)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(maxVoltage>=0)
+                maxVoltage = num2cell(maxVoltage);
+                [obj.rotor_(rotorID).maxAcc] = maxVoltage{:};
+            else
+                error('Motor maximum voltage must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
             end
         end 
         
@@ -2056,6 +2088,22 @@ classdef multicopter < handle
         
             rotorIo = [obj.rotor_(rotorID).Io];
         end 
+        function rotorMaxVoltage = rotorMaxVoltage(obj, rotorID)
+        %ROTORMAXVOLTAGE Returns the maximum voltage allowed on specified rotor.
+        %
+        %   V = ROTORMAXVOLTAGE(rotorID) Returns the maximum voltage
+        %   allowed on rotors rotorID.
+        %   rotorID specifies which rotor to return the maximum voltages of.
+        %   rotorID can be a single value or an array of IDs.
+        %   V is an array of size 1xN, where N = length(rotorID) and each
+        %   vector element represents the maximum voltage associated with 
+        %   the rotor specified by the respective rotorID.
+        %
+        %   See also ROTOR,ROTORPOSITION, ROTORORIENTATION, ROTORINERTIA, 
+        %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORDRAGCOEFF.
+        
+            rotorMaxVoltage = [obj.rotor_(rotorID).maxVoltage];
+        end 
         function motorEfficiencyValue = motorEfficiency(obj, rotorID)
         %ROTOREFFICIENCY Returns the current efficiency of the specified rotor.
         %
@@ -2913,6 +2961,8 @@ classdef multicopter < handle
                             if firstRun==true
                                 y0 = [obj.previousState_.position; obj.previousState_.attitude; obj.previousState_.velocity; obj.previousState_.angularVelocity];
                                 switch obj.simEffects_{1}
+                                    case 'motor dynamics on'
+                                        y0 = [y0; [obj.previousState_.rotor(:).speed]'];
                                     case 'motor dynamics tf on'
                                         y0 = [y0; [obj.previousState_.rotor(:).speed]'; [obj.previousState_.rotor(:).acceleration]'];
                                     otherwise
@@ -2927,6 +2977,8 @@ classdef multicopter < handle
                         case 'solver euler'
                             y0 = [obj.previousState_.position; obj.previousState_.attitude; obj.previousState_.velocity; obj.previousState_.angularVelocity];
                             switch obj.simEffects_{1}
+                                    case 'motor dynamics on'
+                                        y0 = [y0; [obj.previousState_.rotor(:).speed]'];
                                 case 'motor dynamics tf on'
                                     y0 = [y0; [obj.previousState_.rotor(:).speed]'; [obj.previousState_.rotor(:).acceleration]'];
                                 otherwise
@@ -2950,7 +3002,17 @@ classdef multicopter < handle
                     obj.previousState_.angularVelocity = output(end,11:13)';
                     obj.previousState_.time = t(end);
                     obj.previousState_.input = simInput(:,end);
+                    dydt = obj.dydtAux_;
                     switch obj.simEffects_{1}
+                        case 'motor dynamics on'
+                            clear aux
+                            aux = output(end,14:(13+obj.numberOfRotors_))';
+                            aux = num2cell(aux);
+                            [obj.previousState_.rotor(:).speed] = aux{:};
+                            clear aux
+                            aux = dydt(14:(13+obj.numberOfRotors_))';
+                            aux = num2cell(aux);
+                            [obj.previousState_.rotor(:).acceleration] = aux{:};
                         case 'motor dynamics tf on'
                             clear aux
                             aux = output(end,14:(13+obj.numberOfRotors_))';
@@ -2961,24 +3023,23 @@ classdef multicopter < handle
                             aux = num2cell(aux);
                             [obj.previousState_.rotor(:).acceleration] = aux{:};
                         otherwise
-                            % does nothing
+                            if firstRun == true
+                               obj.rotorSpeedsAux_(:,1) = []; 
+                            end
                     end
-                    y0 = [obj.previousState_.position; obj.previousState_.attitude; obj.previousState_.velocity; obj.previousState_.angularVelocity];
-                    switch obj.simEffects_{1}
-                        case 'motor dynamics tf on'
-                            y0 = [y0; [obj.previousState_.rotor(:).speed]'; [obj.previousState_.rotor(:).acceleration]'];
-                        otherwise
+                    %y0 = [obj.previousState_.position; obj.previousState_.attitude; obj.previousState_.velocity; obj.previousState_.angularVelocity];
+                    %switch obj.simEffects_{1}
+                    %    case 'motor dynamics tf on'
+                    %        y0 = [y0; [obj.previousState_.rotor(:).speed]'; [obj.previousState_.rotor(:).acceleration]'];
+                    %    otherwise
                             % does nothing
-                    end
+                    %end
                     %dydt = obj.model(obj.previousState_.time,y0,simTime,simInput);
-                    dydt = obj.dydtAux_;
                     obj.previousState_.acceleration = dydt(8:10);
                     obj.previousState_.angularAcceleration = dydt(11:13);
                     if firstRun == false
                         t(1) = [];
                         output(1,:) = [];
-                    else
-                        obj.rotorSpeedsAux_(:,1) = [];
                     end
                     if obj.isLogging_ == true
                         previousLength = length(obj.log_.time);
@@ -3019,14 +3080,18 @@ classdef multicopter < handle
 %                         sp = interp1(uniqueTimes,obj.setPointsAux_(:,uniqueIndices)',t);
                         sp = [];
                         rspeeds = [];
+                        raccs = [];
 %                         disp(t)
 %                         disp(obj.spTimeAux_)
 %                         pause
                         for i=t'
                             spIndex = find(i>=obj.spTimeAux_,1,'last');
                             sp = [sp;obj.setPointsAux_(:,spIndex)'];
-                            if ~strcmp(obj.simEffects_{1},'motor dynamics tf on')
+                            if strcmp(obj.simEffects_{1},'motor dynamics off')
                                 rspeeds = [rspeeds;obj.rotorSpeedsAux_(:,spIndex)'];
+                            end
+                            if strcmp(obj.simEffects_{1},'motor dynamics on')
+                                raccs = [raccs;obj.rotorAccAux_(:,spIndex)'];
                             end
                         end
                         power = zeros(1,length(t));
@@ -3035,12 +3100,21 @@ classdef multicopter < handle
                                 obj.log_.rotor(i).speed = zeros(1,previousLength);
                                 obj.log_.rotor(i).setPoint = zeros(1,previousLength);
                                 obj.log_.rotor(i).torque = zeros(1,previousLength);
-                                if strcmp(obj.simEffects_{1},'motor dynamics tf on')
+                                if strcmp(obj.simEffects_{1},'motor dynamics tf on') || ...
+                                    strcmp(obj.simEffects_{1},'motor dynamics on')
                                     obj.log_.rotor(i).acceleration = zeros(1,previousLength);
                                 end
                             end
                             obj.log_.rotor(i).setPoint = [obj.log_.rotor(i).setPoint,sp(:,i)'];
                             switch obj.simEffects_{1}
+                                case 'motor dynamics on'
+                                    speed = output(:,13+i)';
+                                    obj.log_.rotor(i).speed = [obj.log_.rotor(i).speed,speed];
+                                    accel = raccs(:,i)';
+                                    obj.log_.rotor(i).acceleration = [obj.log_.rotor(i).acceleration,accel];
+                                    torque = obj.rotorDragCoeff(i)*(speed.*abs(speed))+obj.rotorInertia(i)*accel;
+                                    obj.log_.rotor(i).torque = [obj.log_.rotor(i).torque,torque];
+                                    power = power + torque.*speed;
                                 case 'motor dynamics tf on'
                                     speed = output(:,13+i)';
                                     obj.log_.rotor(i).speed = [obj.log_.rotor(i).speed,speed];
@@ -3065,24 +3139,11 @@ classdef multicopter < handle
                             obj.log_.rotor(i).speed = [obj.log_.rotor(i).speed,zeros(1,length(t))];
                             obj.log_.rotor(i).setPoint = [obj.log_.rotor(i).setPoint,zeros(1,length(t))];
                             obj.log_.rotor(i).torque = [obj.log_.rotor(i).torque,zeros(1,length(t))];
-                            if strcmp(obj.simEffects_{1},'motor dynamics tf on')
+                            if strcmp(obj.simEffects_{1},'motor dynamics tf on') || strcmp(obj.simEffects_{1},'motor dynamics on')
                                 obj.log_.rotor(i).acceleration = [obj.log_.rotor(i).acceleration,zeros(1,length(t))];
                             end
                         end
-                    end
-%                         if size(simInput,2)==2
-%                             simInput = interp1(simTime, simInput',t);
-%                             aux = [t,output,simInput];
-%                         else
-%                             aux = [t,output,simInput(:,2:end)'];
-%                         end
-%                         sizeaux = size(aux,2);
-%                         sizelog = size(obj.log_,2);
-%                         if sizeaux >= sizelog
-%                             obj.log_ = [[obj.log_, zeros(size(obj.log_,1),sizeaux-sizelog)];aux];
-%                         else
-%                             obj.log_ = [obj.log_; [aux, zeros(1,sizelog-sizeaux)]];
-%                         end        
+                    end      
                 else
                     error('Cannot run. Model not configured correctly.')
                     output = [];
@@ -3121,12 +3182,25 @@ classdef multicopter < handle
         %   effectType must be a string specifying the type of effect to be
         %   considered or not for simulation.
         %   Types are:
+        %       - 'motor dynamics on': Simulates motor dynamics based on
+        %       brushless motor model from "Permanent Magnet Motor
+        %       Technology: Design and Applications", Jacek F. Gieras.
+        %       Multicopter inputs become motor voltages.
+        %       No effectArg needed.
         %       - 'motor dynamics tf on': Simulates motor dynamics as a
         %       transfer function between input reference and motor speed.
+        %       Multicopter inputs become rotor speeds.
         %       No effectArg needed.
         %       - 'motor dynamics off': Does not simulate motor dynamics,
-        %       making mapping inputs directly to rotor speeds. No
-        %       effectArg needed.
+        %       making mapping inputs directly to rotor speeds. Multicopter
+        %       inputs become rotor speeds.
+        %       No effectArg needed.
+        %       - 'solver ode45': Uses MATLAB's ode45 solver for
+        %       simulation.
+        %       No effectArg needed.
+        %       - 'solver euler': Uses Euler's method for diff equation
+        %       solving (x(t+h) = dydt(t)*h+x(t)).
+        %       No effectArg needed.
         %   
         %   effectType and effectArg can be
         %   defined an arbitrary number of times in function call as long as 
@@ -3141,6 +3215,8 @@ classdef multicopter < handle
             while i<=length(varargin)
                 switch varargin{i}
                     case 'motor dynamics tf on'
+                        obj.simEffects_{1} = varargin{i};
+                    case 'motor dynamics on'
                         obj.simEffects_{1} = varargin{i};
                     case 'motor dynamics off'                 
                         obj.simEffects_{1} = varargin{i};
