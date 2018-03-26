@@ -7,6 +7,7 @@ classdef multicontrol < multicopter
         trajectoryMap_      %Map that contains the polynomial trajectory matrices for each axis and period of time
         trajectory_         %Struct that contains the desired trajectory in space and attitude reference for each time step
         rotorDirection_     %Array containing the rotor directions of rotation around the orientation axis. Follows the right-hand rule
+        rotorOperatingPoint_% Array containing the hover operating point velocities for each rotor.
         metrics_            %Struct containing the metrics to evaluate the controllers performances
         
         % Simulation settings
@@ -92,7 +93,8 @@ classdef multicontrol < multicopter
             obj.trajectoryMap_.az       = {};
             obj.trajectoryMap_.ayaw     = {};
             obj.clearTrajectory();
-            obj.rotorDirection_         = zeros(1,obj.numberOfRotors_);      
+            obj.rotorDirection_         = zeros(1,obj.numberOfRotors_); 
+            obj.rotorOperatingPoint_    = zeros(1,obj.numberOfRotors_);
             obj.clearMetrics();
             
             obj.controlAlg_         = [];
@@ -836,9 +838,26 @@ classdef multicontrol < multicopter
                 error('Rotor direction must be an array the same length as the vector of rotor IDs, which must not exceed the number of rotors in the multicopter!');
             end
         end
+        function setRotorOperatingPoint(obj, rotorID, op)
+        %UNTITLED Summary of this function goes here
+        %   Detailed explanation goes here        
+            if iscell(op)
+                warning('Input will be converted to numeric array.')
+                op = cell2mat(op);
+            end
+            if isnumeric(op) && (isequal(size(op),[1 length(rotorID)]) || isequal(size(op),[length(rotorID) 1])) && length(rotorID)<=obj.numberOfRotors_
+                obj.rotorOperatingPoint_(rotorID) = op;
+                if obj.verbose_ == true
+                    disp(['Set rotor operating points to: [',num2str(reshape(op,[1 length(rotorID)])),']'])
+                end
+            else
+                error('Rotor operating point must be an array the same length as the vector of rotor IDs, which must not exceed the number of rotors in the multicopter!');
+            end
+        end
         function rotorID = addRotor(obj, varargin)
             rotorID = addRotor@multicopter(obj,varargin{:});
             obj.rotorDirection_(rotorID) = 0;
+            obj.rotorOperatingPoint_(rotorID) = 750;
             obj.fddRotor_{rotorID}.status{1} = {'free','responding','motor ok','prop ok'};
             obj.fddRotor_{rotorID}.motorEfficiency(1) = 1.0;
             obj.fddRotor_{rotorID}.propEfficiency(1) = 1.0;            
@@ -847,6 +866,7 @@ classdef multicontrol < multicopter
         function removeRotor(obj, varargin)
             removeRotor@multicopter(obj,varargin{:});
             obj.rotorDirection_(varargin{:}) = [];
+            obj.rotorOperatingPoint_(varargin{:}) = [];
             obj.fddRotor_(varargin{:}) = [];
         end
         %Get and read methods        
@@ -897,6 +917,7 @@ classdef multicontrol < multicopter
             allProperties.trajectoryMap = obj.trajectoryMap_;      %Map that contains the polynomial trajectory matrices for each axis and period of time
             allProperties.trajectory = obj.trajectory_;         %Struct that contains the desired trajectory in space and attitude reference for each time step
             allProperties.rotorDirection = obj.rotorDirection_;     %Array containing the rotor directions of rotation around the orientation axis. Follows the right-hand rule
+            allProperties.rotorOperatingPoint_ = obj.rotorOperatingPoint_;% Array containing the hover operating point velocities for each rotor.
             allProperties.metrics = obj.metrics_;            %Struct containing the metrics to evaluate the controllers performances
 
             % Simulation settings
@@ -1193,6 +1214,7 @@ classdef multicontrol < multicopter
                     end
                 case 'controller'
                     rotorDirection_ = obj.rotorDirection_;
+                    rotorOperatingPoint_ = obj.rotorOperatingPoint_;
                     controlAlg_ = obj.controlAlg_;
                     allocationAlg_ = obj.allocationAlg_;
                     attReferenceAlg_ = obj.attReferenceAlg_;
@@ -1207,13 +1229,13 @@ classdef multicontrol < multicopter
                     
                     if isempty(varargin)
                         [filename, pathname] = uiputfile('controller.mat');
-                        save([pathname,filename],'rotorDirection_',...
+                        save([pathname,filename],'rotorDirection_','rotorOperatingPoint_',...
                             'controlAlg_','allocationAlg_','attReferenceAlg_',...
                             'controlTimeStep_','controlDelay_','controlConfig_',...
                             'positionControlConfig_','allocationConfig_','fddConfig_',...
                             'automationConfig_','timeStepRelation_');
                     else
-                        save(varargin{1},'rotorDirection_',...
+                        save(varargin{1},'rotorDirection_','rotorOperatingPoint_',...
                             'controlAlg_','allocationAlg_','attReferenceAlg_',...
                             'controlTimeStep_','controlDelay_','controlConfig_',...
                             'positionControlConfig_','allocationConfig_','fddConfig_',...
@@ -1826,7 +1848,7 @@ classdef multicontrol < multicopter
                     % Calculate aircraft inverse control model
                     Mf = [];
                     for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
+                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
                     end
                     % Step 2 - Calculates rotor speeds that generate that force vector,
                     % forcing the aircraft to stay at hover
@@ -1841,7 +1863,7 @@ classdef multicontrol < multicopter
                         if strcmp('stuck',diagnosis{it}.status{1})
                             Mf = [Mf [0 0 0]'];
                         else
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
                     end
                     % Step 2 - Calculates rotor speeds that generate that force vector,
@@ -1854,7 +1876,7 @@ classdef multicontrol < multicopter
                     tau = Tcd;
                     Mf = [];
                     for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
+                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
                     end
                     auxMf = Mf;
                     c = zeros(obj.numberOfRotors_,1);
@@ -1885,7 +1907,7 @@ classdef multicontrol < multicopter
                         if strcmp('stuck',diagnosis{it}.status{1})
                             Mf = [Mf [0 0 0]'];
                         else
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
                     end
                     auxMf = Mf;
@@ -1924,8 +1946,8 @@ classdef multicontrol < multicopter
                         Mt = [];
                         torqueAux = zeros(3,1);
                         for it=1:obj.numberOfRotors_
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)];
-                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                             torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it).*obj.rotorInertia(it));
                         end                    
                         obj.allocationConfig_{index}.Bpest = [Mf/obj.mass();obj.inertia()\Mt];
@@ -1950,8 +1972,8 @@ classdef multicontrol < multicopter
                     Mf = [];
                     Mt = [];
                     for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
-                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                     end
                     maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
                     minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
@@ -1974,8 +1996,8 @@ classdef multicontrol < multicopter
                             Mf = [Mf [0 0 0]'];
                             Mt = [Mt [0 0 0]'];
                         else
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
-                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
                     end
                     maxSpeeds = zeros(obj.numberOfRotors_,1);
@@ -2126,7 +2148,7 @@ classdef multicontrol < multicopter
                     Mt = [];
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
-                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                         torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
                     end
                     
@@ -2195,8 +2217,8 @@ classdef multicontrol < multicopter
                     Mt = [];
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
-                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                         torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
                     end
                     
@@ -2321,7 +2343,7 @@ classdef multicontrol < multicopter
                         if strcmp('stuck',diagnosis{it}.status{1})
                             Mt = [Mt [0 0 0]'];
                         else
-                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
                         torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
                     end
@@ -2395,8 +2417,8 @@ classdef multicontrol < multicopter
                             Mf = [Mf [0 0 0]'];
                             Mt = [Mt [0 0 0]'];
                         else
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
-                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
                         torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it).*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
                     end  
@@ -2595,8 +2617,8 @@ classdef multicontrol < multicopter
                     Mt = [];
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
-                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                         torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
                     end
                     
@@ -2807,8 +2829,8 @@ classdef multicontrol < multicopter
                             Mf = [Mf [0 0 0]'];
                             Mt = [Mt [0 0 0]'];
                         else
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
-                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
                         torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it).*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
                     end                    
@@ -2908,7 +2930,7 @@ classdef multicontrol < multicopter
                     previousu = obj.controlConfig_{index}.u;
                     obj.controlConfig_{index}.Mt = [];
                     for it=1:obj.numberOfRotors_
-                        obj.controlConfig_{index}.Mt = [obj.controlConfig_{index}.Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        obj.controlConfig_{index}.Mt = [obj.controlConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                     end
                     
                     % Calculates current reference state
@@ -2994,8 +3016,8 @@ classdef multicontrol < multicopter
                     Mf = zeros(3,obj.numberOfRotors_);
                     Mt = zeros(3,obj.numberOfRotors_);
                     for it=1:obj.numberOfRotors_
-                        Mf(:,it) = obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation;
-                        Mt(:,it) = (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
+                        Mf(:,it) = obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation;
+                        Mt(:,it) = (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
                     end
                     obj.controlConfig_{index}.Mf = Mf;
                     obj.controlConfig_{index}.Mt = Mt;
@@ -3054,8 +3076,8 @@ classdef multicontrol < multicopter
                         Mf = zeros(3,obj.numberOfRotors_);
                         Mt = zeros(3,obj.numberOfRotors_);
                         for it=1:obj.numberOfRotors_
-                            Mf(:,it) = obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation;
-                            Mt(:,it) = (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
+                            Mf(:,it) = obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation;
+                            Mt(:,it) = (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
                         end
                         Bp = [Mf/obj.mass();obj.inertia()\Mt];
                         obj.controlConfig_{index}.Bp = Bp;
@@ -3094,8 +3116,8 @@ classdef multicontrol < multicopter
                     Mf = zeros(3,obj.numberOfRotors_);
                     Mt = zeros(3,obj.numberOfRotors_);
                     for it=1:obj.numberOfRotors_
-                        Mf(:,it) = obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation;
-                        Mt(:,it) = (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
+                        Mf(:,it) = obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation;
+                        Mt(:,it) = (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
                     end
                     Bp = [Mf/obj.mass();obj.inertia()\Mt];
                     obj.controlConfig_{index}.Bp = Bp;
@@ -3169,8 +3191,8 @@ classdef multicontrol < multicopter
                     Mf = [];
                     Mt = [];
                     for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
-                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                     end
                     H = [Mf;Mt];
                     invH = pinv(H);   
@@ -3187,8 +3209,8 @@ classdef multicontrol < multicopter
                             Mf = [Mf [0 0 0]'];
                             Mt = [Mt [0 0 0]'];
                         else
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
-                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
                     end
                     H = [Mf;Mt];
@@ -3203,8 +3225,8 @@ classdef multicontrol < multicopter
                     Mf = [];
                     Mt = [];
                     for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
-                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                     end
                     H = [Mf;Mt];
                     auxH = H;
@@ -3241,8 +3263,8 @@ classdef multicontrol < multicopter
                             Mf = [Mf [0 0 0]'];
                             Mt = [Mt [0 0 0]'];
                         else
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
-                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
                     end
                     H = [Mf;Mt];
@@ -3291,8 +3313,8 @@ classdef multicontrol < multicopter
                         Mt = [];
                         torqueAux = zeros(3,1);
                         for it=1:obj.numberOfRotors_
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)];
-                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                             torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it).*obj.rotorInertia(it));
                         end                    
                         auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
@@ -3375,8 +3397,8 @@ classdef multicontrol < multicopter
                     Mf = [];
                     Mt = [];
                     for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
-                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                     end
                     H = [Mf;Mt];
                     
@@ -3392,8 +3414,8 @@ classdef multicontrol < multicopter
                     Mf = [];
                     Mt = [];
                     for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation];
-                        Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
+                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                     end
                     maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
                     minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
@@ -3428,8 +3450,8 @@ classdef multicontrol < multicopter
                             Mf = [Mf [0 0 0]'];
                             Mt = [Mt [0 0 0]'];
                         else
-                            Mf = [Mf (obj.rotorLiftCoeff(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
-                            Mt = [Mt (obj.rotorLiftCoeff(it)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
+                            Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
                     end
                     maxSpeeds = zeros(obj.numberOfRotors_,1);
@@ -3474,6 +3496,10 @@ classdef multicontrol < multicopter
             end
             if isempty(obj.rotorDirection_) || (length(obj.rotorDirection_)~=obj.numberOfRotors_) || ~any(obj.rotorDirection_)
                 error('Cannot run. Specify rotor directions for each rotor in multicopter.')
+                result = false;
+            end
+            if isempty(obj.rotorOperatingPoint_) || (length(obj.rotorOperatingPoint_)~=obj.numberOfRotors_) || any(obj.rotorOperatingPoint_==0)
+                error('Cannot run. Specify rotor operating points greater than zero for each rotor in multicopter.')
                 result = false;
             end
             if isempty(obj.controlAlg_)
