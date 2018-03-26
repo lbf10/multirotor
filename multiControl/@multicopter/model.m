@@ -33,6 +33,7 @@ function dydt = model(obj,t,y,simTime,simInput)
     % Used in version 1.0
     % input = interp1(simTime, simInput',t);
     %%% Acts like a holder
+    t
     auxIndex = find(t<=simTime,1);
     input = simInput(:,auxIndex);
        
@@ -181,6 +182,7 @@ function dydt = model(obj,t,y,simTime,simInput)
                         obj.previousState_.rotor(it).speed = localSetPoint(it);
                         w(it) = obj.previousState_.rotor(it).speed;
                 end  
+                obj.previousState_.rotor(it).acceleration = dw(it);
             end
             obj.rotorSpeedsAux_(:,end+1) = w';
     end
