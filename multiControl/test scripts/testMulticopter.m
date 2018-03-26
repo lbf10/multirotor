@@ -83,8 +83,8 @@ multirotor.setRotorInertia(1:8,0.00047935*ones(1,8));
 rotationDirection = [1 -1 1 -1 -1 1 -1 1]';
 multirotor.setRotorMaxSpeed(1:8,750*ones(1,8));
 multirotor.setRotorMinSpeed(1:8,0*ones(1,8));
-% multirotor.setInitialRotorSpeeds(343*rotationDirection);
-% multirotor.setInitialInput(343*rotationDirection);
+multirotor.setInitialRotorSpeeds(270*rotationDirection);
+multirotor.setInitialInput(270*rotationDirection);
 multirotor.setInitialVelocity([0;0;0]);
 multirotor.setInitialPosition([0;0;0]);
 multirotor.setInitialAngularVelocity([0;0;0]);
@@ -192,7 +192,7 @@ multirotor.setRotorMaxVoltage(1:8,22*ones(1,8));
 % % multirotor.setRotorMinSpeed(1:N,328*ones(1,N));
 
 
-multirotor.setSimEffects('solver euler','motor dynamics on')
+multirotor.setSimEffects('solver euler','motor dynamics off')
 multirotor.setTimeStep(0.005)
 
 % Mf = [];
@@ -206,7 +206,7 @@ multirotor.setTimeStep(0.005)
 % % rank(Mt)
 % % rank([Mf' Mt'])
 
-inputs = 12*rotationDirection;
+inputs = 270*rotationDirection;
 time = [0.01,5];
 multirotor.run(inputs,time)
 figure

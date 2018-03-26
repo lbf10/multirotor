@@ -131,8 +131,8 @@ function dydt = model(obj,t,y,simTime,simInput)
             statuses = vertcat(obj.rotor_(:).status);
             indexes = find(strcmp(statuses(:,1),'stuck'));
             if ~isempty(indexes)
-                dt = [obj.rotor_(indexes).stuckTransitionPeriod];
-                dw(indexes,1) = ln(0.05).*w(indexes)./dt;
+                deltat = [obj.rotor_(indexes).stuckTransitionPeriod];
+                dw(indexes,1) = ln(0.05).*w(indexes)./deltat;
                 indexes = ~indexes;
             else
                 indexes = rotorIDs;
@@ -167,9 +167,9 @@ function dydt = model(obj,t,y,simTime,simInput)
                 obj.previousState_.rotor(it).speed = w(it);
                 switch obj.rotor_(it).status{1}
                     case 'stuck'
-                        dt = obj.rotor_(it).stuckTransitionPeriod;
+                        deltat = obj.rotor_(it).stuckTransitionPeriod;
                         e = 0.9;
-                        nf = -log(0.02*sqrt(1-e^2))/(e*dt);
+                        nf = -log(0.02*sqrt(1-e^2))/(e*deltat);
                         ddw(it,1) = -nf^2*w(it)-2*e*nf*dw(it);
                     otherwise
                         ddw(it,1) = -c(it)*w(it)-b(it)*dw(it)+a(it)*localSetPoint(it);
