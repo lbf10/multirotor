@@ -1711,7 +1711,7 @@ classdef multicopter < handle
                     if isempty(obj.rotor_(rotorID(it)).liftCoeff.fit)
                         rotorLiftCoeffValue(it) = obj.rotor_(rotorID(it)).liftCoeff.data;
                     else
-                        rotorLiftCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).liftCoeff.fit(obj.previousState_.rotor(rotorID(it)).speed));
+                        rotorLiftCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).liftCoeff.fit(abs(obj.previousState_.rotor(rotorID(it)).speed)));
                     end
                 end
             else
@@ -1725,7 +1725,7 @@ classdef multicopter < handle
                             if isempty(obj.rotor_(rotorID(it)).liftCoeff.fit)
                                 rotorLiftCoeffValue(it) = obj.rotor_(rotorID(it)).liftCoeff.data;
                             else
-                                rotorLiftCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).liftCoeff.fit(varargin{1}));
+                                rotorLiftCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).liftCoeff.fit(abs(varargin{1})));
                             end
                         end
                     else
@@ -1734,7 +1734,7 @@ classdef multicopter < handle
                                 if isempty(obj.rotor_(rotorID(it)).liftCoeff.fit)
                                     rotorLiftCoeffValue(it) = obj.rotor_(rotorID(it)).liftCoeff.data;
                                 else
-                                    rotorLiftCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).liftCoeff.fit(varargin{1}(it)));
+                                    rotorLiftCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).liftCoeff.fit(abs(varargin{1}(it))));
                                 end
                             end
                         else
@@ -1763,7 +1763,7 @@ classdef multicopter < handle
                     if isempty(obj.rotor_(rotorID(it)).dragCoeff.fit)
                         rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.data;
                     else
-                        rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(obj.previousState_.rotor(rotorID(it)).speed));
+                        rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(abs(obj.previousState_.rotor(rotorID(it)).speed)));
                     end
                 end
             else
@@ -1777,7 +1777,7 @@ classdef multicopter < handle
                             if isempty(obj.rotor_(rotorID(it)).dragCoeff.fit)
                                 rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.data;
                             else
-                                rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(varargin{1}));
+                                rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(abs(varargin{1})));
                             end
                         end
                     else
@@ -1786,7 +1786,7 @@ classdef multicopter < handle
                                 if isempty(obj.rotor_(rotorID(it)).dragCoeff.fit)
                                     rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.data;
                                 else
-                                    rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(varargin{1}(it)));
+                                    rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(abs(varargin{1}(it))));
                                 end
                             end
                         else

@@ -1,7 +1,5 @@
 % test fit
-speed = [-100
-        0
-        404.3449657
+speed = [0
         416.5751859
         435.2676622
         462.5052705
@@ -14,12 +12,9 @@ speed = [-100
         567.7172084
         586.4096847
         748.2865294
-        1000
-        2000];
+        1000];
     
 liftCoeff = [0
-            0
-            0.00008877247161370610
             0.00009663400821486720
             0.00010197039400480800
             0.00010177480503994200
@@ -32,12 +27,11 @@ liftCoeff = [0
             0.00010862374599149600
             0.00010409054272222600
             0.00006567742093581670
-            0
             0];
         
+ 
+        
  dragCoeff = [0
-            0
-            0.00000100839872772950
             0.00000115158401406177
             0.00000131849846466781
             0.00000140132963964922
@@ -50,19 +44,23 @@ liftCoeff = [0
             0.00000201512348657737
             0.00000203398711313428
             0.00000136514255905061
-            0
             0];
     
  figure
  plot(speed, liftCoeff)
  hold on
- f = fit(speed, liftCoeff, 'linear') 
+ f = fit(speed, liftCoeff, 'smoothingspline') 
  plot(min(speed):10:max(speed),f(min(speed):10:max(speed)))
  legend('Sem fit','Com fit')
  
   figure
  plot(speed, dragCoeff)
  hold on
- f = fit(speed, dragCoeff, 'linear') 
+ f = fit(speed, dragCoeff, 'smoothingspline') 
  plot(min(speed):10:max(speed),f(min(speed):10:max(speed)))
  legend('Sem fit','Com fit')
+ 
+%   figure
+%  f = fit(speed, liftCoeff, 'linear') 
+%  speeds = min(speed):10:max(speed);
+%  plot(min(speed):10:max(speed),8*f(min(speed):10:max(speed)).*(speeds.^2)')
