@@ -89,6 +89,15 @@ multirotor.setRotorMaxSpeed(1:8,750*ones(1,8));
 multirotor.setRotorMinSpeed(1:8,0*ones(1,8));
 multirotor.setInitialRotorSpeeds(343*rotationDirection);
 multirotor.setInitialInput(343*rotationDirection);
+multirotor.setInitialVelocity([0;0;0]);
+multirotor.setInitialPosition([0;0;0]);
+multirotor.setInitialAngularVelocity([0;0;0]);
+multirotor.setRotorRm(1:8,0.0975*ones(1,8));
+multirotor.setRotorKt(1:8,0.02498*ones(1,8));
+multirotor.setRotorKv(1:8,340*ones(1,8));
+multirotor.setRotorMaxVoltage(1:8,22*ones(1,8));
+multirotor.setRotorOperatingPoint(1:8,340*[1 1 1 1 1 1 1 1]);
+
 % multirotor.setRotorMinSpeed(1:8,328*ones(1,8));
 
 % %% Configuration for +4 coaxial octorotor
@@ -328,15 +337,9 @@ multirotor.addCommand({'setRotorStatus(5,''motor loss'',0.8)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(5,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.75)'},endTime/2)
-multirotor.setSimEffects('motor dynamics off')
-multirotor.setSimEffects('solver euler')
-multirotor.setInitialVelocity([0;0;0]);
-multirotor.setInitialPosition([0;0;0]);
-multirotor.setInitialAngularVelocity([0;0;0]);
+multirotor.setSimEffects('motor dynamics on','solver euler')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-7.5)^2/(0.5))')
-multirotor.setRotorMaxAcceleration(1:8,0.25*[1 1 1 1 1 1 1 1]);
 multirotor.setControlDelay(0.20);
-multirotor.setRotorOperatingPoint(1:8,340*[1 1 1 1 1 1 1 1]);
 %% Run simulator
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5);
 multirotor.plotSim();

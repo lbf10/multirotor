@@ -8,12 +8,12 @@ warning('on','all')
 multirotor = multicopter(8);
 % multirotor.supressVerbose()
 % Define rotor positions
-positions = [[0.34374 0.34245 0.0143]',[-0.341 0.34213 0.0143]',[-0.34068 -0.34262 0.0143]',[0.34407 -0.34229 0.0143]',[0.33898 0.33769 0.0913]',[-0.33624 0.33736 0.0913]',[-0.33591 -0.33785 0.0913]',[0.3393 -0.33753 0.0913]'];
-% positions = [[0.34374 0.34374 0.0143]',[-0.34374 0.34374 0.0143]',[-0.34374 -0.34374 0.0143]',[0.34374 -0.34374 0.0143]',[0.34374 0.34374 0.0913]',[-0.34374 0.34374 0.0913]',[-0.34374 -0.34374 0.0913]',[0.34374 -0.34374 0.0913]'];
+% positions = [[0.34374 0.34245 0.0143]',[-0.341 0.34213 0.0143]',[-0.34068 -0.34262 0.0143]',[0.34407 -0.34229 0.0143]',[0.33898 0.33769 0.0913]',[-0.33624 0.33736 0.0913]',[-0.33591 -0.33785 0.0913]',[0.3393 -0.33753 0.0913]'];
+positions = [[0.34374 0.34374 0.0143]',[-0.34374 0.34374 0.0143]',[-0.34374 -0.34374 0.0143]',[0.34374 -0.34374 0.0143]',[0.34374 0.34374 0.0913]',[-0.34374 0.34374 0.0913]',[-0.34374 -0.34374 0.0913]',[0.34374 -0.34374 0.0913]'];
 multirotor.setRotorPosition(1:8,positions);
 % Define rotor orientations
-orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.061628417 0.996194698]',[0.061628417 0.061628417 0.996194698]',[-0.061628417 0.061628417 0.996194698]',[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.061628417 0.996194698]',[0.061628417 0.061628417 0.996194698]',[-0.061628417 0.061628417 0.996194698]'];
-% orientations = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
+%orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.061628417 0.996194698]',[0.061628417 0.061628417 0.996194698]',[-0.061628417 0.061628417 0.996194698]',[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.061628417 0.996194698]',[0.061628417 0.061628417 0.996194698]',[-0.061628417 0.061628417 0.996194698]'];
+orientations = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
 multirotor.setRotorOrientation(1:8,orientations);
 % Define aircraft's inertia
 multirotor.setMass(6.015);
@@ -83,8 +83,8 @@ multirotor.setRotorInertia(1:8,0.00047935*ones(1,8));
 rotationDirection = [1 -1 1 -1 -1 1 -1 1]';
 multirotor.setRotorMaxSpeed(1:8,750*ones(1,8));
 multirotor.setRotorMinSpeed(1:8,0*ones(1,8));
-multirotor.setInitialRotorSpeeds(270*rotationDirection);
-multirotor.setInitialInput(270*rotationDirection);
+% multirotor.setInitialRotorSpeeds(270*rotationDirection);
+% multirotor.setInitialInput(270*rotationDirection);
 multirotor.setInitialVelocity([0;0;0]);
 multirotor.setInitialPosition([0;0;0]);
 multirotor.setInitialAngularVelocity([0;0;0]);
@@ -192,7 +192,7 @@ multirotor.setRotorMaxVoltage(1:8,22*ones(1,8));
 % % multirotor.setRotorMinSpeed(1:N,328*ones(1,N));
 
 
-multirotor.setSimEffects('solver euler','motor dynamics off')
+multirotor.setSimEffects('solver euler','motor dynamics on')
 multirotor.setTimeStep(0.005)
 
 % Mf = [];
@@ -206,9 +206,12 @@ multirotor.setTimeStep(0.005)
 % % rank(Mt)
 % % rank([Mf' Mt'])
 
-inputs = 270*rotationDirection;
+inputs = 22*rotationDirection;
 time = [0.01,5];
 multirotor.run(inputs,time)
+% multirotor.setRotorStatus(1,'stuck',0.05);
+% time = [5.01,10];
+% multirotor.run(inputs,time)
 figure
 plot3(multirotor.log().position(1,:),multirotor.log().position(2,:),multirotor.log().position(3,:))
 title('3D Position')

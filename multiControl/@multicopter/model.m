@@ -98,22 +98,6 @@ function dydt = model(obj,t,y,simTime,simInput)
         otherwise
             if isempty(obj.rotorSpeedsAux_)
                 obj.rotorSpeedsAux_ = [obj.previousState_.rotor(:).speed]';
-                obj.modelCallTimeAux_ = 0;
-            end
-            dt = max(t-obj.modelCallTimeAux_,obj.timeStep_);
-            indexes = find(~isinf([obj.rotor_(:).maxAcc])); 
-            obj.modelCallTimeAux_ = t;
-            if ~isempty(indexes)
-                lastRotorSpeeds = abs([obj.rotorSpeedsAux_(indexes,end)]');
-                speedsMinAux = speedsMin;
-                
-                % CONSIDERANDO A VELOCIDADE DO PASSO ANTERIOR:
-                speedsMax(indexes) = min(dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes).*(lastRotorSpeeds.^2)./ri(indexes) + lastRotorSpeeds,speedsMax(indexes));
-                speedsMinAux(indexes) = max(-dt*([obj.rotor_(indexes).maxAcc]*1000*dt).*dc(indexes).*(lastRotorSpeeds.^2)./ri(indexes) + lastRotorSpeeds,speedsMin(indexes));
-                
-                indexesInit = lastRotorSpeeds<speedsMin;
-                speedMin(indexesInit) = 0;
-                speedMin(~indexesInit) = speedsMinAux(~indexesInit);
             end
     end
 
@@ -132,7 +116,7 @@ function dydt = model(obj,t,y,simTime,simInput)
             indexes = find(strcmp(statuses(:,1),'stuck'));
             if ~isempty(indexes)
                 deltat = [obj.rotor_(indexes).stuckTransitionPeriod];
-                dw(indexes,1) = ln(0.05).*w(indexes)./deltat;
+                dw(indexes,1) = log(0.05).*w(indexes)./deltat;
                 indexes = ~indexes;
             else
                 indexes = rotorIDs;

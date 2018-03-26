@@ -79,7 +79,6 @@ classdef multicopter < handle
         setPointsAux_
         rotorSpeedsAux_
         rotorAccAux_
-        modelCallTimeAux_
         spTimeAux_
         dydtAux_
         % Rotor fail auxiliary variables
@@ -146,7 +145,6 @@ classdef multicopter < handle
                         obj.rotor_(it).maxSpeed = inf;
                         obj.rotor_(it).minSpeed = 0;
                         obj.rotor_(it).transferFunction = [250000;750;250000];
-                        obj.rotor_(it).maxAcc = inf;
                         obj.rotor_(it).Rm = 0.0975;
                         obj.rotor_(it).Kt = 0.02498;
                         obj.rotor_(it).Kv = 340;
@@ -225,7 +223,6 @@ classdef multicopter < handle
             obj.setPointsAux_ = [];
             obj.rotorSpeedsAux_ = [];
             obj.rotorAccAux_ = [];
-            obj.modelCallTimeAux_ = [];
             obj.spTimeAux_ = [];
             obj.linearDisturbance_ = [];
 %             obj.Lu = 0.98;
@@ -580,7 +577,6 @@ classdef multicopter < handle
             obj.rotor_(rotorID).maxSpeed = inf;
             obj.rotor_(rotorID).minSpeed = 0;
             obj.rotor_(rotorID).transferFunction = [250000;750;250000];
-            obj.rotor_(rotorID).maxAcc = inf;
             obj.rotor_(rotorID).Rm = 0.0975;
             obj.rotor_(rotorID).Kt = 0.02498;
             obj.rotor_(rotorID).Kv = 340;
@@ -659,9 +655,6 @@ classdef multicopter < handle
         %   T is set so to obtain 500 rad/s and 0.75 for natural frequency
         %   and damping ratio, respectively, in case T is not specified.
         %
-        %   SETROTOR(P,O,I,L,D,M,m,T,A) does the same as SETROTOR(P,O,I,L,D,M,m,T), 
-        %   but sets the rotor maximum acceleration rate to A.
-        %
         %   SETROTOR may be substituded by setting rotor position,
         %   orientation, inertia, lift and drag coefficients separately
         %   using functions presented below.
@@ -698,9 +691,6 @@ classdef multicopter < handle
             end
             if length(varargin)>=8
                 obj.setRotorTF(rotorID, varargin{8});
-            end
-            if length(varargin)>=9
-                obj.setRotorMaxAcceleration(rotorID, varargin{9});
             end
         end  
         function setRotorPosition(obj, rotorID, position)
@@ -1004,37 +994,7 @@ classdef multicopter < handle
             else
                 error('Rotor TF must be an array of numeric column (3x1) vectors the same length as the vector of rotor IDs, which must not exceed the number of rotors in the multicopter!')
             end
-        end     
-        function setRotorMaxAcceleration(obj, rotorID, maxAcc)
-        %SETROTORMAXACCELERATION  Configures maximum acceleration rate for specified rotor.
-        %
-        %   SETROTORMAXACCELERATION(rotorID,M) Sets rotor maximum allowed acceleration rate to M.
-        %   rotorID may be a scalar or a vector, in arbitrary order, 
-        %   specifying which rotors will be configured.
-        %   M may be a numeric scalar (including infinity) or a numeric 
-        %   vector the same length as rotorID.
-        %   Each vector position relates to the rotor ID specified at the
-        %   same position of the rotorID vector.
-        %   M = 0.25, for instance, means the power applied to the rotor
-        %   will change at most 25% per milissecond.
-        %
-        %   SETROTORMAXACCELERATION can be used during simulation.
-        %
-        %   See also ADDROTOR, SETROTORPOSITION, SETROTORORIENTATION,
-        %   SETROTORINERTIA, SETROTORLIFTCOEFF, SETROTORDRAGCOEFFICIENT, 
-        %   SETROTOR.
-        
-            if iscell(maxAcc)
-                warning('Input will be converted to numeric array.')
-                maxAcc = cell2mat(maxAcc);
-            end
-            if isvector(maxAcc) && isnumeric(maxAcc) && (length(maxAcc)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_
-                maxAcc = num2cell(maxAcc);
-                [obj.rotor_(rotorID).maxAcc] = maxAcc{:};
-            else
-                error('Maximum rotor acceleration rate must be a vector of numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
-            end
-        end
+        end  
         function setRotorRm(obj, rotorID, Rm)
         %SETROTORRM  Configures winding motor resistance (Ohms) for specified rotor.
         %
@@ -1058,7 +1018,7 @@ classdef multicopter < handle
             end
             if isvector(Rm) && isnumeric(Rm) && (length(Rm)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(Rm>=0)
                 Rm = num2cell(Rm);
-                [obj.rotor_(rotorID).maxAcc] = Rm{:};
+                [obj.rotor_(rotorID).Rm] = Rm{:};
             else
                 error('Motor winding resistance must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
             end
@@ -1086,7 +1046,7 @@ classdef multicopter < handle
             end
             if isvector(Kt) && isnumeric(Kt) && (length(Kt)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(Kt>=0)
                 Kt = num2cell(Kt);
-                [obj.rotor_(rotorID).maxAcc] = Kt{:};
+                [obj.rotor_(rotorID).Kt] = Kt{:};
             else
                 error('Motor torque constant must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
             end
@@ -1114,7 +1074,7 @@ classdef multicopter < handle
             end
             if isvector(Kv) && isnumeric(Kv) && (length(Kv)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(Kv>=0)
                 Kv = num2cell(Kv);
-                [obj.rotor_(rotorID).maxAcc] = Kv{:};
+                [obj.rotor_(rotorID).Kv] = Kv{:};
             else
                 error('Motor speed constant must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
             end
@@ -1142,7 +1102,7 @@ classdef multicopter < handle
             end
             if isvector(Io) && isnumeric(Io) && (length(Io)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(Io>=0)
                 Io = num2cell(Io);
-                [obj.rotor_(rotorID).maxAcc] = Io{:};
+                [obj.rotor_(rotorID).Io] = Io{:};
             else
                 error('Motor idle current rate must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
             end
@@ -1170,7 +1130,7 @@ classdef multicopter < handle
             end
             if isvector(maxVoltage) && isnumeric(maxVoltage) && (length(maxVoltage)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(maxVoltage>=0)
                 maxVoltage = num2cell(maxVoltage);
-                [obj.rotor_(rotorID).maxAcc] = maxVoltage{:};
+                [obj.rotor_(rotorID).maxVoltage] = maxVoltage{:};
             else
                 error('Motor maximum voltage must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
             end
@@ -1996,26 +1956,7 @@ classdef multicopter < handle
         %   ROTORDRAGCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORMAXSPEED.
         
             rotorTFValue = [obj.rotor_(rotorID).transferFunction];
-        end  
-        function rotorMaxAcceleration = rotorMaxAcceleration(obj, rotorID)
-        %ROTORMAXACCELERATION Returns the maximum acceleration rate of the specified rotor.
-        %
-        %   M = ROTORMAXACCELERATION(rotorID) Returns the maximum acceleration rate that the
-        %   specified rotor is capable of executing.
-        %   rotorID specifies which rotor to return the maximum speed of.
-        %   rotorID can be a single value or an array of IDs.
-        %   M is an array of size 1xN, where N = length(rotorID) and each
-        %   vector element represents the maximum allowed acceleration rate associated with 
-        %   the rotor specified by the respective rotorID. 
-        %
-        %   The acceleration rate is specified in %/milissecond of power
-        %   change in the motor.
-        %
-        %   See also ROTOR,ROTORPOSITION, ROTORORIENTATION, ROTORINERTIA, 
-        %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORDRAGCOEFF.
-        
-            rotorMaxAcceleration = [obj.rotor_(rotorID).maxAcc];
-        end        
+        end     
         function rotorRm = rotorRm(obj, rotorID)
         %ROTORRM Returns the winding resistance (Ohms) of the specified rotor.
         %
@@ -3169,7 +3110,6 @@ classdef multicopter < handle
             obj.setRotorOK(1:obj.numberOfRotors_);
             obj.setPointsAux_ = [];
             obj.rotorSpeedsAux_ = [];
-            obj.modelCallTimeAux_ = [];
             obj.spTimeAux_ = [];
         end
         function setSimEffects(obj, varargin)
