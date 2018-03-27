@@ -32,6 +32,7 @@ friction = [0.25	0	0
 multirotor.setFriction(friction);
 % Define lift and drag coefficients
 speed = [0
+        200
         416.5751859
         435.2676622
         462.5052705
@@ -44,8 +45,9 @@ speed = [0
         567.7172084
         586.4096847
         748.2865294
-        1000];    
-liftCoeff = [0
+        1000];
+liftCoeff = [0.00004
+            0.00007
             0.00009663400821486720
             0.00010197039400480800
             0.00010177480503994200
@@ -58,8 +60,9 @@ liftCoeff = [0
             0.00010862374599149600
             0.00010409054272222600
             0.00006567742093581670
-            0];   
- dragCoeff = [0
+            0];
+ dragCoeff = [0.0000005
+            0.00000075
             0.00000115158401406177
             0.00000131849846466781
             0.00000140132963964922
@@ -93,18 +96,21 @@ multirotor.setRotorKt(1:8,0.02498*ones(1,8));
 multirotor.setRotorKv(1:8,340*ones(1,8));
 multirotor.setRotorMaxVoltage(1:8,22*ones(1,8));
 
-multirotor.setSimEffects('solver ode45','motor dynamics on')
-multirotor.setTimeStep(0.005)
+multirotor.setSimEffects('solver euler','motor dynamics on')
+multirotor.setTimeStep(0.001)
 
 inputs = 22*rotationDirection;
-time = [0.01,30];
+time = [0.01,5];
 multirotor.run(inputs,time)
-% multirotor.setRotorStatus(1,'stuck',0.05);
-% time = [5.01,10];
-% multirotor.run(inputs,time)
+multirotor.setRotorStatus(1,'motor loss',0.001);
+time = [5.01,10];
+multirotor.run(inputs,time)
 figure
 plot3(multirotor.log().position(1,:),multirotor.log().position(2,:),multirotor.log().position(3,:))
 title('3D Position')
 daspect([1 1 1])
 figure
 plot(multirotor.log().position(3,:))
+
+figure
+plot(multirotor.log().time,multirotor.log().rotor(1).speed)

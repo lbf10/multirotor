@@ -33,7 +33,6 @@ function dydt = model(obj,t,y,simTime,simInput)
     % Used in version 1.0
     % input = interp1(simTime, simInput',t);
     %%% Acts like a holder
-    t
     auxIndex = find(t<=simTime,1);
     input = simInput(:,auxIndex);
        
@@ -112,7 +111,7 @@ function dydt = model(obj,t,y,simTime,simInput)
             w = y(14:(13+obj.numberOfRotors_));        
             auxSpeed = num2cell(w);
             [obj.previousState_.rotor(:).speed] = auxSpeed{:};
-            dw = w;
+            dw = zeros(obj.numberOfRotors_,1);
             statuses = vertcat(obj.rotor_(:).status);
             indexes = find(strcmp(statuses(:,1),'stuck'));
             if ~isempty(indexes)
@@ -123,7 +122,7 @@ function dydt = model(obj,t,y,simTime,simInput)
                 indexes = rotorIDs;
             end
             if ~isempty(indexes)
-                dw(indexes) = (-dc(indexes).*w(indexes)'.*abs(w(indexes)')+[obj.rotor_(indexes).Kt].*[obj.rotor_(indexes).motorEfficiency].*(localSetPoint(indexes)-60*w(indexes)'./([obj.rotor_(indexes).Kv]*2*pi))./[obj.rotor_(indexes).Rm])./ri(indexes);
+                dw(indexes) = (-dc(indexes).*w(indexes)'.*abs(w(indexes)')+[obj.rotor_(indexes).Kt].*[obj.rotor_(indexes).motorEfficiency].*(localSetPoint(indexes)-60*w(indexes)'./([obj.rotor_(indexes).Kv].*[obj.rotor_(indexes).motorEfficiency]*2*pi))./[obj.rotor_(indexes).Rm])./ri(indexes);
             end   
 %             for it=rotorIDs
 %                 switch obj.rotor_(it).status{1}

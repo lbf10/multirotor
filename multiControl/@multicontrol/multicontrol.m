@@ -3485,6 +3485,12 @@ classdef multicontrol < multicopter
                 otherwise
                     allocatorOutput = controllerOutput.attitudeController; 
             end
+            switch obj.simEffects_{1}
+                case 'motor dynamics on'  
+                    allocatorOutput = ([obj.rotor_(:).Rm].*[obj.rotorDragCoeff(1:obj.numberOfRotors_,obj.rotorOperatingPoint_)].*allocatorOutput'.*abs(allocatorOutput')./[obj.rotor_(:).Kt]+60*allocatorOutput'./([obj.rotor_(:).Kv]*2*pi))';
+                otherwise
+                    % does nothing
+            end
         end  
         function result = canRunControl(obj)
         %UNTITLED Summary of this function goes here
