@@ -35,7 +35,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
             end
         end
     end
-    fitness = zeros(numberOfOptions,5);
+    fitness = zeros(numberOfOptions,1);
     
     parfor it = 1:numberOfOptions
         % Creates simulation class
@@ -155,11 +155,10 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         
         try
             multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);
-            metrics = multirotor.metrics();
-            %fitness(it,:) = [metrics.RMSPositionError,metrics.maxPositionError, real(metrics.RMSAngularError), real(metrics.maxAngularError), metrics.energy, metrics.maxPower, metrics.missionSuccess];            
-            fitness(it,:) = [metrics.RMSPositionError,metrics.maxPositionError, real(metrics.RMSAngularError), real(metrics.maxAngularError), metrics.missionSuccess];
+            metrics = multirotor.metrics();          
+            fitness(it) = metrics.RMSPositionError+real(metrics.RMSAngularError);
         catch
-            fitness(it,:) = [endTime*5,endTime*10, pi/2, pi, 0];
+            fitness(it) = endTime*5+pi/2;
         end
 %         multirotor.plotSim()
 %         multirotor.metrics()
@@ -168,7 +167,6 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         %disp(it)
     end    
     fitness = sum(fitness);
-    fitness(end) = 1-fitness(end)/numberOfOptions;
     disp(['Fitness Calculated ',datestr(now)])
 end
 
