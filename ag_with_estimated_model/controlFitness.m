@@ -5,19 +5,19 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
     positions = [[0.34374 0.34245 0.0143]',[-0.341 0.34213 0.0143]',[-0.34068 -0.34262 0.0143]',[0.34407 -0.34229 0.0143]',[0.33898 0.33769 0.0913]',[-0.33624 0.33736 0.0913]',[-0.33591 -0.33785 0.0913]',[0.3393 -0.33753 0.0913]'];
     mass = 6.015;
     payloadRadius = 0.3*mean(sqrt(sum(positions.^2)));
-    endTimes = [30];
+    endTimes = [15];
     yawGoTos = [0,2*pi];
     payloads = [0, 0, 0, 0
                %0.5*mass, 0, 0, 0
                %0.5*mass, -payloadRadius/(2*sqrt(2)), -payloadRadius/(2*sqrt(2)), -payloadRadius
                1*mass, 0, 0, 0
-               1*mass, 0, 0, -payloadRadius/1.5];
+               1*mass, 0, 0, -payloadRadius];
     disturbances = [0,10];
     failures = {{''}
-                {'setRotorStatus(1,''motor loss'',0)'}
-                {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(2,''motor loss'',0)'}
-                {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(6,''motor loss'',0.4)'}
-                {'setRotorStatus(1,''motor loss'',0)','setRotorStatus(2,''motor loss'',0)','setRotorStatus(3,''motor loss'',0)'}};
+                {'setRotorStatus(1,''motor loss'',0.001)'}
+                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)'}
+                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(6,''motor loss'',0.4)'}
+                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)'}};
                 %{'setRotorStatus(1,''motor loss'',0)','setRotorStatus(2,''motor loss'',0)','setRotorStatus(3,''motor loss'',0)','setRotorStatus(4,''motor loss'',0)'}};
       
     numberOfOptions = length(endTimes)*length(yawGoTos)*size(payloads,1)*length(disturbances)*length(failures);
@@ -59,9 +59,8 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
                     0	0	0.25];
         multirotor.setFriction(friction);
         % Define lift and drag coefficients
-        speed = [-100
-                0
-                404.3449657
+        speed = [0
+                200
                 416.5751859
                 435.2676622
                 462.5052705
@@ -74,11 +73,9 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
                 567.7172084
                 586.4096847
                 748.2865294
-                1000
-                2000];
-        liftCoeff = [0
-                    0
-                    0.00008877247161370610
+                1000];
+        liftCoeff = [0.00004
+                    0.00007
                     0.00009663400821486720
                     0.00010197039400480800
                     0.00010177480503994200
@@ -91,11 +88,9 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
                     0.00010862374599149600
                     0.00010409054272222600
                     0.00006567742093581670
-                    0
                     0];
-        dragCoeff = [0
-                    0
-                    0.00000100839872772950
+         dragCoeff = [0.0000005
+                    0.00000075
                     0.00000115158401406177
                     0.00000131849846466781
                     0.00000140132963964922
@@ -108,10 +103,9 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
                     0.00000201512348657737
                     0.00000203398711313428
                     0.00000136514255905061
-                    0
                     0];
-        multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'linear');
-        multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'linear');
+        multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline');
+        multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline');
 %         multirotor.setRotorLiftCoeff(1:8,mean(liftCoeff));
 %         multirotor.setRotorDragCoeff(1:8,mean(dragCoeff));
         % Define rotor inertia
@@ -119,11 +113,25 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         % Sets rotors rotation direction for control allocation
         rotationDirection = [1 -1 1 -1 -1 1 -1 1]';
         multirotor.setRotorDirection(1:8,rotationDirection);
-        multirotor.setRotorMaxSpeed(1:8,750*ones(1,8));
-        %multirotor.setRotorMinSpeed(1:8,328*ones(1,8));
+        multirotor.setRotorMaxSpeed(1:8,729*ones(1,8));
         multirotor.setRotorMinSpeed(1:8,0*ones(1,8));
+        multirotor.setInitialRotorSpeeds(328*rotationDirection);
+        multirotor.setInitialInput(9.47*rotationDirection);
+        multirotor.setInitialVelocity([0;0;0]);
+        multirotor.setInitialPosition([0;0;0]);
+        multirotor.setInitialAngularVelocity([0;0;0]);
+        multirotor.setRotorRm(1:8,0.0975*ones(1,8));
+        multirotor.setRotorKt(1:8,0.02498*ones(1,8));
+        multirotor.setRotorKv(1:8,340*ones(1,8));
+        multirotor.setRotorMaxVoltage(1:8,22*ones(1,8));
+        multirotor.setRotorOperatingPoint(1:8,340*[1 1 1 1 1 1 1 1]);
         multirotor.configControlAllocator('Passive NMAC',1,0);
         multirotor.configControlAllocator('Active NMAC',1,0);
+        multirotor.setTimeStep(0.005);
+        multirotor.setControlTimeStep(0.05);
+        multirotor.configFDD(0.9,0.5);
+        multirotor.setSimEffects('motor dynamics on','solver euler')
+        multirotor.setControlDelay(0.20);
         multirotor = paramsToMultirotor(attitudeController, controlAllocator, attitudeReference, multirotor, x);
         option = options(it,:);
         
