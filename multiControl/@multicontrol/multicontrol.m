@@ -3430,10 +3430,11 @@ classdef multicontrol < multicopter
                         obj.allocationConfig_{index}.minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
                         obj.allocationConfig_{index}.op = (obj.allocationConfig_{index}.maxSpeeds+obj.allocationConfig_{index}.minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
                         obj.allocationConfig_{index}.N = null(obj.allocationConfig_{index}.Mt);
+                        obj.allocationConfig_{index}.pinvMt = pinv(obj.allocationConfig_{index}.Mt);
                         
                     end
                     Mf = obj.allocationConfig_{index}.Mf;
-                    Mt = obj.allocationConfig_{index}.Mt;
+                    pinvMt = obj.allocationConfig_{index}.pinvMt;
                     maxSpeeds = obj.allocationConfig_{index}.maxSpeeds;
                     minSpeeds = obj.allocationConfig_{index}.minSpeeds;
                     op = obj.allocationConfig_{index}.op;
@@ -3442,7 +3443,7 @@ classdef multicontrol < multicopter
                     Q = obj.allocationConfig_{index}.Q;
                     v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*desiredImpulse));
                     b2 = N*v;
-                    utau = pinv(Mt)*desiredTorque;
+                    utau = pinvMt*desiredTorque;
                     c = (desiredImpulse-Mf*utau)'*Mf*b2/(norm(Mf*b2)^2);
                     omega_square = utau+b2*c;
                     
