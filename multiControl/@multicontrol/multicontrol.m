@@ -1969,16 +1969,24 @@ classdef multicontrol < multicopter
                     omega_square(greaterIndex) = maxSpeeds(greaterIndex);
                 case 7 % Passive NMAC
                     index = 7;
-                    Mf = [];
-                    Mt = [];
-                    for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
-                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                    if ~obj.isRunning()
+                        obj.allocationConfig_{index}.Mf = [];
+                        obj.allocationConfig_{index}.Mt = [];
+                        for it=1:obj.numberOfRotors_
+                            obj.allocationConfig_{index}.Mf = [obj.allocationConfig_{index}.Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
+                            obj.allocationConfig_{index}.Mt = [obj.allocationConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        end
+                        obj.allocationConfig_{index}.maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
+                        obj.allocationConfig_{index}.minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
+                        obj.allocationConfig_{index}.op = (obj.allocationConfig_{index}.maxSpeeds+obj.allocationConfig_{index}.minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                        obj.allocationConfig_{index}.N = null(obj.allocationConfig_{index}.Mt);
+                        
                     end
-                    maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
-                    minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
-                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
-                    N = null(Mt);
+                    Mf = obj.allocationConfig_{index}.Mf;
+                    maxSpeeds = obj.allocationConfig_{index}.maxSpeeds;
+                    minSpeeds = obj.allocationConfig_{index}.minSpeeds;
+                    op = obj.allocationConfig_{index}.op;
+                    N = obj.allocationConfig_{index}.N;
                     R = obj.allocationConfig_{index}.R;
                     Q = obj.allocationConfig_{index}.Q;
                     v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*Tcd));
@@ -3411,16 +3419,25 @@ classdef multicontrol < multicopter
                     end
                 case 7 % 'Passive NMAC'
                     index = 7;
-                    Mf = [];
-                    Mt = [];
-                    for it=1:obj.numberOfRotors_
-                        Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
-                        Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                    if ~obj.isRunning()
+                        obj.allocationConfig_{index}.Mf = [];
+                        obj.allocationConfig_{index}.Mt = [];
+                        for it=1:obj.numberOfRotors_
+                            obj.allocationConfig_{index}.Mf = [obj.allocationConfig_{index}.Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
+                            obj.allocationConfig_{index}.Mt = [obj.allocationConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        end
+                        obj.allocationConfig_{index}.maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
+                        obj.allocationConfig_{index}.minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
+                        obj.allocationConfig_{index}.op = (obj.allocationConfig_{index}.maxSpeeds+obj.allocationConfig_{index}.minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
+                        obj.allocationConfig_{index}.N = null(obj.allocationConfig_{index}.Mt);
+                        
                     end
-                    maxSpeeds = ((obj.rotorMaxSpeed(1:obj.numberOfRotors_)).^2)';
-                    minSpeeds = ((obj.rotorMinSpeed(1:obj.numberOfRotors_)).^2)';
-                    op = (maxSpeeds+minSpeeds)/2; % in the middle of the squared rotor speed range, to best maneuverability
-                    N = null(Mt);
+                    Mf = obj.allocationConfig_{index}.Mf;
+                    Mt = obj.allocationConfig_{index}.Mt;
+                    maxSpeeds = obj.allocationConfig_{index}.maxSpeeds;
+                    minSpeeds = obj.allocationConfig_{index}.minSpeeds;
+                    op = obj.allocationConfig_{index}.op;
+                    N = obj.allocationConfig_{index}.N;
                     R = obj.allocationConfig_{index}.R;
                     Q = obj.allocationConfig_{index}.Q;
                     v = (N'*(R*N+Mf'*Q*Mf*N))\(N'*(R*op+Mf'*Q*desiredImpulse));
