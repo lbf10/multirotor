@@ -2496,8 +2496,8 @@ classdef multicontrol < multicopter
                     previousError = obj.controlConfig_{index}.error;
                     obj.controlConfig_{index}.error = qe(2:4)';
                     e = qe(2:4)';
-                    de = desiredAngularVelocity - obj.previousState_.angularVelocity;
-                    
+                    %de = desiredAngularVelocity - obj.previousState_.angularVelocity;
+                    de = (e-previousError)/obj.controlTimeStep_;
                     rotorIDs = 1:obj.numberOfRotors();
                     torqueAux = obj.rotorOrientation(rotorIDs)*(obj.previousRotorSpeed(rotorIDs).*obj.rotorInertia(rotorIDs))';
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
@@ -2507,7 +2507,7 @@ classdef multicontrol < multicopter
                     s = de+c*e;
                     signS = min(max(s, -1), 1);
                     obj.controlConfig_{index}.integral = obj.controlConfig_{index}.integral + obj.controlTimeStep_*alpha*signS; %%%%% importante
-                    ueq = obj.inertia()*(desiredAngularAcceleration+c*de-fx);
+                    ueq = obj.inertia()*(desiredAngularAcceleration+c*de-fx)
                     udis = lambda*(signS.*(s.^2))+ obj.controlConfig_{index}.integral;
                     
                     attitudeControlOutput = ueq+udis;

@@ -15,7 +15,39 @@ speed = [0
         748.2865294
         1000];
     
-liftCoeff = [0.00004
+thrust = 0.8*[0
+    0.5
+        1.48
+        1.71
+        1.97
+        2.22
+        2.48
+        2.72
+        2.88
+        3.01
+        3.22
+        3.38
+        3.57
+        3.65
+        3.75];
+    
+speedThrust = [0
+    250
+404.3449656656
+416.575185866
+435.2676621549
+462.5052704615
+472.6526147326
+491.3450910214
+501.4924352925
+520.1849115814
+530.3322558525
+549.0247321414
+567.7172084302
+586.4096847191
+748.2865293806];
+    
+liftCoeff = 0.8*[0.00004
             0.00007
             0.00009663400821486720
             0.00010197039400480800
@@ -67,3 +99,11 @@ liftCoeff = [0.00004
 %  f = fit(speed, liftCoeff, 'linear') 
 %  speeds = min(speed):10:max(speed);
 %  plot(min(speed):10:max(speed),8*f(min(speed):10:max(speed)).*(speeds.^2)')
+
+
+%  figure
+%  plot(speedThrust, thrust)
+%  hold on
+%  f = fit(speedThrust, thrust, 'smoothingspline') 
+%  plot(min(speedThrust):10:max(speedThrust),f(min(speedThrust):10:max(speedThrust)))
+%  legend('Sem fit','Com fit')
