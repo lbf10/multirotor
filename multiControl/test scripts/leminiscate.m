@@ -6,7 +6,7 @@
 comprimento = 7;
 largura = 4;
 altura = 4;
-tmax = 10;
+tmax = 12;
 
 
 a = comprimento/2;
