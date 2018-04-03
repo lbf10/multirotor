@@ -2075,12 +2075,19 @@ classdef multicontrol < multicopter
                     if ~obj.isRunning()
                         obj.controlConfig_{1}.ierror = zeros(3,1);
                     end    
-                    errorVector = [qe(2); qe(3); qe(4)];
+                    errorVector = obj.matrixAbsoluteToBody()*[qe(2); qe(3); qe(4)];
                     obj.controlConfig_{1}.ierror = obj.controlConfig_{1}.ierror+errorVector*obj.controlTimeStep_;
                     attitudeControlOutput = obj.inertiaTensor_*(-reshape(obj.controlConfig_{1}.kd,[3 1]).*obj.previousAngularVelocity()+reshape(obj.controlConfig_{1}.kp,[3 1]).*errorVector+reshape(obj.controlConfig_{1}.ki,[3 1]).*obj.controlConfig_{1}.ierror);
                     %torqueD = attitudeControlOutput
                 case 2 %'RLQ-R Passive'
                     index = 2;
+                    if ~obj.isRunning()
+                        obj.controlConfig_{index}.Wbe = [0;0;0];
+                        obj.controlConfig_{index}.angularVelocity = [0;0;0];
+                    end
+                    previousWbe = obj.controlConfig_{index}.Wbe;
+                    previousAngularVelocity = obj.controlConfig_{index}.angularVelocity;
+                    
                     q = obj.previousState_.attitude; %Current attitude
                     % Quaternion error
                     qe(1) = + qd(1)*q(1) + qd(2)*q(2) + qd(3)*q(3) + qd(4)*q(4);
@@ -2088,18 +2095,25 @@ classdef multicontrol < multicopter
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
                     
-                    desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
-                    desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
-                    desiredAngularVelocity(2,1) = obj.normalizeAngle(desiredAngularVelocity(2),-pi)/obj.controlTimeStep_;
-                    desiredAngularVelocity(3,1) = obj.normalizeAngle(desiredAngularVelocity(3),-pi)/obj.controlTimeStep_;
+                    if(qe(1)<0)
+                        qe(2:4) = -qe(2:4);
+                    end    
+%                     qe = 0.1*qe;
+                    alpha = obj.normalizeAngle(2*acos(qe(1)),-pi)
+                    desiredAngularVelocity = alpha*(qe(2:4)/sin(alpha/2));
+                    desiredAngularVelocity = obj.matrixAbsoluteToBody()*(desiredAngularVelocity)'/obj.controlTimeStep_;
+                    
+%                     desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
+%                     desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
+%                     desiredAngularVelocity(2,1) = obj.normalizeAngle(desiredAngularVelocity(2),-pi)/obj.controlTimeStep_;
+%                     desiredAngularVelocity(3,1) = obj.normalizeAngle(desiredAngularVelocity(3),-pi)/obj.controlTimeStep_;
                     obj.trajectory_.angularVelocity(:,end+1) = desiredAngularVelocity;
                     %desiredAngularVelocity = obj.matrixAbsoluteToBody()*desiredAngularVelocity;
                     %desiredAngularAcceleration = (desiredAngularVelocity - obj.previousState_.angularVelocity)/obj.controlTimeStep_;
                     %desiredAngularVelocity = [0;0;0];
-                    desiredAngularAcceleration = [0;0;0];
                     
                     rotorIDs = 1:obj.numberOfRotors();
-                    torqueAux = obj.rotorOrientation(rotorIDs)*(obj.previousRotorSpeed(rotorIDs).*obj.rotorInertia(rotorIDs))';
+                    torqueAux = [obj.rotor_(rotorIDs).orientation]*([obj.previousState_.rotor(rotorIDs).speed].*obj.rotorInertia(rotorIDs))';
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
                     auxA = [0 -auxA(3) auxA(2) ; auxA(3) 0 -auxA(1) ; -auxA(2) auxA(1) 0 ];
                     auxA = obj.inertia()\auxA;
@@ -2107,8 +2121,16 @@ classdef multicontrol < multicopter
                     Sq = [qe(1),-qe(4),qe(3);
                           qe(4),qe(1),-qe(2);
                           -qe(3),qe(2),qe(1)];
-
-                    x_e = [desiredAngularVelocity-obj.previousAngularVelocity();qe(2:4)'];
+                    
+                    obj.controlConfig_{index}.angularVelocity = obj.previousAngularVelocity();
+                    angularAcceleration = (obj.previousAngularVelocity()-previousAngularVelocity)/obj.controlTimeStep_;
+                    %angularAcceleration = obj.previousState_.angularAcceleration;
+                    Wbe = desiredAngularVelocity-obj.previousAngularVelocity();
+                    obj.controlConfig_{index}.Wbe = Wbe;
+                    x_e = [Wbe;qe(2:4)'];
+                    dWbe = (Wbe-previousWbe)/obj.controlTimeStep_;
+                    desiredAngularAcceleration = diag([1,1,0.3])*(dWbe+angularAcceleration);
+%                     bodyAcceleration = obj.previousState_.angularAcceleration;
 
                     ssA = [auxA, zeros(3); 0.5*Sq, zeros(3)];
                     ssB = [eye(3);zeros(3)];
@@ -2143,10 +2165,17 @@ classdef multicontrol < multicopter
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
                     
-                    desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
-                    desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
-                    desiredAngularVelocity(2,1) = obj.normalizeAngle(desiredAngularVelocity(2),-pi)/obj.controlTimeStep_;
-                    desiredAngularVelocity(3,1) = obj.normalizeAngle(desiredAngularVelocity(3),-pi)/obj.controlTimeStep_;
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end    
+                    
+                    desiredAngularVelocity = 2*acos(qe(1))*(qe(2:4)/norm(qe(2:4)));
+                    desiredAngularVelocity = obj.matrixAbsoluteToBody()*(desiredAngularVelocity)'/obj.controlTimeStep_;
+                    
+%                     desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
+%                     desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
+%                     desiredAngularVelocity(2,1) = obj.normalizeAngle(desiredAngularVelocity(2),-pi)/obj.controlTimeStep_;
+%                     desiredAngularVelocity(3,1) = obj.normalizeAngle(desiredAngularVelocity(3),-pi)/obj.controlTimeStep_;
                     obj.trajectory_.angularVelocity(:,end+1) = desiredAngularVelocity;
                     %desiredAngularVelocity = obj.matrixAbsoluteToBody()*desiredAngularVelocity;
                     %desiredAngularAcceleration = (desiredAngularVelocity - obj.previousState_.angularVelocity)/obj.controlTimeStep_;
@@ -2202,6 +2231,10 @@ classdef multicontrol < multicopter
                     qe(2) = + qd(2)*q(1) - qd(1)*q(2) - qd(4)*q(3) + qd(3)*q(4);
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
+                    
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end   
                     
                     desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
                     desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
@@ -2274,6 +2307,10 @@ classdef multicontrol < multicopter
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
                     
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end   
+                    
                     desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
                     desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
                     desiredAngularVelocity(2,1) = obj.normalizeAngle(desiredAngularVelocity(2),-pi)/obj.controlTimeStep_;
@@ -2334,6 +2371,10 @@ classdef multicontrol < multicopter
                     qe(2) = + qd(2)*q(1) - qd(1)*q(2) - qd(4)*q(3) + qd(3)*q(4);
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
+                    
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end   
                     
                     desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
                     desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
@@ -2398,6 +2439,10 @@ classdef multicontrol < multicopter
                     qe(2) = + qd(2)*q(1) - qd(1)*q(2) - qd(4)*q(3) + qd(3)*q(4);
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
+                    
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end   
                     
                     desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
                     desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
@@ -2468,14 +2513,21 @@ classdef multicontrol < multicopter
                     attitudeControlOutput.impulse = obj.mass()*dVbd-Mf*u+obj.friction()*Vbd;%-obj.mass()*invQ*[0;0;-9.81]; % Impulse in relation to body frame
                 case 8 %'SOSMC Passive'
                     index = 8;
+                    rotorIDs = 1:obj.numberOfRotors();
                     c = obj.controlConfig_{index}.c;
                     lambda = obj.controlConfig_{index}.lambda;
                     alpha = obj.controlConfig_{index}.alpha;
                     if ~obj.isRunning()
                         obj.controlConfig_{index}.integral = zeros(3,1);
                         obj.controlConfig_{index}.error = zeros(3,1);
+                        obj.controlConfig_{index}.rotorSpeed = [obj.previousState_.rotor(rotorIDs).speed];
+                        obj.debug.s = [0;0;0];
                     end
-                    
+                    lastRotorSpeed = obj.controlConfig_{index}.rotorSpeed;
+                    obj.controlConfig_{index}.rotorSpeed = [obj.previousState_.rotor(rotorIDs).speed];
+                    rotorSpeed = [obj.previousState_.rotor(rotorIDs).speed];
+                    rotorAcceleration = (rotorSpeed-lastRotorSpeed)/obj.controlTimeStep_;
+%                     rotorAcceleration = [obj.previousState_.rotor(rotorIDs).acceleration]
                     q = obj.previousState_.attitude; %Current attitude
                     % Quaternion error
                     qe(1) = + qd(1)*q(1) + qd(2)*q(2) + qd(3)*q(3) + qd(4)*q(4);
@@ -2483,10 +2535,23 @@ classdef multicontrol < multicopter
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
                     
-                    desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
-                    desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
-                    desiredAngularVelocity(2,1) = obj.normalizeAngle(desiredAngularVelocity(2),-pi)/obj.controlTimeStep_;
-                    desiredAngularVelocity(3,1) = obj.normalizeAngle(desiredAngularVelocity(3),-pi)/obj.controlTimeStep_;
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end    
+                    
+                    if norm(qe(2:4))~=0
+                        desiredAngularVelocity = 2*acos(qe(1))*(qe(2:4)/norm(qe(2:4)));
+                        desiredAngularVelocity = obj.matrixAbsoluteToBody()*(desiredAngularVelocity)'/obj.controlTimeStep_;
+                    else
+                        desiredAngularVelocity = [0;0;0];
+                    end
+                    
+%                     desiredAngularVelocity = 0.01*desiredAngularVelocity;
+                    
+%                     desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
+%                     desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
+%                     desiredAngularVelocity(2,1) = obj.normalizeAngle(desiredAngularVelocity(2),-pi)/obj.controlTimeStep_;
+%                     desiredAngularVelocity(3,1) = obj.normalizeAngle(desiredAngularVelocity(3),-pi)/obj.controlTimeStep_;
                     obj.trajectory_.angularVelocity(:,end+1) = desiredAngularVelocity;
                     %desiredAngularVelocity = obj.matrixAbsoluteToBody()*desiredAngularVelocity;
                     desiredAngularAcceleration = (desiredAngularVelocity - obj.previousState_.angularVelocity)/obj.controlTimeStep_;
@@ -2496,21 +2561,23 @@ classdef multicontrol < multicopter
                     previousError = obj.controlConfig_{index}.error;
                     obj.controlConfig_{index}.error = qe(2:4)';
                     e = qe(2:4)';
-                    %de = desiredAngularVelocity - obj.previousState_.angularVelocity;
-                    de = (e-previousError)/obj.controlTimeStep_;
-                    rotorIDs = 1:obj.numberOfRotors();
+                    de = desiredAngularVelocity - obj.previousState_.angularVelocity;
+                    %de = (e-previousError)/obj.controlTimeStep_;
                     torqueAux = obj.rotorOrientation(rotorIDs)*(obj.previousRotorSpeed(rotorIDs).*obj.rotorInertia(rotorIDs))';
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
                     auxA = cross(auxA,obj.previousAngularVelocity());
                     fx = obj.inertia()\auxA;
+                    %fx = obj.inertia()\(auxA-[obj.rotor_(rotorIDs).orientation]*([obj.rotor_(rotorIDs).inertia].*rotorAcceleration)');
                     
                     s = de+c*e;
+                    obj.debug.s(:,end+1) = s;
                     signS = min(max(s, -1), 1);
                     obj.controlConfig_{index}.integral = obj.controlConfig_{index}.integral + obj.controlTimeStep_*alpha*signS; %%%%% importante
-                    ueq = obj.inertia()*(desiredAngularAcceleration+c*de-fx)
-                    udis = lambda*(signS.*(s.^2))+ obj.controlConfig_{index}.integral;
+                    ueq = obj.inertia()*(desiredAngularAcceleration+c*de-fx);
+                    udis = +lambda*(signS.*(s.^2))+obj.controlConfig_{index}.integral;
                     
                     attitudeControlOutput = ueq+udis;
+                    
                 case 9 %'SOSMC Passive with PIDD' 
                     index = 9;
                     c = obj.controlConfig_{index}.c;
@@ -2532,6 +2599,10 @@ classdef multicontrol < multicopter
                     qe(2) = + qd(2)*q(1) - qd(1)*q(2) - qd(4)*q(3) + qd(3)*q(4);
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
+                    
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end   
                     
                     %currentAttitude = (180*obj.toEuler(q)/pi)' 
                     %desiredAttitude = (180*obj.toEuler(qd)/pi)' 
@@ -2598,6 +2669,10 @@ classdef multicontrol < multicopter
                     qe(2) = + qd(2)*q(1) - qd(1)*q(2) - qd(4)*q(3) + qd(3)*q(4);
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
+                    
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end   
                     
                     %currentAttitude = (180*obj.toEuler(q)/pi)' 
                     %desiredAttitude = (180*obj.toEuler(qd)/pi)' 
@@ -2687,6 +2762,10 @@ classdef multicontrol < multicopter
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
                     
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end   
+                    
                     desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
                     desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
                     desiredAngularVelocity(2,1) = obj.normalizeAngle(desiredAngularVelocity(2),-pi)/obj.controlTimeStep_;
@@ -2740,6 +2819,10 @@ classdef multicontrol < multicopter
                     qe(2) = + qd(2)*q(1) - qd(1)*q(2) - qd(4)*q(3) + qd(3)*q(4);
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
+                    
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end   
                     
                     %currentAttitude = (180*obj.toEuler(q)/pi)' 
                     %desiredAttitude = (180*obj.toEuler(qd)/pi)' 
@@ -2806,6 +2889,10 @@ classdef multicontrol < multicopter
                     qe(2) = + qd(2)*q(1) - qd(1)*q(2) - qd(4)*q(3) + qd(3)*q(4);
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
+                    
+                    if(qe(1)<0)
+                        qe = -qe;
+                    end   
                     
                     %currentAttitude = (180*obj.toEuler(q)/pi)' 
                     %desiredAttitude = (180*obj.toEuler(qd)/pi)' 
@@ -3434,6 +3521,7 @@ classdef multicontrol < multicopter
                         
                     end
                     Mf = obj.allocationConfig_{index}.Mf;
+                    Mt = obj.allocationConfig_{index}.Mt;
                     pinvMt = obj.allocationConfig_{index}.pinvMt;
                     maxSpeeds = obj.allocationConfig_{index}.maxSpeeds;
                     minSpeeds = obj.allocationConfig_{index}.minSpeeds;

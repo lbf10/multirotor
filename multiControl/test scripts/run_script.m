@@ -19,9 +19,9 @@ orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.0616284
 multirotor.setRotorOrientation(1:8,orientations);
 % Define aircraft's inertia
 multirotor.setMass(6.015);
-% mass = 6;
-% payloadRadius = 0.3*mean(sqrt(sum(positions.^2)));
-% multirotor.setPayload([0, 0, -payloadRadius],mass,eye(3)*2*mass*payloadRadius*payloadRadius/5);
+mass = 6;
+payloadRadius = 0.3*mean(sqrt(sum(positions.^2)));
+multirotor.setPayload([0, 0, -payloadRadius],mass,eye(3)*2*mass*payloadRadius*payloadRadius/5);
 % multirotor.setPayload([0, 0, 0],mass,eye(3)*2*mass*payloadRadius*payloadRadius/5);
 inertia =   [0.3143978800	0.0000861200	-0.0014397600
             0.0000861200	0.3122127800	0.0002368800
@@ -78,10 +78,10 @@ liftCoeff = 0.8*[0.00004
             0.00000203398711313428
             0.00000136514255905061
             0];
-% multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline');
-% multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline');
-multirotor.setRotorLiftCoeff(1:8,ones(1,8)*6.97e-5);
-multirotor.setRotorDragCoeff(1:8,ones(1,8)*1.033e-6);
+multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline');
+multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline');
+% multirotor.setRotorLiftCoeff(1:8,ones(1,8)*6.97e-5);
+% multirotor.setRotorDragCoeff(1:8,ones(1,8)*1.033e-6);
 % Define rotor inertia
 multirotor.setRotorInertia(1:8,0.00047935*ones(1,8));
 % Sets rotors rotation direction for control allocation
@@ -99,8 +99,26 @@ multirotor.setRotorRm(1:8,0.0975*ones(1,8));
 multirotor.setRotorKt(1:8,0.02498*ones(1,8));
 multirotor.setRotorKv(1:8,340*ones(1,8));
 multirotor.setRotorMaxVoltage(1:8,22*ones(1,8));
-multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
+multirotor.setRotorOperatingPoint(1:8,340*[1 1 1 1 1 1 1 1]);
 
+%% Previous case
+% % Creates simulation class
+% multirotor = multicontrol(8);
+% multirotor.supressVerbose()
+% % Define rotor positions (from rotor 1 to 8 in this order. using default rotor orientations)
+% positions = [[0.25864 0 0.10]',[0 -0.25864 0.10]',[-0.25864 0 0.10]',[0 0.25864 0.10]',[0.25864 0 -0.10]',[0 -0.25864 -0.10]',[-0.25864 0 -0.10]',[0 0.25864 -0.10]'];
+% multirotor.setRotorPosition([1 2 3 4 5 6 7 8],positions);
+% % Define aircraft's inertia
+% inertia = 1.5*[0.031671826 0 0;0 0.061646669 0;0 0 0.032310702];
+% multirotor.setMass(1.85);
+% multirotor.setInertia(inertia);
+% % Define lift coefficients (using default drag coefficients)
+% multirotor.setRotorLiftCoeff([1 2 3 4 5 6 7 8],0.00000289*[1 1 1 1 1 1 1 1]);
+% % Sets rotors rotation direction for control allocation
+% rotationDirection = [1 -1 1 -1 -1 1 -1 1]';
+% multirotor.setRotorDirection([1 2 3 4 5 6 7 8],rotationDirection);
+% multirotor.setRotorMaxSpeed(1:8,1200*[1 1 1 1 1 1 1 1])
+% multirotor.setRotorOperatingPoint(1:8,340*[1 1 1 1 1 1 1 1]);
 
 %% Controller configuration
 % Trajectory controller
@@ -117,7 +135,9 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % For Adaptive CA:
 % kp = 100*[1 1 1];ki = 20*[1 1 1];kd = 60*[1 1 1];kdd = 1*[1 1 1];
 % For attitude PID:
-kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
+%kp = [90 90 90];ki = [10 10 30];kd = [40 40 40];kdd = [2 2 2];
+%kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
+kp = [40 40 100];ki = [2 2 40];kd = [5 5 70];kdd = [0 0 2];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
 % PID attitude controller
@@ -131,13 +151,17 @@ kd = [14 14 2];
 multirotor.configController('PID',kp,ki,kd);
 
 % R-LQR attitude controller
-P = 1000*eye(6); % Variance of the state used in the robust control
-Q = 10000*diag([2,2,4,1,1,1]);
-R = 200000*diag([2,2,4]);
-Ef = 1000*[1 1 1 1 1 1];
-Eg = 1000*[1 1 1];
-H = 1000*[1 1 1 1 1 1]';
-mu = 1e20;
+%P = 10000*diag([2,2,4,.1,.1,.1]); % Variance of the state used in the robust control
+% Q = 2*diag([1,0.01,0.5,1,6,2]);
+% P = Q;
+% R = 0.5*diag([1,.05,1]);
+Q = diag([1e4, 1e4, 1e3,1e-1,1e-1,1e-1]);
+P = Q;
+R = 50*diag([1,1,1]);
+Ef = 0.02*[1 1 1 0 0 0];
+Eg = 0.02*[1 1 1];
+H = [1 1 1 1 1 1]';
+mu = 1e30;
 alpha = 1.5;
 multirotor.configController('RLQ-R Passive',P,Q,R,Ef,Eg,H,mu,alpha);
 multirotor.configController('RLQ-R Active',P,Q,R,Ef,Eg,H,mu,alpha);
@@ -161,9 +185,9 @@ multirotor.configController('RLQ-R Passive Modified with PIDD',P,Q,R,Ef,Eg,H,mu,
 multirotor.configController('RLQ-R Active Modified with PIDD',P,Q,R,Ef,Eg,H,mu,alpha);
 
 % SOSMC controller
-c = 17*diag([1,1,0.001]);
-alpha =  3.5*diag([1,1,0.001]);
-lambda = 2*diag([0.1,0.1,0.001]);
+c = 0*diag([1,1,0.001]);
+alpha =  0*diag([1,1,0.001]);
+lambda = 0*diag([0.1,0.1,0.001]);
 multirotor.configController('SOSMC Passive',c,lambda,alpha);
 multirotor.configController('SOSMC Active',c,lambda,alpha);
 c = 30*diag([1,1,0.001,2,2,2]);
@@ -233,13 +257,13 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('Adaptive');
+multirotor.setController('RLQ-R Passive');
 multirotor.setControlAllocator('Passive NMAC');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.1)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
-multirotor.setTrajectory('waypoints',[0 0 0 0]',10);
+multirotor.setTrajectory('waypoints',[30 30 30 pi/2]',10);
 % xpos = linspace(0,1,1000);
 % ypos = linspace(0,1,1000);
 % zpos = linspace(0,1,1000);
