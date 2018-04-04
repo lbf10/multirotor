@@ -1044,7 +1044,6 @@ classdef multicontrol < multicopter
                     % Allocates torques to actuators in case there's
                     % control allocation 
                     actuatorInput = obj.controlAllocation(controllerOutput, diagnosis);
-                    
                     % Executes automated commands
                     commandsIndex = find(obj.automationConfig_.time<currentTime & obj.automationConfig_.time>=obj.previousTime());
                     obj.evalCommands(commandsIndex);
@@ -2071,22 +2070,39 @@ classdef multicontrol < multicopter
                     qe(2) = + qd(2)*q(1) - qd(1)*q(2) - qd(4)*q(3) + qd(3)*q(4);
                     qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
                     qe(4) = + qd(4)*q(1) - qd(3)*q(2) + qd(2)*q(3) - qd(1)*q(4);
+                    if(qe(1)<0)
+                        qe(2:4) = -qe(2:4);
+                    end 
                     
                     if ~obj.isRunning()
                         obj.controlConfig_{1}.ierror = zeros(3,1);
                     end    
-                    errorVector = obj.matrixAbsoluteToBody()*[qe(2); qe(3); qe(4)];
+                    errorVector = [qe(2); qe(3); qe(4)];
                     obj.controlConfig_{1}.ierror = obj.controlConfig_{1}.ierror+errorVector*obj.controlTimeStep_;
                     attitudeControlOutput = obj.inertiaTensor_*(-reshape(obj.controlConfig_{1}.kd,[3 1]).*obj.previousAngularVelocity()+reshape(obj.controlConfig_{1}.kp,[3 1]).*errorVector+reshape(obj.controlConfig_{1}.ki,[3 1]).*obj.controlConfig_{1}.ierror);
                     %torqueD = attitudeControlOutput
                 case 2 %'RLQ-R Passive'
                     index = 2;
+                    window = 4;
                     if ~obj.isRunning()
                         obj.controlConfig_{index}.Wbe = [0;0;0];
                         obj.controlConfig_{index}.angularVelocity = [0;0;0];
+                        obj.controlConfig_{index}.desiredAngularVelocity = zeros(3,window);
+                        obj.controlConfig_{index}.meanCounter = 0;
                     end
+                    obj.controlConfig_{index}.meanCounter = obj.controlConfig_{index}.meanCounter + 1;
+                    counter = obj.controlConfig_{index}.meanCounter-1;
+                    counterIndex = rem(counter,window)+1;
+                    
                     previousWbe = obj.controlConfig_{index}.Wbe;
                     previousAngularVelocity = obj.controlConfig_{index}.angularVelocity;
+                    angularVelocity = obj.previousAngularVelocity();
+%                     window = 2;
+%                     sizeLog = size(obj.log().angularVelocity,2);
+%                     if sizeLog>1
+%                         angularVelocity(3) = mean(obj.log().angularVelocity(3,end-min(window-1,sizeLog-1):end));
+%                     end
+                    obj.controlConfig_{index}.angularVelocity = angularVelocity;
                     
                     q = obj.previousState_.attitude; %Current attitude
                     % Quaternion error
@@ -2099,9 +2115,13 @@ classdef multicontrol < multicopter
                         qe(2:4) = -qe(2:4);
                     end    
 %                     qe = 0.1*qe;
-                    alpha = obj.normalizeAngle(2*acos(qe(1)),-pi)
-                    desiredAngularVelocity = alpha*(qe(2:4)/sin(alpha/2));
-                    desiredAngularVelocity = obj.matrixAbsoluteToBody()*(desiredAngularVelocity)'/obj.controlTimeStep_;
+%                     alpha = obj.normalizeAngle(2*acos(qe(1)),-pi);
+%                     alpha = 2*acos(qe(1))
+%                     desiredAngularVelocity = alpha*(qe(2:4)/sin(alpha/2));
+%                     desiredAngularVelocity = (desiredAngularVelocity)'/obj.controlTimeStep_
+                    obj.controlConfig_{index}.desiredAngularVelocity(:,counterIndex) = (qe(2:4)'/obj.controlTimeStep_);
+                    desiredAngularVelocity = (qe(2:4)'/obj.controlTimeStep_);
+                    desiredAngularVelocity(3) = mean(obj.controlConfig_{index}.desiredAngularVelocity(3,:));
                     
 %                     desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
 %                     desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
@@ -2114,7 +2134,7 @@ classdef multicontrol < multicopter
                     
                     rotorIDs = 1:obj.numberOfRotors();
                     torqueAux = [obj.rotor_(rotorIDs).orientation]*([obj.previousState_.rotor(rotorIDs).speed].*obj.rotorInertia(rotorIDs))';
-                    auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
+                    auxA = obj.inertia()*angularVelocity-torqueAux;
                     auxA = [0 -auxA(3) auxA(2) ; auxA(3) 0 -auxA(1) ; -auxA(2) auxA(1) 0 ];
                     auxA = obj.inertia()\auxA;
 
@@ -2122,14 +2142,13 @@ classdef multicontrol < multicopter
                           qe(4),qe(1),-qe(2);
                           -qe(3),qe(2),qe(1)];
                     
-                    obj.controlConfig_{index}.angularVelocity = obj.previousAngularVelocity();
-                    angularAcceleration = (obj.previousAngularVelocity()-previousAngularVelocity)/obj.controlTimeStep_;
+                    angularAcceleration = (angularVelocity-previousAngularVelocity)/obj.controlTimeStep_;
                     %angularAcceleration = obj.previousState_.angularAcceleration;
-                    Wbe = desiredAngularVelocity-obj.previousAngularVelocity();
+                    Wbe = desiredAngularVelocity-angularVelocity;
                     obj.controlConfig_{index}.Wbe = Wbe;
                     x_e = [Wbe;qe(2:4)'];
                     dWbe = (Wbe-previousWbe)/obj.controlTimeStep_;
-                    desiredAngularAcceleration = diag([1,1,0.3])*(dWbe+angularAcceleration);
+                    desiredAngularAcceleration = (dWbe+angularAcceleration);
 %                     bodyAcceleration = obj.previousState_.angularAcceleration;
 
                     ssA = [auxA, zeros(3); 0.5*Sq, zeros(3)];
@@ -2576,8 +2595,7 @@ classdef multicontrol < multicopter
                     ueq = obj.inertia()*(desiredAngularAcceleration+c*de-fx);
                     udis = +lambda*(signS.*(s.^2))+obj.controlConfig_{index}.integral;
                     
-                    attitudeControlOutput = ueq+udis;
-                    
+                    attitudeControlOutput = ueq+udis;                   
                 case 9 %'SOSMC Passive with PIDD' 
                     index = 9;
                     c = obj.controlConfig_{index}.c;
