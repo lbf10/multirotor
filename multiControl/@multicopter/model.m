@@ -187,6 +187,7 @@ function dydt = model(obj,t,y,simTime,simInput)
     end
     %%% Aircraft dynamics
     sum1 = orientationMatrix*(ri(rotorIDs)'.*w(rotorIDs));
+    %orientationMatrix*(ri(rotorIDs)'.*dw(rotorIDs))
     sum2 = (cross(p,orientationMatrix)*diag(lc)-orientationMatrix*diag(dc(rotorIDs)'.*sign(w)))*w.^2-orientationMatrix*(ri(rotorIDs)'.*dw(rotorIDs));
     sum3 = orientationMatrix*diag(lc(rotorIDs))*w.^2;
 
