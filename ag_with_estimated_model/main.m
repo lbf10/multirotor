@@ -6,9 +6,11 @@ addpath(genpath('../multiControl/'))
 warning('on','all')
 
 %% Algorithms to train
-attitudeController = 'PID';
+attitudeController = 'SOSMC Passive';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
+
+fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Results/SOSMC Passive_Passive NMAC_Passive NMAC_08-Apr-2018 18:29:56_iterations.mat';
 
 %% Select nvars according to algorithms
     switch attitudeController
@@ -118,18 +120,18 @@ attitudeReference = 'Passive NMAC';
             ub = [ub,inf(1,54)];
             nvars = 66;
         case 'SOSMC Passive'
-            initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
+            initialPopulation = [300 300 100 10 10 40 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
             ub = 1e6*ones(1,12);
-            c = 2*[1,1,0.001];
-            alpha = 0.1*[1,1,0.001];
-            lambda = 0.1*[0.1,0.1,0.001];
+            c = 3*[1,1,1];
+            alpha =  2*[1,1,1];
+            lambda = .1*[1,1,1];
             initialPopulation = [initialPopulation,c,lambda,alpha];
-            lb = [lb,-inf(1,9)];
-            ub = [ub,inf(1,9)];
+            lb = [lb,zeros(1,9)];
+            ub = [ub,10000*ones(1,9)];
             nvars = 21;
         case 'SOSMC Passive with PIDD'
-            initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
+            initialPopulation = [100 100 100 20 20 20 70 70 70 35 35 2];
             lb = zeros(1,12);
             ub = 1e6*ones(1,12);
             c = 0.5*[1,1,1,2,2,2];
@@ -274,25 +276,25 @@ attitudeReference = 'Passive NMAC';
             ub = [ub,zeros(1,6)];
             nvars = nvars + 6;
     end
-    initialPopulation = [initialPopulation;initialPopulation;initialPopulation;initialPopulation];
+    initialPopulation = [initialPopulation;initialPopulation;initialPopulation;initialPopulation]
 
 %% Check for restore file
-[baseName, folder] = uigetfile();
-fullFileName = fullfile(folder, baseName);
-if folder ~= 0
-    savedState = load(fullFileName,'state');
-    initialPopulation = savedState.state(end).Population;
+if fullfilename ~= 0
+    savedState = load(fullfilename,'state');
+    initialPopulationAux = savedState.state(end).Population;
+    fitnessValues = savedState.state(end).Score;
+    initialPopulation = initialPopulationAux(find(fitnessValues==min(fitnessValues)),:)
 end
 fitnessfcn = @(x) controlFitness(attitudeController, controlAllocator, attitudeReference, x);
 %% Start GA
 filename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_result.mat'];
 iterFilename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
 outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
-options = gaoptimset('UseParallel',false,'PopulationSize',500,'Generations',100,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on');
-poolobj = parpool(4);
+options = gaoptimset('PopulationSize',1000,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on','CrossoverFcn',{'crossoverintermediate'});
+poolobj = parpool(80);
 addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m','../multiControl/'})
 [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = ga(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
 delete(poolobj)
 
 finishDate = datestr(now);
-save(filename,'attitudeController','controlAllocator','attitudeReference','bestIndividual','bestFitness','EXITFLAG','OUTPUT','POPULATION','SCORES','finishDate');
+save(filename,'attitudeController','controlAllocator','attitudeReference','bestIndividual','bestFitness','EXITFLAG','OUTPUT','POPULATION','SCORES','finishDate','options','initialPopulation');

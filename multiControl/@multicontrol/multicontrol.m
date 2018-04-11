@@ -2062,17 +2062,12 @@ classdef multicontrol < multicopter
         function attitudeControlOutput = control(obj, desiredAttitude, desiredImpulse,diagnosis)
         %UNTITLED Summary of this function goes here
         %   Detailed explanation goes here
-            window = 4;
+            window = [1,1,4];
             if ~obj.isRunning()
                 obj.velocityFilter_.Wbe = [0;0;0];
                 obj.velocityFilter_.angularVelocity = [0;0;0];
-                obj.velocityFilter_.desiredAngularVelocity = zeros(3,window);
-                obj.velocityFilter_.meanCounter = 0;
+                obj.velocityFilter_.desiredAngularVelocity = [];
             end
-                    
-            obj.velocityFilter_.meanCounter = obj.velocityFilter_.meanCounter + 1;
-            counter = obj.velocityFilter_.meanCounter-1;
-            counterIndex = rem(counter,window)+1;
 
             previousWbe = obj.velocityFilter_.Wbe;
             previousAngularVelocity = obj.velocityFilter_.angularVelocity;
@@ -2081,7 +2076,7 @@ classdef multicontrol < multicopter
             
             qd = desiredAttitude;
             q = obj.previousState_.attitude; %Current attitude
-            % Quaternion error
+            % Quaternion error2
             qe(1) = + qd(1)*q(1) + qd(2)*q(2) + qd(3)*q(3) + qd(4)*q(4);
             qe(2) = + qd(2)*q(1) - qd(1)*q(2) - qd(4)*q(3) + qd(3)*q(4);
             qe(3) = + qd(3)*q(1) + qd(4)*q(2) - qd(1)*q(3) - qd(2)*q(4);
@@ -2090,16 +2085,25 @@ classdef multicontrol < multicopter
                 qe(2:4) = -qe(2:4);
             end 
             
-            obj.velocityFilter_.desiredAngularVelocity(:,counterIndex) = (qe(2:4)'/obj.controlTimeStep_);
-            desiredAngularVelocity = (qe(2:4)'/obj.controlTimeStep_);
-            desiredAngularVelocity(3) = mean(obj.velocityFilter_.desiredAngularVelocity(3,:));            
+            obj.velocityFilter_.desiredAngularVelocity(:,end+1) = (qe(2:4)'/obj.controlTimeStep_);
+            if size(obj.velocityFilter_.desiredAngularVelocity,2)>max(window)
+                obj.velocityFilter_.desiredAngularVelocity(:,1) = [];
+            end
+            lengthLog = size(obj.velocityFilter_.desiredAngularVelocity,2);
+            desiredAngularVelocity(1,1) = mean(obj.velocityFilter_.desiredAngularVelocity(1,end-min(window(1)-1,lengthLog-1):end),2);  
+            desiredAngularVelocity(2,1) = mean(obj.velocityFilter_.desiredAngularVelocity(2,end-min(window(2)-1,lengthLog-1):end),2); 
+            desiredAngularVelocity(3,1) = mean(obj.velocityFilter_.desiredAngularVelocity(3,end-min(window(3)-1,lengthLog-1):end),2);   
             obj.trajectory_.angularVelocity(:,end+1) = desiredAngularVelocity;
             angularAcceleration = (angularVelocity-previousAngularVelocity)/obj.controlTimeStep_;
             Wbe = desiredAngularVelocity-angularVelocity;
             obj.velocityFilter_.Wbe = Wbe;
             dWbe = (Wbe-previousWbe)/obj.controlTimeStep_;
+%             desiredAngularAcceleration = (desiredAngularVelocity - obj.previousState_.angularVelocity)/obj.controlTimeStep_
             desiredAngularAcceleration = (dWbe+angularAcceleration);
-            
+%             desiredAngularAcceleration = [0;0;0];
+%             desiredAngularVelocity = [0;0;0];
+%             desiredAngularAcceleration = 2*(desiredAngularVelocity-angularVelocity)/(obj.controlTimeStep_)
+
             switch obj.controlAlg_
                 case 1 %'PID'
                     if ~obj.isRunning()
@@ -2107,8 +2111,7 @@ classdef multicontrol < multicopter
                     end    
                     errorVector = [qe(2); qe(3); qe(4)];
                     obj.controlConfig_{1}.ierror = obj.controlConfig_{1}.ierror+errorVector*obj.controlTimeStep_;
-                    attitudeControlOutput = obj.inertiaTensor_*(-reshape(obj.controlConfig_{1}.kd,[3 1]).*obj.previousAngularVelocity()+reshape(obj.controlConfig_{1}.kp,[3 1]).*errorVector+reshape(obj.controlConfig_{1}.ki,[3 1]).*obj.controlConfig_{1}.ierror);
-                    %torqueD = attitudeControlOutput
+                    attitudeControlOutput = obj.inertiaTensor_*(-reshape(obj.controlConfig_{1}.kd,[3 1]).*angularVelocity+reshape(obj.controlConfig_{1}.kp,[3 1]).*errorVector+reshape(obj.controlConfig_{1}.ki,[3 1]).*obj.controlConfig_{1}.ierror);
                 case 2 %'RLQ-R Passive'
                     index = 2;
                     
@@ -2927,18 +2930,9 @@ classdef multicontrol < multicopter
                     %pause
                 case 14 %'Adaptive' 
                     index = 14;
-                    q = obj.previousState_.attitude; %Current attitude 
-                    desiredAngularVelocity =(obj.toEuler(qd)-obj.toEuler(q))';
-                    desiredAngularVelocity(1,1) = obj.normalizeAngle(desiredAngularVelocity(1),-pi)/obj.controlTimeStep_;
-                    desiredAngularVelocity(2,1) = obj.normalizeAngle(desiredAngularVelocity(2),-pi)/obj.controlTimeStep_;
-                    desiredAngularVelocity(3,1) = obj.normalizeAngle(desiredAngularVelocity(3),-pi)/obj.controlTimeStep_;
-                    obj.trajectory_.angularVelocity(:,end+1) = desiredAngularVelocity;
-                    desiredAngularAcceleration = (desiredAngularVelocity - obj.previousState_.angularVelocity)/obj.controlTimeStep_;
-                    r = desiredAngularAcceleration;
-                    x = obj.previousState_.angularVelocity;    
                     Am = obj.controlConfig_{index}.Am;
                     Bm = eye(3);
-                    Bp = eye(3)/obj.inertia();
+                    Bp = obj.inertia()\eye(3);
                     if ~obj.isRunning()
                         obj.controlConfig_{index}.P = lyap(obj.controlConfig_{index}.Am',obj.controlConfig_{index}.Q);
                         % Discretiza��o do erro delta
@@ -2971,6 +2965,11 @@ classdef multicontrol < multicopter
                     previousKr = obj.controlConfig_{index}.Kr;
                     previousKx = obj.controlConfig_{index}.Kx;
                     previousu = obj.controlConfig_{index}.u;
+                    r = desiredAngularAcceleration;
+                    previousx = obj.controlConfig_{index}.x;
+                    x = obj.previousState_.angularVelocity;  
+                    obj.controlConfig_{index}.x = x;
+                    
                     obj.controlConfig_{index}.Mt = [];
                     for it=1:obj.numberOfRotors_
                         obj.controlConfig_{index}.Mt = [obj.controlConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
@@ -2995,13 +2994,16 @@ classdef multicontrol < multicopter
                     % eDelta
                     obj.controlConfig_{index}.eDelta = obj.controlConfig_{index}.AmEd*previouseDelta+obj.controlConfig_{index}.BpEd*diag(previouslambda)*deltaU;
                     % state error
-                    e = x-previousxm;
+                    e = x-previousxm
                     % estimate error
-                    eu = e - obj.controlConfig_{index}.eDelta;
+%                     eu = e - obj.controlConfig_{index}.eDelta
+                    eu = e;
                     
                     % Update gains
                     obj.controlConfig_{index}.Kx = -obj.controlTimeStep_*obj.controlConfig_{index}.gamma1*Bp'*obj.controlConfig_{index}.P*eu*x'+previousKx;
+%                     Kx = obj.controlConfig_{index}.Kx
                     obj.controlConfig_{index}.Kr = -obj.controlTimeStep_*obj.controlConfig_{index}.gamma2*Bp'*obj.controlConfig_{index}.P*eu*r'+previousKr;
+%                     Kr = obj.controlConfig_{index}.Kr
                     obj.controlConfig_{index}.f = -obj.controlTimeStep_*obj.controlConfig_{index}.gamma3*Bp'*obj.controlConfig_{index}.P*eu+previousf;
                     obj.controlConfig_{index}.lambda = obj.controlTimeStep_*obj.controlConfig_{index}.gamma4*diag(deltaU)*Bp'*obj.controlConfig_{index}.P*eu+previouslambda;
                     % Calculates control output

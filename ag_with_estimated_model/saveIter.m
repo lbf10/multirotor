@@ -77,7 +77,7 @@ optchanged = false;
 switch flag
  case 'init'
         disp('Starting the algorithm');
-        save(iterFilename,'state','flag');
+        save(iterFilename,'state','flag','options');
     case {'iter','interrupt'}
         disp('Iterating ...')
         m = matfile(iterFilename,'Writable', true);
