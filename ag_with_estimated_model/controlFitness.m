@@ -170,7 +170,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         
         %disp(it)
     end    
-    fitness = sum(reshape(fitness,[numberOfOptions/size(x,1),size(x,1)]))'
+    fitness = sum(reshape(fitness,[numberOfOptions/size(x,1),size(x,1)]))';
     disp(['Fitness Calculated ',datestr(now)])
 end
 
