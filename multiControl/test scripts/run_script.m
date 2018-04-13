@@ -291,6 +291,7 @@ multirotor.setTrajectory('waypoints',waypoints,time);
 multirotor.setSimEffects('motor dynamics on','solver euler')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.20);
+multirotor.setAngularFilterGain([0,0,0.5]);
 %% Run simulator
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
 multirotor.plotSim();
