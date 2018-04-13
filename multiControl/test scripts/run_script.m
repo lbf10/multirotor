@@ -138,7 +138,7 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % SOSMC Passive Direct:
 % kp = [100 100 100];ki = [10 10 40];kd = [80 90 70];kdd = [35 35 1];
 % Adaptive:
-kp = [40 40 40];ki = [2 2 2];kd = [30 30 30];kdd = [1 1 1];
+kp = [80 80 100];ki = [2 2 40];kd = [30 30 70];kdd = [3 3 2];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
@@ -213,12 +213,12 @@ multirotor.configController('SOSMC Passive Direct',c,lambda,alpha,1,0);
 multirotor.configController('SOSMC Active Direct',c,lambda,alpha,1,0);
 
 % Adaptive controller
-Am = -2*diag([1,1,1,1e-10,1e-10,1e-10,1e-10]);
-Q = 1.5*diag([1,1,1,1,1,1,1]);
-gamma1 = diag([1,1,10])*.8;
-gamma2 = diag([1,1,10])*.2;
-gamma3 = diag([1,1,1])*1;
-gamma4 = diag([1,1,1])*1;
+Am = -3*diag([1,1,1e-1]);
+Q = 10*diag([1,1,.05]);
+gamma1 = diag([1,1,3])*.8;
+gamma2 = diag([1,1,3])*.2;
+gamma3 = diag([1,1,.1])*1;
+gamma4 = diag([1,1,.1])*1;
 multirotor.configController('Adaptive',Am,Q,gamma1,gamma2,gamma3,gamma4);
 Am = -10*diag([1,1,1,10,10,10]);
 Q = 10e5*eye(6);
