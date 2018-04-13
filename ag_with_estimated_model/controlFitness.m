@@ -14,11 +14,12 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
                1*mass, 0, 0, -payloadRadius];
     disturbances = [10];
     failures = {{''}
+                {'setRotorStatus(1,''motor loss'',0.75)'}
                 {'setRotorStatus(1,''motor loss'',0.001)'}
                 {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)'}
                 {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(6,''motor loss'',0.4)'}
                 {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)'}
-                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)','setRotorStatus(4,''motor loss'',0.001)'}};
+                {'setRotorStatus(1,''motor loss'',0.5)','setRotorStatus(2,''motor loss'',0.5)','setRotorStatus(3,''motor loss'',0.5)','setRotorStatus(4,''motor loss'',0.5)'}};
       
     numberOfOptions = size(x,1)*length(endTimes)*length(yawGoTos)*size(payloads,1)*length(disturbances)*length(failures);
     options = cell(numberOfOptions,6);
@@ -160,7 +161,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         try
             multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);
             metrics = multirotor.metrics();          
-            fitness(it) = metrics.RMSPositionError+real(metrics.RMSAngularError);
+            fitness(it) = metrics.RMSPositionError+real(metrics.RMSAngularError)+metrics.RMSPower;
         catch
             fitness(it) = endTime*5+pi/2;
         end
