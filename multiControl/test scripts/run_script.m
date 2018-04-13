@@ -213,10 +213,10 @@ multirotor.configController('SOSMC Passive Direct',c,lambda,alpha,1,0);
 multirotor.configController('SOSMC Active Direct',c,lambda,alpha,1,0);
 
 % Adaptive controller
-Am = -2*diag([1,1,1]);
-Q = 1.5*diag([1,1,1]);
-gamma1 = diag([1,1,1])*.8;
-gamma2 = diag([1,1,1])*.2;
+Am = -2*diag([1,1,1,1e-10,1e-10,1e-10,1e-10]);
+Q = 1.5*diag([1,1,1,1,1,1,1]);
+gamma1 = diag([1,1,10])*.8;
+gamma2 = diag([1,1,10])*.2;
 gamma3 = diag([1,1,1])*1;
 gamma4 = diag([1,1,1])*1;
 multirotor.configController('Adaptive',Am,Q,gamma1,gamma2,gamma3,gamma4);
