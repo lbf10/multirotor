@@ -2100,7 +2100,7 @@ classdef multicontrol < multicopter
             obj.velocityFilter_.Wbe = Wbe;
             dWbe = (Wbe-previousWbe)/obj.controlTimeStep_;
 %             desiredAngularAcceleration = (desiredAngularVelocity - obj.previousState_.angularVelocity)/obj.controlTimeStep_
-            desiredAngularVelocity;
+%             desiredAngularVelocity
             desiredAngularAcceleration = (dWbe+angularAcceleration);
 %             desiredAngularAcceleration = [0;0;0];
 %             desiredAngularVelocity = [0;0;0];
@@ -2845,30 +2845,30 @@ classdef multicontrol < multicopter
                 case 14 %'Adaptive' 
                     index = 14;
                     Am = obj.controlConfig_{index}.Am;
-                    Bp = [obj.inertia()\eye(3);zeros(4,3)];
+                    Bm = eye(3);
+                    Bp = obj.inertia()\eye(3);
                     if ~obj.isRunning()
+                        obj.controlConfig_{index}.P = lyap(obj.controlConfig_{index}.Am',obj.controlConfig_{index}.Q);
                         % Discretiza��o do erro delta
-                        sysEdelta = ss(Am,Bp,eye(7),0);
+                        sysEdelta = ss(Am,Bp,eye(3),0);
                         sysEdeltaD = c2d(sysEdelta,obj.controlTimeStep_);
                         obj.controlConfig_{index}.AmEd = sysEdeltaD.A;
                         obj.controlConfig_{index}.BpEd = sysEdeltaD.B;
+                        % Discretiza��o do estado desejado Xm
+                        sysXm = ss(Am,Bm,eye(3),0);
+                        sysXmD = c2d(sysXm,obj.controlTimeStep_);
+                        obj.controlConfig_{index}.AmXd = sysXmD.A;
+                        obj.controlConfig_{index}.BmXd = sysXmD.B;
                         
-                        obj.controlConfig_{index}.P = lyap(Am,obj.controlConfig_{index}.Q);
                         % Vari�veis auxiliares
-                        qm = obj.previousState_.attitude;
-                        Sqm = [-qm(2),-qm(3),-qm(4);
-                              qm(1),-qm(4),qm(3);
-                              qm(4),qm(1),-qm(2);
-                              -qm(3),qm(2),qm(1)];
-                        Bm = [eye(3),zeros(3);zeros(4,3),0.5*Sqm];
-                        obj.controlConfig_{index}.eDelta = zeros(7,1);
-                        obj.controlConfig_{index}.xm = [obj.previousState_.angularVelocity;obj.previousState_.attitude];
+                        obj.controlConfig_{index}.eDelta = zeros(3,1);
+                        obj.controlConfig_{index}.xm = zeros(3,1);
                         obj.controlConfig_{index}.r = zeros(3,1);
-                        obj.controlConfig_{index}.x = [obj.previousState_.angularVelocity;obj.previousState_.attitude];
+                        obj.controlConfig_{index}.x = zeros(3,1);
                         obj.controlConfig_{index}.lambda = ones(3,1);
                         obj.controlConfig_{index}.f = zeros(3,1);
-                        obj.controlConfig_{index}.Kr = pinv(Bp)*Bm;
-                        obj.controlConfig_{index}.Kx = pinv(Bp)*(Am-[zeros(4,7);0.5*eye(3),zeros(3,4)]);
+                        obj.controlConfig_{index}.Kr = obj.inertia()*Bm;
+                        obj.controlConfig_{index}.Kx = obj.inertia()*Am;
                         obj.controlConfig_{index}.u = zeros(3,1);
                     end
                     % Updates auxiliary variables
@@ -2879,23 +2879,10 @@ classdef multicontrol < multicopter
                     previousKr = obj.controlConfig_{index}.Kr;
                     previousKx = obj.controlConfig_{index}.Kx;
                     previousu = obj.controlConfig_{index}.u;
-                    r = [desiredAngularAcceleration;desiredAngularVelocity];
+                    r = desiredAngularAcceleration;
                     previousx = obj.controlConfig_{index}.x;
-                    x = [obj.previousState_.angularVelocity;obj.previousState_.attitude];  
+                    x = obj.previousState_.angularVelocity;  
                     obj.controlConfig_{index}.x = x;
-                    
-                    qm = previousxm(4:7)/norm(previousxm(4:7));
-                    Sqm = [-qm(2),-qm(3),-qm(4);
-                          qm(1),-qm(4),qm(3);
-                          qm(4),qm(1),-qm(2);
-                          -qm(3),qm(2),qm(1)];
-                    Bm = [eye(3),zeros(3);zeros(4,3),0.5*Sqm];
-                    
-                    % Discretiza��o do estado desejado Xm
-                    sysXm = ss(Am,Bm,eye(7),0);
-                    sysXmD = c2d(sysXm,obj.controlTimeStep_);
-                    obj.controlConfig_{index}.AmXd = sysXmD.A;
-                    obj.controlConfig_{index}.BmXd = sysXmD.B;
                     
                     obj.controlConfig_{index}.Mt = [];
                     for it=1:obj.numberOfRotors_
@@ -2921,9 +2908,6 @@ classdef multicontrol < multicopter
                     % eDelta
                     obj.controlConfig_{index}.eDelta = obj.controlConfig_{index}.AmEd*previouseDelta+obj.controlConfig_{index}.BpEd*diag(previouslambda)*deltaU;
                     % state error
-%                     previousxm
-                    x
-                    previousxm
                     e = x-previousxm;
                     % estimate error
 %                     eu = e - obj.controlConfig_{index}.eDelta
@@ -2939,6 +2923,103 @@ classdef multicontrol < multicopter
                     % Calculates control output
                     attitudeControlOutput = previousKx*x+previousKr*r+previousf;
                     obj.controlConfig_{index}.u = attitudeControlOutput;
+                    
+%                     index = 14;
+%                     Am = obj.controlConfig_{index}.Am;
+%                     Bp = [obj.inertia()\eye(3);zeros(4,3)];
+%                     if ~obj.isRunning()
+%                         % Discretiza��o do erro delta
+%                         sysEdelta = ss(Am,Bp,eye(7),0);
+%                         sysEdeltaD = c2d(sysEdelta,obj.controlTimeStep_);
+%                         obj.controlConfig_{index}.AmEd = sysEdeltaD.A;
+%                         obj.controlConfig_{index}.BpEd = sysEdeltaD.B;
+%                         
+%                         obj.controlConfig_{index}.P = lyap(Am,obj.controlConfig_{index}.Q);
+%                         % Vari�veis auxiliares
+%                         qm = obj.previousState_.attitude;
+%                         Sqm = [-qm(2),-qm(3),-qm(4);
+%                               qm(1),-qm(4),qm(3);
+%                               qm(4),qm(1),-qm(2);
+%                               -qm(3),qm(2),qm(1)];
+%                         Bm = [eye(3),zeros(3);zeros(4,3),0.5*Sqm];
+%                         obj.controlConfig_{index}.eDelta = zeros(7,1);
+%                         obj.controlConfig_{index}.xm = [obj.previousState_.angularVelocity;obj.previousState_.attitude];
+%                         obj.controlConfig_{index}.r = zeros(3,1);
+%                         obj.controlConfig_{index}.x = [obj.previousState_.angularVelocity;obj.previousState_.attitude];
+%                         obj.controlConfig_{index}.lambda = ones(3,1);
+%                         obj.controlConfig_{index}.f = zeros(3,1);
+%                         obj.controlConfig_{index}.Kr = pinv(Bp)*Bm;
+%                         obj.controlConfig_{index}.Kx = pinv(Bp)*(Am-[zeros(4,7);0.5*eye(3),zeros(3,4)]);
+%                         obj.controlConfig_{index}.u = zeros(3,1);
+%                     end
+%                     % Updates auxiliary variables
+%                     previouseDelta = obj.controlConfig_{index}.eDelta;
+%                     previousxm = obj.controlConfig_{index}.xm;
+%                     previouslambda = obj.controlConfig_{index}.lambda;
+%                     previousf = obj.controlConfig_{index}.f;
+%                     previousKr = obj.controlConfig_{index}.Kr;
+%                     previousKx = obj.controlConfig_{index}.Kx;
+%                     previousu = obj.controlConfig_{index}.u;
+%                     r = [desiredAngularAcceleration;desiredAngularVelocity];
+%                     previousx = obj.controlConfig_{index}.x;
+%                     x = [obj.previousState_.angularVelocity;obj.previousState_.attitude];  
+%                     obj.controlConfig_{index}.x = x;
+%                     
+%                     qm = previousxm(4:7)/norm(previousxm(4:7));
+%                     Sqm = [-qm(2),-qm(3),-qm(4);
+%                           qm(1),-qm(4),qm(3);
+%                           qm(4),qm(1),-qm(2);
+%                           -qm(3),qm(2),qm(1)];
+%                     Bm = [eye(3),zeros(3);zeros(4,3),0.5*Sqm];
+%                     
+%                     % Discretiza��o do estado desejado Xm
+%                     sysXm = ss(Am,Bm,eye(7),0);
+%                     sysXmD = c2d(sysXm,obj.controlTimeStep_);
+%                     obj.controlConfig_{index}.AmXd = sysXmD.A;
+%                     obj.controlConfig_{index}.BmXd = sysXmD.B;
+%                     
+%                     obj.controlConfig_{index}.Mt = [];
+%                     for it=1:obj.numberOfRotors_
+%                         obj.controlConfig_{index}.Mt = [obj.controlConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+%                     end
+%                     
+%                     % Calculates current reference state
+%                     obj.controlConfig_{index}.xm = obj.controlConfig_{index}.AmXd*previousxm+obj.controlConfig_{index}.BmXd*r;
+%                     
+%                     % Calculates current error
+%                     % deltaU
+%                     previousSatInput = obj.previousInput();
+%                     for i=1:obj.numberOfRotors_
+%                         if abs(previousSatInput(i))>obj.rotor_(i).maxSpeed
+%                             previousSatInput(i) = obj.rotor_(i).maxSpeed*sign(previousSatInput(i));
+%                         end
+%                         if abs(previousSatInput(i))<obj.rotor_(i).minSpeed
+%                             previousSatInput(i) = obj.rotor_(i).minSpeed*sign(previousSatInput(i));
+%                         end
+%                     end     
+%                     previousSatU = obj.controlConfig_{index}.Mt*(previousSatInput.^2);
+%                     deltaU = previousSatU - previousu;
+%                     % eDelta
+%                     obj.controlConfig_{index}.eDelta = obj.controlConfig_{index}.AmEd*previouseDelta+obj.controlConfig_{index}.BpEd*diag(previouslambda)*deltaU;
+%                     % state error
+% %                     previousxm
+%                     x
+%                     previousxm
+%                     e = x-previousxm;
+%                     % estimate error
+% %                     eu = e - obj.controlConfig_{index}.eDelta
+%                     eu = e;
+%                     
+%                     % Update gains
+%                     obj.controlConfig_{index}.Kx = -obj.controlTimeStep_*obj.controlConfig_{index}.gamma1*Bp'*obj.controlConfig_{index}.P*eu*x'+previousKx;
+% %                     Kx = obj.controlConfig_{index}.Kx
+%                     obj.controlConfig_{index}.Kr = -obj.controlTimeStep_*obj.controlConfig_{index}.gamma2*Bp'*obj.controlConfig_{index}.P*eu*r'+previousKr;
+% %                     Kr = obj.controlConfig_{index}.Kr
+%                     obj.controlConfig_{index}.f = -obj.controlTimeStep_*obj.controlConfig_{index}.gamma3*Bp'*obj.controlConfig_{index}.P*eu+previousf;
+%                     obj.controlConfig_{index}.lambda = obj.controlTimeStep_*obj.controlConfig_{index}.gamma4*diag(deltaU)*Bp'*obj.controlConfig_{index}.P*eu+previouslambda;
+%                     % Calculates control output
+%                     attitudeControlOutput = previousKx*x+previousKr*r+previousf;
+%                     obj.controlConfig_{index}.u = attitudeControlOutput;
                 case 15 %'Adaptive with PIDD'
                     index = 15;
                     invQ = obj.matrixAbsoluteToBody();
