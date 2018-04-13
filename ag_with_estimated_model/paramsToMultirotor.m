@@ -145,12 +145,15 @@ function multirotor = paramsToMultirotor(attitudeController, controlAllocator, a
             multirotor.configController(attitudeController,Am,Q,gamma1,gamma2,gamma3,gamma4,B0);
             index = 105;
     end
+    multirotor.setAngularFilterGain(x(index:index+2));
+    index = 108;
     switch controlAllocator
         case 'Adaptive'
             caGain = diag(x(index:index+5));
             multirotor.configControlAllocator(controlAllocator,caGain,1,0);
+            index = 113;
     end
-
+    
     multirotor.setController(attitudeController);
     multirotor.setControlAllocator(controlAllocator);
     multirotor.setAttitudeReferenceCA(attitudeReference);

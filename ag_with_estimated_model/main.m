@@ -268,6 +268,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             ub = [ub,zeros(1,6),inf(1,38),inf(1,48)];
             nvars = 104;
     end
+    initialPopulation = [initialPopulation,0,0,0.5];
+    lb = [lb,1,1,1];
+    ub = [ub,0,0,0];
+    nvars = nvars + 3;
     switch controlAllocator
         case 'Adaptive'
             caGain = -2e12*[1,1,1,1,1,1];
@@ -290,7 +294,7 @@ fitnessfcn = @(x) controlFitness(attitudeController, controlAllocator, attitudeR
 filename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_result.mat'];
 iterFilename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
 outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
-options = gaoptimset('PopulationSize',1000,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on','CrossoverFcn',{'crossoverintermediate'});
+options = gaoptimset('PopulationSize',1000,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on');
 poolobj = parpool(80);
 addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m','../multiControl/'})
 [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = ga(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
