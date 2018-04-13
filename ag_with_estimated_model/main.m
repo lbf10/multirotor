@@ -6,11 +6,11 @@ addpath(genpath('../multiControl/'))
 warning('on','all')
 
 %% Algorithms to train
-attitudeController = 'SOSMC Passive';
+attitudeController = 'PID';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
-fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Results/SOSMC Passive_Passive NMAC_Passive NMAC_08-Apr-2018 18:29:56_iterations.mat';
+fullfilename = 0;
 
 %% Select nvars according to algorithms
     switch attitudeController
@@ -23,6 +23,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,zeros(1,9)];
             ub = [ub,1e6*ones(1,9)];
             nvars = 21;
+            initialPopulation = [initialPopulation,[0,0,0.5;0,0,0.5]];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'RLQ-R Passive'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -39,6 +43,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,zeros(1,32)];
             ub = [ub,inf(1,32)];
             nvars = 44;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'RLQ-R Passive Modified'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -55,6 +63,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,zeros(1,42)];
             ub = [ub,inf(1,42)];
             nvars = 54;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'RLQ-R Passive Modified with PIDD'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -71,6 +83,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,zeros(1,54)];
             ub = [ub,inf(1,54)];
             nvars = 66;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'RLQ-R Active'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -87,6 +103,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,zeros(1,32)];
             ub = [ub,inf(1,32)];
             nvars = 44;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'RLQ-R Active Modified'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -103,6 +123,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,zeros(1,42)];
             ub = [ub,inf(1,42)];
             nvars = 54;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'RLQ-R Active Modified with PIDD'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -119,6 +143,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,zeros(1,54)];
             ub = [ub,inf(1,54)];
             nvars = 66;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'SOSMC Passive'
             initialPopulation = [300 300 100 10 10 40 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -130,6 +158,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,zeros(1,9)];
             ub = [ub,10000*ones(1,9)];
             nvars = 21;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'SOSMC Passive with PIDD'
             initialPopulation = [100 100 100 20 20 20 70 70 70 35 35 2];
             lb = zeros(1,12);
@@ -141,6 +173,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,-inf(1,18)];
             ub = [ub,inf(1,18)];
             nvars = 30;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'SOSMC Passive Direct'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -168,6 +204,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,-inf(1,102)];
             ub = [ub,inf(1,102)];
             nvars = 111;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'SOSMC Active'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -179,6 +219,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,-inf(1,9)];
             ub = [ub,inf(1,9)];
             nvars = 21;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'SOSMC Active with PIDD'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -190,6 +234,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,-inf(1,18)];
             ub = [ub,inf(1,18)];
             nvars = 30;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'SOSMC Active Direct'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -217,6 +265,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,-inf(1,102)];
             ub = [ub,inf(1,102)];
             nvars = 111;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'Adaptive'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -231,6 +283,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,-inf(1,3),zeros(1,15)];
             ub = [ub,zeros(1,3),inf(1,15)];
             nvars = 30;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'Adaptive with PIDD'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -245,6 +301,10 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,-inf(1,6),zeros(1,30)];
             ub = [ub,zeros(1,6),inf(1,30)];
             nvars = 48;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
         case 'Adaptive Direct'
             initialPopulation = [100 100 100 20 20 20 40 40 40 0.1 0.1 0.1];
             lb = zeros(1,12);
@@ -267,11 +327,12 @@ fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Result
             lb = [lb,-inf(1,6),zeros(1,38),-inf(1,48)];
             ub = [ub,zeros(1,6),inf(1,38),inf(1,48)];
             nvars = 104;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
     end
-    initialPopulation = [initialPopulation,0,0,0.5];
-    lb = [lb,1,1,1];
-    ub = [ub,0,0,0];
-    nvars = nvars + 3;
+    
     switch controlAllocator
         case 'Adaptive'
             caGain = -2e12*[1,1,1,1,1,1];
