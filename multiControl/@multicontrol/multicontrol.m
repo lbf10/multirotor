@@ -2062,11 +2062,11 @@ classdef multicontrol < multicopter
         function attitudeControlOutput = control(obj, desiredAttitude, desiredImpulse,diagnosis)
         %UNTITLED Summary of this function goes here
         %   Detailed explanation goes here
-            window = [1,1,4];
+            filterGain = diag([0,0,0.5]);
             if ~obj.isRunning()
                 obj.velocityFilter_.Wbe = [0;0;0];
                 obj.velocityFilter_.angularVelocity = [0;0;0];
-                obj.velocityFilter_.desiredAngularVelocity = [];
+                obj.velocityFilter_.desiredAngularVelocity = [0;0;0];
             end
 
             previousWbe = obj.velocityFilter_.Wbe;
@@ -2085,15 +2085,8 @@ classdef multicontrol < multicopter
                 qe(2:4) = -qe(2:4);
             end 
             
-            
-            obj.velocityFilter_.desiredAngularVelocity(:,end+1) = (qe(2:4)'/obj.controlTimeStep_);
-            if size(obj.velocityFilter_.desiredAngularVelocity,2)>max(window)
-                obj.velocityFilter_.desiredAngularVelocity(:,1) = [];
-            end
-            lengthLog = size(obj.velocityFilter_.desiredAngularVelocity,2);
-            desiredAngularVelocity(1,1) = mean(obj.velocityFilter_.desiredAngularVelocity(1,end-min(window(1)-1,lengthLog-1):end),2);  
-            desiredAngularVelocity(2,1) = mean(obj.velocityFilter_.desiredAngularVelocity(2,end-min(window(2)-1,lengthLog-1):end),2); 
-            desiredAngularVelocity(3,1) = mean(obj.velocityFilter_.desiredAngularVelocity(3,end-min(window(3)-1,lengthLog-1):end),2);   
+            obj.velocityFilter_.desiredAngularVelocity = filterGain*obj.velocityFilter_.desiredAngularVelocity+(eye(3)-filterGain)*(qe(2:4)'/obj.controlTimeStep_);
+            desiredAngularVelocity = obj.velocityFilter_.desiredAngularVelocity;   
             obj.trajectory_.angularVelocity(:,end+1) = desiredAngularVelocity;
             angularAcceleration = (angularVelocity-previousAngularVelocity)/obj.controlTimeStep_;
             Wbe = desiredAngularVelocity-angularVelocity;
