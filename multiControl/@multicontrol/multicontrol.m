@@ -23,7 +23,8 @@ classdef multicontrol < multicopter
         positionControlConfig_  %Struct that contains the PIDD position gains
         allocationConfig_       %Cell that contains all possible control allocation architectures configurations
         fddConfig_              %Struct with FDD rate and delay
-        automationConfig_       %Cell that contains the types and intensities of faults and uncertainties at specified periods  
+        automationConfig_       %Cell that contains the types and intensities of faults and uncertainties at specified periods 
+        filterConfig_           %Low pass filter for the desired velocities, to prevent large noises
         
         % Auxiliary variables
         timeStepRelation_       %Controller time step must be timeStepRelation_ times greater than simulation time step
@@ -113,6 +114,8 @@ classdef multicontrol < multicopter
             
             obj.automationConfig_.time      = [];
             obj.automationConfig_.commands  = {};    
+            obj.filterConfig_.angular       = [0;0;0.5];
+            obj.filterConfig_.linear        = [];
             
             obj.timeStepRelation_   = 10;
             obj.clearFDD();
@@ -798,6 +801,16 @@ classdef multicontrol < multicopter
                 end
             else
                 error('Control delay must be scalar, greater than zero and less than one.');
+            end
+        end
+        function setAngularFilterGain(obj, gain)
+            if (isequal(size(gain),[1 3]) || isequal(size(gain),[3 1])) && isnumeric(gain) && all(gain>=0) && all(gain<=1.0)
+                obj.filterConfig_.angular = diag(gain);
+                if obj.verbose_ == true
+                    disp(['Low-pass filter gains for angular velocity set to [',num2str(reshape(gain,[1 3])),'].']);
+                end
+            else
+                error('Low-pass filter gains for angular velocity must be a numeric vector of length 3, ith gains between 0 and 1.');
             end
         end
         function setControlTimeStep(obj, timeStep)
@@ -2062,7 +2075,7 @@ classdef multicontrol < multicopter
         function attitudeControlOutput = control(obj, desiredAttitude, desiredImpulse,diagnosis)
         %UNTITLED Summary of this function goes here
         %   Detailed explanation goes here
-            filterGain = diag([0,0,0.5]);
+            filterGain = obj.filterConfig_.angular;
             if ~obj.isRunning()
                 obj.velocityFilter_.Wbe = [0;0;0];
                 obj.velocityFilter_.angularVelocity = [0;0;0];
