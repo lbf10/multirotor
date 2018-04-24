@@ -136,9 +136,13 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % SOSMC Passive and with PIDD:
 % kp = [300 300 100];ki = [10 10 40];kd = [70 70 70];kdd = [35 35 2];
 % SOSMC Passive Direct:
-% kp = [100 100 100];ki = [10 10 40];kd = [80 90 70];kdd = [35 35 1];
+kp = [100 100 100];ki = [10 10 40];kd = [80 90 70];kdd = [35 35 1];
 % Adaptive:
-kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
+% kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
+% Adaptive with PIDD:
+% kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
+% Adaptive Direct:
+% kp = [60 60 100];ki = [20 20 40];kd = [40 40 70];kdd = [15 15 2];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
@@ -160,6 +164,7 @@ alpha = 1.5;
 multirotor.configController('RLQ-R Passive',P,Q,R,Ef,Eg,H,mu,alpha);
 multirotor.configController('RLQ-R Active',P,Q,R,Ef,Eg,H,mu,alpha);
 Q = 500000*blkdiag(1e1, 1e1, 1e1,1e1,1e1,1e1);
+P = Q;
 R = 0.00001*eye(8);
 Ef = 10*[2 2 1 0 0 0];
 Eg = 1000*[1 1 1 1 1 1 1 1];
@@ -168,8 +173,9 @@ mu = 1e20;
 alpha = 1.5;
 multirotor.configController('RLQ-R Passive Modified',P,Q,R,Ef,Eg,H,mu,alpha);
 multirotor.configController('RLQ-R Active Modified',P,Q,R,Ef,Eg,H,mu,alpha);
-P = eye(9);
+% P = eye(9);
 Q = 500000*blkdiag(1e1, 1e1, 1e1, 1e1, 1e1, 1e1,1e1,1e1,1e1);
+P = Q;
 R = 0.00001*eye(8);
 H = [1 1 1 1 1 1 1 1 1]';
 Ef = 10*[1 1 1 1 1 1 0 0 0];
@@ -217,30 +223,30 @@ Am = -2*diag([1,1,1e-2]);
 Q = 1*diag([.5,.5,.0005]);
 gamma1 = diag([1,1,2])*.8;
 gamma2 = diag([1,1,2])*.2;
-gamma3 = diag([1,1,.1])*5;
-gamma4 = diag([1,1,.1])*2;
+gamma3 = diag([1,1,.1])*10;
+gamma4 = diag([1,1,1])*0;
 multirotor.configController('Adaptive',Am,Q,gamma1,gamma2,gamma3,gamma4);
-Am = -10*diag([1,1,1,10,10,10]);
-Q = 10e5*eye(6);
-gamma1 = eye(6)*0.000005;
-gamma2 = eye(6)*0.000005;
-gamma3 = eye(6)*0.000005;
-gamma4 = eye(6)*0.000005;
+Am = -diag([.1,.1,2,2,2,0.01]);
+Q = diag([1,1,1,.5,.5,.0005]);
+gamma1 = diag([1,1,1,1,1,1])*.0001;
+gamma2 = diag([1,1,1,1,1,1])*.0001;
+gamma3 = diag([1,1,1,1,1,1])*.001;
+gamma4 = diag([1,1,1,1,1,1])*.00001;
 multirotor.configController('Adaptive with PIDD',Am,Q,gamma1,gamma2,gamma3,gamma4);
-Am = -15*diag([.1,.1,.1,1,1,5]);
-Q = 5e3*diag([1,1,1,40,40,40]);
-gamma1 = eye(8)*100;
-gamma2 = eye(8)*1;
-gamma3 = eye(8)*10;
-gamma4 = eye(8)*0.05;
-B0 = 3e3*[ -0.00001 -0.00001 4  1.5 -1.5  -1 
-             0.00001 -0.00001 4  1.5  1.5 1  
-             0.00001  0.00001 4 -1.5  1.5  -1  
-            -0.00001  0.00001 4 -1.5 -1.5 1 
-            -0.00001 -0.00001 4  1.5 -1.5 1 
-             0.00001 -0.00001 4  1.5  1.5  -1  
-             0.00001  0.00001 4 -1.5  1.5 1  
-            -0.00001  0.00001 4 -1.5 -1.5  -1];
+Am = -diag([.1,.1,2,0.001,0.001,0.001]);
+Q = diag([1,1,1,0.005,0.005,.0005]);
+gamma1 = eye(8)*700;
+gamma2 = eye(8)*700;
+gamma3 = eye(8)*2000;
+gamma4 = eye(8)*0.5;
+B0 = 5e3*[ -0.00001 -0.00001 4  1.5 -1.5  -3 
+             0.00001 -0.00001 4  1.5  1.5 3  
+             0.00001  0.00001 4 -1.5  1.5  -3  
+            -0.00001  0.00001 4 -1.5 -1.5 3 
+            -0.00001 -0.00001 4  1.5 -1.5 3 
+             0.00001 -0.00001 4  1.5  1.5  -3  
+             0.00001  0.00001 4 -1.5  1.5 3  
+            -0.00001  0.00001 4 -1.5 -1.5  -3];
 multirotor.configController('Adaptive Direct',Am,Q,gamma1,gamma2,gamma3,gamma4,B0);
 
 % Adaptive control allocation
@@ -252,9 +258,9 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('Adaptive');
-multirotor.setControlAllocator('Passive NMAC');
-multirotor.setAttitudeReferenceCA('Passive NMAC');
+multirotor.setController('SOSMC Active Direct');
+multirotor.setControlAllocator('None');
+multirotor.setAttitudeReferenceCA('Active NMAC');
 multirotor.configFDD(1,0.1)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
@@ -274,14 +280,14 @@ multirotor.configFDD(1,0.1)
 % yawvel(end+1) = 0;
 % multirotor.setTrajectory('waypoints',[xpos; ypos; zpos; xvel; yvel; zvel; yawpos; yawvel],time);
 % multirotor.setTrajectory('gerono',7,4,4,30,'fixed',0);
-% 
+% % 
 endTime = 15;
 % [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto',0);
 [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, '360');
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-% multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.75)'},endTime/2)     
+% multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)     
 % multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2)
