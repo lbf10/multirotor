@@ -341,7 +341,7 @@ fullfilename = 0;
             ub = [ub,zeros(1,6)];
             nvars = nvars + 6;
     end
-    initialPopulation = [initialPopulation;initialPopulation;initialPopulation;initialPopulation]
+%     initialPopulation = [initialPopulation;initialPopulation;initialPopulation;initialPopulation]
 
 %% Check for restore file
 if fullfilename ~= 0
