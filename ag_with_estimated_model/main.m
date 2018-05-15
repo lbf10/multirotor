@@ -3,7 +3,7 @@
 % Creation: 06/03/2018
 matlabrc
 addpath(genpath('../multiControl/'))
-warning('on','all')
+warning('off','all')
 
 %% Algorithms to train
 attitudeController = 'RLQ-R Passive';
