@@ -46,6 +46,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         % Creates simulation class
         multirotor = multicontrol(8);
         multirotor.supressVerbose()
+	warning('off','all')
         % Define rotor positions
         positions = [[0.34374 0.34245 0.0143]',[-0.341 0.34213 0.0143]',[-0.34068 -0.34262 0.0143]',[0.34407 -0.34229 0.0143]',[0.33898 0.33769 0.0913]',[-0.33624 0.33736 0.0913]',[-0.33591 -0.33785 0.0913]',[0.3393 -0.33753 0.0913]'];
         multirotor.setRotorPosition(1:8,positions);
