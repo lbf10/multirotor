@@ -6,7 +6,7 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'RLQ-R Passive Modified';
+attitudeController = 'PID';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
@@ -355,7 +355,7 @@ fitnessfcn = @(x) controlFitness(attitudeController, controlAllocator, attitudeR
 filename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_result.mat'];
 iterFilename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
 outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
-options = gaoptimset('PopulationSize',1000,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on');
+options = gaoptimset('PopulationSize',1000,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on','CrossoverFraction',0.5,'MutationFcn', {@mutationuniform, 0.05});
 poolobj = parpool(80);
 addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m','../multiControl/'})
 [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = ga(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
