@@ -1184,11 +1184,13 @@ classdef multicontrol < multicopter
                     if obj.verbose_ == true
                         disp('Simulation terminated. Position error too large, indicating simulation divergence')
                     end
-                    obj.updateMetrics(1e5*(endTime-currentTime)/currentTime);
+                    obj.metrics_.simulationSuccess = 0;
+                    obj.updateMetrics(1e5*abs(endTime-currentTime)/endTime);
                 else
                     if obj.verbose_ == true
                         disp('Simulation ended normaly.')
                     end
+                    obj.metrics_.simulationSuccess = 1;
                     obj.updateMetrics(1);
                 end
             else
@@ -4008,6 +4010,7 @@ classdef multicontrol < multicopter
             obj.trajectory_.time            = [];          %1xN Matrix
         end
         function clearMetrics(obj)
+            obj.metrics_.simulationSuccess      = [];
             obj.metrics_.missionSuccess         = [];
             obj.metrics_.successMetricPrecision = [];
             obj.metrics_.successAngularPrecision= [];
