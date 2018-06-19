@@ -1184,14 +1184,14 @@ classdef multicontrol < multicopter
                     if obj.verbose_ == true
                         disp('Simulation terminated. Position error too large, indicating simulation divergence')
                     end
-                    obj.metrics_.simulationSuccess = 0;
-                    obj.updateMetrics(1e5*abs(endTime-currentTime)/endTime);
+                    obj.metrics_.simulationSuccess = 1-abs(endTime-currentTime)/endTime;
+                    obj.updateMetrics();
                 else
                     if obj.verbose_ == true
                         disp('Simulation ended normaly.')
                     end
                     obj.metrics_.simulationSuccess = 1;
-                    obj.updateMetrics(1);
+                    obj.updateMetrics();
                 end
             else
                 error('Cannot Run. System not set correctly.')
@@ -3569,11 +3569,11 @@ classdef multicontrol < multicopter
                 length = length + sqrt(sum((points(:,it+1)-points(:,it)).^2));
             end
         end
-        function updateMetrics(obj,failFactor)
+        function updateMetrics(obj)
         %UNTITLED Summary of this function goes here
         %   Detailed explanation goes here
             [obj.metrics_.missionSuccess,successTime]   = obj.verifyMissionSuccess();
-            obj.metrics_.pathLength                     = failFactor*obj.pathLength(obj.log_.position);
+            obj.metrics_.pathLength                     = obj.pathLength(obj.log_.position);
             obj.metrics_.desiredPathLength              = obj.pathLength(obj.trajectory_.position);
             obj.metrics_.pathLengthRatio                = obj.metrics_.pathLength/obj.metrics_.desiredPathLength;
             obj.metrics_.pathTimeRatio                  = successTime/obj.trajectoryMap_.endTime(end);
@@ -3585,16 +3585,16 @@ classdef multicontrol < multicopter
                 [~, index(it)] = min(difference);
             end
             positionError = sqrt(sum((obj.log_.position(:,index)-obj.trajectory_.position).^2,1));
-            obj.metrics_.meanPositionError              = failFactor*mean(positionError);
-            obj.metrics_.RMSPositionError               = failFactor*rms(positionError);
-            obj.metrics_.maxPositionError               = failFactor*max(positionError);
+            obj.metrics_.meanPositionError              = mean(positionError);
+            obj.metrics_.RMSPositionError               = rms(positionError);
+            obj.metrics_.maxPositionError               = max(positionError);
             angularError = sqrt(sum((obj.toEuler(obj.log_.attitude(:,index))-obj.toEuler(obj.trajectory_.attitude)).^2,1));
             obj.metrics_.meanAngularError           = mean(angularError);
             obj.metrics_.RMSAngularError               = rms(angularError);
             obj.metrics_.maxAngularError               = max(angularError);            
-            obj.metrics_.energy                         = failFactor*trapz(obj.log_.time,abs(obj.log_.power));
-            obj.metrics_.RMSPower                       = failFactor*rms(obj.log_.power);
-            obj.metrics_.maxPower                       = failFactor*max(abs(obj.log_.power));
+            obj.metrics_.energy                         = trapz(obj.log_.time,abs(obj.log_.power));
+            obj.metrics_.RMSPower                       = rms(obj.log_.power);
+            obj.metrics_.maxPower                       = max(abs(obj.log_.power));
         end
         function result = inputsOK(obj,input,start,nelements)
             result = true;
