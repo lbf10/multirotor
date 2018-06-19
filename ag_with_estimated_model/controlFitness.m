@@ -162,9 +162,9 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         try
             multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);
             metrics = multirotor.metrics();          
-            fitness(it) = metrics.RMSPositionError+real(metrics.RMSAngularError)+metrics.RMSPower;
+            fitness(it) = 1*(1-metrics.simulationSuccess)+metrics.RMSPositionError+real(metrics.RMSAngularError)+metrics.RMSPower/3000;
         catch
-            fitness(it) = endTime*5+pi/2;
+            fitness(it) = 10;
         end
 %         multirotor.plotSim()
 %         multirotor.metrics()
