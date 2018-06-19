@@ -981,9 +981,10 @@ classdef multicontrol < multicopter
                 obj.clearTrajectory();
                 obj.clearMetrics();
                 obj.clearFDD();
-
-                obj.metrics_.successMetricPrecision = p.Results.metricPrecision;
-                obj.metrics_.successAngularPrecision = p.Results.angularPrecision;
+                
+                obj.metrics_.simulationEndError = p.Results.endError;
+                obj.metrics_.missionMetricPrecision = p.Results.metricPrecision;
+                obj.metrics_.missionAngularPrecision = p.Results.angularPrecision;
                 visualizeGraph = p.Results.visualizeGraph;
                 visualizeProgress = p.Results.visualizeProgress;
                 endTime = p.Results.endTime;
@@ -3981,8 +3982,8 @@ classdef multicontrol < multicopter
             for it=1:length(obj.trajectoryMap_.endTime)
                 [position, ~, ~, yaw] = obj.desiredTrajectory(obj.trajectoryMap_.endTime(it));
                 while counter<=size(obj.log_.position,2) && checkedWaypoints(it)==0
-                    if obj.distance(position,obj.log_.position(:,counter))<=obj.metrics_.successMetricPrecision && ...
-                            obj.distanceAng(obj.log_.attitude(:,counter),[cos(yaw/2) 0 0 sin(yaw/2)]')<=(pi/180)*obj.metrics_.successAngularPrecision
+                    if obj.distance(position,obj.log_.position(:,counter))<=obj.metrics_.missionMetricPrecision && ...
+                            obj.distanceAng(obj.log_.attitude(:,counter),[cos(yaw/2) 0 0 sin(yaw/2)]')<=(pi/180)*obj.metrics_.missionAngularPrecision
                         checkedWaypoints(it) = 1;
                         result = all(checkedWaypoints);
                         if it == length(obj.trajectoryMap_.endTime) && result == true
@@ -4011,9 +4012,10 @@ classdef multicontrol < multicopter
         end
         function clearMetrics(obj)
             obj.metrics_.simulationSuccess      = [];
+            obj.metrics_.simulationEndError     = [];
             obj.metrics_.missionSuccess         = [];
-            obj.metrics_.successMetricPrecision = [];
-            obj.metrics_.successAngularPrecision= [];
+            obj.metrics_.missionMetricPrecision = [];
+            obj.metrics_.missionAngularPrecision= [];
             obj.metrics_.isStable               = [];
             obj.metrics_.pathLength             = [];
             obj.metrics_.desiredPathLength      = [];
