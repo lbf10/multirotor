@@ -10,7 +10,7 @@ attitudeController = 'PID';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
-fullfilename = 0;
+fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Results/PID_PassiveNMAC_PassiveNMAC/6a Tentativa/PID_Passive NMAC_Passive NMAC_21-Jun-2018 20:29:47_iterations.mat';
 
 %% Select nvars according to algorithms
     switch attitudeController
@@ -346,9 +346,10 @@ fullfilename = 0;
 %% Check for restore file
 if fullfilename ~= 0
     savedState = load(fullfilename,'state');
-    initialPopulationAux = savedState.state(end).Population;
-    fitnessValues = savedState.state(end).Score;
-    initialPopulation = initialPopulationAux(find(fitnessValues==min(fitnessValues)),:)
+    %initialPopulationAux = savedState.state(end).Population;
+    initialPopulation = savedState.state(end).Population;
+    %fitnessValues = savedState.state(end).Score;
+    %initialPopulation = initialPopulationAux(find(fitnessValues==min(fitnessValues)),:)
 end
 fitnessfcn = @(x) controlFitness(attitudeController, controlAllocator, attitudeReference, x);
 %% Start GA
