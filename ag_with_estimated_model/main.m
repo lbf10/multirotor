@@ -6,11 +6,11 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'PID';
+attitudeController = 'RLQ-R Passive';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
-fullfilename = '/export/home/leonardof/multirotor/ag_with_estimated_model/Results/PID_PassiveNMAC_PassiveNMAC/6a Tentativa/PID_Passive NMAC_Passive NMAC_21-Jun-2018 20:29:47_iterations.mat';
+fullfilename = 0;
 
 %% Select nvars according to algorithms
     switch attitudeController
