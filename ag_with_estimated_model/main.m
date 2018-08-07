@@ -6,7 +6,7 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'RLQ-R Passive Modified';
+attitudeController = 'RLQ-R Passive Modified with PIDD';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
@@ -80,8 +80,8 @@ fullfilename = 0;
             mu = 1e22;
             alpha = 1.5;
             initialPopulation = [initialPopulation,P,Q,R,Ef,Eg,H,mu,alpha];
-            lb = [lb,zeros(1,53),1];
-            ub = [ub,inf(1,54)];
+            lb = [lb,zeros(1,52),1e5,1];
+            ub = [ub,1e9*ones(1,18),1e3*ones(1,8),1e5*ones(1,26),inf,100];
             nvars = 66;
             initialPopulation = [initialPopulation,0,0,0.5];
             lb = [lb,0,0,0];
