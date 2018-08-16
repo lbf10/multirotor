@@ -6,7 +6,7 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'RLQ-R Passive Modified with PIDD';
+attitudeController = 'SOSMC Passive';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
