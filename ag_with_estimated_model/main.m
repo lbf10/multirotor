@@ -7,7 +7,7 @@ warning('off','all')
 
 %% Algorithms to train
 attitudeController = 'SOSMC Passive Direct';
-controlAllocator = 'Passive NMAC';
+controlAllocator = 'None';
 attitudeReference = 'Passive NMAC';
 
 fullfilename = 0;
