@@ -8,20 +8,20 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
     mass = 6.015;
     payloadRadius = 0.3*mean(sqrt(sum(positions.^2)));
     endTimes = [15];
-    yawGoTos = [0,2*pi];
+    yawGoTos = [2*pi];%[0,2*pi];
     payloads = [0, 0, 0, 0
                %0.5*mass, 0, 0, 0
                %0.5*mass, -payloadRadius/(2*sqrt(2)), -payloadRadius/(2*sqrt(2)), -payloadRadius
-               1*mass, 0, 0, 0
-               1*mass, 0, 0, -payloadRadius];
+               %1*mass, 0, 0, 0
+               3, 0, 0, -payloadRadius];
     disturbances = [10];
-    failures = {{''}
-                {'setRotorStatus(1,''motor loss'',0.75)'}
-                {'setRotorStatus(1,''motor loss'',0.001)'}
-                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)'}
-                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(6,''motor loss'',0.4)'}
-                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)'}
-                {'setRotorStatus(1,''motor loss'',0.5)','setRotorStatus(2,''motor loss'',0.5)','setRotorStatus(3,''motor loss'',0.5)','setRotorStatus(4,''motor loss'',0.5)'}};
+    failures = {%{''}
+                %{'setRotorStatus(1,''motor loss'',0.75)'}
+                %{'setRotorStatus(1,''motor loss'',0.001)'}
+                %{'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)'}
+                %{'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(6,''motor loss'',0.4)'}
+                %{'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)'}
+                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)','setRotorStatus(4,''motor loss'',0.001)'}};
       
     numberOfOptions = size(x,1)*length(endTimes)*length(yawGoTos)*size(payloads,1)*length(disturbances)*length(failures);
     options = cell(numberOfOptions,6);
@@ -48,7 +48,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         % Creates simulation class
         multirotor = multicontrol(8);
         multirotor.supressVerbose()
-	warning('off','all')
+        warning('off','all')
         % Define rotor positions
         positions = [[0.34374 0.34245 0.0143]',[-0.341 0.34213 0.0143]',[-0.34068 -0.34262 0.0143]',[0.34407 -0.34229 0.0143]',[0.33898 0.33769 0.0913]',[-0.33624 0.33736 0.0913]',[-0.33591 -0.33785 0.0913]',[0.3393 -0.33753 0.0913]'];
         multirotor.setRotorPosition(1:8,positions);
@@ -158,8 +158,8 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         end
         failure = option{5}
         nFails = length(failure);
-        step = endTime/4/(1+nFails);
-        multirotor.addCommand(failure,endTime/8+step:step:3*endTime/8-0.000001);
+        step = endTime/2/(1+nFails);
+        multirotor.addCommand(failure,endTime/2+step:step:endTime-0.000001);
         
         try
             multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);

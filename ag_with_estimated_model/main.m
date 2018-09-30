@@ -6,8 +6,8 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'SOSMC Passive Direct';
-controlAllocator = 'None';
+attitudeController = 'PID';
+controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
 fullfilename = 0;
@@ -373,7 +373,7 @@ filename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeRefer
 iterFilename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
 outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
 options = gaoptimset('PopulationSize',1000,'Generations',200,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on','CrossoverFraction',0.5,'MutationFcn', {@mutationuniform, 0.05});
-poolobj = parpool(80);
+poolobj = parpool(2);
 addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m','../multiControl/'})
 [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = ga(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
 delete(poolobj)
