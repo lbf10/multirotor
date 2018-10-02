@@ -6,7 +6,7 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'PID';
+attitudeController = 'RLQ-R Passive';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
@@ -40,8 +40,8 @@ fullfilename = 0;
             mu = 1e30;
             alpha = 1.5;
             initialPopulation = [initialPopulation,P,Q,R,Ef,Eg,H,mu,alpha];
-            lb = [lb,zeros(1,30),1e5,1];
-            ub = [ub,1e7*ones(1,15),1e3*ones(1,15),inf,100];
+            lb = [lb,zeros(1,30),100,1];
+            ub = [ub,1e7*ones(1,15),1e3*ones(1,15),1e30,100];
             nvars = 44;
             initialPopulation = [initialPopulation,0,0,0.5];
             lb = [lb,0,0,0];
@@ -372,7 +372,7 @@ fitnessfcn = @(x) controlFitness(attitudeController, controlAllocator, attitudeR
 filename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_result.mat'];
 iterFilename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
 outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
-options = gaoptimset('PopulationSize',1300,'Generations',300,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on','CrossoverFraction',0.5,'MutationFcn', {@mutationuniform, 0.05}, 'StallGenLimit',25,'TolFun',1e-5);
+options = gaoptimset('PopulationSize',1500,'Generations',300,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on','CrossoverFraction',0.5,'MutationFcn', {@mutationuniform, 0.05}, 'StallGenLimit',25,'TolFun',1e-5);
 poolobj = parpool(80);
 addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m','../multiControl/'})
 [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = ga(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
