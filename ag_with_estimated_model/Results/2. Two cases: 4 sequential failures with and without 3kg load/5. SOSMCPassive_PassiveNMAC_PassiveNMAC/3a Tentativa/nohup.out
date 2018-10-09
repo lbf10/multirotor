@@ -1,0 +1,236 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+Starting Fitness Calculation 08-Oct-2018 22:04:39
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 08-Oct-2018 22:05:14
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Starting Fitness Calculation 08-Oct-2018 22:05:15
+Fitness Calculated 08-Oct-2018 22:06:08
+Iterating ...
+    1          3000           11.16           17.28        0
+Starting Fitness Calculation 08-Oct-2018 22:06:08
+Fitness Calculated 08-Oct-2018 22:07:14
+Iterating ...
+    2          4500           10.94           15.68        0
+Starting Fitness Calculation 08-Oct-2018 22:07:14
+Fitness Calculated 08-Oct-2018 22:08:32
+Iterating ...
+    3          6000           10.87           14.29        0
+Starting Fitness Calculation 08-Oct-2018 22:08:32
+Fitness Calculated 08-Oct-2018 22:09:49
+Iterating ...
+    4          7500            10.7           13.46        0
+Starting Fitness Calculation 08-Oct-2018 22:09:49
+Fitness Calculated 08-Oct-2018 22:11:10
+Iterating ...
+    5          9000           10.63           13.04        0
+Starting Fitness Calculation 08-Oct-2018 22:11:10
+Fitness Calculated 08-Oct-2018 22:12:38
+Iterating ...
+    6         10500           10.23           12.82        0
+Starting Fitness Calculation 08-Oct-2018 22:12:38
+Fitness Calculated 08-Oct-2018 22:14:27
+Iterating ...
+    7         12000           10.23            12.5        1
+Starting Fitness Calculation 08-Oct-2018 22:14:27
+Fitness Calculated 08-Oct-2018 22:16:23
+Iterating ...
+    8         13500            9.79           12.36        0
+Starting Fitness Calculation 08-Oct-2018 22:16:23
+Fitness Calculated 08-Oct-2018 22:18:21
+Iterating ...
+    9         15000            9.79           12.28        0
+Starting Fitness Calculation 08-Oct-2018 22:18:21
+Fitness Calculated 08-Oct-2018 22:20:21
+Iterating ...
+   10         16500           9.557           12.24        0
+Starting Fitness Calculation 08-Oct-2018 22:20:21
+Fitness Calculated 08-Oct-2018 22:22:36
+Iterating ...
+   11         18000           9.326           12.25        0
+Starting Fitness Calculation 08-Oct-2018 22:22:37
+Fitness Calculated 08-Oct-2018 22:25:24
+Iterating ...
+   12         19500           8.948           12.03        0
+Starting Fitness Calculation 08-Oct-2018 22:25:24
+Fitness Calculated 08-Oct-2018 22:28:21
+Iterating ...
+   13         21000           8.948           11.86        1
+Starting Fitness Calculation 08-Oct-2018 22:28:21
+Fitness Calculated 08-Oct-2018 22:31:24
+Iterating ...
+   14         22500           8.544           11.75        0
+Starting Fitness Calculation 08-Oct-2018 22:31:25
+Fitness Calculated 08-Oct-2018 22:34:50
+Iterating ...
+   15         24000           8.474           11.58        0
+Starting Fitness Calculation 08-Oct-2018 22:34:51
+Fitness Calculated 08-Oct-2018 22:38:55
+Iterating ...
+   16         25500           8.227           11.41        0
+Starting Fitness Calculation 08-Oct-2018 22:38:55
+Fitness Calculated 08-Oct-2018 22:43:47
+Iterating ...
+   17         27000           8.227           11.24        1
+Starting Fitness Calculation 08-Oct-2018 22:43:47
+Fitness Calculated 08-Oct-2018 22:48:34
+Iterating ...
+   18         28500           8.227           11.03        2
+Starting Fitness Calculation 08-Oct-2018 22:48:34
+Fitness Calculated 08-Oct-2018 22:53:28
+Iterating ...
+   19         30000           8.227            10.9        3
+Starting Fitness Calculation 08-Oct-2018 22:53:29
+Fitness Calculated 08-Oct-2018 22:58:38
+Iterating ...
+   20         31500           8.227           10.89        4
+Starting Fitness Calculation 08-Oct-2018 22:58:39
+Fitness Calculated 08-Oct-2018 23:04:07
+Iterating ...
+   21         33000           8.227           10.86        5
+Starting Fitness Calculation 08-Oct-2018 23:04:08
+Fitness Calculated 08-Oct-2018 23:09:46
+Iterating ...
+   22         34500           7.861           10.87        0
+Starting Fitness Calculation 08-Oct-2018 23:09:47
+Fitness Calculated 08-Oct-2018 23:15:24
+Iterating ...
+   23         36000           7.739           10.85        0
+Starting Fitness Calculation 08-Oct-2018 23:15:24
+Fitness Calculated 08-Oct-2018 23:20:53
+Iterating ...
+   24         37500           7.739           10.81        1
+Starting Fitness Calculation 08-Oct-2018 23:20:54
+Fitness Calculated 08-Oct-2018 23:25:58
+Iterating ...
+   25         39000           7.739           10.84        2
+Starting Fitness Calculation 08-Oct-2018 23:25:59
+Fitness Calculated 08-Oct-2018 23:31:11
+Iterating ...
+   26         40500           7.739            10.8        3
+Starting Fitness Calculation 08-Oct-2018 23:31:12
+Fitness Calculated 08-Oct-2018 23:35:59
+Iterating ...
+   27         42000           7.739           10.76        0
+Starting Fitness Calculation 08-Oct-2018 23:36:00
+Fitness Calculated 08-Oct-2018 23:40:44
+Iterating ...
+   28         43500           7.739           10.58        1
+Starting Fitness Calculation 08-Oct-2018 23:40:44
+Fitness Calculated 08-Oct-2018 23:45:34
+Iterating ...
+   29         45000           7.739            10.4        2
+Starting Fitness Calculation 08-Oct-2018 23:45:35
+Fitness Calculated 08-Oct-2018 23:50:31
+Iterating ...
+   30         46500           7.739           10.41        3
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Starting Fitness Calculation 08-Oct-2018 23:50:32
+Fitness Calculated 08-Oct-2018 23:55:28
+Iterating ...
+   31         48000           7.739           10.36        4
+Starting Fitness Calculation 08-Oct-2018 23:55:29
+Fitness Calculated 09-Oct-2018 00:00:33
+Iterating ...
+   32         49500           7.739           10.24        5
+Starting Fitness Calculation 09-Oct-2018 00:00:34
+Fitness Calculated 09-Oct-2018 00:05:42
+Iterating ...
+   33         51000           7.739           10.16        6
+Starting Fitness Calculation 09-Oct-2018 00:05:43
+Fitness Calculated 09-Oct-2018 00:10:52
+Iterating ...
+   34         52500           7.739           10.12        7
+Starting Fitness Calculation 09-Oct-2018 00:10:53
+Fitness Calculated 09-Oct-2018 00:16:19
+Iterating ...
+   35         54000           7.739           10.08        8
+Starting Fitness Calculation 09-Oct-2018 00:16:20
+Fitness Calculated 09-Oct-2018 00:21:27
+Iterating ...
+   36         55500           7.739           10.22        9
+Starting Fitness Calculation 09-Oct-2018 00:21:28
+Fitness Calculated 09-Oct-2018 00:26:40
+Iterating ...
+   37         57000           7.739           10.15       10
+Starting Fitness Calculation 09-Oct-2018 00:26:41
+Fitness Calculated 09-Oct-2018 00:31:53
+Iterating ...
+   38         58500           7.739           10.22       11
+Starting Fitness Calculation 09-Oct-2018 00:31:54
+Fitness Calculated 09-Oct-2018 00:37:00
+Iterating ...
+   39         60000           7.739           10.11       12
+Starting Fitness Calculation 09-Oct-2018 00:37:01
+Fitness Calculated 09-Oct-2018 00:42:09
+Iterating ...
+   40         61500           7.739           10.17       13
+Starting Fitness Calculation 09-Oct-2018 00:42:10
+Fitness Calculated 09-Oct-2018 00:47:20
+Iterating ...
+   41         63000           7.739           10.17       14
+Starting Fitness Calculation 09-Oct-2018 00:47:21
+Fitness Calculated 09-Oct-2018 00:52:38
+Iterating ...
+   42         64500           7.739           10.18       15
+Starting Fitness Calculation 09-Oct-2018 00:52:39
+Fitness Calculated 09-Oct-2018 00:57:46
+Iterating ...
+   43         66000           7.739           10.17       16
+Starting Fitness Calculation 09-Oct-2018 00:57:47
+Fitness Calculated 09-Oct-2018 01:02:53
+Iterating ...
+   44         67500           7.739           10.12       17
+Starting Fitness Calculation 09-Oct-2018 01:02:54
+Fitness Calculated 09-Oct-2018 01:07:55
+Iterating ...
+   45         69000           7.739           10.19       18
+Starting Fitness Calculation 09-Oct-2018 01:07:56
+Fitness Calculated 09-Oct-2018 01:13:02
+Iterating ...
+   46         70500           7.739           10.19       19
+Starting Fitness Calculation 09-Oct-2018 01:13:02
+Fitness Calculated 09-Oct-2018 01:18:01
+Iterating ...
+   47         72000           7.739           10.17       20
+Starting Fitness Calculation 09-Oct-2018 01:18:01
+Fitness Calculated 09-Oct-2018 01:23:16
+Iterating ...
+   48         73500           7.739           10.27       21
+Starting Fitness Calculation 09-Oct-2018 01:23:17
+Fitness Calculated 09-Oct-2018 01:28:32
+Iterating ...
+   49         75000           7.739           10.16       22
+Starting Fitness Calculation 09-Oct-2018 01:28:32
+Fitness Calculated 09-Oct-2018 01:33:36
+Iterating ...
+   50         76500           7.739            10.1       23
+Starting Fitness Calculation 09-Oct-2018 01:33:37
+Fitness Calculated 09-Oct-2018 01:38:51
+Iterating ...
+   51         78000           7.739           10.12       24
+Starting Fitness Calculation 09-Oct-2018 01:38:52
+Fitness Calculated 09-Oct-2018 01:43:57
+Iterating ...
+   52         79500           7.739           10.24       25
+Optimization terminated: average change in the fitness value less than options.TolFun.
+Performing final task
+Parallel pool using the 'ClusterPandora' profile is shutting down.
