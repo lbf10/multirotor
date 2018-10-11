@@ -6,8 +6,8 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'SOSMC Passive Direct';
-controlAllocator = 'None';
+attitudeController = 'Adaptive';
+controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
 fullfilename = 0;
@@ -296,8 +296,8 @@ fullfilename = 0;
             gamma3 = [1,1,.1]*10;
             gamma4 = [1,1,1]*0;
             initialPopulation = [initialPopulation,Am,Q,gamma1,gamma2,gamma3,gamma4];
-            lb = [lb,-inf(1,3),zeros(1,15)];
-            ub = [ub,zeros(1,3),inf(1,15)];
+            lb = [lb,-100*ones(1,3),zeros(1,15)];
+            ub = [ub,zeros(1,3),100*ones(1,15)];
             nvars = 30;
             initialPopulation = [initialPopulation,0,0,0.5];
             lb = [lb,0,0,0];
