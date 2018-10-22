@@ -136,9 +136,9 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % SOSMC Passive and with PIDD:
 % kp = [300 300 100];ki = [10 10 40];kd = [70 70 70];kdd = [35 35 2];
 % SOSMC Passive Direct:
-kp = [100 100 100];ki = [10 10 40];kd = [80 90 70];kdd = [35 35 1];
+% kp = [100 100 100];ki = [10 10 40];kd = [80 90 70];kdd = [35 35 1];
 % Adaptive:
-% kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
+kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
 % Adaptive with PIDD:
 % kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
 % Adaptive Direct:
@@ -258,9 +258,9 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('SOSMC Active Direct');
-multirotor.setControlAllocator('None');
-multirotor.setAttitudeReferenceCA('Active NMAC');
+multirotor.setController('Adaptive');
+multirotor.setControlAllocator('Passive NMAC');
+multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.1)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);

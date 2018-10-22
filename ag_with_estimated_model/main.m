@@ -6,7 +6,7 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'Adaptive';
+attitudeController = 'Adaptive with PIDD';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
@@ -306,7 +306,7 @@ fullfilename = 0;
         case 'Adaptive with PIDD'
             initialPopulation = [70 70 100 10 10 40 40 40 70 15 15 2];
             lb = zeros(1,12);
-            ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
+            ub = [500 500 500 500 500 500 500 500 500 100 100 100];
             Am = -[.1,.1,2,2,2,0.01];
             Q = [1,1,1,.5,.5,.0005];
             gamma1 = [1,1,1,1,1,1]*.0001;
@@ -314,8 +314,8 @@ fullfilename = 0;
             gamma3 = [1,1,1,1,1,1]*.001;
             gamma4 = [1,1,1,1,1,1]*.00001;
             initialPopulation = [initialPopulation,Am,Q,gamma1,gamma2,gamma3,gamma4];
-            lb = [lb,-inf(1,6),zeros(1,30)];
-            ub = [ub,zeros(1,6),inf(1,30)];
+            lb = [lb,-50*ones(1,6),zeros(1,30)];
+            ub = [ub,zeros(1,6),50*ones(1,30)];
             nvars = 48;
             initialPopulation = [initialPopulation,0,0,0.5];
             lb = [lb,0,0,0];
