@@ -3572,7 +3572,7 @@ classdef multicontrol < multicopter
         end
         function updateMetrics(obj)
         %UNTITLED Summary of this function goes here
-        %   Detailed explanation goes here
+        %   Detailed explanation goes here            
             [obj.metrics_.missionSuccess,successTime]   = obj.verifyMissionSuccess();
             obj.metrics_.pathLength                     = obj.pathLength(obj.log_.position);
             obj.metrics_.desiredPathLength              = obj.pathLength(obj.trajectory_.position);
@@ -3586,16 +3586,20 @@ classdef multicontrol < multicopter
                 [~, index(it)] = min(difference);
             end
             positionError = sqrt(sum((obj.log_.position(:,index)-obj.trajectory_.position).^2,1));
+            positionError(isnan(positionError)) = 10*obj.metrics_.simulationEndError;
             obj.metrics_.meanPositionError              = mean(positionError);
             obj.metrics_.RMSPositionError               = rms(positionError);
             obj.metrics_.maxPositionError               = max(positionError);
             angularError = sqrt(sum((obj.toEuler(obj.log_.attitude(:,index))-obj.toEuler(obj.trajectory_.attitude)).^2,1));
+            angularError(isnan(angularError)) = 10*obj.metrics_.missionAngularPrecision*pi/180;
             obj.metrics_.meanAngularError           = mean(angularError);
             obj.metrics_.RMSAngularError               = rms(angularError);
-            obj.metrics_.maxAngularError               = max(angularError);            
-            obj.metrics_.energy                         = trapz(obj.log_.time,abs(obj.log_.power));
-            obj.metrics_.RMSPower                       = rms(obj.log_.power);
-            obj.metrics_.maxPower                       = max(abs(obj.log_.power));
+            obj.metrics_.maxAngularError               = max(angularError);    
+            powerAux = obj.log_.power;
+            powerAux(isnan(powerAux)) = max(obj.log_.power);
+            obj.metrics_.energy                         = trapz(obj.log_.time,abs(powerAux));
+            obj.metrics_.RMSPower                       = rms(powerAux);
+            obj.metrics_.maxPower                       = max(abs(powerAux));
         end
         function result = inputsOK(obj,input,start,nelements)
             result = true;
