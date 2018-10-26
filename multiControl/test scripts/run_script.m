@@ -19,7 +19,7 @@ orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.0616284
 multirotor.setRotorOrientation(1:8,orientations);
 % Define aircraft's inertia
 multirotor.setMass(6.015);
-mass = 6;
+mass = 3;
 payloadRadius = 0.3*mean(sqrt(sum(positions.^2)));
 multirotor.setPayload([0, 0, -payloadRadius],mass,eye(3)*2*mass*payloadRadius*payloadRadius/5);
 % multirotor.setPayload([0, 0, 0],mass,eye(3)*2*mass*payloadRadius*payloadRadius/5);
@@ -138,11 +138,11 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % SOSMC Passive Direct:
 % kp = [100 100 100];ki = [10 10 40];kd = [80 90 70];kdd = [35 35 1];
 % Adaptive:
-kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
+%kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
 % Adaptive with PIDD:
 % kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
 % Adaptive Direct:
-% kp = [60 60 100];ki = [20 20 40];kd = [40 40 70];kdd = [15 15 2];
+kp = [60 60 100];ki = [20 20 40];kd = [40 40 70];kdd = [15 15 2];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
@@ -258,8 +258,8 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('Adaptive');
-multirotor.setControlAllocator('Passive NMAC');
+multirotor.setController('Adaptive Direct');
+multirotor.setControlAllocator('None');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.1)
 
