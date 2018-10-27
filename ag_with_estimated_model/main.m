@@ -6,8 +6,8 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'Adaptive Direct';
-controlAllocator = 'None';
+attitudeController = 'PID';
+controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
 fullfilename = 0;
@@ -18,7 +18,7 @@ fullfilename = 0;
             initialPopulation = [220 220 220 40 40 40 50 50 50 10 10 10
                                  90 90 90 10 10 10 40 40 40 2 2 2];
             lb = zeros(1,12);
-            ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
+            ub = [500 500 500 500 500 500 500 500 500 100 100 100];
             initialPopulation = [initialPopulation [500 500 250 1000 1000 650 60 60 5; 130 130 50 200 200 200 14 14 2]];
             lb = [lb,zeros(1,9)];
             ub = [ub,1000*ones(1,9)];
