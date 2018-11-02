@@ -249,6 +249,18 @@ B0 = 5e3*[ -0.00001 -0.00001 4  1.5 -1.5  -3
             -0.00001  0.00001 4 -1.5 -1.5  -3];
 multirotor.configController('Adaptive Direct',Am,Q,gamma1,gamma2,gamma3,gamma4,B0);
 
+% Markovian Passive Modified
+P = eye(6);
+Ef = 10*[2 2 1 0 0 0];
+Eg = 1000*[1 1 1 1 1 1 1 1];
+k = 2;
+lambda = 1.5;
+orientationsAux = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
+positionsAux = [[0.341 0.341 0.0143]',[-0.341 0.341 0.0143]',[-0.341 -0.341 0.0143]',[0.341 -0.341 0.0143]',[0.341 0.341 0.0913]',[-0.341 0.341 0.0913]',[-0.341 -0.341 0.0913]',[0.341 -0.341 0.0913]'];
+modes = controllableModes(positionsAux,orientationsAux,rotationDirection);
+multirotor.configController('Markovian RLQ-R Passive Modified',P,Ef,Eg,k,lambda,modes);
+
+
 % Adaptive control allocation
 multirotor.configControlAllocator('Adaptive',-1e14*eye(6),1,0);
 multirotor.configControlAllocator('Passive NMAC',1,0);
@@ -299,6 +311,6 @@ multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.20);
 multirotor.setAngularFilterGain([0,0,0.5]);
 %% Run simulator
-multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
-multirotor.plotSim();
+% multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
+% multirotor.plotSim();
 % multirotor.plotAxes('rotorspeed',figure())

@@ -157,7 +157,7 @@ classdef multicontrol < multicopter
                                 if isnumeric(varargin{it}) && (isequal(size(varargin{it}),[1 3]) || isequal(size(varargin{it}),[3 1]))
                                     if isnumeric(varargin{it+1}) && (isequal(size(varargin{it+1}),[1 3]) || isequal(size(varargin{it+1}),[3 1]))
                                         if isnumeric(varargin{it+2}) && (isequal(size(varargin{it+2}),[1 3]) || isequal(size(varargin{it+2}),[3 1]))
-                                            if isnumeric(varargin{it+2}) && (isequal(size(varargin{it+2}),[1 3]) || isequal(size(varargin{it+2}),[3 1]))
+                                            if isnumeric(varargin{it+3}) && (isequal(size(varargin{it+3}),[1 3]) || isequal(size(varargin{it+3}),[3 1]))
                                                 obj.positionControlConfig_.kp = varargin{it};
                                                 obj.positionControlConfig_.ki = varargin{it+1};
                                                 obj.positionControlConfig_.kd = varargin{it+2};
@@ -186,11 +186,11 @@ classdef multicontrol < multicopter
                                 warning('Missing argument for position controller. Skipping configuration.');
                             end
                         case obj.attitudeControllers_{1} %% PID
-                            if obj.inputsOK(varargin,it,2)
+                            if obj.inputsOK(varargin,it,3)
                                 it = it+1;
                                 if isnumeric(varargin{it}) && (isequal(size(varargin{it}),[1 3]) || isequal(size(varargin{it}),[3 1]))
-                                    if isnumeric(varargin{it}) && (isequal(size(varargin{it}),[1 3]) || isequal(size(varargin{it}),[3 1]))
-                                        if isnumeric(varargin{it+1}) && (isequal(size(varargin{it+1}),[1 3]) || isequal(size(varargin{it+1}),[3 1]))
+                                    if isnumeric(varargin{it+1}) && (isequal(size(varargin{it+1}),[1 3]) || isequal(size(varargin{it+1}),[3 1]))
+                                        if isnumeric(varargin{it+2}) && (isequal(size(varargin{it+2}),[1 3]) || isequal(size(varargin{it+2}),[3 1]))
                                             obj.controlConfig_{1}.kp = varargin{it};
                                             obj.controlConfig_{1}.ki = varargin{it+1};
                                             obj.controlConfig_{1}.kd = varargin{it+2};
@@ -209,7 +209,7 @@ classdef multicontrol < multicopter
                                 else
                                     warning('Attitude controller proportional gain must be a numeric array of size 1x3 or 3x1. Skipping this controller configuration');
                                 end
-                                it = it+1;                                
+                                it = it+2;                                
                             else
                                 warning('Missing argument for attitude %s controller. Skipping configuration.',obj.attitudeControllers_{1});
                             end
@@ -269,7 +269,7 @@ classdef multicontrol < multicopter
                                 else
                                     warning('Attitude controller c gain must be a positive numeric diagonal matrix. Skipping this controller configuration');
                                 end
-                                it = it+2;
+                                it = it+4;
                             else
                                 warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
                             end
@@ -317,7 +317,7 @@ classdef multicontrol < multicopter
                                 else
                                     warning('Attitude controller c gain must be a positive numeric diagonal matrix. Skipping this controller configuration');
                                 end
-                                it = it+2;
+                                it = it+4;
                             else
                                 warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
                             end
@@ -381,12 +381,63 @@ classdef multicontrol < multicopter
                                 else
                                     warning('Reference matrix Am must be a numeric stable matrix. Skipping this controller configuration');
                                 end
-                                it = it+5;
+                                it = it+6;
                             else
                                 warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
                             end
                         case obj.attitudeControllers_{17} %% Markovian RLQ-R Passive Modified
-                            warning('Controller not implemented. Skipping configuration');
+                            index = 17;
+                            if obj.inputsOK(varargin,it,6)
+                                it = it+1;
+                                if isnumeric(varargin{it}) && sum(size(varargin{it}))>2
+                                    if isnumeric(varargin{it+1}) && sum(size(varargin{it+1}))>2
+                                        if isnumeric(varargin{it+2}) && sum(size(varargin{it+2}))>2
+                                            if isnumeric(varargin{it+3}) && sum(size(varargin{it+3}))<=2 && varargin{it+3}>=1
+                                                if isnumeric(varargin{it+4}) && sum(size(varargin{it+4}))<=2 && varargin{it+4}>0
+                                                    if isnumeric(varargin{it+5}) && sum(size(varargin{it+5}))>2 && size(varargin{it+5},2)==obj.numberOfRotors_
+                                                                obj.controlConfig_{index}.initialP = varargin{it};
+                                                                obj.controlConfig_{index}.Ef = varargin{it+1};
+                                                                obj.controlConfig_{index}.Eg = varargin{it+2};
+                                                                obj.controlConfig_{index}.k = varargin{it+3};
+                                                                obj.controlConfig_{index}.lambda = varargin{it+4};
+                                                                obj.controlConfig_{index}.modes = varargin{it+5};
+
+                                                                if obj.verbose_ == true
+                                                                    disp([obj.attitudeControllers_{index},' Attitude controller P initial state variance gain set to: ']);
+                                                                    disp(obj.controlConfig_{index}.initialP);
+                                                                    disp([obj.attitudeControllers_{index},' Attitude controller uncertainty Ef set to: '])
+                                                                    disp(obj.controlConfig_{index}.Ef);
+                                                                    disp([obj.attitudeControllers_{index},' Attitude controller uncertainty Eg set to: '])
+                                                                    disp(obj.controlConfig_{index}.Eg);
+                                                                    disp([obj.attitudeControllers_{index},' Attitude controller scalar k set to: '])
+                                                                    disp(obj.controlConfig_{index}.k);
+                                                                    disp([obj.attitudeControllers_{index},' Attitude controller lambda parameter set to: '])
+                                                                    disp(obj.controlConfig_{index}.lambda);
+                                                                    disp([obj.attitudeControllers_{index},' Attitude controller markovian modes number set to: '])
+                                                                    disp(size(obj.controlConfig_{index}.modes,1));
+                                                                end                                                        
+                                                    else
+                                                        warning('Attitude controller markovian modes be a numeric matrix. The number of rows correspond to the number of markovian modes. The number of columns correspond to the number of rotors. A value of 0 means the rotor is faulty while a value of 1 means the rotor is fully operational. Skipping this controller configuration');
+                                                    end
+                                                else
+                                                    warning('Attitude controller lambda must be a scalar > 0. Skipping this controller configuration');
+                                                end
+                                            else
+                                                warning('Attitude controller scalar k must be a scalar >= 1. Skipping this controller configuration');
+                                            end
+                                        else
+                                            warning('Attitude controller uncertainty Eg must be a numeric matrix. Skipping this controller configuration');
+                                        end
+                                    else
+                                        warning('Attitude controller uncertainty Ef must be a numeric matrix. Skipping this controller configuration');
+                                    end
+                                else
+                                    warning('Attitude controller initial state variance must be a numeric matrix. Skipping this controller configuration');
+                                end
+                                it = it+7;                
+                            else
+                                warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
+                            end
                         case obj.attitudeControllers_{18} %% Markovian RLQ-R Active Modified
                             warning('Controller not implemented. Skipping configuration');
                         otherwise
@@ -3609,23 +3660,25 @@ classdef multicontrol < multicopter
             if ~(length(input)>=(start+nelements))
                 result = false;
             end
-            for it=1:nelements
-                if isempty(input{start+it}) || ischar(input{start+it})
-                    result = false;
+            if result==true
+                for it=1:nelements
+                    if isempty(input{start+it}) || ischar(input{start+it})
+                        result = false;
+                    end
                 end
             end
         end
         function it = configureRLQ(obj,rlqIndex,varArgs,it)
-            if obj.inputsOK(varArgs,it,5)
+            if obj.inputsOK(varArgs,it,8)
                 it = it+1;
-                if isnumeric(varArgs{it}) && ~isscalar(size(varArgs{it}))
-                    if isnumeric(varArgs{it+1}) && ~isscalar(size(varArgs{it+1}))
-                        if isnumeric(varArgs{it+2}) && ~isscalar(size(varArgs{it+2}))
-                            if isnumeric(varArgs{it+3}) && ~isscalar(size(varArgs{it+3}))
-                                if isnumeric(varArgs{it+4}) && ~isscalar(size(varArgs{it+4}))
-                                    if isnumeric(varArgs{it+5}) && ~isscalar(size(varArgs{it+5}))
-                                        if isnumeric(varArgs{it+6}) && isscalar(varArgs{it+6}) && varArgs{it+6}>0
-                                            if isnumeric(varArgs{it+7}) && isscalar(varArgs{it+7}) && varArgs{it+7}>=1
+                if isnumeric(varArgs{it}) && sum(size(varArgs{it}))>2
+                    if isnumeric(varArgs{it+1}) && sum(size(varArgs{it+1}))>2
+                        if isnumeric(varArgs{it+2}) && sum(size(varArgs{it+2}))>2
+                            if isnumeric(varArgs{it+3}) && sum(size(varArgs{it+3}))>2
+                                if isnumeric(varArgs{it+4}) && sum(size(varArgs{it+4}))>2
+                                    if isnumeric(varArgs{it+5}) && sum(size(varArgs{it+5}))>2
+                                        if isnumeric(varArgs{it+6}) && sum(varArgs{it+6})<=2 && varArgs{it+6}>0
+                                            if isnumeric(varArgs{it+7}) && sum(varArgs{it+7})<=2 && varArgs{it+7}>=1
                                                 obj.controlConfig_{rlqIndex}.initialP = varArgs{it};
                                                 obj.controlConfig_{rlqIndex}.Q = varArgs{it+1};
                                                 obj.controlConfig_{rlqIndex}.R = varArgs{it+2};
@@ -3677,7 +3730,7 @@ classdef multicontrol < multicopter
                 else
                     warning('Attitude controller initial state variance must be a numeric matrix. Skipping this controller configuration');
                 end
-                it = it+4;                
+                it = it+7;                
             else
                 warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{rlqIndex});
             end
