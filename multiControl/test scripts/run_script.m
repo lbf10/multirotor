@@ -142,7 +142,9 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % Adaptive with PIDD:
 % kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
 % Adaptive Direct:
-kp = [60 60 100];ki = [20 20 40];kd = [40 40 70];kdd = [15 15 2];
+% kp = [60 60 100];ki = [20 10 40];kd = [40 40 70];kdd = [15 15 2];
+% Markovian passive:
+kp = [70 70 100];ki = [40 40 40];kd = [40 40 70];kdd = [15 15 2];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
@@ -251,14 +253,24 @@ multirotor.configController('Adaptive Direct',Am,Q,gamma1,gamma2,gamma3,gamma4,B
 
 % Markovian Passive Modified
 P = eye(6);
-Ef = 10*[2 2 1 0 0 0];
+Ef = 10*[2 2 1 1 1 1];
 Eg = 1000*[1 1 1 1 1 1 1 1];
-k = 2;
-lambda = 1.5;
+k = 1;
+Er = 0.000001*eye(8);
+Eq = 1*eye(6);
+lambda = 1;
 orientationsAux = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
 positionsAux = [[0.341 0.341 0.0143]',[-0.341 0.341 0.0143]',[-0.341 -0.341 0.0143]',[0.341 -0.341 0.0143]',[0.341 0.341 0.0913]',[-0.341 0.341 0.0913]',[-0.341 -0.341 0.0913]',[0.341 -0.341 0.0913]'];
-modes = controllableModes(positionsAux,orientationsAux,rotationDirection);
-multirotor.configController('Markovian RLQ-R Passive Modified',P,Ef,Eg,k,lambda,modes);
+% modes = controllableModes(positionsAux,orientationsAux,rotationDirection);
+modes = [1 1 1 1 1 1 1 1
+         0 1 1 1 1 1 1 1
+         0 0 1 1 1 1 1 1
+         0 0 0 1 1 1 1 1
+         0 0 0 0 1 1 1 1];
+numberOfModes = size(modes,1);
+pij = 0.5*eye(numberOfModes);
+eij = 2*ones(numberOfModes, numberOfModes);
+multirotor.configController('Markovian RLQ-R Passive Modified',P,Ef,Eg,k,Er,Eq,lambda,modes,pij,eij);
 
 
 % Adaptive control allocation
@@ -270,8 +282,8 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('Adaptive Direct');
-multirotor.setControlAllocator('None');
+multirotor.setController('RLQ-R Passive');
+multirotor.setControlAllocator('Passive NMAC');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.1)
 
@@ -295,7 +307,7 @@ multirotor.configFDD(1,0.1)
 % % 
 endTime = 15;
 % [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto',0);
-[waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, '360');
+[waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto', 2*pi);
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
@@ -311,6 +323,6 @@ multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.20);
 multirotor.setAngularFilterGain([0,0,0.5]);
 %% Run simulator
-% multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
-% multirotor.plotSim();
+multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
+multirotor.plotSim();
 % multirotor.plotAxes('rotorspeed',figure())
