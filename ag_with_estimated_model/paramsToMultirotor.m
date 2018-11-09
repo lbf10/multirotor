@@ -144,6 +144,23 @@ function multirotor = paramsToMultirotor(attitudeController, controlAllocator, a
             B0 = reshape(x(57:104),[8 6]);
             multirotor.configController(attitudeController,Am,Q,gamma1,gamma2,gamma3,gamma4,B0);
             index = 105;
+        case 'Markovian RLQ-R Passive Modified'
+            Ef = reshape(x(13:18),[1 6]);
+            Eg = reshape(x(19:26),[1 8]);
+            k = x(27);
+            Er = diag(x(28:35));
+            Eq = diag(x(36:41));
+            lambda = x(42);
+            modes = [1 1 1 1 1 1 1 1
+                     0 1 1 1 1 1 1 1
+                     0 0 1 1 1 1 1 1
+                     0 0 0 1 1 1 1 1
+                     0 0 0 0 1 1 1 1];
+            numberOfModes = size(modes,1);
+            pij = x(43)*eye(numberOfModes);
+            eij = x(44)*ones(numberOfModes, numberOfModes);                 
+            multirotor.configController(attitudeController,eye(6),Ef,Eg,k,Er,Eq,lambda,modes,pij,eij);
+            index = 45;
     end
     multirotor.setAngularFilterGain(x(index:index+2));
     index = 108;

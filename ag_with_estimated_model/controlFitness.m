@@ -42,7 +42,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
     end
     fitness = zeros(numberOfOptions,1);
     
-    parfor it = 1:numberOfOptions
+   parfor it = 1:numberOfOptions
         option = options(it,:);
         
         % Creates simulation class
@@ -156,7 +156,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         if disturbance ~= 0
             multirotor.setLinearDisturbance(['@(t) [0;1;0]*',num2str(disturbance),'*(exp(-(t-',crossTime1,')^2/(0.5))+exp(-(t-',crossTime2,')^2/(0.5)))']);
         end
-        failure = option{5}
+        failure = option{5};
         nFails = length(failure);
         step = endTime/2/(1+nFails);
         multirotor.addCommand(failure,endTime/2+step:step:endTime-0.000001);
