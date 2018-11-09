@@ -6,7 +6,7 @@ addpath(genpath('../multiControl/'))
 warning('off','all')
 
 %% Algorithms to train
-attitudeController = 'PID';
+attitudeController = 'RLQ-R Passive';
 controlAllocator = 'Passive NMAC';
 attitudeReference = 'Passive NMAC';
 
@@ -28,7 +28,7 @@ fullfilename = 0;
             ub = [ub,1,1,1];
             nvars = nvars + 3;
         case 'RLQ-R Passive'
-            initialPopulation = [30 70 100 10 20 40 20 50 70 3 5 2];
+            initialPopulation = [70 70 100 40 40 40 40 40 70 15 15 2];
             lb = zeros(1,12);
             ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
             Q = [1e4, 1e4, 1e3,1e-1,1e-1,1e-1];
@@ -361,6 +361,26 @@ fullfilename = 0;
             lb = [lb,-100*ones(1,6),zeros(1,38),-25e3*auxLB];
             ub = [ub,zeros(1,6),50*ones(1,6),10000*ones(1,32),25e3*auxUB];
             nvars = 104;
+            initialPopulation = [initialPopulation,0,0,0.5];
+            lb = [lb,0,0,0];
+            ub = [ub,1,1,1];
+            nvars = nvars + 3;
+        case 'Markovian RLQ-R Passive Modified'
+            initialPopulation = [70 70 100 40 40 40 40 40 70 15 15 2];
+            lb = zeros(1,12);
+            ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
+            Ef = 10*[2 2 1 1 1 1];
+            Eg = 1000*[1 1 1 1 1 1 1 1];
+            k = 1;
+            Er = 0.000001*[1 1 1 1 1 1 1 1];
+            Eq = 1*[1 1 1 1 1 1];
+            lambda = 1;
+            pij = 0.5;
+            eij = 2;
+            initialPopulation = [initialPopulation,Ef,Eg,k,Er,Eq,lambda,pij,eij];
+            lb = [lb,zeros(1,14),1,zeros(1,14),1e-8*ones(1,3)];
+            ub = [ub,1e5*ones(1,14),100,1e5*ones(1,14),100*ones(1,3)];
+            nvars = 44;
             initialPopulation = [initialPopulation,0,0,0.5];
             lb = [lb,0,0,0];
             ub = [ub,1,1,1];
