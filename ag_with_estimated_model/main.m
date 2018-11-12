@@ -2,7 +2,8 @@
 % Author: Leonardo B. Far�oni
 % Creation: 06/03/2018
 matlabrc
-addpath(genpath('../multiControl/'))
+addpath('../multiControl/')
+addpath('../multiControl/utils')
 warning('off','all')
 
 %% Algorithms to train
@@ -366,20 +367,20 @@ fullfilename = 0;
             ub = [ub,1,1,1];
             nvars = nvars + 3;
         case 'Markovian RLQ-R Passive Modified'
-            initialPopulation = [70 70 100 40 40 40 40 40 70 15 15 2];
+            initialPopulation = [389.669698366475 404.174346451993 108.461360795647 52.8355833107516 40 61.6052484810165 35.8329148078788 40 70 8.58254857170289 9.64775405399996 0.461621401073742];
             lb = zeros(1,12);
             ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
-            Ef = 10*[2 2 1 1 1 1];
-            Eg = 1000*[1 1 1 1 1 1 1 1];
-            k = 1;
+            Ef = [49691.2038388060 77938.6590146259 45346.7392128698 5638.48253281921 20914.7756245542 81518.5261421046];
+            Eg = [27057.9254769885 1000 97564.2803762064 29544.9915299202 22991.3523774675 43314.9483016269 68203.3776755070 98293.7146287260];
+            k = 28.3439208103227;
             Er = 0.000001*[1 1 1 1 1 1 1 1];
-            Eq = 1*[1 1 1 1 1 1];
-            lambda = 1;
-            pij = 0.5;
+            Eq = [90589.5180306516 19.0977320558172 42336.2091224903 86380.1330049442 63815.1468848194 96302.6327783880];
+            lambda = 12;
+            pij = 6;
             eij = 2;
             initialPopulation = [initialPopulation,Ef,Eg,k,Er,Eq,lambda,pij,eij];
             lb = [lb,zeros(1,14),1,zeros(1,14),1e-8*ones(1,3)];
-            ub = [ub,1e5*ones(1,14),100,1e5*ones(1,14),100*ones(1,3)];
+            ub = [ub,1e5*ones(1,14),100,ones(1,8),1e5*ones(1,6),100*ones(1,3)];
             nvars = 44;
             initialPopulation = [initialPopulation,0,0,0.5];
             lb = [lb,0,0,0];
