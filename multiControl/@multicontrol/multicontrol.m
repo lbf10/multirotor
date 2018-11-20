@@ -405,7 +405,12 @@ classdef multicontrol < multicopter
                                                                         obj.controlConfig_{index}.Ef = varargin{it+1};
                                                                         obj.controlConfig_{index}.Eg = varargin{it+2};
                                                                         obj.controlConfig_{index}.k = varargin{it+3};
-                                                                        obj.controlConfig_{index}.Er = varargin{it+4};
+                                                                        modes = varargin{it+7};
+                                                                        obj.controlConfig_{index}.Er = [];
+                                                                        for jt=1:size(modes,1)
+                                                                            obj.controlConfig_{index}.Er = [obj.controlConfig_{index}.Er varargin{it+4}+diag(~modes(jt,:))];
+                                                                        end
+                                                                        obj.controlConfig_{index}.Er = obj.controlConfig_{index}.Er';
                                                                         obj.controlConfig_{index}.Eq = varargin{it+5};
                                                                         obj.controlConfig_{index}.lambda = varargin{it+6};
                                                                         obj.controlConfig_{index}.modes = varargin{it+7};
@@ -3867,16 +3872,17 @@ classdef multicontrol < multicopter
         %   ricatti P(i) for the P(i+1) and other parameters.
             n = size(Ea,2);
             m = size(Eb,2);
+            r = size(Er,1);
             Ea = k*Ea;
             Eb = k*Eb;
             Ee = k*Ee;
             Eq = k*Eq;
             Er = k*Er;
 
-            A = [zeros(m,n);-Eq;Ea];
+            A = [zeros(r,n);-Eq;Ea];
             B = [-Er;zeros(n,m);Eb];
-            E = [zeros(n+m,n);Ee];
-            sigma = blkdiag(eye(size(Ea,1)),eye(m),eye(n))/lambda;
+            E = [zeros(n+r,n);Ee];
+            sigma = eye(size(A,1))/lambda;
             left = [zeros(n,n+m+n)
                     zeros(size(A,1),n+m), A
                     eye(n) zeros(n,m+n)
