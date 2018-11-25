@@ -20,7 +20,7 @@ orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.0616284
 multirotor.setRotorOrientation(1:8,orientations);
 % Define aircraft's inertia
 multirotor.setMass(6.015);
-mass = 3;
+mass = 6;
 inertia =   [0.3143978800	0.0000861200	-0.0014397600
             0.0000861200	0.3122127800	0.0002368800
             -0.0014397600	0.0002368800	0.5557912400];
@@ -33,6 +33,7 @@ friction = [0.25	0	0
             0	0.25	0
             0	0	0.25];
 multirotor.setFriction(friction);
+multirotor.setAngularFilterGain([0,0,0.5]);
 % Define lift and drag coefficients
 % speed = [0
 %         200
@@ -131,7 +132,10 @@ kdd = [11.5001522749662 7.25000000000000 13.2500582933426];
 % RLQ-R Passive:
 % kp = [30 70 100];ki = [10 20 40];kd = [20 50 70];kdd = [3 5 2];
 % RLQ-R Passive Modified:
-% kp = [70 70 60];ki = [2 2 40];kd = [25 25 30];kdd = [3 3 3];
+% kp = [135.996733981483 153.135876078688 60];
+% ki = [2 2 67.6223960552471]
+% kd = [25 42.6592793583164 30];
+% kdd = [3 3 3];
 % RLQ-R Passive Modified with PIDD:
 % kp = [70 70 100];ki = [5 5 40];kd = [40 40 30];kdd = [2 2 1];
 % SOSMC Passive and with PIDD:
@@ -166,14 +170,15 @@ mu = 1e30;
 alpha = 1.5;
 multirotor.configController('RLQ-R Passive',P,Q,R,Ef,Eg,H,mu,alpha);
 multirotor.configController('RLQ-R Active',P,Q,R,Ef,Eg,H,mu,alpha);
-Q = 500000*blkdiag(1e1, 1e1, 1e1,1e1,1e1,1e1);
-P = Q;
-R = 0.00001*eye(8);
-Ef = 10*[2 2 1 0 0 0];
-Eg = 1000*[1 1 1 1 1 1 1 1];
+Q = diag([136440926.976679 165320359.177077 338043223.930318 811714985.079850 470697017.566526 5000000]);
+P = diag([5000000 5000000 5000000 51735772.1962334 13237193.7735967 5000000]);
+R = diag([582.052408422866 1.00000000000000e-05 1.00000000000000e-05 1.00000000000000e-05 169.710172090567 1.00000000000000e-05 1.00000000000000e-05 42.7977897114965]);
+Ef = [64242.0816790375 35819.4947577920 10 56082.0041098398 0 0];
+Eg = [15572.0046803445 36270.6230228744 1000 1000 1000 1000 1000 1000];
 H = [1 1 1 1 1 1]';
-mu = 1e20;
+mu = 1.00000000000000e+20;
 alpha = 1.5;
+multirotor.setAngularFilterGain([0.893982849632920 0.866909075664830 0.713328100616703]);
 multirotor.configController('RLQ-R Passive Modified',P,Q,R,Ef,Eg,H,mu,alpha);
 multirotor.configController('RLQ-R Active Modified',P,Q,R,Ef,Eg,H,mu,alpha);
 % P = eye(9);
@@ -260,8 +265,8 @@ k = 1;
 Er = 0.000001*eye(8);
 Eq = 1*eye(6);
 lambda = 1;
-orientationsAux = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
-positionsAux = [[0.341 0.341 0.0143]',[-0.341 0.341 0.0143]',[-0.341 -0.341 0.0143]',[0.341 -0.341 0.0143]',[0.341 0.341 0.0913]',[-0.341 0.341 0.0913]',[-0.341 -0.341 0.0913]',[0.341 -0.341 0.0913]'];
+% orientationsAux = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
+% positionsAux = [[0.341 0.341 0.0143]',[-0.341 0.341 0.0143]',[-0.341 -0.341 0.0143]',[0.341 -0.341 0.0143]',[0.341 0.341 0.0913]',[-0.341 0.341 0.0913]',[-0.341 -0.341 0.0913]',[0.341 -0.341 0.0913]'];
 % modes = controllableModes(positionsAux,orientationsAux,rotationDirection);
 modes = [1 1 1 1 1 1 1 1
          0 1 1 1 1 1 1 1
@@ -322,7 +327,6 @@ multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)
 multirotor.setSimEffects('motor dynamics on','solver euler')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.20);
-multirotor.setAngularFilterGain([0,0,0.5]);
 %% Run simulator
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
 multirotor.plotSim();
