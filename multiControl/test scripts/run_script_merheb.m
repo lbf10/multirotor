@@ -176,7 +176,7 @@ Ef = 10*[2 2 1 1 1 1];
 Eg = 1000*[1 1 1 1 1 1 1 1];
 k = 1;
 Er = 0.000001*eye(8);
-Eq = 1*eye(6);
+Eq = diag([1 1 1 1e-6 1e-6 1e-6]);
 lambda = 1;
 % orientationsAux = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
 % positionsAux = [[0.341 0.341 0.0143]',[-0.341 0.341 0.0143]',[-0.341 -0.341 0.0143]',[0.341 -0.341 0.0143]',[0.341 0.341 0.0913]',[-0.341 0.341 0.0913]',[-0.341 -0.341 0.0913]',[0.341 -0.341 0.0913]'];
@@ -186,6 +186,7 @@ modes = [1 1 1 1 1 1 1 1
          0 0 1 1 1 1 1 1
          0 0 0 1 1 1 1 1
          0 0 0 0 1 1 1 1];
+%      modes = [1 1 1 1 1 1 1 1];
 numberOfModes = size(modes,1);
 pij = 0.5*eye(numberOfModes);
 eij = 2*ones(numberOfModes, numberOfModes);
@@ -201,10 +202,10 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('Markovian RLQ-R Passive Modified');
+multirotor.setController('RLQ-R Passive Modified with PIDD');
 multirotor.setControlAllocator('Passive NMAC');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
-multirotor.configFDD(1,0.1)
+multirotor.configFDD(1,0.001)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
 % multirotor.setTrajectory('waypoints',[50 50 50 170*pi/180]',10);

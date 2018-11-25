@@ -405,11 +405,12 @@ classdef multicontrol < multicopter
                                                                         obj.controlConfig_{index}.Ef = varargin{it+1};
                                                                         obj.controlConfig_{index}.Eg = varargin{it+2};
                                                                         obj.controlConfig_{index}.k = varargin{it+3};
-                                                                        modes = varargin{it+7};
-                                                                        obj.controlConfig_{index}.Er = [];
-                                                                        for jt=1:size(modes,1)
-                                                                            obj.controlConfig_{index}.Er = [obj.controlConfig_{index}.Er varargin{it+4}+diag(~modes(jt,:))];
-                                                                        end
+%                                                                         modes = varargin{it+7};
+                                                                        obj.controlConfig_{index}.Er = varargin{it+4};
+%                                                                         obj.controlConfig_{index}.Er = [];
+%                                                                         for jt=1:size(modes,1)
+%                                                                             obj.controlConfig_{index}.Er = [obj.controlConfig_{index}.Er varargin{it+4}+diag(~modes(jt,:))];
+%                                                                         end
                                                                         obj.controlConfig_{index}.Er = obj.controlConfig_{index}.Er';
                                                                         obj.controlConfig_{index}.Eq = varargin{it+5};
                                                                         obj.controlConfig_{index}.lambda = varargin{it+6};
@@ -1873,34 +1874,40 @@ classdef multicontrol < multicopter
                         end
                     end 
                     if rouletteAux(randi(length(rouletteAux))) == 1
+%                         disp(1)
                         diagnosis{it}.status = obj.fddRotor_{it}.status{1};
                         diagnosis{it}.motorEfficiency = obj.fddRotor_{it}.motorEfficiency(1);
                         diagnosis{it}.propEfficiency = obj.fddRotor_{it}.propEfficiency(1);                    
                     else
-                        switch obj.fddRotor_{it}.status{1}{1}
-                            case 'stuck'
-                                diagnosis{it}.status{1} = 'free';
-                            case 'free'
-                                diagnosis{it}.status{1} = 'stuck';
-                        end
-                        switch obj.fddRotor_{it}.status{1}{2}
-                            case 'non-responding'
-                                diagnosis{it}.status{2} = 'responding';
-                            case 'responding'
-                                diagnosis{it}.status{2} = 'non-responding';
-                        end
-                        switch obj.fddRotor_{it}.status{1}{3}
-                            case 'motor loss'
-                                diagnosis{it}.status{3} = 'motor ok';
-                            case 'motor ok'
-                                diagnosis{it}.status{3} = 'motor loss';
-                        end
-                        switch obj.fddRotor_{it}.status{1}{4}
-                            case 'prop loss'
-                                diagnosis{it}.status{4} = 'prop ok';
-                            case 'prop ok'
-                                diagnosis{it}.status{4} = 'prop loss';
-                        end 
+%                         disp(0)
+                        diagnosis{it}.status{1} = obj.fddRotor_{it}.status{1}{1};
+                        diagnosis{it}.status{2} = obj.fddRotor_{it}.status{1}{2};
+                        diagnosis{it}.status{3} = obj.fddRotor_{it}.status{1}{3};
+                        diagnosis{it}.status{4} = obj.fddRotor_{it}.status{1}{4};
+%                         switch obj.fddRotor_{it}.status{1}{1}
+%                             case 'stuck'
+%                                 diagnosis{it}.status{1} = 'free';
+%                             case 'free'
+%                                 diagnosis{it}.status{1} = 'stuck';
+%                         end
+%                         switch obj.fddRotor_{it}.status{1}{2}
+%                             case 'non-responding'
+%                                 diagnosis{it}.status{2} = 'responding';
+%                             case 'responding'
+%                                 diagnosis{it}.status{2} = 'non-responding';
+%                         end
+%                         switch obj.fddRotor_{it}.status{1}{3}
+%                             case 'motor loss'
+%                                 diagnosis{it}.status{3} = 'motor ok';
+%                             case 'motor ok'
+%                                 diagnosis{it}.status{3} = 'motor loss';
+%                         end
+%                         switch obj.fddRotor_{it}.status{1}{4}
+%                             case 'prop loss'
+%                                 diagnosis{it}.status{4} = 'prop ok';
+%                             case 'prop ok'
+%                                 diagnosis{it}.status{4} = 'prop loss';
+%                         end 
                         diagnosis{it}.motorEfficiency = rand();
                         diagnosis{it}.propEfficiency = rand();
 %                         if obj.fddRotor_{it}.motorEfficiency(1)==1.0
@@ -3886,13 +3893,13 @@ classdef multicontrol < multicopter
             left = [zeros(n,n+m+n)
                     zeros(size(A,1),n+m), A
                     eye(n) zeros(n,m+n)
-                    zeros(m,n), eye(m), zeros(m,n)];
+                    zeros(m,n), eye(m), zeros(m,n)]';
             center = [inv(P),zeros(n,size(sigma,2)),eye(n),zeros(n,m)
                       zeros(size(sigma,1),n),sigma,E,-B
                       eye(n),E',zeros(n,n+m)
                       zeros(m,n),-B',zeros(m,n+m)];
             right = [zeros(n,n);A;zeros(n+m,n)];
-            gain = left'*(center\right);
+            gain = left*(center\right);
             L = gain(1:n,:);
             K = gain(n+1:n+m,:);
             P = gain(n+m+1:end,:);
