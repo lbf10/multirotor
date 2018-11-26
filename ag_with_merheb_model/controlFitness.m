@@ -2,7 +2,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
     
-    disp(['Starting Fitness Calculation ',datestr(now)])
+    disp([attitudeController,' - Starting Fitness Calculation ',datestr(now)])
 %    x
     positions = [[0.282843 0.282843 0.05]',[-0.282843 0.282843 0.05]',[-0.282843 -0.282843 0.05]',[0.282843 -0.282843 0.05]',[0.282843 0.282843 -0.05]',[-0.282843 0.282843 -0.05]',[-0.282843 -0.282843 -0.05]',[0.282843 -0.282843 -0.05]'];
     payloadRadius = 0.3*mean(sqrt(sum(positions.^2)));

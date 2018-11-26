@@ -55,9 +55,9 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % SOSMC Passive and with PIDD:
 % kp = [300 300 100];ki = [10 10 40];kd = [70 70 70];kdd = [35 35 2];
 % SOSMC Passive Direct:
-kp = [40 40 40];ki = [10 10 10];kd = [20 20 20];kdd = [0 0 0];
+% kp = [40 40 40];ki = [10 10 10];kd = [20 20 20];kdd = [0 0 0];
 % % Adaptive:
-% kp = [40 40 40];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
+kp = [40 40 40];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
 % Adaptive with PIDD:
 % kp = [70 70 100];ki = [10 10 40];kd = [40 40 70];kdd = [15 15 2];
 % Adaptive Direct:
@@ -140,12 +140,12 @@ multirotor.configController('SOSMC Passive Direct',c,lambda,alpha,1,0);
 multirotor.configController('SOSMC Active Direct',c,lambda,alpha,1,0);
 
 % Adaptive controller
-Am = -1*diag([1,1,1]);
+Am = -1*diag([.1,.1,1]);
 Q = 1*diag([1,1,1]);
 gamma1 = diag([1,1,1])*0.001;
-gamma2 = diag([1,1,1])*0.001;
+gamma2 = diag([1,1,1])*0.0001;
 gamma3 = diag([1,1,1])*0.001;
-gamma4 = diag([1,1,1])*0.001;
+gamma4 = diag([1,1,1])*0;
 multirotor.configController('Adaptive',Am,Q,gamma1,gamma2,gamma3,gamma4);
 Am = -diag([.1,.1,2,2,2,0.01]);
 Q = diag([1,1,1,.5,.5,.0005]);
@@ -202,8 +202,8 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('RLQ-R Passive Modified with PIDD');
-multirotor.setControlAllocator('Passive NMAC');
+multirotor.setController('Adaptive Direct');
+multirotor.setControlAllocator('None');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.001)
 
@@ -233,7 +233,7 @@ multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
 multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
-multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)    
+% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)    
 % multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},0)
