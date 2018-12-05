@@ -1,0 +1,722 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+PID - Starting Fitness Calculation 29-Nov-2018 12:16:12
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 29-Nov-2018 12:20:59
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+PID - Starting Fitness Calculation 29-Nov-2018 12:21:00
+Fitness Calculated 29-Nov-2018 12:25:33
+Iterating ...
+    1          6000           6.231           18.68        0
+PID - Starting Fitness Calculation 29-Nov-2018 12:25:33
+Fitness Calculated 29-Nov-2018 12:33:47
+Iterating ...
+    2          9000            5.48           18.11        0
+PID - Starting Fitness Calculation 29-Nov-2018 12:33:47
+Fitness Calculated 29-Nov-2018 12:50:53
+Iterating ...
+    3         12000           4.872           17.69        0
+PID - Starting Fitness Calculation 29-Nov-2018 12:50:53
+Fitness Calculated 29-Nov-2018 13:08:41
+Iterating ...
+    4         15000            4.87           17.23        0
+PID - Starting Fitness Calculation 29-Nov-2018 13:08:41
+Fitness Calculated 29-Nov-2018 13:28:05
+Iterating ...
+    5         18000           4.838           16.46        0
+PID - Starting Fitness Calculation 29-Nov-2018 13:28:06
+Fitness Calculated 29-Nov-2018 13:49:08
+Iterating ...
+    6         21000           4.776           15.64        0
+PID - Starting Fitness Calculation 29-Nov-2018 13:49:09
+Fitness Calculated 29-Nov-2018 14:11:24
+Iterating ...
+    7         24000           4.702           14.73        0
+PID - Starting Fitness Calculation 29-Nov-2018 14:11:25
+Fitness Calculated 29-Nov-2018 14:35:40
+Iterating ...
+    8         27000           4.702           13.85        0
+PID - Starting Fitness Calculation 29-Nov-2018 14:35:42
+Fitness Calculated 29-Nov-2018 15:01:02
+Iterating ...
+    9         30000            4.58           13.08        0
+PID - Starting Fitness Calculation 29-Nov-2018 15:01:03
+Fitness Calculated 29-Nov-2018 15:27:32
+Iterating ...
+   10         33000           4.431           12.54        0
+PID - Starting Fitness Calculation 29-Nov-2018 15:27:32
+Fitness Calculated 29-Nov-2018 15:54:09
+Iterating ...
+   11         36000           4.431           12.05        0
+PID - Starting Fitness Calculation 29-Nov-2018 15:54:09
+Fitness Calculated 29-Nov-2018 16:21:24
+Iterating ...
+   12         39000           4.431           11.78        1
+PID - Starting Fitness Calculation 29-Nov-2018 16:21:25
+Fitness Calculated 29-Nov-2018 16:49:00
+Iterating ...
+   13         42000           4.311           11.52        0
+PID - Starting Fitness Calculation 29-Nov-2018 16:49:01
+Fitness Calculated 29-Nov-2018 17:17:19
+Iterating ...
+   14         45000           4.305           11.25        0
+PID - Starting Fitness Calculation 29-Nov-2018 17:17:19
+Fitness Calculated 29-Nov-2018 17:45:33
+Iterating ...
+   15         48000           4.305           11.18        0
+PID - Starting Fitness Calculation 29-Nov-2018 17:45:34
+Fitness Calculated 29-Nov-2018 18:14:09
+Iterating ...
+   16         51000           4.305           11.14        1
+PID - Starting Fitness Calculation 29-Nov-2018 18:14:10
+Fitness Calculated 29-Nov-2018 18:42:35
+Iterating ...
+   17         54000           4.305           11.06        0
+PID - Starting Fitness Calculation 29-Nov-2018 18:42:36
+Fitness Calculated 29-Nov-2018 19:11:35
+Iterating ...
+   18         57000           4.305           10.85        1
+PID - Starting Fitness Calculation 29-Nov-2018 19:11:36
+Fitness Calculated 29-Nov-2018 19:40:33
+Iterating ...
+   19         60000           4.305            10.9        2
+PID - Starting Fitness Calculation 29-Nov-2018 19:40:34
+Fitness Calculated 29-Nov-2018 20:09:20
+Iterating ...
+   20         63000           3.242           10.79        0
+PID - Starting Fitness Calculation 29-Nov-2018 20:09:21
+Fitness Calculated 29-Nov-2018 20:37:55
+Iterating ...
+   21         66000           1.892           10.88        0
+PID - Starting Fitness Calculation 29-Nov-2018 20:37:56
+Fitness Calculated 29-Nov-2018 21:08:03
+Iterating ...
+   22         69000           1.884           10.97        0
+PID - Starting Fitness Calculation 29-Nov-2018 21:08:04
+Fitness Calculated 29-Nov-2018 21:45:50
+Iterating ...
+   23         72000           1.884            11.3        1
+PID - Starting Fitness Calculation 29-Nov-2018 21:45:51
+Fitness Calculated 29-Nov-2018 22:25:49
+Iterating ...
+   24         75000           1.812           11.83        0
+PID - Starting Fitness Calculation 29-Nov-2018 22:25:50
+Fitness Calculated 29-Nov-2018 23:06:43
+Iterating ...
+   25         78000           1.809           11.95        0
+PID - Starting Fitness Calculation 29-Nov-2018 23:06:44
+Fitness Calculated 29-Nov-2018 23:50:08
+Iterating ...
+   26         81000            1.77           11.62        0
+PID - Starting Fitness Calculation 29-Nov-2018 23:50:09
+Fitness Calculated 30-Nov-2018 00:36:01
+Iterating ...
+   27         84000            1.77           11.28        0
+PID - Starting Fitness Calculation 30-Nov-2018 00:36:02
+Fitness Calculated 30-Nov-2018 01:22:51
+Iterating ...
+   28         87000           1.725           10.77        0
+PID - Starting Fitness Calculation 30-Nov-2018 01:22:53
+Fitness Calculated 30-Nov-2018 02:11:24
+Iterating ...
+   29         90000           1.612           10.49        0
+PID - Starting Fitness Calculation 30-Nov-2018 02:11:25
+Fitness Calculated 30-Nov-2018 03:00:32
+Iterating ...
+   30         93000           1.571           10.37        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+PID - Starting Fitness Calculation 30-Nov-2018 03:00:33
+Fitness Calculated 30-Nov-2018 03:49:29
+Iterating ...
+   31         96000           1.534           10.05        0
+PID - Starting Fitness Calculation 30-Nov-2018 03:49:30
+Fitness Calculated 30-Nov-2018 04:40:26
+Iterating ...
+   32         99000           1.515           10.03        0
+PID - Starting Fitness Calculation 30-Nov-2018 04:40:27
+Fitness Calculated 30-Nov-2018 05:30:44
+Iterating ...
+   33         102000           1.499           10.15        0
+PID - Starting Fitness Calculation 30-Nov-2018 05:30:45
+Fitness Calculated 30-Nov-2018 06:22:50
+Iterating ...
+   34         105000            1.48           9.969        0
+PID - Starting Fitness Calculation 30-Nov-2018 06:22:51
+Fitness Calculated 30-Nov-2018 07:13:46
+Iterating ...
+   35         108000           1.418            9.75        0
+PID - Starting Fitness Calculation 30-Nov-2018 07:13:48
+Fitness Calculated 30-Nov-2018 08:04:56
+Iterating ...
+   36         111000           1.415           9.571        0
+PID - Starting Fitness Calculation 30-Nov-2018 08:04:57
+Fitness Calculated 30-Nov-2018 08:57:40
+Iterating ...
+   37         114000           1.391           9.521        0
+PID - Starting Fitness Calculation 30-Nov-2018 08:57:42
+Fitness Calculated 30-Nov-2018 09:49:45
+Iterating ...
+   38         117000           1.361            9.82        0
+PID - Starting Fitness Calculation 30-Nov-2018 09:49:46
+Fitness Calculated 30-Nov-2018 10:41:12
+Iterating ...
+   39         120000            1.35           9.825        0
+PID - Starting Fitness Calculation 30-Nov-2018 10:41:13
+Fitness Calculated 30-Nov-2018 11:33:41
+Iterating ...
+   40         123000            1.34           9.815        0
+PID - Starting Fitness Calculation 30-Nov-2018 11:33:42
+Fitness Calculated 30-Nov-2018 12:24:55
+Iterating ...
+   41         126000           1.317            9.96        0
+PID - Starting Fitness Calculation 30-Nov-2018 12:24:57
+Fitness Calculated 30-Nov-2018 13:15:53
+Iterating ...
+   42         129000           1.317           10.14        0
+PID - Starting Fitness Calculation 30-Nov-2018 13:15:55
+Fitness Calculated 30-Nov-2018 14:06:49
+Iterating ...
+   43         132000           1.316            10.1        0
+PID - Starting Fitness Calculation 30-Nov-2018 14:06:51
+Fitness Calculated 30-Nov-2018 14:58:23
+Iterating ...
+   44         135000           1.313           10.04        0
+PID - Starting Fitness Calculation 30-Nov-2018 14:58:24
+Fitness Calculated 30-Nov-2018 15:50:21
+Iterating ...
+   45         138000           1.307            10.1        0
+PID - Starting Fitness Calculation 30-Nov-2018 15:50:22
+Fitness Calculated 30-Nov-2018 16:41:53
+Iterating ...
+   46         141000           1.297           10.03        0
+PID - Starting Fitness Calculation 30-Nov-2018 16:41:55
+Fitness Calculated 30-Nov-2018 17:33:59
+Iterating ...
+   47         144000           1.295           9.553        0
+PID - Starting Fitness Calculation 30-Nov-2018 17:34:00
+Fitness Calculated 30-Nov-2018 18:25:53
+Iterating ...
+   48         147000           1.293           9.761        0
+PID - Starting Fitness Calculation 30-Nov-2018 18:25:55
+Fitness Calculated 30-Nov-2018 19:18:27
+Iterating ...
+   49         150000           1.292            9.62        0
+PID - Starting Fitness Calculation 30-Nov-2018 19:18:29
+Fitness Calculated 30-Nov-2018 20:10:49
+Iterating ...
+   50         153000           1.289           9.779        0
+PID - Starting Fitness Calculation 30-Nov-2018 20:10:51
+Fitness Calculated 30-Nov-2018 21:03:40
+Iterating ...
+   51         156000           1.283           9.402        0
+PID - Starting Fitness Calculation 30-Nov-2018 21:03:41
+Fitness Calculated 30-Nov-2018 21:56:33
+Iterating ...
+   52         159000           1.279           9.596        0
+PID - Starting Fitness Calculation 30-Nov-2018 21:56:35
+Fitness Calculated 30-Nov-2018 22:49:50
+Iterating ...
+   53         162000           1.276           9.265        0
+PID - Starting Fitness Calculation 30-Nov-2018 22:49:52
+Fitness Calculated 30-Nov-2018 23:42:25
+Iterating ...
+   54         165000           1.274           9.386        0
+PID - Starting Fitness Calculation 30-Nov-2018 23:42:27
+Fitness Calculated 01-Dec-2018 00:35:09
+Iterating ...
+   55         168000           1.273           9.231        0
+PID - Starting Fitness Calculation 01-Dec-2018 00:35:11
+Fitness Calculated 01-Dec-2018 01:28:15
+Iterating ...
+   56         171000           1.271           9.183        0
+PID - Starting Fitness Calculation 01-Dec-2018 01:28:17
+Fitness Calculated 01-Dec-2018 02:22:54
+Iterating ...
+   57         174000            1.27           9.016        0
+PID - Starting Fitness Calculation 01-Dec-2018 02:22:56
+Fitness Calculated 01-Dec-2018 03:17:58
+Iterating ...
+   58         177000            1.27           8.998        0
+PID - Starting Fitness Calculation 01-Dec-2018 03:18:00
+Fitness Calculated 01-Dec-2018 04:11:26
+Iterating ...
+   59         180000           1.269           9.128        0
+PID - Starting Fitness Calculation 01-Dec-2018 04:11:28
+Fitness Calculated 01-Dec-2018 05:04:40
+Iterating ...
+   60         183000           1.268           9.014        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+PID - Starting Fitness Calculation 01-Dec-2018 05:04:42
+Fitness Calculated 01-Dec-2018 05:56:33
+Iterating ...
+   61         186000           1.265           9.409        0
+PID - Starting Fitness Calculation 01-Dec-2018 05:56:35
+Fitness Calculated 01-Dec-2018 06:48:32
+Iterating ...
+   62         189000           1.265           9.628        0
+PID - Starting Fitness Calculation 01-Dec-2018 06:48:34
+Fitness Calculated 01-Dec-2018 07:38:13
+Iterating ...
+   63         192000           1.265           9.767        1
+PID - Starting Fitness Calculation 01-Dec-2018 07:38:15
+Fitness Calculated 01-Dec-2018 08:29:30
+Iterating ...
+   64         195000           1.265           10.03        0
+PID - Starting Fitness Calculation 01-Dec-2018 08:29:32
+Fitness Calculated 01-Dec-2018 09:20:25
+Iterating ...
+   65         198000           1.264           9.841        0
+PID - Starting Fitness Calculation 01-Dec-2018 09:20:27
+Fitness Calculated 01-Dec-2018 10:12:02
+Iterating ...
+   66         201000           1.261           9.402        0
+PID - Starting Fitness Calculation 01-Dec-2018 10:12:04
+Fitness Calculated 01-Dec-2018 11:04:42
+Iterating ...
+   67         204000           1.261           9.299        0
+PID - Starting Fitness Calculation 01-Dec-2018 11:04:44
+Fitness Calculated 01-Dec-2018 11:58:12
+Iterating ...
+   68         207000           1.261           9.154        0
+PID - Starting Fitness Calculation 01-Dec-2018 11:58:14
+Fitness Calculated 01-Dec-2018 12:50:32
+Iterating ...
+   69         210000           1.261           9.168        0
+PID - Starting Fitness Calculation 01-Dec-2018 12:50:34
+Fitness Calculated 01-Dec-2018 13:43:58
+Iterating ...
+   70         213000            1.26           9.058        0
+PID - Starting Fitness Calculation 01-Dec-2018 13:44:00
+Fitness Calculated 01-Dec-2018 14:36:28
+Iterating ...
+   71         216000            1.26           9.028        0
+PID - Starting Fitness Calculation 01-Dec-2018 14:36:30
+Fitness Calculated 01-Dec-2018 15:29:47
+Iterating ...
+   72         219000           1.259           9.103        0
+PID - Starting Fitness Calculation 01-Dec-2018 15:29:50
+Fitness Calculated 01-Dec-2018 16:22:51
+Iterating ...
+   73         222000           1.259           9.112        0
+PID - Starting Fitness Calculation 01-Dec-2018 16:22:53
+Fitness Calculated 01-Dec-2018 17:17:07
+Iterating ...
+   74         225000           1.258            9.07        0
+PID - Starting Fitness Calculation 01-Dec-2018 17:17:10
+Fitness Calculated 01-Dec-2018 18:10:34
+Iterating ...
+   75         228000           1.258           8.917        0
+PID - Starting Fitness Calculation 01-Dec-2018 18:10:36
+Fitness Calculated 01-Dec-2018 19:02:44
+Iterating ...
+   76         231000           1.258           8.943        0
+PID - Starting Fitness Calculation 01-Dec-2018 19:02:46
+Fitness Calculated 01-Dec-2018 19:56:13
+Iterating ...
+   77         234000           1.258            8.74        0
+PID - Starting Fitness Calculation 01-Dec-2018 19:56:15
+Fitness Calculated 01-Dec-2018 20:49:23
+Iterating ...
+   78         237000           1.258            8.87        0
+PID - Starting Fitness Calculation 01-Dec-2018 20:49:26
+Fitness Calculated 01-Dec-2018 21:42:42
+Iterating ...
+   79         240000           1.258           8.967        1
+PID - Starting Fitness Calculation 01-Dec-2018 21:42:44
+Fitness Calculated 01-Dec-2018 22:35:41
+Iterating ...
+   80         243000           1.258           8.951        0
+PID - Starting Fitness Calculation 01-Dec-2018 22:35:44
+Fitness Calculated 01-Dec-2018 23:29:48
+Iterating ...
+   81         246000           1.258           9.005        0
+PID - Starting Fitness Calculation 01-Dec-2018 23:29:50
+Fitness Calculated 02-Dec-2018 00:23:13
+Iterating ...
+   82         249000           1.257           8.977        0
+PID - Starting Fitness Calculation 02-Dec-2018 00:23:16
+Fitness Calculated 02-Dec-2018 01:16:53
+Iterating ...
+   83         252000           1.257           8.863        0
+PID - Starting Fitness Calculation 02-Dec-2018 01:16:56
+Fitness Calculated 02-Dec-2018 02:10:38
+Iterating ...
+   84         255000           1.257           8.837        0
+PID - Starting Fitness Calculation 02-Dec-2018 02:10:41
+Fitness Calculated 02-Dec-2018 03:03:17
+Iterating ...
+   85         258000           1.257           9.174        0
+PID - Starting Fitness Calculation 02-Dec-2018 03:03:20
+Fitness Calculated 02-Dec-2018 03:56:42
+Iterating ...
+   86         261000           1.256            9.25        0
+PID - Starting Fitness Calculation 02-Dec-2018 03:56:45
+Fitness Calculated 02-Dec-2018 04:49:33
+Iterating ...
+   87         264000           1.256           8.932        0
+PID - Starting Fitness Calculation 02-Dec-2018 04:49:36
+Fitness Calculated 02-Dec-2018 05:42:17
+Iterating ...
+   88         267000           1.256           9.089        0
+PID - Starting Fitness Calculation 02-Dec-2018 05:42:20
+Fitness Calculated 02-Dec-2018 06:36:11
+Iterating ...
+   89         270000           1.256           8.789        0
+PID - Starting Fitness Calculation 02-Dec-2018 06:36:14
+Fitness Calculated 02-Dec-2018 07:29:45
+Iterating ...
+   90         273000           1.256           9.121        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+PID - Starting Fitness Calculation 02-Dec-2018 07:29:48
+Fitness Calculated 02-Dec-2018 08:22:29
+Iterating ...
+   91         276000           1.255           9.058        0
+PID - Starting Fitness Calculation 02-Dec-2018 08:22:32
+Fitness Calculated 02-Dec-2018 09:14:27
+Iterating ...
+   92         279000           1.255           9.127        0
+PID - Starting Fitness Calculation 02-Dec-2018 09:14:30
+Fitness Calculated 02-Dec-2018 10:07:03
+Iterating ...
+   93         282000           1.255           9.174        0
+PID - Starting Fitness Calculation 02-Dec-2018 10:07:06
+Fitness Calculated 02-Dec-2018 11:00:07
+Iterating ...
+   94         285000           1.255           9.163        0
+PID - Starting Fitness Calculation 02-Dec-2018 11:00:10
+Fitness Calculated 02-Dec-2018 11:54:07
+Iterating ...
+   95         288000           1.255            9.06        0
+PID - Starting Fitness Calculation 02-Dec-2018 11:54:10
+Fitness Calculated 02-Dec-2018 12:46:46
+Iterating ...
+   96         291000           1.255           9.001        0
+PID - Starting Fitness Calculation 02-Dec-2018 12:46:49
+Fitness Calculated 02-Dec-2018 13:41:44
+Iterating ...
+   97         294000           1.254           8.901        0
+PID - Starting Fitness Calculation 02-Dec-2018 13:41:47
+Fitness Calculated 02-Dec-2018 14:35:05
+Iterating ...
+   98         297000           1.254           8.833        0
+PID - Starting Fitness Calculation 02-Dec-2018 14:35:09
+Fitness Calculated 02-Dec-2018 15:29:32
+Iterating ...
+   99         300000           1.254           8.921        0
+PID - Starting Fitness Calculation 02-Dec-2018 15:29:36
+Fitness Calculated 02-Dec-2018 16:23:05
+Iterating ...
+  100         303000           1.254           8.823        0
+PID - Starting Fitness Calculation 02-Dec-2018 16:23:09
+Fitness Calculated 02-Dec-2018 17:16:10
+Iterating ...
+  101         306000           1.254           9.115        0
+PID - Starting Fitness Calculation 02-Dec-2018 17:16:13
+Fitness Calculated 02-Dec-2018 18:08:46
+Iterating ...
+  102         309000           1.254           9.147        1
+PID - Starting Fitness Calculation 02-Dec-2018 18:08:49
+Fitness Calculated 02-Dec-2018 19:02:29
+Iterating ...
+  103         312000           1.254            8.87        0
+PID - Starting Fitness Calculation 02-Dec-2018 19:02:32
+Fitness Calculated 02-Dec-2018 19:55:45
+Iterating ...
+  104         315000           1.254           8.674        0
+PID - Starting Fitness Calculation 02-Dec-2018 19:55:48
+Fitness Calculated 02-Dec-2018 20:48:51
+Iterating ...
+  105         318000           1.254           8.966        0
+PID - Starting Fitness Calculation 02-Dec-2018 20:48:54
+Fitness Calculated 02-Dec-2018 21:42:32
+Iterating ...
+  106         321000           1.254            8.79        0
+PID - Starting Fitness Calculation 02-Dec-2018 21:42:35
+Fitness Calculated 02-Dec-2018 22:35:54
+Iterating ...
+  107         324000           1.253           8.745        0
+PID - Starting Fitness Calculation 02-Dec-2018 22:35:57
+Fitness Calculated 02-Dec-2018 23:29:59
+Iterating ...
+  108         327000           1.253           8.714        0
+PID - Starting Fitness Calculation 02-Dec-2018 23:30:02
+Fitness Calculated 03-Dec-2018 00:25:14
+Iterating ...
+  109         330000           1.253           8.739        0
+PID - Starting Fitness Calculation 03-Dec-2018 00:25:18
+Fitness Calculated 03-Dec-2018 01:19:12
+Iterating ...
+  110         333000           1.253           8.891        0
+PID - Starting Fitness Calculation 03-Dec-2018 01:19:15
+Fitness Calculated 03-Dec-2018 02:12:00
+Iterating ...
+  111         336000           1.252           9.167        0
+PID - Starting Fitness Calculation 03-Dec-2018 02:12:04
+Fitness Calculated 03-Dec-2018 03:05:52
+Iterating ...
+  112         339000           1.252           8.801        0
+PID - Starting Fitness Calculation 03-Dec-2018 03:05:56
+Fitness Calculated 03-Dec-2018 03:59:14
+Iterating ...
+  113         342000           1.252           8.959        0
+PID - Starting Fitness Calculation 03-Dec-2018 03:59:17
+Fitness Calculated 03-Dec-2018 04:52:21
+Iterating ...
+  114         345000           1.252           9.064        0
+PID - Starting Fitness Calculation 03-Dec-2018 04:52:24
+Fitness Calculated 03-Dec-2018 05:44:27
+Iterating ...
+  115         348000           1.252           9.016        0
+PID - Starting Fitness Calculation 03-Dec-2018 05:44:31
+Fitness Calculated 03-Dec-2018 06:38:05
+Iterating ...
+  116         351000           1.252             8.9        0
+PID - Starting Fitness Calculation 03-Dec-2018 06:38:09
+Fitness Calculated 03-Dec-2018 07:30:43
+Iterating ...
+  117         354000           1.252           9.136        0
+PID - Starting Fitness Calculation 03-Dec-2018 07:30:46
+Fitness Calculated 03-Dec-2018 08:22:53
+Iterating ...
+  118         357000           1.252           9.109        0
+PID - Starting Fitness Calculation 03-Dec-2018 08:22:57
+Fitness Calculated 03-Dec-2018 09:16:10
+Iterating ...
+  119         360000           1.252           9.088        0
+PID - Starting Fitness Calculation 03-Dec-2018 09:16:14
+Fitness Calculated 03-Dec-2018 10:09:28
+Iterating ...
+  120         363000           1.252           8.753        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+PID - Starting Fitness Calculation 03-Dec-2018 10:09:32
+Fitness Calculated 03-Dec-2018 11:03:40
+Iterating ...
+  121         366000           1.252           8.888        0
+PID - Starting Fitness Calculation 03-Dec-2018 11:03:44
+Fitness Calculated 03-Dec-2018 11:57:42
+Iterating ...
+  122         369000           1.252           8.736        0
+PID - Starting Fitness Calculation 03-Dec-2018 11:57:46
+Fitness Calculated 03-Dec-2018 12:51:44
+Iterating ...
+  123         372000           1.252           8.612        0
+PID - Starting Fitness Calculation 03-Dec-2018 12:51:48
+Fitness Calculated 03-Dec-2018 13:46:28
+Iterating ...
+  124         375000           1.252            8.88        0
+PID - Starting Fitness Calculation 03-Dec-2018 13:46:32
+Fitness Calculated 03-Dec-2018 14:39:30
+Iterating ...
+  125         378000           1.252           8.586        0
+PID - Starting Fitness Calculation 03-Dec-2018 14:39:33
+Fitness Calculated 03-Dec-2018 15:33:03
+Iterating ...
+  126         381000           1.252           8.888        0
+PID - Starting Fitness Calculation 03-Dec-2018 15:33:07
+Fitness Calculated 03-Dec-2018 16:27:26
+Iterating ...
+  127         384000           1.252           8.829        0
+PID - Starting Fitness Calculation 03-Dec-2018 16:27:30
+Fitness Calculated 03-Dec-2018 17:20:16
+Iterating ...
+  128         387000           1.252           8.785        0
+PID - Starting Fitness Calculation 03-Dec-2018 17:20:20
+Fitness Calculated 03-Dec-2018 18:13:11
+Iterating ...
+  129         390000           1.251           9.034        0
+PID - Starting Fitness Calculation 03-Dec-2018 18:13:15
+Fitness Calculated 03-Dec-2018 19:06:18
+Iterating ...
+  130         393000           1.251           9.064        0
+PID - Starting Fitness Calculation 03-Dec-2018 19:06:22
+Fitness Calculated 03-Dec-2018 20:01:18
+Iterating ...
+  131         396000           1.251           8.816        0
+PID - Starting Fitness Calculation 03-Dec-2018 20:01:22
+Fitness Calculated 03-Dec-2018 20:55:03
+Iterating ...
+  132         399000           1.251           8.898        0
+PID - Starting Fitness Calculation 03-Dec-2018 20:55:07
+Fitness Calculated 03-Dec-2018 21:47:47
+Iterating ...
+  133         402000           1.251           8.964        0
+PID - Starting Fitness Calculation 03-Dec-2018 21:47:51
+Fitness Calculated 03-Dec-2018 22:41:47
+Iterating ...
+  134         405000           1.251           8.859        0
+PID - Starting Fitness Calculation 03-Dec-2018 22:41:51
+Fitness Calculated 03-Dec-2018 23:35:56
+Iterating ...
+  135         408000           1.251             8.8        0
+PID - Starting Fitness Calculation 03-Dec-2018 23:36:00
+Fitness Calculated 04-Dec-2018 00:30:21
+Iterating ...
+  136         411000           1.251           8.492        0
+PID - Starting Fitness Calculation 04-Dec-2018 00:30:26
+Fitness Calculated 04-Dec-2018 01:24:02
+Iterating ...
+  137         414000           1.251           8.873        0
+PID - Starting Fitness Calculation 04-Dec-2018 01:24:06
+Fitness Calculated 04-Dec-2018 02:18:00
+Iterating ...
+  138         417000           1.251            8.98        0
+PID - Starting Fitness Calculation 04-Dec-2018 02:18:04
+Fitness Calculated 04-Dec-2018 03:12:34
+Iterating ...
+  139         420000           1.251           8.871        0
+PID - Starting Fitness Calculation 04-Dec-2018 03:12:38
+Fitness Calculated 04-Dec-2018 04:06:48
+Iterating ...
+  140         423000           1.251           8.978        0
+PID - Starting Fitness Calculation 04-Dec-2018 04:06:52
+Fitness Calculated 04-Dec-2018 05:00:08
+Iterating ...
+  141         426000           1.251           8.943        0
+PID - Starting Fitness Calculation 04-Dec-2018 05:00:12
+Fitness Calculated 04-Dec-2018 05:54:02
+Iterating ...
+  142         429000           1.251           8.944        1
+PID - Starting Fitness Calculation 04-Dec-2018 05:54:06
+Fitness Calculated 04-Dec-2018 06:47:39
+Iterating ...
+  143         432000           1.251           8.961        2
+PID - Starting Fitness Calculation 04-Dec-2018 06:47:44
+Fitness Calculated 04-Dec-2018 07:40:47
+Iterating ...
+  144         435000           1.251           8.863        0
+PID - Starting Fitness Calculation 04-Dec-2018 07:40:52
+Fitness Calculated 04-Dec-2018 08:33:35
+Iterating ...
+  145         438000           1.251           8.978        0
+PID - Starting Fitness Calculation 04-Dec-2018 08:33:39
+Fitness Calculated 04-Dec-2018 09:27:42
+Iterating ...
+  146         441000           1.251           8.939        0
+PID - Starting Fitness Calculation 04-Dec-2018 09:27:47
+Fitness Calculated 04-Dec-2018 10:20:44
+Iterating ...
+  147         444000           1.251           9.111        0
+PID - Starting Fitness Calculation 04-Dec-2018 10:20:49
+Fitness Calculated 04-Dec-2018 11:13:58
+Iterating ...
+  148         447000           1.251            8.96        0
+PID - Starting Fitness Calculation 04-Dec-2018 11:14:02
+Fitness Calculated 04-Dec-2018 12:06:34
+Iterating ...
+  149         450000           1.251           8.989        0
+PID - Starting Fitness Calculation 04-Dec-2018 12:06:38
+Fitness Calculated 04-Dec-2018 13:01:18
+Iterating ...
+  150         453000           1.251           9.064        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+PID - Starting Fitness Calculation 04-Dec-2018 13:01:23
+Fitness Calculated 04-Dec-2018 13:53:50
+Iterating ...
+  151         456000           1.251           8.922        0
+PID - Starting Fitness Calculation 04-Dec-2018 13:53:55
+Fitness Calculated 04-Dec-2018 14:46:47
+Iterating ...
+  152         459000           1.251           8.838        1
+PID - Starting Fitness Calculation 04-Dec-2018 14:46:51
+Fitness Calculated 04-Dec-2018 15:40:02
+Iterating ...
+  153         462000           1.251           9.131        0
+PID - Starting Fitness Calculation 04-Dec-2018 15:40:07
+Fitness Calculated 04-Dec-2018 16:33:09
+Iterating ...
+  154         465000           1.251           9.129        0
+PID - Starting Fitness Calculation 04-Dec-2018 16:33:14
+Fitness Calculated 04-Dec-2018 17:25:20
+Iterating ...
+  155         468000           1.251           9.038        0
+PID - Starting Fitness Calculation 04-Dec-2018 17:25:24
+Fitness Calculated 04-Dec-2018 18:17:46
+Iterating ...
+  156         471000           1.251           9.279        0
+PID - Starting Fitness Calculation 04-Dec-2018 18:17:50
+Fitness Calculated 04-Dec-2018 19:10:53
+Iterating ...
+  157         474000           1.251           9.094        0
+PID - Starting Fitness Calculation 04-Dec-2018 19:10:58
+Fitness Calculated 04-Dec-2018 20:05:20
+Iterating ...
+  158         477000           1.251           8.775        0
+PID - Starting Fitness Calculation 04-Dec-2018 20:05:25
+Fitness Calculated 04-Dec-2018 20:59:38
+Iterating ...
+  159         480000           1.251           8.637        0
+PID - Starting Fitness Calculation 04-Dec-2018 20:59:43
+Fitness Calculated 04-Dec-2018 21:53:35
+Iterating ...
+  160         483000           1.251           8.887        0
+PID - Starting Fitness Calculation 04-Dec-2018 21:53:40
+Fitness Calculated 04-Dec-2018 22:47:21
+Iterating ...
+  161         486000           1.251           9.061        0
+PID - Starting Fitness Calculation 04-Dec-2018 22:47:25
+Fitness Calculated 04-Dec-2018 23:40:33
+Iterating ...
+  162         489000           1.251           9.209        0
+PID - Starting Fitness Calculation 04-Dec-2018 23:40:38
+Fitness Calculated 05-Dec-2018 00:32:32
+Iterating ...
+  163         492000           1.251           9.091        1
+PID - Starting Fitness Calculation 05-Dec-2018 00:32:37
+Fitness Calculated 05-Dec-2018 01:25:53
+Iterating ...
+  164         495000           1.251           9.215        0
+PID - Starting Fitness Calculation 05-Dec-2018 01:25:58
+Fitness Calculated 05-Dec-2018 02:19:29
+Iterating ...
+  165         498000           1.251           9.127        1
+PID - Starting Fitness Calculation 05-Dec-2018 02:19:34
+Fitness Calculated 05-Dec-2018 03:10:51
+Iterating ...
+  166         501000           1.251           9.104        0
+PID - Starting Fitness Calculation 05-Dec-2018 03:10:56
+Fitness Calculated 05-Dec-2018 04:03:29
+Iterating ...
+  167         504000           1.251           9.126        0
+PID - Starting Fitness Calculation 05-Dec-2018 04:03:34
+Fitness Calculated 05-Dec-2018 04:56:26
+Iterating ...
+  168         507000           1.251           9.168        0
+PID - Starting Fitness Calculation 05-Dec-2018 04:56:31
+Fitness Calculated 05-Dec-2018 05:49:36
+Iterating ...
+  169         510000           1.251            9.03        1
+PID - Starting Fitness Calculation 05-Dec-2018 05:49:41
+Fitness Calculated 05-Dec-2018 06:42:04
+Iterating ...
+  170         513000           1.251           9.153        0
+PID - Starting Fitness Calculation 05-Dec-2018 06:42:09
+Fitness Calculated 05-Dec-2018 07:36:01
+Iterating ...
+  171         516000           1.251           8.868        0
+PID - Starting Fitness Calculation 05-Dec-2018 07:36:06
