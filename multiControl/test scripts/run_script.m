@@ -20,7 +20,7 @@ orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.0616284
 multirotor.setRotorOrientation(1:8,orientations);
 % Define aircraft's inertia
 multirotor.setMass(6.015);
-mass = 6;
+mass = 0;
 inertia =   [0.3143978800	0.0000861200	-0.0014397600
             0.0000861200	0.3122127800	0.0002368800
             -0.0014397600	0.0002368800	0.5557912400];
@@ -151,6 +151,7 @@ kdd = [11.5001522749662 7.25000000000000 13.2500582933426];
 % Markovian passive:
 % kp = [70 70 100];ki = [40 40 40];kd = [40 40 70];kdd = [15 15 2];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
+% kp = [389.67 404.17 108.46]; ki =[52.17 11.03 61.61]; kd = [35.83 40 70]; kdd = [8.58 9.65 1.04];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
 % PID attitude controller
@@ -259,12 +260,12 @@ multirotor.configController('Adaptive Direct',Am,Q,gamma1,gamma2,gamma3,gamma4,B
 
 % Markovian Passive Modified
 P = eye(6);
-Ef = 10*[2 2 1 1 1 1];
-Eg = 1000*[1 1 1 1 1 1 1 1];
-k = 1;
-Er = 0.000001*eye(8);
-Eq = 1*eye(6);
-lambda = 1;
+Ef = [96501.6733891791 77938.6590146259 8316.77302954705 77403.0624113987 33026.4672777944 75744.3901441209];
+Eg = [92518.7242854180 80846.4590502406 98743.5851487040 52664.7416862291 7180.52633564706 26640.5681377240 2758.16418230359 7681.64920735833];
+k = 91.2833604648149;
+Er = diag([1.00000000000000e-06 1.00000000000000e-06 1.00000000000000e-06 0.890325680063593 1.00000000000000e-06 1.00000000000000e-06 1.00000000000000e-06 1.00000000000000e-06]);
+Eq = diag([57091.4134380798 13396.1618419214 30537.6274125357 36097.1478078271 23865.5486345155 96302.6327783880]);
+lambda = 90.2664787832406;
 % orientationsAux = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
 % positionsAux = [[0.341 0.341 0.0143]',[-0.341 0.341 0.0143]',[-0.341 -0.341 0.0143]',[0.341 -0.341 0.0143]',[0.341 0.341 0.0913]',[-0.341 0.341 0.0913]',[-0.341 -0.341 0.0913]',[0.341 -0.341 0.0913]'];
 % modes = controllableModes(positionsAux,orientationsAux,rotationDirection);
@@ -274,9 +275,10 @@ modes = [1 1 1 1 1 1 1 1
          0 0 0 1 1 1 1 1
          0 0 0 0 1 1 1 1];
 numberOfModes = size(modes,1);
-pij = 0.5*eye(numberOfModes);
-eij = 2*ones(numberOfModes, numberOfModes);
+pij = 1.96550036292766*eye(numberOfModes);
+eij = 2.18369128560955*ones(numberOfModes, numberOfModes);
 multirotor.configController('Markovian RLQ-R Passive Modified',P,Ef,Eg,k,Er,Eq,lambda,modes,pij,eij);
+multirotor.setAngularFilterGain([0.00659393281644116 0.00456118030355779 0.942187236895285]);
 
 
 % Adaptive control allocation
@@ -291,7 +293,7 @@ multirotor.setControlTimeStep(0.05);
 multirotor.setController('PID');
 multirotor.setControlAllocator('Passive NMAC');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
-multirotor.configFDD(1,0.1)
+multirotor.configFDD(0.99,0.1)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
 % multirotor.setTrajectory('waypoints',[50 50 50 170*pi/180]',10);
@@ -318,7 +320,7 @@ multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
 multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
-multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)   
+% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)   
 % multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(5,''motor loss'',0.75)'},endTime/2)
@@ -329,5 +331,5 @@ multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.20);
 %% Run simulator
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
-multirotor.plotSim();
+% multirotor.plotSim();
 % multirotor.plotAxes('rotorspeed',figure())

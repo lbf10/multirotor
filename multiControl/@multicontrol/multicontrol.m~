@@ -1895,33 +1895,20 @@ classdef multicontrol < multicopter
                     else
                         diagnosis{it}.motorEfficiency = test2;
                     end
-                    test1 = obj.fddRotor_{it}.propEfficiency(1)+error;
-                    if test1>=1
-                        test1 = 1;
-                    elseif test1 <= 0 
-                        test1 = 0;
-                    end
-                    test2 = obj.fddRotor_{it}.propEfficiency(1)-error;
-                    if test2>=1
-                        test2 = 1;
-                    elseif test2 <= 0 
-                        test2 = 0;
-                    end
-                    if abs(obj.fddRotor_{it}.propEfficiency(1)-test1) >= abs(obj.fddRotor_{it}.propEfficiency(1)-test2)
-                        diagnosis{it}.propEfficiency = test1;
-                    else
-                        diagnosis{it}.propEfficiency = test2;
-                    end
-                    
+                    diagnosis{it}.propEfficiency = obj.fddRotor_{it}.propEfficiency(1);   
+
+                    diagnosis{it}.motorEfficiency = rand();
                     if diagnosis{it}.motorEfficiency >= 0.7
                         diagnosis{it}.status{3} = 'motor ok';
                     else
                         diagnosis{it}.status{3} = 'motor loss';
-                    end                        
+                    end
+                    diagnosis{it}.propEfficiency = rand();                        
                     if diagnosis{it}.motorEfficiency >= 0.5
                         diagnosis{it}.status{4} = 'prop ok';
                     else
                         diagnosis{it}.status{4} = 'prop loss';
+                    end
                     end
                 end 
             else
