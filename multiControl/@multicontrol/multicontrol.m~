@@ -472,7 +472,95 @@ classdef multicontrol < multicopter
                                 warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
                             end
                         case obj.attitudeControllers_{18} %% Markovian RLQ-R Active Modified
-                            warning('Controller not implemented. Skipping configuration');
+                            index = 18;
+                            if obj.inputsOK(varargin,it,12)
+                                it = it+1;
+                                if isnumeric(varargin{it}) && sum(size(varargin{it}))>2 && size(varargin{it},2)==obj.numberOfRotors_
+                                numberOfModes = size(varargin{it},1);
+                                    if isnumeric(varargin{it+1}) && sum(size(varargin{it+1}))>2 && size(varargin{it+1},3)==numberOfModes
+                                        if isnumeric(varargin{it+2}) && size(varargin{it+2},1)==size(varargin{it+2},2) && size(varargin{it+2},1)==6 && size(varargin{it+2},3)==numberOfModes
+                                            if isnumeric(varargin{it+3}) && size(varargin{it+3},1)==size(varargin{it+3},2) && size(varargin{it+3},1)==obj.numberOfRotors_ && size(varargin{it+3},3)==numberOfModes
+                                                if isnumeric(varargin{it+4}) && size(varargin{it+4},2)==6 && size(varargin{it+4},3)==numberOfModes
+                                                    if isnumeric(varargin{it+5}) && size(varargin{it+5},2)==obj.numberOfRotors_ && size(varargin{it+5},3)==numberOfModes
+                                                        if isnumeric(varargin{it+6}) && size(varargin{it+6},1)==6 && size(varargin{it+6},3)==numberOfModes
+                                                            if isnumeric(varargin{it+7}) && isequal(size(varargin{it+7}),[numberOfModes numberOfModes])
+                                                                if isnumeric(varargin{it+8}) && length(varargin{it+8})==numberOfModes
+                                                                    if isnumeric(varargin{it+9}) && sum(size(varargin{it+9}))==2 && varargin{it+9}>=1
+                                                                        if isnumeric(varargin{it+10}) && sum(size(varargin{it+10}))==2 && varargin{it+10}>0
+                                                                            if isnumeric(varargin{it+11}) && sum(size(varargin{it+11}))==2 && varargin{it+11}>=0
+
+                                                                                obj.controlConfig_{index}.modes = varargin{it};
+                                                                                obj.controlConfig_{index}.initialP = varargin{it};
+                                                                                obj.controlConfig_{index}.Q = varargin{it+2};
+                                                                                obj.controlConfig_{index}.R = varargin{it+3};
+                                                                                obj.controlConfig_{index}.Ef = varargin{it+4};
+                                                                                obj.controlConfig_{index}.Eg = varargin{it+5};
+                                                                                obj.controlConfig_{index}.H = varargin{it+6};
+                                                                                obj.controlConfig_{index}.pij = varargin{it+7};
+                                                                                obj.controlConfig_{index}.ei = varargin{it+8};
+                                                                                obj.controlConfig_{index}.k = varargin{it+9};
+                                                                                obj.controlConfig_{index}.mu = varargin{it+10};
+                                                                                obj.controlConfig_{index}.alpha = varargin{it+11};
+
+                                                                            if obj.verbose_ == true
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller P initial state variance gain set to: ']);
+                                                                                disp(obj.controlConfig_{index}.initialP);
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller uncertainty Ef set to: '])
+                                                                                disp(obj.controlConfig_{index}.Ef);
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller uncertainty Eg set to: '])
+                                                                                disp(obj.controlConfig_{index}.Eg);
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller scalar k set to: '])
+                                                                                disp(obj.controlConfig_{index}.k);
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller Er set to: '])
+                                                                                disp(obj.controlConfig_{index}.Er);
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller Eq set to: '])
+                                                                                disp(obj.controlConfig_{index}.Eq);
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller lambda parameter set to: '])
+                                                                                disp(obj.controlConfig_{index}.lambda);
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller markovian modes number set to: '])
+                                                                                disp(size(obj.controlConfig_{index}.modes,1));
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller probability matrix set.'])
+                                                                            end
+                                                                            else
+                                                                                warning('Attitude controller alpha should be a scalar > 0. Skipping this controller configuration');
+                                                                            end
+                                                                        else
+                                                                            warning('Attitude controller mu should be a scalar > 0. Skipping this controller configuration');
+                                                                        end
+                                                                    else
+                                                                        warning('Attitude controller scalar k must be a scalar >= 1. Skipping this controller configuration');
+                                                                    end     
+                                                                else
+                                                                    warning('Attitude controller probability matrix nominal values should be a numeric square matrix of the same size as the number of markovian modes. Skipping this controller configuration');
+                                                                end            
+                                                            else
+                                                                warning('');
+                                                            end
+                                                        else
+                                                            warning('Attitude controller lambda must be a scalar > 0. Skipping this controller configuration');
+                                                        end
+                                                    else
+                                                        warning('Attitude controller uncertainty Eg must be a numeric matrix. Skipping this controller configuration.');
+                                                    end        
+                                                else
+                                                    warning('Attitude controller Er must be a matrix of size N x N, where N is the number of rotors. Skipping this controller configuration');
+                                                end
+                                            else
+                                                warning('Attitude controller Q matrix should be of size [6 6 numberOfModes]. Skipping this controller configuration.');
+                                            end
+                                        else
+                                            warning('Attitude controller Q matrix should be of size [6 6 numberOfModes]. Skipping this controller configuration.');
+                                        end
+                                    else
+                                        warning('Attitude controller initial state variance must be a numeric matrix. Skipping this controller configuration. Attitude controller uncertainty Ef must be a numeric matrix. Skipping this controller configuration');
+                                    end
+                                else
+                                    warning('Attitude controller markovian modes be a numeric matrix. The number of rows correspond to the number of markovian modes. The number of columns correspond to the number of rotors. A value of 0 means the rotor is faulty while a value of 1 means the rotor is fully operational. Skipping this controller configuration.');
+                                end
+                                it = it+11;                
+                            else
+                                warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
+                            end
                         otherwise
                             warning('Controller type not expected. Skipping configuration');
                     end
@@ -1895,20 +1983,33 @@ classdef multicontrol < multicopter
                     else
                         diagnosis{it}.motorEfficiency = test2;
                     end
-                    diagnosis{it}.propEfficiency = obj.fddRotor_{it}.propEfficiency(1);   
-
-                    diagnosis{it}.motorEfficiency = rand();
+                    test1 = obj.fddRotor_{it}.propEfficiency(1)+error;
+                    if test1>=1
+                        test1 = 1;
+                    elseif test1 <= 0 
+                        test1 = 0;
+                    end
+                    test2 = obj.fddRotor_{it}.propEfficiency(1)-error;
+                    if test2>=1
+                        test2 = 1;
+                    elseif test2 <= 0 
+                        test2 = 0;
+                    end
+                    if abs(obj.fddRotor_{it}.propEfficiency(1)-test1) >= abs(obj.fddRotor_{it}.propEfficiency(1)-test2)
+                        diagnosis{it}.propEfficiency = test1;
+                    else
+                        diagnosis{it}.propEfficiency = test2;
+                    end
+                    
                     if diagnosis{it}.motorEfficiency >= 0.7
                         diagnosis{it}.status{3} = 'motor ok';
                     else
                         diagnosis{it}.status{3} = 'motor loss';
-                    end
-                    diagnosis{it}.propEfficiency = rand();                        
+                    end                        
                     if diagnosis{it}.motorEfficiency >= 0.5
                         diagnosis{it}.status{4} = 'prop ok';
                     else
                         diagnosis{it}.status{4} = 'prop loss';
-                    end
                     end
                 end 
             else

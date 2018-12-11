@@ -472,7 +472,81 @@ classdef multicontrol < multicopter
                                 warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
                             end
                         case obj.attitudeControllers_{18} %% Markovian RLQ-R Active Modified
-                            warning('Controller not implemented. Skipping configuration');
+                            index = 18;
+                            if obj.inputsOK(varargin,it,12)
+                                it = it+1;
+                                if isnumeric(varargin{it}) && sum(size(varargin{it}))>2 && size(varargin{it},2)==obj.numberOfRotors_
+                                numberOfModes = size(varargin{it},1);
+                                    if isnumeric(varargin{it+1}) && sum(size(varargin{it+1}))>2 && size(varargin{it+1},3)==numberOfModes
+                                        if isnumeric(varargin{it+2}) && size(varargin{it+2},1)==size(varargin{it+2},2) && size(varargin{it+2},1)==6 && size(varargin{it+2},3)==numberOfModes
+                                            if isnumeric(varargin{it+3}) && size(varargin{it+3},1)==size(varargin{it+3},2) && size(varargin{it+3},1)==obj.numberOfRotors_ && size(varargin{it+3},3)==numberOfModes
+                                                if isnumeric(varargin{it+4}) && size(varargin{it+4},2)==6 && size(varargin{it+4},3)==numberOfModes
+                                                    if isnumeric(varargin{it+5}) && size(varargin{it+5},2)==obj.numberOfRotors_ && size(varargin{it+5},3)==numberOfModes
+                                                        if isnumeric(varargin{it+6}) && size(varargin{it+6},1)==6 && size(varargin{it+6},3)==numberOfModes
+                                                            if isnumeric(varargin{it+7}) && isequal(size(varargin{it+7}),[numberOfModes numberOfModes])
+                                                                if isnumeric(varargin{it+8}) && length(varargin{it+8})==numberOfModes
+                                                                    if isnumeric(varargin{it+9}) && sum(size(varargin{it+9}))==2 && varargin{it+9}>=1
+                                                                        if isnumeric(varargin{it+10}) && sum(size(varargin{it+10}))==2 && varargin{it+10}>0
+                                                                            if isnumeric(varargin{it+11}) && sum(size(varargin{it+11}))==2 && varargin{it+11}>=0
+
+                                                                                obj.controlConfig_{index}.modes = varargin{it};
+                                                                                obj.controlConfig_{index}.initialP = varargin{it+1};
+                                                                                obj.controlConfig_{index}.Q = varargin{it+2};
+                                                                                obj.controlConfig_{index}.R = varargin{it+3};
+                                                                                obj.controlConfig_{index}.Ef = varargin{it+4};
+                                                                                obj.controlConfig_{index}.Eg = varargin{it+5};
+                                                                                obj.controlConfig_{index}.H = varargin{it+6};
+                                                                                obj.controlConfig_{index}.pij = varargin{it+7};
+                                                                                obj.controlConfig_{index}.ei = varargin{it+8};
+                                                                                obj.controlConfig_{index}.k = varargin{it+9};
+                                                                                obj.controlConfig_{index}.mu = varargin{it+10};
+                                                                                obj.controlConfig_{index}.alpha = varargin{it+11};
+
+                                                                            if obj.verbose_ == true
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller markovian modes number set to: '])
+                                                                                disp(size(obj.controlConfig_{index}.modes,1));
+                                                                                disp(' Markovian active modified attitude controller set.');
+                                                                            end
+                                                                            else
+                                                                                warning('Attitude controller alpha should be a scalar > 0. Skipping this controller configuration');
+                                                                            end
+                                                                        else
+                                                                            warning('Attitude controller mu should be a scalar > 0. Skipping this controller configuration');
+                                                                        end
+                                                                    else
+                                                                        warning('Attitude controller scalar k must be a scalar >= 1. Skipping this controller configuration');
+                                                                    end     
+                                                                else
+                                                                    warning('Attitude controller probability matrix error should be a numeric vector of length numberOfModes. Skipping this controller configuration.');
+                                                                end            
+                                                            else
+                                                                warning('Attitude controller probability matrix nominal values should be a numeric square matrix of the same size as the number of markovian modes. Skipping this controller configuration');
+                                                            end
+                                                        else
+                                                            warning('Attitude controller uncertainty H must be a numeric matrix of size 6 x t. Skipping this controller configuration');
+                                                        end
+                                                    else
+                                                        warning('Attitude controller uncertainty Eg must be a numeric matrix of size l x numberOrRotors x numberOfModes. Skipping this controller configuration.');
+                                                    end        
+                                                else
+                                                    warning('Attitude controller uncertainty Ef must be a numeric matrix of size l x 6 x numberOfModes. Skipping this controller configuration');
+                                                end
+                                            else
+                                                warning('Attitude controller R matrix should be of size numberOfRotors x numberOfRotors x numberOfModes. Skipping this controller configuration.');
+                                            end
+                                        else
+                                            warning('Attitude controller Q matrix should be of size 6 x 6 x numberOfModes. Skipping this controller configuration.');
+                                        end
+                                    else
+                                        warning('Attitude controller initial state variance must be a numeric matrix. Skipping this controller configuration.');
+                                    end
+                                else
+                                    warning('Attitude controller markovian modes be a numeric matrix. The number of rows correspond to the number of markovian modes. The number of columns correspond to the number of rotors. A value of 0 means the rotor is faulty while a value of 1 means the rotor is fully operational. Skipping this controller configuration.');
+                                end
+                                it = it+13;                
+                            else
+                                warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
+                            end
                         otherwise
                             warning('Controller type not expected. Skipping configuration');
                     end
