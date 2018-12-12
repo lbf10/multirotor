@@ -3337,8 +3337,78 @@ classdef multicontrol < multicopter
                     
                     attitudeControlOutput = -obj.inertia()*(C*u-desiredAngularAcceleration+auxA*desiredAngularVelocity);  
                 case 18 %'Markovian RLQ-R Active Modified'
+                    index = 18; 
                     
-                
+                    numberOfModes = size(obj.controlConfig_{index}.modes,1);
+                    modes = obj.controlConfig_{index}.modes;
+                    if ~obj.isRunning()
+                        obj.controlConfig_{index}.P = obj.controlConfig_{index}.initialP;
+                        obj.controlConfig_{index}.G = [];                        
+                        obj.controlConfig_{index}.F = [];
+                        obj.controlConfig_{index}.Ep = [];
+                        ei = obj.controlConfig_{index}.ei;
+                        for it=1:numberOfModes
+                            Mt = [];
+                            for kt=1:obj.numberOfRotors_
+                                Mt = [Mt modes(it,kt)*(obj.rotorLiftCoeff(kt,obj.rotorOperatingPoint_(kt))*cross(obj.rotor_(kt).position,obj.rotor_(kt).orientation)-obj.rotorDragCoeff(kt,obj.rotorOperatingPoint_(kt))*obj.rotorDirection_(kt)*obj.rotor_(kt).orientation)];
+                            end
+                            obj.controlConfig_{index}.G(:,:,it) = [-obj.inertia()\Mt;zeros(3,obj.numberOfRotors_)];
+                            obj.controlConfig_{index}.Ep(:,:,it) = ei(it)*eye(6);
+                        end
+                    end                    
+                    
+                    Sq = [qe(1),-qe(4),qe(3);
+                          qe(4),qe(1),-qe(2);
+                          -qe(3),qe(2),qe(1)];
+                    F = [];
+                    G = [];
+                    for it=1:numberOfModes
+                        torqueAux = zeros(3,1);
+                        for jt=1:obj.numberOfRotors_
+                            torqueAux = torqueAux + modes(it,jt)*obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
+                        end
+                        auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
+                        auxA = [0 -auxA(3) auxA(2) ; auxA(3) 0 -auxA(1) ; -auxA(2) auxA(1) 0 ];
+                        auxA = obj.inertia()\auxA;
+                        obj.controlConfig_{index}.F(:,:,it) = [auxA, zeros(3); 0.5*Sq, zeros(3)];
+                        sys = ss(obj.controlConfig_{index}.F(:,:,it),obj.controlConfig_{index}.G(:,:,it),eye(6),0);
+                        sysD = c2d(sys,obj.controlTimeStep_);
+
+                        F(:,:,it) = sysD.A;
+                        G(:,:,it) = sysD.B;
+                    end                 
+                    
+                    P = obj.controlConfig_{index}.P;
+                    k = obj.controlConfig_{index}.k;
+                    Q = obj.controlConfig_{index}.Q;
+                    R = obj.controlConfig_{index}.R;
+                    H = obj.controlConfig_{index}.H;
+                    Ep = obj.controlConfig_{index}.Ep;
+                    Ef = obj.controlConfig_{index}.Ef;
+                    Eg = obj.controlConfig_{index}.Eg;
+                    pij = obj.controlConfig_{index}.pij;
+                    mu = obj.controlConfig_{index}.mu;
+                    alpha = obj.controlConfig_{index}.alpha;
+
+                    [~,K,Pnext] = obj.gainActiveMarkovian(F,G,P,Q,R,H,Ef,Eg,pij,Ep,k,mu,alpha);
+                    obj.controlConfig_{index}.P = Pnext;
+                    modesAux = ones(1,obj.numberOfRotors_);
+                    for it=1:obj.numberOfRotors_
+                        if ~strcmp('motor ok',diagnosis{it}.status{3}) || ~strcmp('prop ok',diagnosis{it}.status{4})
+                            modesAux(it) = 0;
+                        end
+                    end
+                    [~,theta,~] = intersect(modes,modesAux,'rows');
+                    if isempty(theta)
+                        theta = 1;
+                    end
+                    
+                    x_e = [desiredAngularVelocity-obj.previousAngularVelocity();qe(2:4)'];
+                    u = K(:,:,theta)*x_e;
+                    
+                    auxA = obj.controlConfig_{index}.F(1:3,1:3,theta);
+                    C = obj.controlConfig_{index}.G(1:3,:,theta);
+                    attitudeControlOutput = -obj.inertia()*(C*u-desiredAngularAcceleration+auxA*desiredAngularVelocity);          
             end
         end  
         function allocatorOutput = controlAllocation(obj, controllerOutput, diagnosis)
@@ -3979,6 +4049,49 @@ classdef multicontrol < multicopter
             L = gain(1:n,:);
             K = gain(n+1:n+m,:);
             P = gain(n+m+1:end,:);
+        end
+        function [L,K,Pnext] = gainActiveMarkovian(obj,F,G,P,Q,R,H,Ef,Eg,pij,Ep,k,mu,alpha)
+            %GAINRLQR Calculates RLQ-R gain and ricatti
+        %   Calculates the optimal gains for x(i+1)* and u(i)* in the robust case
+        %   considering parametric uncertainties H, Ef and Eg. Returns also the
+        %   ricatti P(i) for the P(i+1) and other parameters.
+            n = size(F,2);
+            m = size(G,2);
+            s = size(F,3);
+            l = size(Ef,1);
+            Ep = k*Ep;
+            Ef = k*Ef;
+            Eg = k*Eg;
+            
+            for it=1:s
+                psi = zeros(n);          
+                for jt = 1:s  
+                    psi = psi + pij(it,jt) * P(:,:,jt);
+                end
+                Fhat = [F(:,:,it);zeros(n,n);Ef(:,:,it)];
+                Ghat = [G(:,:,it);zeros(n,m);Eg(:,:,it)];
+                Ihat = [eye(n);Ep(:,:,it);zeros(size(Ef(:,:,it)))];
+                lambda = (1+alpha)*norm(mu*H(:,:,it)'*H(:,:,it));
+                theta = eye(n)/mu-H(:,:,it)*H(:,:,it)'/lambda;
+                sigma = blkdiag(theta, eye(n)/lambda, eye(l)/lambda);
+                
+                left = [zeros(n+m,n+m+n)
+                        zeros(n,n+m), -eye(n)
+                        zeros(size(Fhat,1),n+m), Fhat
+                        eye(n), zeros(n,m+n)
+                        zeros(m,n), eye(m), zeros(m,n)]';
+                auxCenter = [eye(n+m)
+                             zeros(n,n+m)
+                             Ihat, -Ghat];
+                topCenter = blkdiag(inv(psi),inv(R(:,:,it)),inv(Q(:,:,it)),sigma);
+                center = [topCenter,auxCenter
+                          auxCenter',zeros(n+m,n+m)];
+                right = [zeros(n+m,n);-eye(n);Fhat;zeros(n+m,n)];
+                gain = left*(center\right);
+                L(:,:,it) = gain(1:n,:);
+                K(:,:,it) = gain(n+1:n+m,:);
+                Pnext(:,:,it) = gain(n+m+1:end,:);
+            end
         end
         function it = configureSOSMC(obj,index,varArgs,it)
             if obj.inputsOK(varArgs,it,3)
