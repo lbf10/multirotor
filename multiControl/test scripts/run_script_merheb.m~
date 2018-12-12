@@ -180,34 +180,45 @@ modes = [1 1 1 1 1 1 1 1
 numberOfModes = size(modes,1);
 
 Ef = [];
-Ef(:,:,1) = 10*ones(1,6);
-Ef(:,:,2) = 10*ones(1,6);
-Ef(:,:,3) = 10*ones(1,6);
-Ef(:,:,4) = 10*ones(1,6);
-Ef(:,:,5) = 10*ones(1,6);
+Ef(:,:,1) = 1000*ones(1,6);
+Ef(:,:,2) = 1000*ones(1,6);
+Ef(:,:,3) = 1000*ones(1,6);
+Ef(:,:,4) = 1000*ones(1,6);
+Ef(:,:,5) = 1000*ones(1,6);
 
 Eg = [];
-Eg(:,:,1) = [1000 1000 1000 1000 1000 1000 1000 1000];
-Eg(:,:,2) = [1000 1000 1000 1000 1000 1000 1000 1000];
-Eg(:,:,3) = [1000 1000 1000 1000 1000 1000 1000 1000];
-Eg(:,:,4) = [1000 1000 1000 1000 1000 1000 1000 1000];
-Eg(:,:,5) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,1) = 10000*ones(1,8);
+Eg(:,:,2) = 10000*ones(1,8);
+Eg(:,:,3) = 10000*ones(1,8);
+Eg(:,:,4) = 10000*ones(1,8);
+Eg(:,:,5) = 10000*ones(1,8);
 
 k = 1;
 
 Eq = [];
-Eq(:,:,1) = diag([1 1 1 1e-6 1e-6 1e-6]);
-Eq(:,:,2) = diag([1 1 1 1e-6 1e-6 1e-6]);
-Eq(:,:,3) = diag([1 1 1 1e-6 1e-6 1e-6]);
-Eq(:,:,4) = diag([1 1 1 1e-6 1e-6 1e-6]);
-Eq(:,:,5) = diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,1) = 1e-10*diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,2) = 1e-10*diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,3) = 1e-10*diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,4) = 1e-10*diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,5) = 1e-10*diag([1 1 1 1e-6 1e-6 1e-6]);
 
 Er = [];
-Er(:,:,1) = diag(0.000001*modes(1,:)+~modes(1,:));
-Er(:,:,2) = diag(0.000001*modes(2,:)+~modes(2,:));
-Er(:,:,3) = diag(0.000001*modes(3,:)+~modes(3,:));
-Er(:,:,4) = diag(0.000001*modes(4,:)+~modes(4,:));
-Er(:,:,5) = diag(0.000001*modes(5,:)+~modes(5,:));
+% Er(:,:,1) = diag(0.000000000001*modes(1,:)+~modes(1,:));
+% Er(:,:,2) = diag(0.000000000001*modes(2,:)+~modes(2,:));
+% Er(:,:,3) = diag(0.000000000001*modes(3,:)+~modes(3,:));
+% Er(:,:,4) = diag(0.000000000001*modes(4,:)+~modes(4,:));
+% Er(:,:,5) = diag(0.000000000001*modes(5,:)+~modes(5,:));
+% Er(:,:,6) = diag(0.000000000001*modes(6,:)+~modes(6,:));
+% Er(:,:,7) = diag(0.000000000001*modes(7,:)+~modes(7,:));
+% Er(:,:,8) = diag(0.000000000001*modes(8,:)+~modes(8,:));
+% Er(:,:,9) = diag(0.000000000001*modes(9,:)+~modes(9,:));
+Er(:,:,1) = 1e-15*eye(8);
+Er(:,:,2) = 1e-15*eye(8);
+Er(:,:,3) = 1e-15*eye(8);
+Er(:,:,4) = 1e-15*eye(8);
+Er(:,:,5) = 1e-15*eye(8);
+Er(:,:,6) = 1e-15*eye(8);
+Er(:,:,7) = 1e-15*eye(8);
 
 lambda = 1;
 pij = 0.5*eye(numberOfModes);
@@ -308,9 +319,9 @@ multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
 multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
-multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)    
-multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/2)   
-multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2)  
+% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)    
+% multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/2)   
+% multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2)  
 % multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},0)
