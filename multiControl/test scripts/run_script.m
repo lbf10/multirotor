@@ -3,7 +3,7 @@
 
 addpath('../multiControl/')
 addpath('../multiControl/utils')
-warning('on','all')
+warning('off','all')
 clear all
 clc
 %% Configuration for +8 coaxial octorotor
@@ -20,7 +20,7 @@ orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.0616284
 multirotor.setRotorOrientation(1:8,orientations);
 % Define aircraft's inertia
 multirotor.setMass(6.015);
-mass = 0;
+mass = 3;
 inertia =   [0.3143978800	0.0000861200	-0.0014397600
             0.0000861200	0.3122127800	0.0002368800
             -0.0014397600	0.0002368800	0.5557912400];
@@ -125,10 +125,10 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 %% Controller configuration
 % Trajectory controller
 % PID:
-kp = [95.75 100.250020593405 97.0000495910645];
-ki = [14.0625572204590 13 19];
-kd = [49.5000000000000 49.2500000000000 41];
-kdd = [11.5001522749662 7.25000000000000 13.2500582933426];
+% kp = [95.75 100.250020593405 97.0000495910645];
+% ki = [14.0625572204590 13 19];
+% kd = [49.5000000000000 49.2500000000000 41];
+% kdd = [11.5001522749662 7.25000000000000 13.2500582933426];
 % RLQ-R Passive:
 % kp = [30 70 100];ki = [10 20 40];kd = [20 50 70];kdd = [3 5 2];
 % RLQ-R Passive Modified:
@@ -152,6 +152,8 @@ kdd = [11.5001522749662 7.25000000000000 13.2500582933426];
 % kp = [70 70 100];ki = [40 40 40];kd = [40 40 70];kdd = [15 15 2];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 % kp = [389.67 404.17 108.46]; ki =[52.17 11.03 61.61]; kd = [35.83 40 70]; kdd = [8.58 9.65 1.04];
+% Markovian active:
+kp = [40 50 60];ki = [10 12 10];kd = [15 15 15];kdd = [1.5 1.8 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
 % PID attitude controller
@@ -291,32 +293,32 @@ for it = 1:numberOfModes
       P(:,:,it) = eye(6);  
 end
 Q = [];
-Q(:,:,1) = diag([136440926.976679 165320359.177077 338043223.930318 811714985.079850 470697017.566526 5000000]);
-Q(:,:,2) = diag([136440926.976679 165320359.177077 338043223.930318 811714985.079850 470697017.566526 5000000]);
-Q(:,:,3) = diag([136440926.976679 165320359.177077 338043223.930318 811714985.079850 470697017.566526 5000000]);
-Q(:,:,4) = diag([136440926.976679 165320359.177077 338043223.930318 811714985.079850 470697017.566526 5000000]);
-Q(:,:,5) = diag([136440926.976679 165320359.177077 338043223.930318 811714985.079850 470697017.566526 5000000]);
+Q(:,:,1) = 1*blkdiag(1,1,1,1,1,1);
+Q(:,:,2) = 1*blkdiag(1,1,1,1,1,1);
+Q(:,:,3) = 1*blkdiag(1,1,1,1,1,1);
+Q(:,:,4) = 1*blkdiag(1,1,1,1,1,1);
+Q(:,:,5) = 1*blkdiag(1,1,1,1,1,1);
 
 R = [];
-R(:,:,1) = diag(1e-5*modes(1,:)+~modes(1,:));
-R(:,:,2) = diag(1e-5*modes(2,:)+~modes(2,:));
-R(:,:,3) = diag(1e-5*modes(3,:)+~modes(3,:));
-R(:,:,4) = diag(1e-5*modes(4,:)+~modes(4,:));
-R(:,:,5) = diag(1e-5*modes(5,:)+~modes(5,:));
+R(:,:,1) = 1*diag(modes(1,:)+~modes(1,:));
+R(:,:,2) = 1*diag(modes(2,:)+~modes(2,:));
+R(:,:,3) = 1*diag(modes(3,:)+~modes(3,:));
+R(:,:,4) = 1*diag(modes(4,:)+~modes(4,:));
+R(:,:,5) = 1*diag(modes(5,:)+~modes(5,:));
 
 Ef = [];
-Ef(:,:,1) = [64242.0816790375 35819.4947577920 10 56082.0041098398 0 0];
-Ef(:,:,2) = [64242.0816790375 35819.4947577920 10 56082.0041098398 0 0];
-Ef(:,:,3) = [64242.0816790375 35819.4947577920 10 56082.0041098398 0 0];
-Ef(:,:,4) = [64242.0816790375 35819.4947577920 10 56082.0041098398 0 0];
-Ef(:,:,5) = [64242.0816790375 35819.4947577920 10 56082.0041098398 0 0];
+Ef(:,:,1) = 1*ones(1,6);
+Ef(:,:,2) = 1*ones(1,6);
+Ef(:,:,3) = 1*ones(1,6);
+Ef(:,:,4) = 1*ones(1,6);
+Ef(:,:,5) = 1*ones(1,6);
 
 Eg = [];
-Eg(:,:,1) = [15572.0046803445 36270.6230228744 1000 1000 1000 1000 1000 1000];
-Eg(:,:,2) = [15572.0046803445 36270.6230228744 1000 1000 1000 1000 1000 1000];
-Eg(:,:,3) = [15572.0046803445 36270.6230228744 1000 1000 1000 1000 1000 1000];
-Eg(:,:,4) = [15572.0046803445 36270.6230228744 1000 1000 1000 1000 1000 1000];
-Eg(:,:,5) = [15572.0046803445 36270.6230228744 1000 1000 1000 1000 1000 1000];
+Eg(:,:,1) = 1*ones(1,8);
+Eg(:,:,2) = 1*ones(1,8);
+Eg(:,:,3) = 1*ones(1,8);
+Eg(:,:,4) = 1*ones(1,8);
+Eg(:,:,5) = 1*ones(1,8);
 
 H = [];
 H(:,:,1) = [1 1 1 1 1 1]';
@@ -328,8 +330,8 @@ H(:,:,5) = [1 1 1 1 1 1]';
 pij = 0.5*eye(numberOfModes);
 ei = 2*ones(1,numberOfModes);
 k = 1;
-mu = 1e20;
-alpha = 0.5;
+mu = 1e10;
+alpha = 5;
 
 multirotor.configController('Markovian RLQ-R Active Modified',modes,P,Q,R,Ef,Eg,H,pij,ei,k,mu,alpha);
 multirotor.setAngularFilterGain([0 0 0.5]);
@@ -344,10 +346,10 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('PID');
-multirotor.setControlAllocator('Passive NMAC');
-multirotor.setAttitudeReferenceCA('Passive NMAC');
-multirotor.configFDD(0.99,0.1)
+multirotor.setController('Markovian RLQ-R Active Modified');
+multirotor.setControlAllocator('Active NMAC');
+multirotor.setAttitudeReferenceCA('Active NMAC');
+multirotor.configFDD(1,0.001)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
 % multirotor.setTrajectory('waypoints',[50 50 50 170*pi/180]',10);
@@ -373,7 +375,7 @@ endTime = 15;
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-% multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
+multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
 % multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)   
 % multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},0)
@@ -384,6 +386,6 @@ multirotor.setSimEffects('motor dynamics on','solver euler')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.20);
 %% Run simulator
-% multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
-% multirotor.plotSim();
+multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
+multirotor.plotSim();
 % multirotor.plotAxes('rotorspeed',figure())
