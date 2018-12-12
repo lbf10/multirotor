@@ -307,10 +307,10 @@ endTime = 15;
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
-multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)    
-multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/2)   
-multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2)  
+multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.5)'},endTime/2)   
+% multirotor.addCommand({'setRotorStatus(2,''prop loss'',0.001)'},endTime/2)    
+% multirotor.addCommand({'setRotorStatus(3,''prop loss'',0.001)'},endTime/2)   
+% multirotor.addCommand({'setRotorStatus(4,''prop loss'',0.001)'},endTime/2)  
 % multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},0)

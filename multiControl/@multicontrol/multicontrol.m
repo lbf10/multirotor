@@ -3329,7 +3329,7 @@ classdef multicontrol < multicopter
                     [~,K,P] = obj.gainPassiveMarkovian(P,Ea,Eb,Ee,Eq,Er,k,lambda);
                     obj.controlConfig_{index}.P = P;
                     x_e = [desiredAngularVelocity-obj.previousAngularVelocity();qe(2:4)'];
-                    u = K*x_e
+                    u = K*x_e;
                     C = obj.controlConfig_{index}.C ;
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
