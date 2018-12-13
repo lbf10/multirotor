@@ -140,12 +140,12 @@ multirotor.configController('SOSMC Passive Direct',c,lambda,alpha,1,0);
 multirotor.configController('SOSMC Active Direct',c,lambda,alpha,1,0);
 
 % Adaptive controller
-Am = -1*diag([.1,.1,1]);
-Q = 1*diag([1,1,1]);
-gamma1 = diag([1,1,1])*0.001;
-gamma2 = diag([1,1,1])*0.0001;
-gamma3 = diag([1,1,1])*0.001;
-gamma4 = diag([1,1,1])*0;
+Am = -1*diag([.1,.1,2]);
+Q = .001*diag([1,1,1]);
+gamma1 = diag([1,1,1])*0.1;
+gamma2 = diag([1,1,1])*0.1;
+gamma3 = diag([1,1,1])*1;
+gamma4 = diag([1,1,1])*0.0001;
 multirotor.configController('Adaptive',Am,Q,gamma1,gamma2,gamma3,gamma4);
 Am = -diag([.1,.1,2,2,2,0.01]);
 Q = diag([1,1,1,.5,.5,.0005]);
@@ -280,7 +280,7 @@ multirotor.setControlTimeStep(0.05);
 multirotor.setController('Markovian RLQ-R Passive Modified');
 multirotor.setControlAllocator('Passive NMAC');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
-multirotor.configFDD(.9,0.05)
+multirotor.configFDD(.95,0.05)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
 % multirotor.setTrajectory('waypoints',[50 50 50 170*pi/180]',10);
@@ -307,7 +307,7 @@ endTime = 15;
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.5)'},endTime/2)   
+multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.85)'},endTime/2)   
 % multirotor.addCommand({'setRotorStatus(2,''prop loss'',0.001)'},endTime/2)    
 % multirotor.addCommand({'setRotorStatus(3,''prop loss'',0.001)'},endTime/2)   
 % multirotor.addCommand({'setRotorStatus(4,''prop loss'',0.001)'},endTime/2)  
