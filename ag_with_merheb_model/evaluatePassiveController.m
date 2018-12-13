@@ -1,7 +1,3 @@
-clc
-addpath('../multiControl/')
-addpath('../multiControl/utils')
-warning('off','all')
 %% Inicialização
 % Abre arquivo
 [filename, pathname] = uigetfile('*.mat', 'Pick a MATLAB data file');
@@ -86,8 +82,6 @@ for it1 = 1:length(endTimes)
     end
 end
 
-poolobj = parpool('local',8);
-addAttachedFiles(poolobj,{'paramsToMultirotor.m','../multiControl/'})
 parfor it = 1:numberOfOptions
     option = options(it,:);
 
