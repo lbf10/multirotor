@@ -104,7 +104,7 @@ for it=1:length(algorithms)
                 initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
-                Q = [1e4, 1e4, 1e3,1e-1,1e-1,1e-1];
+                Q = [1e4, 1e4, 1e4,1e-1,1e-1,1e-1];
                 P = Q;
                 R = 70*[1,1,.1];
                 Ef = 0.1*[2 2 1 0 0 0];
@@ -113,15 +113,15 @@ for it=1:length(algorithms)
                 mu = 1e30;
                 alpha = 1.5;
                 initialPopulation = [initialPopulation,P,Q,R,Ef,Eg,H,mu,alpha];
-                lb = [lb,zeros(1,31),1];
-                ub = [ub,inf(1,32)];
+                lb = [lb,zeros(1,30),100,1];
+                ub = [ub,1e7*ones(1,15),1e3*ones(1,15),1e30,100];
                 nvars = 44;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'RLQ-R Active Modified'
-                initialPopulation = [70 70 60 2 2 40 25 25 30 3 3 3];
+                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 Q = 500000*[1e1, 1e1, 1e1,1e1,1e1,1e1];
@@ -133,15 +133,15 @@ for it=1:length(algorithms)
                 mu = 1e20;
                 alpha = 1.5;
                 initialPopulation = [initialPopulation,P,Q,R,Ef,Eg,H,mu,alpha];
-                lb = [lb,zeros(1,41),1];
-                ub = [ub,inf(1,42)];
+                lb = [lb,zeros(1,40),100,1];
+                ub = [ub,1e9*ones(1,12),1e3*ones(1,8),1e5*ones(1,20),1e30,100];
                 nvars = 54;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'RLQ-R Active Modified with PIDD'
-                initialPopulation = [70 70 60 2 2 4 25 25 30 3 3 3];
+                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 Q = 500000*[1e1, 1e1, 1e1, 1e1, 1e1, 1e1,1e1,1e1,1e1];
@@ -153,8 +153,8 @@ for it=1:length(algorithms)
                 mu = 1e22;
                 alpha = 1.5;
                 initialPopulation = [initialPopulation,P,Q,R,Ef,Eg,H,mu,alpha];
-                lb = [lb,zeros(1,53),1];
-                ub = [ub,inf(1,54)];
+                lb = [lb,zeros(1,52),100,1];
+                ub = [ub,1e9*ones(1,18),1e3*ones(1,8),1e5*ones(1,26),1e30,100];
                 nvars = 66;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
@@ -238,40 +238,40 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'SOSMC Active'
-                initialPopulation = [300 300 100 10 10 40 70 70 70 35 35 2];
+                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
-                c = 3*[1,1,1];
-                alpha =  2*[1,1,1];
-                lambda = .1*[1,1,1];
+                c = [3 3 3];
+                alpha =  [2 2 2];
+                lambda = [0.100000000000000 0.100000000000000 0.100000000000000];
                 initialPopulation = [initialPopulation,c,lambda,alpha];
-                lb = [lb,-inf(1,9)];
-                ub = [ub,inf(1,9)];
+                lb = [lb,zeros(1,9)];
+                ub = [ub,100*ones(1,9)];
                 nvars = 21;
-                initialPopulation = [initialPopulation,0,0,0.5];
+                initialPopulation = [initialPopulation,0 0 0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'SOSMC Active with PIDD'
-                initialPopulation = [300 300 100 10 10 40 70 70 70 35 35 2];
+                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
                 lb = zeros(1,12);
-                ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];           
+                ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 c = 3*[1,1,1,2,2,2];
                 alpha = 2*[1,1,1,2,2,2];
                 lambda = .1*[1,1,1,2,2,2];
                 initialPopulation = [initialPopulation,c,lambda,alpha];
-                lb = [lb,-inf(1,18)];
-                ub = [ub,inf(1,18)];
+                lb = [lb,zeros(1,18)];
+                ub = [ub,100*ones(1,18)];
                 nvars = 30;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'SOSMC Active Direct'
-                initialPopulation = [100 100 100 10 10 40 80 90 70 35 35 1];
+                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
-                c =1.5*[1,1,4,2,2,2];
+                c =1.5*[1,1,1,2,2,2];
                 alpha = 5500*...
                            [ 1 -1  0.1 -0.001 -0.01 1 ...
                              1  1 -0.1  0.001 -0.01 1 ...
@@ -281,7 +281,7 @@ for it=1:length(algorithms)
                              1  1  0.1  0.001 -0.01 1 ...
                             -1  1 -0.1  0.001  0.01 1 ...
                             -1 -1  0.1 -0.001  0.01 1];
-                lambda = 1000*...
+                lambda = 4000*...
                             [1 -1  0.1 -0.001 -0.001 1 ...
                              1  1 -0.1  0.001 -0.001 1 ...
                             -1  1  0.1  0.001  0.001 1 ...
@@ -291,9 +291,25 @@ for it=1:length(algorithms)
                             -1  1 -0.1  0.001  0.001 1 ...
                             -1 -1  0.1 -0.001  0.001 1];
                 initialPopulation = [initialPopulation,c,lambda,alpha];
-                lb = [lb,-inf(1,102)];
-                ub = [ub,inf(1,102)];
-                nvars = 111;
+                auxLB = [ 0 -1  0 -1 -1 0 ...
+                                            0  0 -1  0 -1 0 ...
+                                           -1  0  0  0  0 0 ...
+                                           -1 -1 -1 -1  0 0 ...
+                                            0 -1 -1 -1 -1 0 ...
+                                            0  0  0  0 -1 0 ...
+                                           -1  0 -1  0  0 0 ...
+                                           -1 -1  0 -1  0 0];
+                auxUB = [  1  0  1  0  0 1 ...
+                                                1  1  0  1  0 1 ...
+                                                0  1  1  1  1 1 ...
+                                                0  0  0  0  1 1 ...
+                                                1  0  0  0  0 1 ...
+                                                1  1  1  1  0 1 ...
+                                                0  1  0  1  1 1 ...
+                                                0  0  1  0  1 1];
+                lb = [lb,zeros(1,6),50000*auxLB,50000*auxLB];
+                ub = [ub,100*ones(1,6),50000*auxUB,50000*auxUB];
+                nvars = 114;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
@@ -379,21 +395,91 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'Markovian RLQ-R Passive Modified'
-                initialPopulation = [389.669698366475 404.174346451993 108.461360795647 52.8355833107516 40 61.6052484810165 35.8329148078788 40 70 8.58254857170289 9.64775405399996 0.461621401073742];
+                modes = [1 1 1 1 1 1 1 1
+                         0 1 1 1 1 1 1 1
+                         0 0 1 1 1 1 1 1
+                         0 0 0 1 1 1 1 1
+                         0 0 0 0 1 1 1 1];
+                numberOfModes = size(modes,1);
+                initialPopulation = [40 40 40 10 10 10 10 10 10 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
-                Ef = [49691.2038388060 77938.6590146259 45346.7392128698 5638.48253281921 20914.7756245542 81518.5261421046];
-                Eg = [27057.9254769885 1000 97564.2803762064 29544.9915299202 22991.3523774675 43314.9483016269 68203.3776755070 98293.7146287260];
-                k = 28.3439208103227;
-                Er = 0.000001*[1 1 1 1 1 1 1 1];
-                Eq = [90589.5180306516 19.0977320558172 42336.2091224903 86380.1330049442 63815.1468848194 96302.6327783880];
-                lambda = 12;
-                pij = 6;
+                Ef =[10 10 10 10 10 10 ...
+                     10 10 10 10 10 10 ...
+                     10 10 10 10 10 10 ...
+                     10 10 10 10 10 10 ...
+                     10 10 10 10 10 10];
+                Eg = [1000 1000 1000 1000 1000 1000 1000 1000 ...
+                      1000 1000 1000 1000 1000 1000 1000 1000 ...
+                      1000 1000 1000 1000 1000 1000 1000 1000 ...
+                      1000 1000 1000 1000 1000 1000 1000 1000 ...
+                      1000 1000 1000 1000 1000 1000 1000 100];
+                k = 1;
+                Er = [0.000001*modes(1,:)+~modes(1,:) ...
+                      0.000001*modes(2,:)+~modes(2,:) ...
+                      0.000001*modes(3,:)+~modes(3,:) ...
+                      0.000001*modes(4,:)+~modes(4,:) ...
+                      0.000001*modes(5,:)+~modes(5,:)];
+                Eq = [1 1 1 1e-6 1e-6 1e-6 ...
+                      1 1 1 1e-6 1e-6 1e-6 ...
+                      1 1 1 1e-6 1e-6 1e-6 ...
+                      1 1 1 1e-6 1e-6 1e-6 ...
+                      1 1 1 1e-6 1e-6 1e-6];
+                lambda = 1;
+                pij = 0.5;
                 eij = 2;
                 initialPopulation = [initialPopulation,Ef,Eg,k,Er,Eq,lambda,pij,eij];
-                lb = [lb,zeros(1,14),1,zeros(1,14),1e-8*ones(1,3)];
-                ub = [ub,1e5*ones(1,14),100,ones(1,8),1e5*ones(1,6),100*ones(1,3)];
-                nvars = 44;
+                lb = [lb,zeros(1,70),1,zeros(1,70),1e-8*ones(1,3)];
+                ub = [ub,1e5*ones(1,70),500,ones(1,40),1e5*ones(1,30),100*ones(1,3)];
+                nvars = 156;
+                initialPopulation = [initialPopulation,0,0,0.5];
+                lb = [lb,0,0,0];
+                ub = [ub,1,1,1];
+                nvars = nvars + 3;
+            case 'Markovian RLQ-R Active Modified'
+                modes = [1 1 1 1 1 1 1 1
+                         0 1 1 1 1 1 1 1
+                         0 0 1 1 1 1 1 1
+                         0 0 0 1 1 1 1 1
+                         0 0 0 0 1 1 1 1];
+                numberOfModes = size(modes,1);
+                initialPopulation = [40 40 40 10 10 10 10 10 10 0 0 0];
+                lb = zeros(1,12);
+                ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
+                Q =[50000*[1e10, 1e10, 1e1,1e-1,1e-1,1e-1] ...
+                    50000*[1e10, 1e10, 1e1,1e-1,1e-1,1e-1] ...
+                    50000*[1e10, 1e10, 1e1,1e-1,1e-1,1e-1] ...
+                    50000*[1e10, 1e10, 1e1,1e-1,1e-1,1e-1] ...
+                    50000*[1e10, 1e10, 1e1,1e-1,1e-1,1e-1]];
+                R = [1*modes(1,:)+~modes(1,:) ...
+                     1*modes(2,:)+~modes(2,:) ...
+                     1*modes(3,:)+~modes(3,:) ...
+                     1*modes(4,:)+~modes(4,:) ...
+                     1*modes(5,:)+~modes(5,:)];
+                Ef = [10000*ones(1,6) ...
+                      10000*ones(1,6) ...
+                      10000*ones(1,6) ...
+                      10000*ones(1,6) ...
+                      10000*ones(1,6)];
+                Eg = [1000 1000 1000 1000 1000 1000 1000 1000 ...
+                      1000 1000 1000 1000 1000 1000 1000 1000 ...
+                      1000 1000 1000 1000 1000 1000 1000 1000 ...
+                      1000 1000 1000 1000 1000 1000 1000 1000 ...
+                      1000 1000 1000 1000 1000 1000 1000 1000];
+                H = [1 1 1 1 1 1 ...
+                     1 1 1 1 1 1 ...
+                     1 1 1 1 1 1 ...
+                     1 1 1 1 1 1 ...
+                     1 1 1 1 1 1];
+                pij = 0.5;
+                ei = 2;
+                k = 1;
+                mu = 1e10;
+                alpha = 1.5;
+                initialPopulation = [initialPopulation,Q,R,Ef,Eg,H,pij,ei,k,mu,alpha];
+                lb = [lb,zeros(1,170),1e-8*[1 1],1,100,1];
+                ub = [ub,1e9*ones(1,30),1e3*ones(1,40),1e5*ones(1,100),100*[1 1],500,1e30,100];
+                nvars = 187;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
