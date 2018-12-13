@@ -389,53 +389,33 @@ classdef multicontrol < multicopter
                             index = 17;
                             if obj.inputsOK(varargin,it,10)
                                 it = it+1;
-                                if isnumeric(varargin{it}) && sum(size(varargin{it}))>2
+                                if isnumeric(varargin{it}) && sum(size(varargin{it}))>2 && size(varargin{it},2)==obj.numberOfRotors_
+                                    numberOfModes = size(varargin{it},1);
                                     if isnumeric(varargin{it+1}) && sum(size(varargin{it+1}))>2
-                                        if isnumeric(varargin{it+2}) && sum(size(varargin{it+2}))>2
-                                            if isnumeric(varargin{it+3}) && sum(size(varargin{it+3}))<=2 && varargin{it+3}>=1
-                                                if isnumeric(varargin{it+4}) && isequal(size(varargin{it+4}),obj.numberOfRotors_*[1 1])
-                                                    if isnumeric(varargin{it+5}) && isequal(size(varargin{it+5}),[6 6])
-                                                        if isnumeric(varargin{it+6}) && sum(size(varargin{it+6}))<=2 && varargin{it+6}>0
-                                                            if isnumeric(varargin{it+7}) && sum(size(varargin{it+7}))>2 && size(varargin{it+7},2)==obj.numberOfRotors_
-                                                                numberOfModes = size(varargin{it+7},1);
+                                        if isnumeric(varargin{it+2}) && size(varargin{it+2},2)==6 && size(varargin{it+2},3)==numberOfModes
+                                            if isnumeric(varargin{it+3}) && size(varargin{it+3},2)==obj.numberOfRotors_ && size(varargin{it+3},3)==numberOfModes
+                                                if isnumeric(varargin{it+4}) && sum(size(varargin{it+4}))<=2 && varargin{it+4}>=1
+                                                    if isnumeric(varargin{it+5}) && size(varargin{it+5},1)==size(varargin{it+5},2) && size(varargin{it+5},1)==obj.numberOfRotors_ && size(varargin{it+5},3)==numberOfModes
+                                                        if isnumeric(varargin{it+6}) && size(varargin{it+6},1)==size(varargin{it+6},2) && size(varargin{it+6},1)==6 && size(varargin{it+6},3)==numberOfModes
+                                                            if isnumeric(varargin{it+7}) && sum(size(varargin{it+7}))<=2 && varargin{it+7}>0
                                                                 if isnumeric(varargin{it+8}) && isequal(size(varargin{it+8}),[numberOfModes numberOfModes])
                                                                     if isnumeric(varargin{it+9}) && isequal(size(varargin{it+9}),[numberOfModes numberOfModes])
 
-                                                                        obj.controlConfig_{index}.initialP = varargin{it};
-                                                                        obj.controlConfig_{index}.Ef = varargin{it+1};
-                                                                        obj.controlConfig_{index}.Eg = varargin{it+2};
-                                                                        obj.controlConfig_{index}.k = varargin{it+3};
-%                                                                         modes = varargin{it+7};
-                                                                        obj.controlConfig_{index}.Er = varargin{it+4};
-%                                                                         obj.controlConfig_{index}.Er = [];
-%                                                                         for jt=1:size(modes,1)
-%                                                                             obj.controlConfig_{index}.Er = [obj.controlConfig_{index}.Er varargin{it+4}+diag(~modes(jt,:))];
-%                                                                         end
-                                                                        obj.controlConfig_{index}.Er = obj.controlConfig_{index}.Er';
-                                                                        obj.controlConfig_{index}.Eq = varargin{it+5};
-                                                                        obj.controlConfig_{index}.lambda = varargin{it+6};
-                                                                        obj.controlConfig_{index}.modes = varargin{it+7};
+                                                                        obj.controlConfig_{index}.modes = varargin{it};
+                                                                        obj.controlConfig_{index}.initialP = varargin{it+1};
+                                                                        obj.controlConfig_{index}.Ef = varargin{it+2};
+                                                                        obj.controlConfig_{index}.Eg = varargin{it+3};
+                                                                        obj.controlConfig_{index}.k = varargin{it+4};
+                                                                        obj.controlConfig_{index}.Er = varargin{it+5};
+                                                                        obj.controlConfig_{index}.Eq = varargin{it+6};
+                                                                        obj.controlConfig_{index}.lambda = varargin{it+7};
                                                                         obj.controlConfig_{index}.pij = varargin{it+8};
                                                                         obj.controlConfig_{index}.eij = varargin{it+9};
 
                                                                         if obj.verbose_ == true
-                                                                            disp([obj.attitudeControllers_{index},' Attitude controller P initial state variance gain set to: ']);
-                                                                            disp(obj.controlConfig_{index}.initialP);
-                                                                            disp([obj.attitudeControllers_{index},' Attitude controller uncertainty Ef set to: '])
-                                                                            disp(obj.controlConfig_{index}.Ef);
-                                                                            disp([obj.attitudeControllers_{index},' Attitude controller uncertainty Eg set to: '])
-                                                                            disp(obj.controlConfig_{index}.Eg);
-                                                                            disp([obj.attitudeControllers_{index},' Attitude controller scalar k set to: '])
-                                                                            disp(obj.controlConfig_{index}.k);
-                                                                            disp([obj.attitudeControllers_{index},' Attitude controller Er set to: '])
-                                                                            disp(obj.controlConfig_{index}.Er);
-                                                                            disp([obj.attitudeControllers_{index},' Attitude controller Eq set to: '])
-                                                                            disp(obj.controlConfig_{index}.Eq);
-                                                                            disp([obj.attitudeControllers_{index},' Attitude controller lambda parameter set to: '])
-                                                                            disp(obj.controlConfig_{index}.lambda);
                                                                             disp([obj.attitudeControllers_{index},' Attitude controller markovian modes number set to: '])
                                                                             disp(size(obj.controlConfig_{index}.modes,1));
-                                                                            disp([obj.attitudeControllers_{index},' Attitude controller probability matrix set.'])
+                                                                            disp('Markovian Passive Modified Attitude controller set.')
                                                                         end
                                                                     else
                                                                         warning('Attitude controller probability matrix error should be a numeric square matrix of the same size as the number of markovian modes. Skipping this controller configuration');
@@ -444,35 +424,109 @@ classdef multicontrol < multicopter
                                                                     warning('Attitude controller probability matrix nominal values should be a numeric square matrix of the same size as the number of markovian modes. Skipping this controller configuration');
                                                                 end            
                                                             else
-                                                                warning('Attitude controller markovian modes be a numeric matrix. The number of rows correspond to the number of markovian modes. The number of columns correspond to the number of rotors. A value of 0 means the rotor is faulty while a value of 1 means the rotor is fully operational. Skipping this controller configuration');
+                                                                warning('Attitude controller lambda must be a scalar > 0. Skipping this controller configuration.');
                                                             end
                                                         else
-                                                            warning('Attitude controller lambda must be a scalar > 0. Skipping this controller configuration');
+                                                            warning('Attitude controller Eq must be a sqaure matrix of size 6x6. Skipping this controller configuration.');
                                                         end
                                                     else
-                                                        warning('Attitude controller Eq must be a sqaure matrix of size 6x6. Skipping this controller configuration');
+                                                        warning('Attitude controller Er must be a matrix of size N x N, where N is the number of rotors. Skipping this controller configuration.');
                                                     end        
                                                 else
-                                                    warning('Attitude controller Er must be a matrix of size N x N, where N is the number of rotors. Skipping this controller configuration');
+                                                    warning('Attitude controller scalar k must be a scalar >= 1. Skipping this controller configuration.');
                                                 end
                                             else
-                                                warning('Attitude controller scalar k must be a scalar >= 1. Skipping this controller configuration');
+                                                warning('Attitude controller uncertainty Eg must be a numeric matrix. Skipping this controller configuration.');
                                             end
                                         else
-                                            warning('Attitude controller uncertainty Eg must be a numeric matrix. Skipping this controller configuration');
+                                            warning('Attitude controller uncertainty Ef must be a numeric matrix. Skipping this controller configuration.');
                                         end
                                     else
-                                        warning('Attitude controller uncertainty Ef must be a numeric matrix. Skipping this controller configuration');
+                                        warning('Attitude controller initial state variance must be a numeric matrix. Skipping this controller configuration.');
                                     end
                                 else
-                                    warning('Attitude controller initial state variance must be a numeric matrix. Skipping this controller configuration');
+                                    warning('Attitude controller markovian modes be a numeric matrix. The number of rows correspond to the number of markovian modes. The number of columns correspond to the number of rotors. A value of 0 means the rotor is faulty while a value of 1 means the rotor is fully operational. Skipping this controller configuration.');
                                 end
                                 it = it+11;                
                             else
                                 warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
                             end
                         case obj.attitudeControllers_{18} %% Markovian RLQ-R Active Modified
-                            warning('Controller not implemented. Skipping configuration');
+                            index = 18;
+                            if obj.inputsOK(varargin,it,12)
+                                it = it+1;
+                                if isnumeric(varargin{it}) && sum(size(varargin{it}))>2 && size(varargin{it},2)==obj.numberOfRotors_
+                                numberOfModes = size(varargin{it},1);
+                                    if isnumeric(varargin{it+1}) && sum(size(varargin{it+1}))>2 && size(varargin{it+1},3)==numberOfModes
+                                        if isnumeric(varargin{it+2}) && size(varargin{it+2},1)==size(varargin{it+2},2) && size(varargin{it+2},1)==6 && size(varargin{it+2},3)==numberOfModes
+                                            if isnumeric(varargin{it+3}) && size(varargin{it+3},1)==size(varargin{it+3},2) && size(varargin{it+3},1)==obj.numberOfRotors_ && size(varargin{it+3},3)==numberOfModes
+                                                if isnumeric(varargin{it+4}) && size(varargin{it+4},2)==6 && size(varargin{it+4},3)==numberOfModes
+                                                    if isnumeric(varargin{it+5}) && size(varargin{it+5},2)==obj.numberOfRotors_ && size(varargin{it+5},3)==numberOfModes
+                                                        if isnumeric(varargin{it+6}) && size(varargin{it+6},1)==6 && size(varargin{it+6},3)==numberOfModes
+                                                            if isnumeric(varargin{it+7}) && isequal(size(varargin{it+7}),[numberOfModes numberOfModes])
+                                                                if isnumeric(varargin{it+8}) && length(varargin{it+8})==numberOfModes
+                                                                    if isnumeric(varargin{it+9}) && sum(size(varargin{it+9}))==2 && varargin{it+9}>=1
+                                                                        if isnumeric(varargin{it+10}) && sum(size(varargin{it+10}))==2 && varargin{it+10}>0
+                                                                            if isnumeric(varargin{it+11}) && sum(size(varargin{it+11}))==2 && varargin{it+11}>=0
+
+                                                                                obj.controlConfig_{index}.modes = varargin{it};
+                                                                                obj.controlConfig_{index}.initialP = varargin{it+1};
+                                                                                obj.controlConfig_{index}.Q = varargin{it+2};
+                                                                                obj.controlConfig_{index}.R = varargin{it+3};
+                                                                                obj.controlConfig_{index}.Ef = varargin{it+4};
+                                                                                obj.controlConfig_{index}.Eg = varargin{it+5};
+                                                                                obj.controlConfig_{index}.H = varargin{it+6};
+                                                                                obj.controlConfig_{index}.pij = varargin{it+7};
+                                                                                obj.controlConfig_{index}.ei = varargin{it+8};
+                                                                                obj.controlConfig_{index}.k = varargin{it+9};
+                                                                                obj.controlConfig_{index}.mu = varargin{it+10};
+                                                                                obj.controlConfig_{index}.alpha = varargin{it+11};
+
+                                                                            if obj.verbose_ == true
+                                                                                disp([obj.attitudeControllers_{index},' Attitude controller markovian modes number set to: '])
+                                                                                disp(size(obj.controlConfig_{index}.modes,1));
+                                                                                disp(' Markovian active modified attitude controller set.');
+                                                                            end
+                                                                            else
+                                                                                warning('Attitude controller alpha should be a scalar > 0. Skipping this controller configuration');
+                                                                            end
+                                                                        else
+                                                                            warning('Attitude controller mu should be a scalar > 0. Skipping this controller configuration');
+                                                                        end
+                                                                    else
+                                                                        warning('Attitude controller scalar k must be a scalar >= 1. Skipping this controller configuration');
+                                                                    end     
+                                                                else
+                                                                    warning('Attitude controller probability matrix error should be a numeric vector of length numberOfModes. Skipping this controller configuration.');
+                                                                end            
+                                                            else
+                                                                warning('Attitude controller probability matrix nominal values should be a numeric square matrix of the same size as the number of markovian modes. Skipping this controller configuration');
+                                                            end
+                                                        else
+                                                            warning('Attitude controller uncertainty H must be a numeric matrix of size 6 x t. Skipping this controller configuration');
+                                                        end
+                                                    else
+                                                        warning('Attitude controller uncertainty Eg must be a numeric matrix of size l x numberOrRotors x numberOfModes. Skipping this controller configuration.');
+                                                    end        
+                                                else
+                                                    warning('Attitude controller uncertainty Ef must be a numeric matrix of size l x 6 x numberOfModes. Skipping this controller configuration');
+                                                end
+                                            else
+                                                warning('Attitude controller R matrix should be of size numberOfRotors x numberOfRotors x numberOfModes. Skipping this controller configuration.');
+                                            end
+                                        else
+                                            warning('Attitude controller Q matrix should be of size 6 x 6 x numberOfModes. Skipping this controller configuration.');
+                                        end
+                                    else
+                                        warning('Attitude controller initial state variance must be a numeric matrix. Skipping this controller configuration.');
+                                    end
+                                else
+                                    warning('Attitude controller markovian modes be a numeric matrix. The number of rows correspond to the number of markovian modes. The number of columns correspond to the number of rotors. A value of 0 means the rotor is faulty while a value of 1 means the rotor is fully operational. Skipping this controller configuration.');
+                                end
+                                it = it+13;                
+                            else
+                                warning('Missing argument for attitude %s controller. Skipping this controller configuration.',obj.attitudeControllers_{index});
+                            end
                         otherwise
                             warning('Controller type not expected. Skipping configuration');
                     end
@@ -1859,7 +1913,7 @@ classdef multicontrol < multicopter
         %UNTITLED Summary of this function goes here
         %   Detailed explanation goes here     
             if ~(isempty(obj.fddConfig_.hitRate) || isempty(obj.fddConfig_.delay))
-                rouletteAux = [ones(1,uint64(10000*obj.fddConfig_.hitRate)),zeros(1,uint64(10000*(1-obj.fddConfig_.hitRate)))];
+                %rouletteAux = [ones(1,uint64(10000*obj.fddConfig_.hitRate)),zeros(1,uint64(10000*(1-obj.fddConfig_.hitRate)))];
                 for it=1:obj.numberOfRotors_                
                     obj.fddRotor_{it}.status{end+1} = obj.rotor_(it).status;
                     obj.fddRotor_{it}.motorEfficiency(end+1) = obj.rotor_(it).motorEfficiency;
@@ -1873,53 +1927,55 @@ classdef multicontrol < multicopter
                             obj.fddRotor_{it}.time(1) = [];
                         end
                     end 
-                    if rouletteAux(randi(length(rouletteAux))) == 1
-%                         disp(1)
-                        diagnosis{it}.status = obj.fddRotor_{it}.status{1};
-                        diagnosis{it}.motorEfficiency = obj.fddRotor_{it}.motorEfficiency(1);
-                        diagnosis{it}.propEfficiency = obj.fddRotor_{it}.propEfficiency(1);                    
+                    diagnosis{it}.status{1} = obj.fddRotor_{it}.status{1}{1};
+                    diagnosis{it}.status{2} = obj.fddRotor_{it}.status{1}{2};
+                    diagnosis{it}.status{3} = obj.fddRotor_{it}.status{1}{3};
+                    diagnosis{it}.status{4} = obj.fddRotor_{it}.status{1}{4};
+                    error = (1-obj.fddConfig_.hitRate)*randn();
+                    test1 = obj.fddRotor_{it}.motorEfficiency(1)+error;
+                    if test1>=1
+                        test1 = 1;
+                    elseif test1 <= 0 
+                        test1 = 0;
+                    end
+                    test2 = obj.fddRotor_{it}.motorEfficiency(1)-error;
+                    if test2>=1
+                        test2 = 1;
+                    elseif test2 <= 0 
+                        test2 = 0;
+                    end
+                    if abs(obj.fddRotor_{it}.motorEfficiency(1)-test1) >= abs(obj.fddRotor_{it}.motorEfficiency(1)-test2)
+                        diagnosis{it}.motorEfficiency = test1;
                     else
-%                         disp(0)
-                        diagnosis{it}.status{1} = obj.fddRotor_{it}.status{1}{1};
-                        diagnosis{it}.status{2} = obj.fddRotor_{it}.status{1}{2};
-                        diagnosis{it}.status{3} = obj.fddRotor_{it}.status{1}{3};
-                        diagnosis{it}.status{4} = obj.fddRotor_{it}.status{1}{4};
-%                         switch obj.fddRotor_{it}.status{1}{1}
-%                             case 'stuck'
-%                                 diagnosis{it}.status{1} = 'free';
-%                             case 'free'
-%                                 diagnosis{it}.status{1} = 'stuck';
-%                         end
-%                         switch obj.fddRotor_{it}.status{1}{2}
-%                             case 'non-responding'
-%                                 diagnosis{it}.status{2} = 'responding';
-%                             case 'responding'
-%                                 diagnosis{it}.status{2} = 'non-responding';
-%                         end
-%                         switch obj.fddRotor_{it}.status{1}{3}
-%                             case 'motor loss'
-%                                 diagnosis{it}.status{3} = 'motor ok';
-%                             case 'motor ok'
-%                                 diagnosis{it}.status{3} = 'motor loss';
-%                         end
-%                         switch obj.fddRotor_{it}.status{1}{4}
-%                             case 'prop loss'
-%                                 diagnosis{it}.status{4} = 'prop ok';
-%                             case 'prop ok'
-%                                 diagnosis{it}.status{4} = 'prop loss';
-%                         end 
-                        diagnosis{it}.motorEfficiency = rand();
-                        diagnosis{it}.propEfficiency = rand();
-%                         if obj.fddRotor_{it}.motorEfficiency(1)==1.0
-%                             diagnosis{it}.motorEfficiency = rand();
-%                         else
-%                             diagnosis{it}.motorEfficiency = 1.0;
-%                         end
-%                         if obj.fddRotor_{it}.propEfficiency(1)==1.0
-%                             diagnosis{it}.propEfficiency = rand();
-%                         else
-%                             diagnosis{it}.propEfficiency = 1.0;
-%                         end
+                        diagnosis{it}.motorEfficiency = test2;
+                    end
+                    test1 = obj.fddRotor_{it}.propEfficiency(1)+error;
+                    if test1>=1
+                        test1 = 1;
+                    elseif test1 <= 0 
+                        test1 = 0;
+                    end
+                    test2 = obj.fddRotor_{it}.propEfficiency(1)-error;
+                    if test2>=1
+                        test2 = 1;
+                    elseif test2 <= 0 
+                        test2 = 0;
+                    end
+                    if abs(obj.fddRotor_{it}.propEfficiency(1)-test1) >= abs(obj.fddRotor_{it}.propEfficiency(1)-test2)
+                        diagnosis{it}.propEfficiency = test1;
+                    else
+                        diagnosis{it}.propEfficiency = test2;
+                    end
+                    
+                    if diagnosis{it}.motorEfficiency >= 0.7
+                        diagnosis{it}.status{3} = 'motor ok';
+                    else
+                        diagnosis{it}.status{3} = 'motor loss';
+                    end                        
+                    if diagnosis{it}.motorEfficiency >= 0.5
+                        diagnosis{it}.status{4} = 'prop ok';
+                    else
+                        diagnosis{it}.status{4} = 'prop loss';
                     end
                 end 
             else
@@ -3194,51 +3250,75 @@ classdef multicontrol < multicopter
                     if ~obj.isRunning()
                         obj.controlConfig_{index}.P = obj.controlConfig_{index}.initialP;
                         obj.controlConfig_{index}.Ee = [];
-                        obj.controlConfig_{index}.Ea = [];
-                        obj.controlConfig_{index}.Eb = [];
                         Ef = obj.controlConfig_{index}.Ef;
-                        Eg = obj.controlConfig_{index}.Eg;
-                        numberOfModes = size(obj.controlConfig_{index}.modes,1);
+                        modes = obj.controlConfig_{index}.modes;
+                        numberOfModes = size(modes,1);
                         pij = obj.controlConfig_{index}.pij;
                         eij = obj.controlConfig_{index}.eij;
-                        modes = obj.controlConfig_{index}.modes;
+                        obj.controlConfig_{index}.F = [];
+                        obj.controlConfig_{index}.G = [];
+                        obj.controlConfig_{index}.Eqaux = [];
+                        obj.controlConfig_{index}.Eraux = [];
                         for it=1:numberOfModes
-                            for jt=1:numberOfModes
-                                aux = obj.inertia();
-                                Mt = [];
-                                for kt=1:obj.numberOfRotors_
-                                    aux = [aux -obj.rotorOrientation(kt)*obj.rotorInertia(kt)*modes(it,kt)];
-                                    Mt = [Mt modes(it,kt)*(obj.rotorLiftCoeff(kt,obj.rotorOperatingPoint_(kt))*cross(obj.rotor_(kt).position,obj.rotor_(kt).orientation)-obj.rotorDragCoeff(kt,obj.rotorOperatingPoint_(kt))*obj.rotorDirection_(kt)*obj.rotor_(kt).orientation)];
-                                end
-                                Fi1 = obj.inertia()\[zeros(1,size(aux,2)) -aux(3,:) aux(2,:); aux(3,:) zeros(1,size(aux,2)) -aux(1,:); -aux(2,:) aux(1,:) zeros(1,size(aux,2))];
-                                F3ij = blkdiag(pij(it,jt)*[Fi1 zeros(3,3)],pij(it,jt)*[ones(3,3) zeros(3,3)],pij(it,jt)*Ef,eij(it,jt)*[Fi1 zeros(3,3)],eij(it,jt)*[ones(3,3) zeros(3,3)],eij(it,jt)*Ef);
-                                obj.controlConfig_{index}.Ea = [obj.controlConfig_{index}.Ea; F3ij];
-                                obj.controlConfig_{index}.Ee = [obj.controlConfig_{index}.Ee; [pij(it,jt)*eye(6) zeros(size(Ef')) eij(it,jt)*eye(6) zeros(size(Ef'))]'];
-                                Gi = [-obj.inertia()\Mt;zeros(3,obj.numberOfRotors_)];
-                                obj.controlConfig_{index}.Eb = [obj.controlConfig_{index}.Eb; [pij(it,jt)*Gi' pij(it,jt)*Eg' eij(it,jt)*Gi' eij(it,jt)*Eg']'];
-                                %disp(it)
+                            Mt = [];
+                            for kt=1:obj.numberOfRotors_
+                                Mt = [Mt modes(it,kt)*(obj.rotorLiftCoeff(kt,obj.rotorOperatingPoint_(kt))*cross(obj.rotor_(kt).position,obj.rotor_(kt).orientation)-obj.rotorDragCoeff(kt,obj.rotorOperatingPoint_(kt))*obj.rotorDirection_(kt)*obj.rotor_(kt).orientation)];
                             end
+                            obj.controlConfig_{index}.G(:,:,it) = [-obj.inertia()\Mt;zeros(3,obj.numberOfRotors_)];
+                            for jt=1:numberOfModes
+                                obj.controlConfig_{index}.Ee = [obj.controlConfig_{index}.Ee; [pij(it,jt)*eye(6) zeros(size(Ef(:,:,it)')) eij(it,jt)*eye(6) zeros(size(Ef(:,:,it)'))]'];
+                            end
+                            obj.controlConfig_{index}.Eqaux = [obj.controlConfig_{index}.Eqaux obj.controlConfig_{index}.Eq(:,:,it)];
+                            obj.controlConfig_{index}.Eraux = [obj.controlConfig_{index}.Eraux obj.controlConfig_{index}.Er(:,:,it)];
                         end
-                        obj.controlConfig_{index}.Mt = [];
+                        obj.controlConfig_{index}.Eqaux = obj.controlConfig_{index}.Eqaux';
+                        obj.controlConfig_{index}.Eraux = obj.controlConfig_{index}.Eraux';
+                        obj.controlConfig_{index}.C = [];
                         for it=1:obj.numberOfRotors_
-                            obj.controlConfig_{index}.Mt = [obj.controlConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                            obj.controlConfig_{index}.C = [obj.controlConfig_{index}.C (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                         end
+                        obj.controlConfig_{index}.C = -obj.inertia()\obj.controlConfig_{index}.C;
                     end
-                    aux = [obj.previousAngularVelocity();obj.previousRotorSpeed(1:obj.numberOfRotors_)'];
-                    F2 = blkdiag(aux,aux,aux);
+                    modes = obj.controlConfig_{index}.modes;
+                    numberOfModes = size(modes,1);
+                    pij = obj.controlConfig_{index}.pij;
+                    eij = obj.controlConfig_{index}.eij;
+                    
                     Sq = [qe(1),-qe(4),qe(3);
                           qe(4),qe(1),-qe(2);
                           -qe(3),qe(2),qe(1)];
-                      
-                    F4 = [[F2 zeros(size(F2,1),3);zeros(3,6)];[0.5*Sq zeros(3,3);zeros(3,6)];eye(6);[F2 zeros(size(F2,1),3);zeros(3,6)];[0.5*Sq zeros(3,3);zeros(3,6)];eye(6)];
-                    Ea = obj.controlConfig_{index}.Ea*F4;
-                    Eb = obj.controlConfig_{index}.Eb;
+                    F = [];
+                    G = [];
+                    Ea = [];
+                    Eb = [];
+                    Ef = obj.controlConfig_{index}.Ef;
+                    Eg = obj.controlConfig_{index}.Eg;
+                    for it=1:numberOfModes
+                        torqueAux = zeros(3,1);
+                        for jt=1:obj.numberOfRotors_
+                            torqueAux = torqueAux + modes(it,jt)*obj.rotorOrientation(jt)*(obj.previousRotorSpeed(jt)*obj.rotorInertia(jt));
+                        end
+                        auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
+                        auxA = [0 -auxA(3) auxA(2) ; auxA(3) 0 -auxA(1) ; -auxA(2) auxA(1) 0 ];
+                        auxA = obj.inertia()\auxA;
+                        obj.controlConfig_{index}.F(:,:,it) = [auxA, zeros(3); 0.5*Sq, zeros(3)];
+                        sys = ss(obj.controlConfig_{index}.F(:,:,it),obj.controlConfig_{index}.G(:,:,it),eye(6),0);
+                        sysD = c2d(sys,obj.controlTimeStep_);
+
+                        F(:,:,it) = sysD.A;
+                        G(:,:,it) = sysD.B;
+                        
+                        for jt=1:numberOfModes
+                            Ea = [Ea; [pij(it,jt)*F(:,:,it)' pij(it,jt)*Ef(:,:,it)' eij(it,jt)*F(:,:,it)' eij(it,jt)*Ef(:,:,it)']'];
+                            Eb = [Eb; [pij(it,jt)*G(:,:,it)' pij(it,jt)*Eg(:,:,it)' eij(it,jt)*G(:,:,it)' eij(it,jt)*Eg(:,:,it)']'];
+                        end
+                    end 
+                    obj.controlConfig_{index}.Ea = Ea;
+                    obj.controlConfig_{index}.Eb = Eb;
                     Ee = obj.controlConfig_{index}.Ee;
-                    Eq = obj.controlConfig_{index}.Eq;
-                    Er = obj.controlConfig_{index}.Er;
-                    
-                    x_e = [desiredAngularVelocity-obj.previousAngularVelocity();qe(2:4)'];
-                    
+                    Eq = obj.controlConfig_{index}.Eqaux;
+                    Er = obj.controlConfig_{index}.Eraux;
+                                        
                     if ~obj.isRunning()
                         obj.controlConfig_{index}.P = obj.controlConfig_{index}.initialP;
                     end
@@ -3248,8 +3328,9 @@ classdef multicontrol < multicopter
 
                     [~,K,P] = obj.gainPassiveMarkovian(P,Ea,Eb,Ee,Eq,Er,k,lambda);
                     obj.controlConfig_{index}.P = P;
+                    x_e = [desiredAngularVelocity-obj.previousAngularVelocity();qe(2:4)'];
                     u = K*x_e;
-                    C = -obj.inertia()\obj.controlConfig_{index}.Mt;
+                    C = obj.controlConfig_{index}.C ;
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
                         torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
@@ -3261,8 +3342,78 @@ classdef multicontrol < multicopter
                     
                     attitudeControlOutput = -obj.inertia()*(C*u-desiredAngularAcceleration+auxA*desiredAngularVelocity);  
                 case 18 %'Markovian RLQ-R Active Modified'
+                    index = 18; 
                     
-                
+                    numberOfModes = size(obj.controlConfig_{index}.modes,1);
+                    modes = obj.controlConfig_{index}.modes;
+                    if ~obj.isRunning()
+                        obj.controlConfig_{index}.P = obj.controlConfig_{index}.initialP;
+                        obj.controlConfig_{index}.G = [];                        
+                        obj.controlConfig_{index}.F = [];
+                        obj.controlConfig_{index}.Ep = [];
+                        ei = obj.controlConfig_{index}.ei;
+                        for it=1:numberOfModes
+                            Mt = [];
+                            for kt=1:obj.numberOfRotors_
+                                Mt = [Mt modes(it,kt)*(obj.rotorLiftCoeff(kt,obj.rotorOperatingPoint_(kt))*cross(obj.rotor_(kt).position,obj.rotor_(kt).orientation)-obj.rotorDragCoeff(kt,obj.rotorOperatingPoint_(kt))*obj.rotorDirection_(kt)*obj.rotor_(kt).orientation)];
+                            end
+                            obj.controlConfig_{index}.G(:,:,it) = [-obj.inertia()\Mt;zeros(3,obj.numberOfRotors_)];
+                            obj.controlConfig_{index}.Ep(:,:,it) = ei(it)*eye(6);
+                        end
+                    end                    
+                    
+                    Sq = [qe(1),-qe(4),qe(3);
+                          qe(4),qe(1),-qe(2);
+                          -qe(3),qe(2),qe(1)];
+                    F = [];
+                    G = [];
+                    for it=1:numberOfModes
+                        torqueAux = zeros(3,1);
+                        for jt=1:obj.numberOfRotors_
+                            torqueAux = torqueAux + modes(it,jt)*obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
+                        end
+                        auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
+                        auxA = [0 -auxA(3) auxA(2) ; auxA(3) 0 -auxA(1) ; -auxA(2) auxA(1) 0 ];
+                        auxA = obj.inertia()\auxA;
+                        obj.controlConfig_{index}.F(:,:,it) = [auxA, zeros(3); 0.5*Sq, zeros(3)];
+                        sys = ss(obj.controlConfig_{index}.F(:,:,it),obj.controlConfig_{index}.G(:,:,it),eye(6),0);
+                        sysD = c2d(sys,obj.controlTimeStep_);
+
+                        F(:,:,it) = sysD.A;
+                        G(:,:,it) = sysD.B;
+                    end                 
+                    
+                    P = obj.controlConfig_{index}.P;
+                    k = obj.controlConfig_{index}.k;
+                    Q = obj.controlConfig_{index}.Q;
+                    R = obj.controlConfig_{index}.R;
+                    H = obj.controlConfig_{index}.H;
+                    Ep = obj.controlConfig_{index}.Ep;
+                    Ef = obj.controlConfig_{index}.Ef;
+                    Eg = obj.controlConfig_{index}.Eg;
+                    pij = obj.controlConfig_{index}.pij;
+                    mu = obj.controlConfig_{index}.mu;
+                    alpha = obj.controlConfig_{index}.alpha;
+
+                    [~,K,Pnext] = obj.gainActiveMarkovian(F,G,P,Q,R,H,Ef,Eg,pij,Ep,k,mu,alpha);
+                    obj.controlConfig_{index}.P = Pnext;
+                    modesAux = ones(1,obj.numberOfRotors_);
+                    for it=1:obj.numberOfRotors_
+                        if ~strcmp('motor ok',diagnosis{it}.status{3}) || ~strcmp('prop ok',diagnosis{it}.status{4})
+                            modesAux(it) = 0;
+                        end
+                    end
+                    [~,theta,~] = intersect(modes,modesAux,'rows');
+                    if isempty(theta)
+                        theta = 1;
+                    end
+                    
+                    x_e = [desiredAngularVelocity-obj.previousAngularVelocity();qe(2:4)'];
+                    u = K(:,:,theta)*x_e;
+                    
+                    auxA = obj.controlConfig_{index}.F(1:3,1:3,theta);
+                    C = obj.controlConfig_{index}.G(1:3,:,theta);
+                    attitudeControlOutput = -obj.inertia()*(C*u-desiredAngularAcceleration+auxA*desiredAngularVelocity);          
             end
         end  
         function allocatorOutput = controlAllocation(obj, controllerOutput, diagnosis)
@@ -3887,22 +4038,66 @@ classdef multicontrol < multicopter
             Er = k*Er;
 
             A = [zeros(r,n);-Eq;Ea];
-            B = [-Er;zeros(n,m);Eb];
-            E = [zeros(n+r,n);Ee];
+            B = [-Er;zeros(size(Eq,1),m);Eb];
+            E = [zeros(r+size(Eq,1),n);Ee];
             sigma = eye(size(A,1))/lambda;
             left = [zeros(n,n+m+n)
                     zeros(size(A,1),n+m), A
                     eye(n) zeros(n,m+n)
                     zeros(m,n), eye(m), zeros(m,n)]';
-            center = [inv(P),zeros(n,size(sigma,2)),eye(n),zeros(n,m)
-                      zeros(size(sigma,1),n),sigma,E,-B
-                      eye(n),E',zeros(n,n+m)
-                      zeros(m,n),-B',zeros(m,n+m)];
+            topCenter = blkdiag(inv(P),sigma);
+            centerAux = [eye(n), zeros(n,m)
+                         E,-B];
+            center = [topCenter, centerAux
+                      centerAux',zeros(n+m,n+m)];
             right = [zeros(n,n);A;zeros(n+m,n)];
             gain = left*(center\right);
             L = gain(1:n,:);
             K = gain(n+1:n+m,:);
             P = gain(n+m+1:end,:);
+        end
+        function [L,K,Pnext] = gainActiveMarkovian(obj,F,G,P,Q,R,H,Ef,Eg,pij,Ep,k,mu,alpha)
+            %GAINRLQR Calculates RLQ-R gain and ricatti
+        %   Calculates the optimal gains for x(i+1)* and u(i)* in the robust case
+        %   considering parametric uncertainties H, Ef and Eg. Returns also the
+        %   ricatti P(i) for the P(i+1) and other parameters.
+            n = size(F,2);
+            m = size(G,2);
+            s = size(F,3);
+            l = size(Ef,1);
+            Ep = k*Ep;
+            Ef = k*Ef;
+            Eg = k*Eg;
+            
+            for it=1:s
+                psi = zeros(n);          
+                for jt = 1:s  
+                    psi = psi + pij(it,jt) * P(:,:,jt);
+                end
+                Fhat = [F(:,:,it);zeros(n,n);Ef(:,:,it)];
+                Ghat = [G(:,:,it);zeros(n,m);Eg(:,:,it)];
+                Ihat = [eye(n);Ep(:,:,it);zeros(size(Ef(:,:,it)))];
+                lambda = (1+alpha)*norm(mu*H(:,:,it)'*H(:,:,it));
+                theta = eye(n)/mu-H(:,:,it)*H(:,:,it)'/lambda;
+                sigma = blkdiag(theta, eye(n)/lambda, eye(l)/lambda);
+                
+                left = [zeros(n+m,n+m+n)
+                        zeros(n,n+m), -eye(n)
+                        zeros(size(Fhat,1),n+m), Fhat
+                        eye(n), zeros(n,m+n)
+                        zeros(m,n), eye(m), zeros(m,n)]';
+                auxCenter = [eye(n+m)
+                             zeros(n,n+m)
+                             Ihat, -Ghat];
+                topCenter = blkdiag(inv(psi),inv(R(:,:,it)),inv(Q(:,:,it)),sigma);
+                center = [topCenter,auxCenter
+                          auxCenter',zeros(n+m,n+m)];
+                right = [zeros(n+m,n);-eye(n);Fhat;zeros(n+m,n)];
+                gain = left*(center\right);
+                L(:,:,it) = gain(1:n,:);
+                K(:,:,it) = gain(n+1:n+m,:);
+                Pnext(:,:,it) = gain(n+m+1:end,:);
+            end
         end
         function it = configureSOSMC(obj,index,varArgs,it)
             if obj.inputsOK(varArgs,it,3)

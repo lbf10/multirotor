@@ -3,7 +3,7 @@
 
 addpath('../../multiControl/')
 addpath('../../multiControl/utils')
-warning('on','all')
+warning('off','all')
 clear all
 clc
 %% Configuration for +8 coaxial octorotor
@@ -140,12 +140,12 @@ multirotor.configController('SOSMC Passive Direct',c,lambda,alpha,1,0);
 multirotor.configController('SOSMC Active Direct',c,lambda,alpha,1,0);
 
 % Adaptive controller
-Am = -1*diag([.1,.1,1]);
-Q = 1*diag([1,1,1]);
-gamma1 = diag([1,1,1])*0.001;
-gamma2 = diag([1,1,1])*0.0001;
-gamma3 = diag([1,1,1])*0.001;
-gamma4 = diag([1,1,1])*0;
+Am = -1*diag([.1,.1,2]);
+Q = .001*diag([1,1,1]);
+gamma1 = diag([1,1,1])*0.1;
+gamma2 = diag([1,1,1])*0.1;
+gamma3 = diag([1,1,1])*1;
+gamma4 = diag([1,1,1])*0.0001;
 multirotor.configController('Adaptive',Am,Q,gamma1,gamma2,gamma3,gamma4);
 Am = -diag([.1,.1,2,2,2,0.01]);
 Q = diag([1,1,1,.5,.5,.0005]);
@@ -172,26 +172,101 @@ multirotor.configController('Adaptive Direct',Am,Q,gamma1,gamma2,gamma3,gamma4,B
 
 % Markovian Passive Modified
 P = eye(6);
-Ef = 10*[2 2 1 1 1 1];
-Eg = 1000*[1 1 1 1 1 1 1 1];
-k = 1;
-Er = 0.000001*eye(8);
-Eq = diag([1 1 1 1e-6 1e-6 1e-6]);
-lambda = 1;
-% orientationsAux = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
-% positionsAux = [[0.341 0.341 0.0143]',[-0.341 0.341 0.0143]',[-0.341 -0.341 0.0143]',[0.341 -0.341 0.0143]',[0.341 0.341 0.0913]',[-0.341 0.341 0.0913]',[-0.341 -0.341 0.0913]',[0.341 -0.341 0.0913]'];
-% modes = controllableModes(positionsAux,orientationsAux,rotationDirection);
 modes = [1 1 1 1 1 1 1 1
          0 1 1 1 1 1 1 1
          0 0 1 1 1 1 1 1
          0 0 0 1 1 1 1 1
          0 0 0 0 1 1 1 1];
-%      modes = [1 1 1 1 1 1 1 1];
 numberOfModes = size(modes,1);
+
+Ef = [];
+Ef(:,:,1) = 10*ones(1,6);
+Ef(:,:,2) = 10*ones(1,6);
+Ef(:,:,3) = 10*ones(1,6);
+Ef(:,:,4) = 10*ones(1,6);
+Ef(:,:,5) = 10*ones(1,6);
+
+Eg = [];
+Eg(:,:,1) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,2) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,3) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,4) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,5) = [1000 1000 1000 1000 1000 1000 1000 1000];
+
+k = 1;
+
+Eq = [];
+Eq(:,:,1) = diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,2) = diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,3) = diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,4) = diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,5) = diag([1 1 1 1e-6 1e-6 1e-6]);
+
+Er = [];
+Er(:,:,1) = diag(0.000001*modes(1,:)+~modes(1,:));
+Er(:,:,2) = diag(0.000001*modes(2,:)+~modes(2,:));
+Er(:,:,3) = diag(0.000001*modes(3,:)+~modes(3,:));
+Er(:,:,4) = diag(0.000001*modes(4,:)+~modes(4,:));
+Er(:,:,5) = diag(0.000001*modes(5,:)+~modes(5,:));
+
+lambda = 1;
 pij = 0.5*eye(numberOfModes);
 eij = 2*ones(numberOfModes, numberOfModes);
-multirotor.configController('Markovian RLQ-R Passive Modified',P,Ef,Eg,k,Er,Eq,lambda,modes,pij,eij);
+multirotor.configController('Markovian RLQ-R Passive Modified',modes,P,Ef,Eg,k,Er,Eq,lambda,pij,eij);
 
+modes = [1 1 1 1 1 1 1 1
+         0 1 1 1 1 1 1 1
+         0 0 1 1 1 1 1 1
+         0 0 0 1 1 1 1 1
+         0 0 0 0 1 1 1 1];
+numberOfModes = size(modes,1);
+P = [];
+for it = 1:numberOfModes
+      P(:,:,it) = eye(6);  
+end
+Q = [];
+Q(:,:,1) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+Q(:,:,2) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+Q(:,:,3) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+Q(:,:,4) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+Q(:,:,5) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+
+R = [];
+R(:,:,1) = diag(1*modes(1,:)+~modes(1,:));
+R(:,:,2) = diag(1*modes(2,:)+~modes(2,:));
+R(:,:,3) = diag(1*modes(3,:)+~modes(3,:));
+R(:,:,4) = diag(1*modes(4,:)+~modes(4,:));
+R(:,:,5) = diag(1*modes(5,:)+~modes(5,:));
+
+Ef = [];
+Ef(:,:,1) = 10000*ones(1,6);
+Ef(:,:,2) = 10000*ones(1,6);
+Ef(:,:,3) = 10000*ones(1,6);
+Ef(:,:,4) = 10000*ones(1,6);
+Ef(:,:,5) = 10000*ones(1,6);
+
+Eg = [];
+Eg(:,:,1) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,2) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,3) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,4) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,5) = [1000 1000 1000 1000 1000 1000 1000 1000];
+
+H = [];
+H(:,:,1) = [1 1 1 1 1 1]';
+H(:,:,2) = [1 1 1 1 1 1]';
+H(:,:,3) = [1 1 1 1 1 1]';
+H(:,:,4) = [1 1 1 1 1 1]';
+H(:,:,5) = [1 1 1 1 1 1]';
+
+pij = 0.5*eye(numberOfModes);
+ei = 2*ones(1,numberOfModes);
+k = 1;
+mu = 1e10;
+alpha = 1.5;
+
+multirotor.configController('Markovian RLQ-R Active Modified',modes,P,Q,R,Ef,Eg,H,pij,ei,k,mu,alpha);
+multirotor.setAngularFilterGain([0 0 0.5]);
 
 % Adaptive control allocation
 multirotor.configControlAllocator('Adaptive',-1e14*eye(6),1,0);
@@ -202,10 +277,10 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('Adaptive Direct');
-multirotor.setControlAllocator('None');
+multirotor.setController('Markovian RLQ-R Passive Modified');
+multirotor.setControlAllocator('Passive NMAC');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
-multirotor.configFDD(1,0.001)
+multirotor.configFDD(.95,0.05)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
 % multirotor.setTrajectory('waypoints',[50 50 50 170*pi/180]',10);
@@ -232,8 +307,10 @@ endTime = 15;
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
-% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)    
+multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.85)'},endTime/2)   
+% multirotor.addCommand({'setRotorStatus(2,''prop loss'',0.001)'},endTime/2)    
+% multirotor.addCommand({'setRotorStatus(3,''prop loss'',0.001)'},endTime/2)   
+% multirotor.addCommand({'setRotorStatus(4,''prop loss'',0.001)'},endTime/2)  
 % multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},0)
