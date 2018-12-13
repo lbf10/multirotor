@@ -86,7 +86,7 @@ for it1 = 1:length(endTimes)
     end
 end
 
-parpool(80);
+parpool('local',8);
 parfor it = 1:numberOfOptions
     option = options(it,:);
 
