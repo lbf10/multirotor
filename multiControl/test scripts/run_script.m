@@ -149,11 +149,11 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % Adaptive Direct:
 % kp = [60 60 100];ki = [20 10 40];kd = [40 40 70];kdd = [15 15 2];
 % Markovian passive:
-% kp = [70 70 100];ki = [40 40 40];kd = [40 40 70];kdd = [15 15 2];
+kp = [40 50 60];ki = [12 12 12];kd = [15 15 15];kdd = [1.5 1.8 1.5];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 % kp = [389.67 404.17 108.46]; ki =[52.17 11.03 61.61]; kd = [35.83 40 70]; kdd = [8.58 9.65 1.04];
 % Markovian active:
-kp = [40 50 60];ki = [10 12 10];kd = [15 15 15];kdd = [1.5 1.8 0];
+% kp = [40 50 60];ki = [10 12 10];kd = [15 15 15];kdd = [1.5 1.8 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
 % PID attitude controller
@@ -262,25 +262,48 @@ multirotor.configController('Adaptive Direct',Am,Q,gamma1,gamma2,gamma3,gamma4,B
 
 % Markovian Passive Modified
 P = eye(6);
-Ef = [96501.6733891791 77938.6590146259 8316.77302954705 77403.0624113987 33026.4672777944 75744.3901441209];
-Eg = [92518.7242854180 80846.4590502406 98743.5851487040 52664.7416862291 7180.52633564706 26640.5681377240 2758.16418230359 7681.64920735833];
-k = 91.2833604648149;
-Er = diag([1.00000000000000e-06 1.00000000000000e-06 1.00000000000000e-06 0.890325680063593 1.00000000000000e-06 1.00000000000000e-06 1.00000000000000e-06 1.00000000000000e-06]);
-Eq = diag([57091.4134380798 13396.1618419214 30537.6274125357 36097.1478078271 23865.5486345155 96302.6327783880]);
-lambda = 90.2664787832406;
-% orientationsAux = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
-% positionsAux = [[0.341 0.341 0.0143]',[-0.341 0.341 0.0143]',[-0.341 -0.341 0.0143]',[0.341 -0.341 0.0143]',[0.341 0.341 0.0913]',[-0.341 0.341 0.0913]',[-0.341 -0.341 0.0913]',[0.341 -0.341 0.0913]'];
-% modes = controllableModes(positionsAux,orientationsAux,rotationDirection);
 modes = [1 1 1 1 1 1 1 1
          0 1 1 1 1 1 1 1
          0 0 1 1 1 1 1 1
          0 0 0 1 1 1 1 1
          0 0 0 0 1 1 1 1];
 numberOfModes = size(modes,1);
-pij = 1.96550036292766*eye(numberOfModes);
-eij = 2.18369128560955*ones(numberOfModes, numberOfModes);
-multirotor.configController('Markovian RLQ-R Passive Modified',P,Ef,Eg,k,Er,Eq,lambda,modes,pij,eij);
-multirotor.setAngularFilterGain([0.00659393281644116 0.00456118030355779 0.942187236895285]);
+
+Ef = [];
+Ef(:,:,1) = 10*ones(1,6);
+Ef(:,:,2) = 10*ones(1,6);
+Ef(:,:,3) = 10*ones(1,6);
+Ef(:,:,4) = 10*ones(1,6);
+Ef(:,:,5) = 10*ones(1,6);
+
+Eg = [];
+Eg(:,:,1) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,2) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,3) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,4) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,5) = [1000 1000 1000 1000 1000 1000 1000 1000];
+
+k = 1;
+
+Eq = [];
+Eq(:,:,1) = 0.1*diag([.1 .1 .1 1 1 1]);
+Eq(:,:,2) = 0.1*diag([.1 .1 .1 1 1 1]);
+Eq(:,:,3) = 0.1*diag([.1 .1 .1 1 1 1]);
+Eq(:,:,4) = 0.1*diag([.1 .1 .1 1 1 1]);
+Eq(:,:,5) = 0.1*diag([.1 .1 .1 1 1 1]);
+
+Er = [];
+Er(:,:,1) = diag(0.00001*modes(1,:)+~modes(1,:));
+Er(:,:,2) = diag(0.00001*modes(2,:)+~modes(2,:));
+Er(:,:,3) = diag(0.00001*modes(3,:)+~modes(3,:));
+Er(:,:,4) = diag(0.00001*modes(4,:)+~modes(4,:));
+Er(:,:,5) = diag(0.00001*modes(5,:)+~modes(5,:));
+
+lambda = 10;
+pij = 0.5*eye(numberOfModes);
+eij = 2*ones(numberOfModes, numberOfModes);
+multirotor.configController('Markovian RLQ-R Passive Modified',modes,P,Ef,Eg,k,Er,Eq,lambda,pij,eij);
+multirotor.setAngularFilterGain([0 0 0.5]);
 
 modes = [1 1 1 1 1 1 1 1
          0 1 1 1 1 1 1 1
@@ -346,9 +369,9 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('Markovian RLQ-R Active Modified');
-multirotor.setControlAllocator('Active NMAC');
-multirotor.setAttitudeReferenceCA('Active NMAC');
+multirotor.setController('Markovian RLQ-R Passive Modified');
+multirotor.setControlAllocator('Passive NMAC');
+multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.001)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
