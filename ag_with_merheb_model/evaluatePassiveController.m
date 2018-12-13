@@ -160,7 +160,7 @@ parfor it = 1:numberOfOptions
     catch
         option{6} = inf;
     end
-    option{7} = multirotor;
+    option{7} = multirotor.metrics();
     options(it,:) = option;
     multirotor.save('all',[pathname,foldername,'/multirotorSimulation_',num2str(it),'.mat']);
 %         multirotor.plotSim()
