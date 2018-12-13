@@ -4,7 +4,8 @@ login leonardof
 
 ssh -X -p 2222 leonardof@143.107.239.253
 
-nohup matlab -nodisplay -r "run('main.m'); quit;" &
+To run optimization: nohup matlab -nodisplay -r "run('main.m'); quit;" &
+To run evaluation: nohup matlab -nodesktop -r "run('evaluatePassiveController.m'); quit;" > nohupEvaluatePassive.out &
 
 scp -rv -P 2222 leonardof@143.107.239.253:/export/home/leonardof/multirotor/ag_with_estimated_model/Results/PID_PassiveNMAC_PassiveNMAC /home/lfarconi/multirotor/ag_with_estimated_model/Results/
 

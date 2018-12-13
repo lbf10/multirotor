@@ -89,7 +89,8 @@ for it1 = 1:length(endTimes)
     end
 end
 
-parpool(80);
+poolobj = parpool('local',8);
+addAttachedFiles(poolobj,{'paramsToMultirotor.m','../multiControl/'})
 parfor it = 1:numberOfOptions
     option = options(it,:);
 
