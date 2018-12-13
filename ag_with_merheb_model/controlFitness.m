@@ -6,9 +6,12 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
 %    x
     positions = [[0.282843 0.282843 0.05]',[-0.282843 0.282843 0.05]',[-0.282843 -0.282843 0.05]',[0.282843 -0.282843 0.05]',[0.282843 0.282843 -0.05]',[-0.282843 0.282843 -0.05]',[-0.282843 -0.282843 -0.05]',[0.282843 -0.282843 -0.05]'];
     payloadRadius = 0.3*mean(sqrt(sum(positions.^2)));
-    endTimes = [15,30];
+    endTimes = [15];
     yawGoTos = [2*pi];%[0,2*pi];
-    payloads = [0, 0, 0, 0];
+    payloads = [0, 0, 0, 0 	       	
+		%0.5*mass, 0, 0, 0 	
+		%0.5*mass, -payloadRadius/(2*sqrt(2)), -payloadRadius/(2*sqrt$ %1*mass, 0, 0, 0 disturbances = [5];
+               	0.4, 0, 0, -payloadRadius]; 
     disturbances = [5];
     failures = {%{''}
                 %{'setRotorStatus(1,''motor loss'',0.75)'}
