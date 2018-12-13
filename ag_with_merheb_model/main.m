@@ -7,8 +7,8 @@ addpath('../multiControl/utils')
 warning('off','all')
 
 %% Algorithms to train
-algorithms = { 'PID','Passive NMAC';
-               'RLQ-R Passive', 'Passive NMAC';
+algorithms = { %'PID','Passive NMAC';
+               %'RLQ-R Passive', 'Passive NMAC';
                'RLQ-R Passive Modified','Passive NMAC';
                'RLQ-R Passive Modified with PIDD','Passive NMAC';
                'SOSMC Passive','Passive NMAC';
