@@ -1,4 +1,4 @@
-
+% OK
 % Tilted octa simulation using parameters from hexa below
 % refer to "Mathematical modeling and control of a hexacopter", Alaimo,
 % A.,2013
