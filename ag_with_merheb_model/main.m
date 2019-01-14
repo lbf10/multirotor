@@ -9,8 +9,8 @@ warning('off','all')
 %% Algorithms to train
 algorithms = { %'PID','Passive NMAC';
                %'RLQ-R Passive', 'Passive NMAC';
-               'RLQ-R Passive Modified','Passive NMAC';
-               'RLQ-R Passive Modified with PIDD','Passive NMAC';
+               %'RLQ-R Passive Modified','Passive NMAC';
+               %'RLQ-R Passive Modified with PIDD','Passive NMAC';
                'SOSMC Passive','Passive NMAC';
                'SOSMC Passive with PIDD','Passive NMAC';
                'SOSMC Passive Direct','None';

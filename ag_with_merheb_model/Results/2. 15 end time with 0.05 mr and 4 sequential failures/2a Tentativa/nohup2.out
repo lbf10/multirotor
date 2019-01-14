@@ -1,0 +1,853 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 17:17:03
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 13-Dec-2018 17:23:51
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 17:23:52
+Fitness Calculated 13-Dec-2018 17:30:29
+Iterating ...
+    1          6000            2.11           27.34        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 17:30:30
+Fitness Calculated 13-Dec-2018 17:42:31
+Iterating ...
+    2          9000           2.111           24.98        1
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 17:42:32
+Fitness Calculated 13-Dec-2018 18:04:51
+Iterating ...
+    3         12000           2.082           24.25        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 18:04:52
+Fitness Calculated 13-Dec-2018 18:31:15
+Iterating ...
+    4         15000            1.99           23.52        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 18:31:16
+Fitness Calculated 13-Dec-2018 18:59:54
+Iterating ...
+    5         18000           1.975           22.38        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 18:59:55
+Fitness Calculated 13-Dec-2018 19:30:39
+Iterating ...
+    6         21000           1.954           20.03        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 19:30:40
+Fitness Calculated 13-Dec-2018 20:03:44
+Iterating ...
+    7         24000           1.951           18.31        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 20:03:46
+Fitness Calculated 13-Dec-2018 20:38:59
+Iterating ...
+    8         27000            1.87           16.12        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 20:39:00
+Fitness Calculated 13-Dec-2018 21:15:22
+Iterating ...
+    9         30000           1.854           14.76        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 21:15:24
+Fitness Calculated 13-Dec-2018 21:53:21
+Iterating ...
+   10         33000           1.848           13.65        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 21:53:23
+Fitness Calculated 13-Dec-2018 22:32:02
+Iterating ...
+   11         36000           1.841           12.88        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 22:32:04
+Fitness Calculated 13-Dec-2018 23:11:44
+Iterating ...
+   12         39000           1.835           12.53        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 23:11:46
+Fitness Calculated 13-Dec-2018 23:52:34
+Iterating ...
+   13         42000           1.805           12.14        0
+RLQ-R Passive Modified - Starting Fitness Calculation 13-Dec-2018 23:52:36
+Fitness Calculated 14-Dec-2018 00:33:37
+Iterating ...
+   14         45000            1.78           11.97        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 00:33:39
+Fitness Calculated 14-Dec-2018 01:14:51
+Iterating ...
+   15         48000           1.768            11.8        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 01:14:53
+Fitness Calculated 14-Dec-2018 01:56:07
+Iterating ...
+   16         51000           1.766           11.83        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 01:56:09
+Fitness Calculated 14-Dec-2018 02:36:55
+Iterating ...
+   17         54000           1.766           11.99        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 02:36:57
+Fitness Calculated 14-Dec-2018 03:17:55
+Iterating ...
+   18         57000            1.76           12.22        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 03:17:58
+Fitness Calculated 14-Dec-2018 03:59:02
+Iterating ...
+   19         60000           1.748           12.39        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 03:59:04
+Fitness Calculated 14-Dec-2018 04:39:28
+Iterating ...
+   20         63000           1.744           12.14        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 04:39:30
+Fitness Calculated 14-Dec-2018 05:20:45
+Iterating ...
+   21         66000           1.742           11.89        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 05:20:48
+Fitness Calculated 14-Dec-2018 06:02:13
+Iterating ...
+   22         69000           1.736              12        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 06:02:16
+Fitness Calculated 14-Dec-2018 06:44:41
+Iterating ...
+   23         72000           1.736           11.87        1
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 06:44:44
+Fitness Calculated 14-Dec-2018 07:26:34
+Iterating ...
+   24         75000           1.735           11.88        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 07:26:36
+Fitness Calculated 14-Dec-2018 08:09:05
+Iterating ...
+   25         78000           1.731           11.75        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 08:09:08
+Fitness Calculated 14-Dec-2018 08:51:45
+Iterating ...
+   26         81000            1.73           11.71        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 08:51:48
+Fitness Calculated 14-Dec-2018 09:35:08
+Iterating ...
+   27         84000            1.73           11.76        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 09:35:11
+Fitness Calculated 14-Dec-2018 10:18:30
+Iterating ...
+   28         87000           1.725           11.51        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 10:18:34
+Fitness Calculated 14-Dec-2018 11:01:52
+Iterating ...
+   29         90000           1.725           11.71        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 11:01:55
+Fitness Calculated 14-Dec-2018 11:44:44
+Iterating ...
+   30         93000           1.725            11.8        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 11:44:47
+Fitness Calculated 14-Dec-2018 12:27:44
+Iterating ...
+   31         96000           1.722           12.12        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 12:27:48
+Fitness Calculated 14-Dec-2018 13:10:09
+Iterating ...
+   32         99000           1.721           12.01        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 13:10:11
+Fitness Calculated 14-Dec-2018 13:52:39
+Iterating ...
+   33         102000           1.721           11.78        1
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 13:52:43
+Fitness Calculated 14-Dec-2018 14:36:00
+Iterating ...
+   34         105000           1.721           11.56        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 14:36:04
+Fitness Calculated 14-Dec-2018 15:19:04
+Iterating ...
+   35         108000            1.72           11.46        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 15:19:07
+Fitness Calculated 14-Dec-2018 16:03:10
+Iterating ...
+   36         111000           1.717           11.27        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 16:03:14
+Fitness Calculated 14-Dec-2018 16:45:59
+Iterating ...
+   37         114000           1.714           11.48        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 16:46:02
+Fitness Calculated 14-Dec-2018 17:30:03
+Iterating ...
+   38         117000           1.714           11.14        1
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 17:30:08
+Fitness Calculated 14-Dec-2018 18:14:49
+Iterating ...
+   39         120000           1.714            11.3        2
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 18:14:53
+Fitness Calculated 14-Dec-2018 18:58:36
+Iterating ...
+   40         123000           1.714           11.58        3
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 18:58:40
+Fitness Calculated 14-Dec-2018 19:42:11
+Iterating ...
+   41         126000           1.713           11.45        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 19:42:14
+Fitness Calculated 14-Dec-2018 20:25:52
+Iterating ...
+   42         129000           1.712           11.35        0
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 20:25:55
+Fitness Calculated 14-Dec-2018 21:10:30
+Iterating ...
+   43         132000           1.712           11.57        1
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 21:10:35
+Fitness Calculated 14-Dec-2018 21:55:08
+Iterating ...
+   44         135000           1.712           11.47        2
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 21:55:13
+Fitness Calculated 14-Dec-2018 22:38:35
+Iterating ...
+   45         138000           1.712           11.68        3
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 22:38:38
+Fitness Calculated 14-Dec-2018 23:21:56
+Iterating ...
+   46         141000           1.712           11.98        4
+RLQ-R Passive Modified - Starting Fitness Calculation 14-Dec-2018 23:22:01
+Fitness Calculated 15-Dec-2018 00:04:56
+Iterating ...
+   47         144000           1.711           11.88        0
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 00:05:00
+Fitness Calculated 15-Dec-2018 00:48:47
+Iterating ...
+   48         147000           1.711           11.63        1
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 00:48:51
+Fitness Calculated 15-Dec-2018 01:31:57
+Iterating ...
+   49         150000           1.711           11.85        2
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 01:32:02
+Fitness Calculated 15-Dec-2018 02:14:12
+Iterating ...
+   50         153000           1.709           12.13        0
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 02:14:17
+Fitness Calculated 15-Dec-2018 02:57:24
+Iterating ...
+   51         156000           1.707           12.14        0
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 02:57:29
+Fitness Calculated 15-Dec-2018 03:40:26
+Iterating ...
+   52         159000           1.707           12.09        1
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 03:40:30
+Fitness Calculated 15-Dec-2018 04:23:58
+Iterating ...
+   53         162000           1.707           12.08        2
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 04:24:05
+Fitness Calculated 15-Dec-2018 05:06:13
+Iterating ...
+   54         165000           1.707            12.3        3
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 05:06:18
+Fitness Calculated 15-Dec-2018 05:48:51
+Iterating ...
+   55         168000           1.706           12.19        0
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 05:48:57
+Fitness Calculated 15-Dec-2018 06:31:13
+Iterating ...
+   56         171000           1.706           12.18        1
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 06:31:18
+Fitness Calculated 15-Dec-2018 07:13:13
+Iterating ...
+   57         174000           1.706           12.36        2
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 07:13:18
+Fitness Calculated 15-Dec-2018 07:54:53
+Iterating ...
+   58         177000           1.706           12.38        3
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 07:54:59
+Fitness Calculated 15-Dec-2018 08:37:23
+Iterating ...
+   59         180000           1.706           12.38        4
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 08:37:29
+Fitness Calculated 15-Dec-2018 09:20:19
+Iterating ...
+   60         183000           1.705            12.4        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 09:20:24
+Fitness Calculated 15-Dec-2018 10:02:30
+Iterating ...
+   61         186000           1.705           12.39        1
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 10:02:34
+Fitness Calculated 15-Dec-2018 10:43:47
+Iterating ...
+   62         189000           1.705           12.59        2
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 10:43:52
+Fitness Calculated 15-Dec-2018 11:25:01
+Iterating ...
+   63         192000           1.705           12.48        3
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 11:25:06
+Fitness Calculated 15-Dec-2018 12:07:04
+Iterating ...
+   64         195000           1.705           12.49        4
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 12:07:09
+Fitness Calculated 15-Dec-2018 12:48:46
+Iterating ...
+   65         198000           1.704           12.46        0
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 12:48:53
+Fitness Calculated 15-Dec-2018 13:29:51
+Iterating ...
+   66         201000           1.704           12.84        1
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 13:29:59
+Fitness Calculated 15-Dec-2018 14:10:33
+Iterating ...
+   67         204000           1.704           12.77        2
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 14:10:38
+Fitness Calculated 15-Dec-2018 14:51:48
+Iterating ...
+   68         207000           1.704           12.74        3
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 14:51:55
+Fitness Calculated 15-Dec-2018 15:32:24
+Iterating ...
+   69         210000           1.704            13.1        4
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 15:32:30
+Fitness Calculated 15-Dec-2018 16:13:15
+Iterating ...
+   70         213000           1.704           12.85        5
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 16:13:22
+Fitness Calculated 15-Dec-2018 16:54:33
+Iterating ...
+   71         216000           1.704           13.17        6
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 16:54:41
+Fitness Calculated 15-Dec-2018 17:35:44
+Iterating ...
+   72         219000           1.704           13.08        7
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 17:35:52
+Fitness Calculated 15-Dec-2018 18:16:04
+Iterating ...
+   73         222000           1.704           13.14        8
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 18:16:12
+Fitness Calculated 15-Dec-2018 18:56:59
+Iterating ...
+   74         225000           1.704            13.1        9
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 18:57:07
+Fitness Calculated 15-Dec-2018 19:38:17
+Iterating ...
+   75         228000           1.704           12.96       10
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 19:38:24
+Fitness Calculated 15-Dec-2018 20:19:24
+Iterating ...
+   76         231000           1.704           13.25       11
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 20:19:31
+Fitness Calculated 15-Dec-2018 21:00:19
+Iterating ...
+   77         234000           1.704           13.15       12
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 21:00:24
+Fitness Calculated 15-Dec-2018 21:41:03
+Iterating ...
+   78         237000           1.704            13.2       13
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 21:41:09
+Fitness Calculated 15-Dec-2018 22:22:10
+Iterating ...
+   79         240000           1.704           13.04       14
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 22:22:17
+Fitness Calculated 15-Dec-2018 23:02:45
+Iterating ...
+   80         243000           1.704           13.23       15
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 23:02:51
+Fitness Calculated 15-Dec-2018 23:43:02
+Iterating ...
+   81         246000           1.704           13.22       16
+RLQ-R Passive Modified - Starting Fitness Calculation 15-Dec-2018 23:43:08
+Fitness Calculated 16-Dec-2018 00:24:16
+Iterating ...
+   82         249000           1.704           13.14       17
+RLQ-R Passive Modified - Starting Fitness Calculation 16-Dec-2018 00:24:21
+Fitness Calculated 16-Dec-2018 01:05:08
+Iterating ...
+   83         252000           1.704           13.18       18
+RLQ-R Passive Modified - Starting Fitness Calculation 16-Dec-2018 01:05:17
+Fitness Calculated 16-Dec-2018 01:47:19
+Iterating ...
+   84         255000           1.704           12.86       19
+RLQ-R Passive Modified - Starting Fitness Calculation 16-Dec-2018 01:47:25
+Fitness Calculated 16-Dec-2018 02:28:36
+Iterating ...
+   85         258000           1.704           12.77       20
+RLQ-R Passive Modified - Starting Fitness Calculation 16-Dec-2018 02:28:42
+Fitness Calculated 16-Dec-2018 03:09:57
+Iterating ...
+   86         261000           1.704           12.75       21
+RLQ-R Passive Modified - Starting Fitness Calculation 16-Dec-2018 03:10:05
+Fitness Calculated 16-Dec-2018 03:51:16
+Iterating ...
+   87         264000           1.704           12.95       22
+RLQ-R Passive Modified - Starting Fitness Calculation 16-Dec-2018 03:51:25
+Fitness Calculated 16-Dec-2018 04:32:15
+Iterating ...
+   88         267000           1.704           12.78       23
+RLQ-R Passive Modified - Starting Fitness Calculation 16-Dec-2018 04:32:22
+Fitness Calculated 16-Dec-2018 05:13:51
+Iterating ...
+   89         270000           1.704           12.88       24
+RLQ-R Passive Modified - Starting Fitness Calculation 16-Dec-2018 05:13:58
+Fitness Calculated 16-Dec-2018 05:55:06
+Iterating ...
+   90         273000           1.704           12.69       25
+Optimization terminated: average change in the fitness value less than options.TolFun.
+Performing final task
+Parallel pool using the 'ClusterPandora' profile is shutting down.
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 05:55:38
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 16-Dec-2018 06:01:51
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 06:01:52
+Fitness Calculated 16-Dec-2018 06:08:15
+Iterating ...
+    1          6000           2.501           25.44        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 06:08:16
+Fitness Calculated 16-Dec-2018 06:18:07
+Iterating ...
+    2          9000           2.174           24.17        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 06:18:08
+Fitness Calculated 16-Dec-2018 06:37:00
+Iterating ...
+    3         12000           2.055           23.52        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 06:37:01
+Fitness Calculated 16-Dec-2018 07:03:47
+Iterating ...
+    4         15000           2.052           22.76        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 07:03:48
+Fitness Calculated 16-Dec-2018 07:32:35
+Iterating ...
+    5         18000           2.022           21.47        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 07:32:36
+Fitness Calculated 16-Dec-2018 08:03:34
+Iterating ...
+    6         21000           1.972           20.05        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 08:03:35
+Fitness Calculated 16-Dec-2018 08:36:20
+Iterating ...
+    7         24000           1.968           18.35        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 08:36:22
+Fitness Calculated 16-Dec-2018 09:11:29
+Iterating ...
+    8         27000            1.95           16.87        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 09:11:31
+Fitness Calculated 16-Dec-2018 09:48:34
+Iterating ...
+    9         30000           1.942           15.42        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 09:48:36
+Fitness Calculated 16-Dec-2018 10:26:25
+Iterating ...
+   10         33000            1.94           14.94        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 10:26:27
+Fitness Calculated 16-Dec-2018 11:04:50
+Iterating ...
+   11         36000           1.942            14.4        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 11:04:52
+Fitness Calculated 16-Dec-2018 11:43:45
+Iterating ...
+   12         39000           1.935           13.84        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 11:43:48
+Fitness Calculated 16-Dec-2018 12:22:49
+Iterating ...
+   13         42000            1.93           13.83        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 12:22:52
+Fitness Calculated 16-Dec-2018 13:03:17
+Iterating ...
+   14         45000           1.914           13.55        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 13:03:19
+Fitness Calculated 16-Dec-2018 13:43:20
+Iterating ...
+   15         48000           1.913           13.47        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 13:43:22
+Fitness Calculated 16-Dec-2018 14:23:35
+Iterating ...
+   16         51000           1.885           13.49        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 14:23:38
+Fitness Calculated 16-Dec-2018 15:03:39
+Iterating ...
+   17         54000           1.876           13.45        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 15:03:42
+Fitness Calculated 16-Dec-2018 15:43:41
+Iterating ...
+   18         57000           1.876           13.51        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 15:43:44
+Fitness Calculated 16-Dec-2018 16:24:13
+Iterating ...
+   19         60000           1.876           13.57        2
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 16:24:15
+Fitness Calculated 16-Dec-2018 17:05:00
+Iterating ...
+   20         63000           1.851           13.29        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 17:05:02
+Fitness Calculated 16-Dec-2018 17:45:58
+Iterating ...
+   21         66000           1.833            13.3        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 17:46:01
+Fitness Calculated 16-Dec-2018 18:27:16
+Iterating ...
+   22         69000           1.831           13.44        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 18:27:19
+Fitness Calculated 16-Dec-2018 19:07:52
+Iterating ...
+   23         72000           1.811           13.53        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 19:07:55
+Fitness Calculated 16-Dec-2018 19:48:11
+Iterating ...
+   24         75000           1.798           13.54        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 19:48:15
+Fitness Calculated 16-Dec-2018 20:29:48
+Iterating ...
+   25         78000           1.787           13.67        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 20:29:52
+Fitness Calculated 16-Dec-2018 21:10:32
+Iterating ...
+   26         81000           1.787           13.76        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 21:10:36
+Fitness Calculated 16-Dec-2018 21:51:21
+Iterating ...
+   27         84000           1.784           13.73        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 21:51:24
+Fitness Calculated 16-Dec-2018 22:31:02
+Iterating ...
+   28         87000           1.783           14.04        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 22:31:05
+Fitness Calculated 16-Dec-2018 23:13:10
+Iterating ...
+   29         90000           1.783           13.72        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 23:13:15
+Fitness Calculated 16-Dec-2018 23:54:12
+Iterating ...
+   30         93000           1.781            13.4        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 16-Dec-2018 23:54:16
+Fitness Calculated 17-Dec-2018 00:35:26
+Iterating ...
+   31         96000           1.781           13.49        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 00:35:31
+Fitness Calculated 17-Dec-2018 01:15:47
+Iterating ...
+   32         99000            1.78           13.57        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 01:15:52
+Fitness Calculated 17-Dec-2018 01:57:17
+Iterating ...
+   33         102000            1.78           13.56        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 01:57:20
+Fitness Calculated 17-Dec-2018 02:38:38
+Iterating ...
+   34         105000           1.777           13.68        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 02:38:43
+Fitness Calculated 17-Dec-2018 03:20:57
+Iterating ...
+   35         108000            1.77           13.79        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 03:21:01
+Fitness Calculated 17-Dec-2018 04:02:01
+Iterating ...
+   36         111000            1.77           13.56        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 04:02:05
+Fitness Calculated 17-Dec-2018 04:43:56
+Iterating ...
+   37         114000           1.768           13.58        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 04:44:01
+Fitness Calculated 17-Dec-2018 05:25:36
+Iterating ...
+   38         117000           1.766           13.64        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 05:25:41
+Fitness Calculated 17-Dec-2018 06:06:29
+Iterating ...
+   39         120000           1.752           13.87        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 06:06:34
+Fitness Calculated 17-Dec-2018 06:46:30
+Iterating ...
+   40         123000           1.742           14.04        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 06:46:36
+Fitness Calculated 17-Dec-2018 07:26:53
+Iterating ...
+   41         126000           1.742           13.89        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 07:26:58
+Fitness Calculated 17-Dec-2018 08:06:59
+Iterating ...
+   42         129000           1.739           14.02        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 08:07:05
+Fitness Calculated 17-Dec-2018 08:47:15
+Iterating ...
+   43         132000           1.739           14.34        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 08:47:21
+Fitness Calculated 17-Dec-2018 09:27:12
+Iterating ...
+   44         135000           1.738           14.24        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 09:27:17
+Fitness Calculated 17-Dec-2018 10:08:11
+Iterating ...
+   45         138000           1.734           14.25        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 10:08:16
+Fitness Calculated 17-Dec-2018 10:48:44
+Iterating ...
+   46         141000           1.734           14.44        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 10:48:51
+Fitness Calculated 17-Dec-2018 11:29:59
+Iterating ...
+   47         144000           1.734            14.1        2
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 11:30:04
+Fitness Calculated 17-Dec-2018 12:10:04
+Iterating ...
+   48         147000           1.734            14.1        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 12:10:11
+Fitness Calculated 17-Dec-2018 12:50:32
+Iterating ...
+   49         150000           1.733           14.03        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 12:50:37
+Fitness Calculated 17-Dec-2018 13:31:22
+Iterating ...
+   50         153000           1.731           14.21        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 13:31:26
+Fitness Calculated 17-Dec-2018 14:11:59
+Iterating ...
+   51         156000            1.73           14.11        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 14:12:05
+Fitness Calculated 17-Dec-2018 14:52:17
+Iterating ...
+   52         159000            1.73           14.19        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 14:52:24
+Fitness Calculated 17-Dec-2018 15:32:52
+Iterating ...
+   53         162000            1.73           14.11        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 15:33:00
+Fitness Calculated 17-Dec-2018 16:13:48
+Iterating ...
+   54         165000           1.728              14        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 16:13:55
+Fitness Calculated 17-Dec-2018 16:55:57
+Iterating ...
+   55         168000           1.729           13.65        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 16:56:03
+Fitness Calculated 17-Dec-2018 17:37:48
+Iterating ...
+   56         171000           1.728           13.69        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 17:37:55
+Fitness Calculated 17-Dec-2018 18:20:08
+Iterating ...
+   57         174000           1.728            13.7        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 18:20:13
+Fitness Calculated 17-Dec-2018 19:03:26
+Iterating ...
+   58         177000           1.727           13.69        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 19:03:32
+Fitness Calculated 17-Dec-2018 19:46:19
+Iterating ...
+   59         180000           1.727           13.79        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 19:46:26
+Fitness Calculated 17-Dec-2018 20:29:11
+Iterating ...
+   60         183000           1.727           13.76        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 20:29:17
+Fitness Calculated 17-Dec-2018 21:11:58
+Iterating ...
+   61         186000           1.726           13.56        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 21:12:06
+Fitness Calculated 17-Dec-2018 21:54:49
+Iterating ...
+   62         189000           1.726           13.95        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 21:54:57
+Fitness Calculated 17-Dec-2018 22:37:05
+Iterating ...
+   63         192000           1.726           13.81        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 22:37:14
+Fitness Calculated 17-Dec-2018 23:20:52
+Iterating ...
+   64         195000           1.726           13.78        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 17-Dec-2018 23:20:59
+Fitness Calculated 18-Dec-2018 00:03:23
+Iterating ...
+   65         198000           1.726            13.8        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 00:03:31
+Fitness Calculated 18-Dec-2018 00:45:55
+Iterating ...
+   66         201000           1.726           13.76        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 00:46:01
+Fitness Calculated 18-Dec-2018 01:28:22
+Iterating ...
+   67         204000           1.725           13.82        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 01:28:28
+Fitness Calculated 18-Dec-2018 02:12:11
+Iterating ...
+   68         207000           1.725           13.73        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 02:12:18
+Fitness Calculated 18-Dec-2018 02:54:34
+Iterating ...
+   69         210000           1.725           13.69        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 02:54:40
+Fitness Calculated 18-Dec-2018 03:37:12
+Iterating ...
+   70         213000           1.725           13.84        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 03:37:18
+Fitness Calculated 18-Dec-2018 04:20:17
+Iterating ...
+   71         216000           1.725           13.81        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 04:20:24
+Fitness Calculated 18-Dec-2018 05:01:18
+Iterating ...
+   72         219000           1.725           13.89        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 05:01:24
+Fitness Calculated 18-Dec-2018 05:42:17
+Iterating ...
+   73         222000           1.724           13.95        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 05:42:24
+Fitness Calculated 18-Dec-2018 06:23:56
+Iterating ...
+   74         225000           1.724           13.94        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 06:24:06
+Fitness Calculated 18-Dec-2018 07:05:27
+Iterating ...
+   75         228000           1.724           13.81        2
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 07:05:34
+Fitness Calculated 18-Dec-2018 07:48:22
+Iterating ...
+   76         231000           1.723           13.89        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 07:48:30
+Fitness Calculated 18-Dec-2018 08:30:48
+Iterating ...
+   77         234000           1.723           13.81        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 08:30:56
+Fitness Calculated 18-Dec-2018 09:13:19
+Iterating ...
+   78         237000           1.723           13.72        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 09:13:26
+Fitness Calculated 18-Dec-2018 09:55:24
+Iterating ...
+   79         240000           1.723           13.73        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 09:55:32
+Fitness Calculated 18-Dec-2018 10:37:46
+Iterating ...
+   80         243000           1.723           13.74        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 10:37:56
+Fitness Calculated 18-Dec-2018 11:19:41
+Iterating ...
+   81         246000           1.722           13.81        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 11:19:50
+Fitness Calculated 18-Dec-2018 12:02:15
+Iterating ...
+   82         249000           1.722           13.67        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 12:02:24
+Fitness Calculated 18-Dec-2018 12:45:11
+Iterating ...
+   83         252000           1.722           13.63        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 12:45:22
+Fitness Calculated 18-Dec-2018 13:27:54
+Iterating ...
+   84         255000           1.721           13.68        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 13:28:02
+Fitness Calculated 18-Dec-2018 14:09:21
+Iterating ...
+   85         258000           1.721           13.76        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 14:09:29
+Fitness Calculated 18-Dec-2018 14:51:24
+Iterating ...
+   86         261000            1.72           13.69        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 14:51:33
+Fitness Calculated 18-Dec-2018 15:33:21
+Iterating ...
+   87         264000           1.718           13.71        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 15:33:31
+Fitness Calculated 18-Dec-2018 16:15:42
+Iterating ...
+   88         267000           1.719           13.73        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 16:15:51
+Fitness Calculated 18-Dec-2018 16:58:21
+Iterating ...
+   89         270000           1.718           13.74        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 16:58:31
+Fitness Calculated 18-Dec-2018 17:40:51
+Iterating ...
+   90         273000           1.718           13.78        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 17:41:00
+Fitness Calculated 18-Dec-2018 18:23:00
+Iterating ...
+   91         276000           1.718           13.66        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 18:23:09
+Fitness Calculated 18-Dec-2018 19:05:22
+Iterating ...
+   92         279000           1.717           13.91        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 19:05:33
+Fitness Calculated 18-Dec-2018 19:46:43
+Iterating ...
+   93         282000           1.717           14.09        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 19:46:54
+Fitness Calculated 18-Dec-2018 20:28:36
+Iterating ...
+   94         285000           1.717           13.86        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 20:28:48
+Fitness Calculated 18-Dec-2018 21:11:29
+Iterating ...
+   95         288000           1.716           13.72        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 21:11:41
+Fitness Calculated 18-Dec-2018 21:53:13
+Iterating ...
+   96         291000           1.716            14.1        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 21:53:23
+Fitness Calculated 18-Dec-2018 22:35:20
+Iterating ...
+   97         294000           1.717           14.06        2
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 22:35:30
+Fitness Calculated 18-Dec-2018 23:17:54
+Iterating ...
+   98         297000           1.716           13.89        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 18-Dec-2018 23:18:06
+Fitness Calculated 19-Dec-2018 00:00:33
+Iterating ...
+   99         300000           1.716            13.8        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 00:00:42
+Fitness Calculated 19-Dec-2018 00:42:33
+Iterating ...
+  100         303000           1.716           13.74        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 00:42:44
+Fitness Calculated 19-Dec-2018 01:24:40
+Iterating ...
+  101         306000           1.716           13.82        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 01:24:53
+Fitness Calculated 19-Dec-2018 02:07:19
+Iterating ...
+  102         309000           1.716           13.88        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 02:07:33
+Fitness Calculated 19-Dec-2018 02:50:19
+Iterating ...
+  103         312000           1.716           13.86        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 02:50:31
+Fitness Calculated 19-Dec-2018 03:32:52
+Iterating ...
+  104         315000           1.716           13.86        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 03:33:01
+Fitness Calculated 19-Dec-2018 04:15:04
+Iterating ...
+  105         318000           1.716           13.74        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 04:15:14
+Fitness Calculated 19-Dec-2018 04:58:09
+Iterating ...
+  106         321000           1.716           13.66        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 04:58:22
+Fitness Calculated 19-Dec-2018 05:40:04
+Iterating ...
+  107         324000           1.715           13.98        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 05:40:14
+Fitness Calculated 19-Dec-2018 06:21:36
+Iterating ...
+  108         327000           1.715           13.85        1
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 06:21:47
+Fitness Calculated 19-Dec-2018 07:03:36
+Iterating ...
+  109         330000           1.716           13.84        2
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 07:03:48
+Fitness Calculated 19-Dec-2018 07:45:17
+Iterating ...
+  110         333000           1.716           14.07        3
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 07:45:26
+Fitness Calculated 19-Dec-2018 08:26:45
+Iterating ...
+  111         336000           1.716           14.01        0
+RLQ-R Passive Modified with PIDD - Starting Fitness Calculation 19-Dec-2018 08:26:59
