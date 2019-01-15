@@ -153,7 +153,7 @@ parfor it = 1:numberOfOptions
         metrics = multirotor.metrics();          
         option{6} = 1*(1-metrics.simulationSuccess)+metrics.RMSPositionError+real(metrics.RMSAngularError)+metrics.RMSPower/500;
     catch
-        option{6} = inf;
+        option{6} = 10;
     end
     option{7} = multirotor.metrics();
     options(it,:) = option;
