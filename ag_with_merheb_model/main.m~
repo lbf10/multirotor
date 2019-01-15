@@ -11,9 +11,15 @@ algorithms = { %'PID','Passive NMAC';
                %'RLQ-R Passive', 'Passive NMAC';
                %'RLQ-R Passive Modified','Passive NMAC';
                %'RLQ-R Passive Modified with PIDD','Passive NMAC';
+<<<<<<< HEAD
+               'SOSMC Passive','Passive NMAC';
+               'SOSMC Passive with PIDD','Passive NMAC';
+               'SOSMC Passive Direct','None';
+=======
                %'SOSMC Passive','Passive NMAC';
                %'SOSMC Passive with PIDD','Passive NMAC';
                %'SOSMC Passive Direct','None';
+>>>>>>> e3197077b83c03727dd37a94758f4afed9dd1136
                'Adaptive','Passive NMAC';
                'Adaptive with PIDD','Passive NMAC';
                'Adaptive Direct','None';
