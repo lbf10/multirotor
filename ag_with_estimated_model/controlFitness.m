@@ -42,6 +42,12 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
     end
     fitness = zeros(numberOfOptions,1);
     
+   if ~contains(attitudeController, 'Adaptive')
+       controlTimeStep = 0.05;
+   else
+       controlTimeStep = 0.02;
+   end
+    
    parfor it = 1:numberOfOptions
         option = options(it,:);
         
@@ -136,7 +142,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         multirotor.configControlAllocator('Passive NMAC',1,0);
         multirotor.configControlAllocator('Active NMAC',1,0);
         multirotor.setTimeStep(0.005);
-        multirotor.setControlTimeStep(0.05);
+        multirotor.setControlTimeStep(controlTimeStep);
         multirotor.configFDD(0.9,0.5);
         multirotor.setSimEffects('motor dynamics on','solver euler')
         multirotor.setControlDelay(0.20);

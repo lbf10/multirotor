@@ -11,9 +11,15 @@ algorithms = { %'PID','Passive NMAC';
                %'RLQ-R Passive', 'Passive NMAC';
                %'RLQ-R Passive Modified','Passive NMAC';
                %'RLQ-R Passive Modified with PIDD','Passive NMAC';
+<<<<<<< HEAD
                'SOSMC Passive','Passive NMAC';
                'SOSMC Passive with PIDD','Passive NMAC';
                'SOSMC Passive Direct','None';
+=======
+               %'SOSMC Passive','Passive NMAC';
+               %'SOSMC Passive with PIDD','Passive NMAC';
+               %'SOSMC Passive Direct','None';
+>>>>>>> e3197077b83c03727dd37a94758f4afed9dd1136
                'Adaptive','Passive NMAC';
                'Adaptive with PIDD','Passive NMAC';
                'Adaptive Direct','None';
@@ -315,51 +321,51 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'Adaptive'
-                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
+                initialPopulation = [30 30 40 0 0 0 5 5 5 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
-                Am = -1*[.1,.1,1];
-                Q = 1*[1,1,1];
+                Am = -2*[.1,.1,1];
+                Q = .01*[1,1,1];
                 gamma1 = [1,1,1]*0.001;
-                gamma2 = [1,1,1]*0.0001;
-                gamma3 = [1,1,1]*0.001;
-                gamma4 = [1,1,1]*0;
+                gamma2 = [1,1,1]*0.001;
+                gamma3 = [1,1,1]*4;
+                gamma4 = [1,1,1]*0.0001;
                 initialPopulation = [initialPopulation,Am,Q,gamma1,gamma2,gamma3,gamma4];
-                lb = [lb,-10*ones(1,3),zeros(1,15)];
-                ub = [ub,zeros(1,3),10*ones(1,15)];
+                lb = [lb,-20*ones(1,3),zeros(1,15)];
+                ub = [ub,zeros(1,3),20*ones(1,15)];
                 nvars = 30;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'Adaptive with PIDD'
-                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
+                initialPopulation = [30 30 40 0 0 0 5 5 5 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 Am = -[.1,.1,2,2,2,0.01];
                 Q = [1,1,1,.5,.5,.0005];
                 gamma1 = [1,1,1,1,1,1]*.0001;
                 gamma2 = [1,1,1,1,1,1]*.0001;
-                gamma3 = [1,1,1,1,1,1]*.001;
+                gamma3 = [1,1,1,1,1,1]*4;
                 gamma4 = [1,1,1,1,1,1]*.00001;
                 initialPopulation = [initialPopulation,Am,Q,gamma1,gamma2,gamma3,gamma4];
-                lb = [lb,-10*ones(1,6),zeros(1,30)];
-                ub = [ub,zeros(1,6),10*ones(1,30)];
+                lb = [lb,-20*ones(1,6),zeros(1,30)];
+                ub = [ub,zeros(1,6),20*ones(1,30)];
                 nvars = 48;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'Adaptive Direct'
-                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
+                initialPopulation = [30 30 40 0 0 0 5 5 5 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 Am = -[.1,.1,2,0.001,0.001,0.001];
-                Q = [1,1,1,0.005,0.005,.0005];
-                gamma1 = ones(1,8)*700;
-                gamma2 = ones(1,8)*700;
-                gamma3 = ones(1,8)*2000;
-                gamma4 = ones(1,8)*0.5;
+                Q = 0.001*[1,1,1,.5,.5,.0005];
+                gamma1 = ones(1,8)*20000;
+                gamma2 = ones(1,8)*20000;
+                gamma3 = ones(1,8)*40000;
+                gamma4 = ones(1,8)*0.005;
                 B0 = 5e3*[ -0.00001 -0.00001 4  1.5 -1.5  -3 ...
                              0.00001 -0.00001 4  1.5  1.5 3  ...
                              0.00001  0.00001 4 -1.5  1.5  -3  ...
