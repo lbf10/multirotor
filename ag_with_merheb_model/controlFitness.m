@@ -39,7 +39,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         end
     end
     fitness = zeros(numberOfOptions,1);
-    if ~contains(attitudeController, 'Adaptive')
+    if isempty(strfind(attitudeController, 'Adaptive'))
         controlTimeStep = 0.05;
     else
         controlTimeStep = 0.02;

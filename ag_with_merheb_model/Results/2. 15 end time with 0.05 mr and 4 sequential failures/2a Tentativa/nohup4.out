@@ -1,0 +1,523 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+Adaptive - Starting Fitness Calculation 14-Jan-2019 22:20:12
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 14-Jan-2019 22:24:01
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive - Starting Fitness Calculation 14-Jan-2019 22:24:02
+Fitness Calculated 14-Jan-2019 22:27:51
+Iterating ...
+    1          6000           4.215           47.77        0
+Adaptive - Starting Fitness Calculation 14-Jan-2019 22:27:52
+Fitness Calculated 14-Jan-2019 22:49:04
+Iterating ...
+    2          9000           4.215           45.24        1
+Adaptive - Starting Fitness Calculation 14-Jan-2019 22:49:04
+Fitness Calculated 14-Jan-2019 23:42:16
+Iterating ...
+    3         12000           4.108           41.13        0
+Adaptive - Starting Fitness Calculation 14-Jan-2019 23:42:17
+Fitness Calculated 15-Jan-2019 00:40:09
+Iterating ...
+    4         15000           4.107           36.01        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 00:40:10
+Fitness Calculated 15-Jan-2019 01:45:52
+Iterating ...
+    5         18000           3.224           31.02        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 01:45:52
+Fitness Calculated 15-Jan-2019 02:57:44
+Iterating ...
+    6         21000           3.069           27.06        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 02:57:45
+Fitness Calculated 15-Jan-2019 04:14:57
+Iterating ...
+    7         24000           3.065           23.96        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 04:14:58
+Fitness Calculated 15-Jan-2019 05:37:55
+Iterating ...
+    8         27000           3.028           21.87        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 05:37:56
+Fitness Calculated 15-Jan-2019 07:03:21
+Iterating ...
+    9         30000           2.744           19.98        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 07:03:21
+Fitness Calculated 15-Jan-2019 08:30:56
+Iterating ...
+   10         33000           2.744           19.14        1
+Adaptive - Starting Fitness Calculation 15-Jan-2019 08:30:57
+Fitness Calculated 15-Jan-2019 10:01:23
+Iterating ...
+   11         36000           2.741            18.4        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 10:01:24
+Fitness Calculated 15-Jan-2019 11:31:58
+Iterating ...
+   12         39000           2.731           18.19        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 11:31:59
+Fitness Calculated 15-Jan-2019 13:03:10
+Iterating ...
+   13         42000           2.691           17.89        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 13:03:11
+Fitness Calculated 15-Jan-2019 14:34:36
+Iterating ...
+   14         45000           2.609           18.27        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 14:34:37
+Fitness Calculated 15-Jan-2019 16:03:54
+Iterating ...
+   15         48000           2.592           18.15        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 16:03:55
+Fitness Calculated 15-Jan-2019 17:34:31
+Iterating ...
+   16         51000            2.57            17.8        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 17:34:32
+Fitness Calculated 15-Jan-2019 19:06:09
+Iterating ...
+   17         54000           2.515            17.8        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 19:06:10
+Fitness Calculated 15-Jan-2019 20:42:51
+Iterating ...
+   18         57000           2.515           17.79        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 20:42:52
+Fitness Calculated 15-Jan-2019 22:17:05
+Iterating ...
+   19         60000           2.494           17.62        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 22:17:06
+Fitness Calculated 15-Jan-2019 23:51:47
+Iterating ...
+   20         63000           2.479           17.97        0
+Adaptive - Starting Fitness Calculation 15-Jan-2019 23:51:49
+Fitness Calculated 16-Jan-2019 01:26:48
+Iterating ...
+   21         66000           2.395           17.89        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 01:26:49
+Fitness Calculated 16-Jan-2019 03:02:57
+Iterating ...
+   22         69000           2.344           17.68        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 03:02:58
+Fitness Calculated 16-Jan-2019 04:38:41
+Iterating ...
+   23         72000           2.339           17.74        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 04:38:43
+Fitness Calculated 16-Jan-2019 06:16:30
+Iterating ...
+   24         75000           2.098           17.59        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 06:16:31
+Fitness Calculated 16-Jan-2019 07:55:27
+Iterating ...
+   25         78000           2.095           17.56        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 07:55:28
+Fitness Calculated 16-Jan-2019 09:32:00
+Iterating ...
+   26         81000           1.981           17.67        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 09:32:01
+Fitness Calculated 16-Jan-2019 11:07:34
+Iterating ...
+   27         84000           1.977            17.3        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 11:07:35
+Fitness Calculated 16-Jan-2019 12:44:39
+Iterating ...
+   28         87000           1.928           17.68        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 12:44:40
+Fitness Calculated 16-Jan-2019 14:21:38
+Iterating ...
+   29         90000           1.928           17.21        1
+Adaptive - Starting Fitness Calculation 16-Jan-2019 14:21:39
+Fitness Calculated 16-Jan-2019 15:59:20
+Iterating ...
+   30         93000           1.928           17.84        2
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive - Starting Fitness Calculation 16-Jan-2019 15:59:21
+Fitness Calculated 16-Jan-2019 17:33:55
+Iterating ...
+   31         96000           1.927           18.26        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 17:33:57
+Fitness Calculated 16-Jan-2019 19:06:03
+Iterating ...
+   32         99000           1.927           18.27        1
+Adaptive - Starting Fitness Calculation 16-Jan-2019 19:06:04
+Fitness Calculated 16-Jan-2019 20:41:00
+Iterating ...
+   33         102000           1.926           18.59        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 20:41:01
+Fitness Calculated 16-Jan-2019 22:13:05
+Iterating ...
+   34         105000           1.926           18.63        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 22:13:06
+Fitness Calculated 16-Jan-2019 23:47:02
+Iterating ...
+   35         108000           1.926           18.34        0
+Adaptive - Starting Fitness Calculation 16-Jan-2019 23:47:03
+Fitness Calculated 17-Jan-2019 01:21:33
+Iterating ...
+   36         111000           1.926           18.14        0
+Adaptive - Starting Fitness Calculation 17-Jan-2019 01:21:35
+Fitness Calculated 17-Jan-2019 02:55:19
+Iterating ...
+   37         114000           1.926           18.06        1
+Adaptive - Starting Fitness Calculation 17-Jan-2019 02:55:21
+Fitness Calculated 17-Jan-2019 04:32:29
+Iterating ...
+   38         117000           1.926           17.96        0
+Adaptive - Starting Fitness Calculation 17-Jan-2019 04:32:30
+Fitness Calculated 17-Jan-2019 06:06:53
+Iterating ...
+   39         120000           1.926           17.85        1
+Adaptive - Starting Fitness Calculation 17-Jan-2019 06:06:55
+Fitness Calculated 17-Jan-2019 07:42:04
+Iterating ...
+   40         123000           1.926           18.01        2
+Adaptive - Starting Fitness Calculation 17-Jan-2019 07:42:06
+Fitness Calculated 17-Jan-2019 09:18:16
+Iterating ...
+   41         126000           1.926           17.95        3
+Adaptive - Starting Fitness Calculation 17-Jan-2019 09:18:18
+Fitness Calculated 17-Jan-2019 10:55:46
+Iterating ...
+   42         129000           1.926           18.17        4
+Adaptive - Starting Fitness Calculation 17-Jan-2019 10:55:48
+Fitness Calculated 17-Jan-2019 12:29:25
+Iterating ...
+   43         132000           1.926           18.03        5
+Adaptive - Starting Fitness Calculation 17-Jan-2019 12:29:27
+Fitness Calculated 17-Jan-2019 14:06:53
+Iterating ...
+   44         135000           1.925            17.9        0
+Adaptive - Starting Fitness Calculation 17-Jan-2019 14:06:55
+Fitness Calculated 17-Jan-2019 15:41:03
+Iterating ...
+   45         138000           1.925           18.02        0
+Adaptive - Starting Fitness Calculation 17-Jan-2019 15:41:05
+Fitness Calculated 17-Jan-2019 17:14:28
+Iterating ...
+   46         141000           1.925           18.13        0
+Adaptive - Starting Fitness Calculation 17-Jan-2019 17:14:30
+Fitness Calculated 17-Jan-2019 18:51:00
+Iterating ...
+   47         144000           1.925           18.19        0
+Adaptive - Starting Fitness Calculation 17-Jan-2019 18:51:02
+Fitness Calculated 17-Jan-2019 20:28:48
+Iterating ...
+   48         147000           1.925           17.86        1
+Adaptive - Starting Fitness Calculation 17-Jan-2019 20:28:50
+Fitness Calculated 17-Jan-2019 22:05:07
+Iterating ...
+   49         150000           1.925           17.85        2
+Adaptive - Starting Fitness Calculation 17-Jan-2019 22:05:09
+Fitness Calculated 17-Jan-2019 23:43:43
+Iterating ...
+   50         153000           1.925           18.18        3
+Adaptive - Starting Fitness Calculation 17-Jan-2019 23:43:46
+Fitness Calculated 18-Jan-2019 01:18:39
+Iterating ...
+   51         156000           1.925           18.23        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 01:18:41
+Fitness Calculated 18-Jan-2019 02:54:41
+Iterating ...
+   52         159000           1.925           18.31        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 02:54:43
+Fitness Calculated 18-Jan-2019 04:30:36
+Iterating ...
+   53         162000           1.925           18.18        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 04:30:39
+Fitness Calculated 18-Jan-2019 06:07:01
+Iterating ...
+   54         165000           1.924            18.4        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 06:07:03
+Fitness Calculated 18-Jan-2019 07:40:25
+Iterating ...
+   55         168000           1.924           18.42        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 07:40:27
+Fitness Calculated 18-Jan-2019 09:16:12
+Iterating ...
+   56         171000           1.924           18.09        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 09:16:14
+Fitness Calculated 18-Jan-2019 10:51:29
+Iterating ...
+   57         174000           1.924           17.98        1
+Adaptive - Starting Fitness Calculation 18-Jan-2019 10:51:31
+Fitness Calculated 18-Jan-2019 12:25:34
+Iterating ...
+   58         177000           1.924           18.29        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 12:25:37
+Fitness Calculated 18-Jan-2019 14:00:08
+Iterating ...
+   59         180000           1.924           18.39        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 14:00:11
+Fitness Calculated 18-Jan-2019 15:34:53
+Iterating ...
+   60         183000           1.924           18.34        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive - Starting Fitness Calculation 18-Jan-2019 15:34:55
+Fitness Calculated 18-Jan-2019 17:09:19
+Iterating ...
+   61         186000           1.924           18.04        2
+Adaptive - Starting Fitness Calculation 18-Jan-2019 17:09:21
+Fitness Calculated 18-Jan-2019 18:43:38
+Iterating ...
+   62         189000           1.924           17.76        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 18:43:41
+Fitness Calculated 18-Jan-2019 20:20:17
+Iterating ...
+   63         192000           1.924           18.18        0
+Adaptive - Starting Fitness Calculation 18-Jan-2019 20:20:20
+Fitness Calculated 18-Jan-2019 21:53:56
+Iterating ...
+   64         195000           1.924           18.42        1
+Adaptive - Starting Fitness Calculation 18-Jan-2019 21:53:59
+Fitness Calculated 18-Jan-2019 23:31:22
+Iterating ...
+   65         198000           1.924           18.34        2
+Adaptive - Starting Fitness Calculation 18-Jan-2019 23:31:25
+Fitness Calculated 19-Jan-2019 01:04:24
+Iterating ...
+   66         201000           1.924           18.45        3
+Adaptive - Starting Fitness Calculation 19-Jan-2019 01:04:26
+Fitness Calculated 19-Jan-2019 02:38:22
+Iterating ...
+   67         204000           1.924           18.26        0
+Adaptive - Starting Fitness Calculation 19-Jan-2019 02:38:24
+Fitness Calculated 19-Jan-2019 04:13:51
+Iterating ...
+   68         207000           1.924           18.27        0
+Adaptive - Starting Fitness Calculation 19-Jan-2019 04:13:53
+Fitness Calculated 19-Jan-2019 05:48:53
+Iterating ...
+   69         210000           1.924           18.16        0
+Adaptive - Starting Fitness Calculation 19-Jan-2019 05:48:55
+Fitness Calculated 19-Jan-2019 07:24:56
+Iterating ...
+   70         213000           1.924           18.22        1
+Adaptive - Starting Fitness Calculation 19-Jan-2019 07:24:58
+Fitness Calculated 19-Jan-2019 09:00:23
+Iterating ...
+   71         216000           1.924           18.36        2
+Adaptive - Starting Fitness Calculation 19-Jan-2019 09:00:26
+Fitness Calculated 19-Jan-2019 10:35:03
+Iterating ...
+   72         219000           1.924           18.32        0
+Adaptive - Starting Fitness Calculation 19-Jan-2019 10:35:06
+Fitness Calculated 19-Jan-2019 12:09:49
+Iterating ...
+   73         222000           1.924           18.48        1
+Adaptive - Starting Fitness Calculation 19-Jan-2019 12:09:52
+Fitness Calculated 19-Jan-2019 13:44:01
+Iterating ...
+   74         225000           1.924           18.32        2
+Adaptive - Starting Fitness Calculation 19-Jan-2019 13:44:04
+Fitness Calculated 19-Jan-2019 15:18:33
+Iterating ...
+   75         228000           1.924           18.68        0
+Adaptive - Starting Fitness Calculation 19-Jan-2019 15:18:36
+Fitness Calculated 19-Jan-2019 16:52:01
+Iterating ...
+   76         231000           1.924           18.47        1
+Adaptive - Starting Fitness Calculation 19-Jan-2019 16:52:04
+Fitness Calculated 19-Jan-2019 18:23:12
+Iterating ...
+   77         234000           1.924           18.82        2
+Adaptive - Starting Fitness Calculation 19-Jan-2019 18:23:15
+Fitness Calculated 19-Jan-2019 19:55:24
+Iterating ...
+   78         237000           1.924           17.97        3
+Adaptive - Starting Fitness Calculation 19-Jan-2019 19:55:27
+Fitness Calculated 19-Jan-2019 21:29:32
+Iterating ...
+   79         240000           1.924           17.94        0
+Adaptive - Starting Fitness Calculation 19-Jan-2019 21:29:35
+Fitness Calculated 19-Jan-2019 23:03:00
+Iterating ...
+   80         243000           1.924           17.75        1
+Adaptive - Starting Fitness Calculation 19-Jan-2019 23:03:03
+Fitness Calculated 20-Jan-2019 00:38:52
+Iterating ...
+   81         246000           1.924           18.26        2
+Adaptive - Starting Fitness Calculation 20-Jan-2019 00:38:55
+Fitness Calculated 20-Jan-2019 02:14:08
+Iterating ...
+   82         249000           1.924           18.19        3
+Adaptive - Starting Fitness Calculation 20-Jan-2019 02:14:11
+Fitness Calculated 20-Jan-2019 03:48:03
+Iterating ...
+   83         252000           1.924           18.18        4
+Adaptive - Starting Fitness Calculation 20-Jan-2019 03:48:07
+Fitness Calculated 20-Jan-2019 05:23:43
+Iterating ...
+   84         255000           1.924           18.26        5
+Adaptive - Starting Fitness Calculation 20-Jan-2019 05:23:46
+Fitness Calculated 20-Jan-2019 06:59:01
+Iterating ...
+   85         258000           1.924           17.96        6
+Adaptive - Starting Fitness Calculation 20-Jan-2019 06:59:04
+Fitness Calculated 20-Jan-2019 08:33:07
+Iterating ...
+   86         261000           1.923           18.28        0
+Adaptive - Starting Fitness Calculation 20-Jan-2019 08:33:10
+Fitness Calculated 20-Jan-2019 10:09:02
+Iterating ...
+   87         264000           1.923           18.27        1
+Adaptive - Starting Fitness Calculation 20-Jan-2019 10:09:06
+Fitness Calculated 20-Jan-2019 11:40:30
+Iterating ...
+   88         267000           1.923           18.32        2
+Adaptive - Starting Fitness Calculation 20-Jan-2019 11:40:34
+Fitness Calculated 20-Jan-2019 13:15:51
+Iterating ...
+   89         270000           1.923           18.47        3
+Adaptive - Starting Fitness Calculation 20-Jan-2019 13:15:55
+Fitness Calculated 20-Jan-2019 14:48:14
+Iterating ...
+   90         273000           1.923           18.37        4
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive - Starting Fitness Calculation 20-Jan-2019 14:48:18
+Fitness Calculated 20-Jan-2019 16:24:08
+Iterating ...
+   91         276000           1.923            18.2        0
+Adaptive - Starting Fitness Calculation 20-Jan-2019 16:24:12
+Fitness Calculated 20-Jan-2019 18:00:07
+Iterating ...
+   92         279000           1.923           18.14        0
+Adaptive - Starting Fitness Calculation 20-Jan-2019 18:00:11
+Fitness Calculated 20-Jan-2019 19:37:56
+Iterating ...
+   93         282000           1.923           18.32        1
+Adaptive - Starting Fitness Calculation 20-Jan-2019 19:38:00
+Fitness Calculated 20-Jan-2019 21:12:09
+Iterating ...
+   94         285000           1.923            18.2        2
+Adaptive - Starting Fitness Calculation 20-Jan-2019 21:12:13
+Fitness Calculated 20-Jan-2019 22:46:46
+Iterating ...
+   95         288000           1.923           18.13        3
+Adaptive - Starting Fitness Calculation 20-Jan-2019 22:46:49
+Fitness Calculated 21-Jan-2019 00:21:59
+Iterating ...
+   96         291000           1.923            17.9        0
+Adaptive - Starting Fitness Calculation 21-Jan-2019 00:22:02
+Fitness Calculated 21-Jan-2019 01:57:03
+Iterating ...
+   97         294000           1.923           17.74        1
+Adaptive - Starting Fitness Calculation 21-Jan-2019 01:57:07
+Fitness Calculated 21-Jan-2019 03:32:59
+Iterating ...
+   98         297000           1.923           17.84        0
+Adaptive - Starting Fitness Calculation 21-Jan-2019 03:33:02
+Fitness Calculated 21-Jan-2019 05:07:32
+Iterating ...
+   99         300000           1.923           18.11        0
+Adaptive - Starting Fitness Calculation 21-Jan-2019 05:07:36
+Fitness Calculated 21-Jan-2019 06:41:42
+Iterating ...
+  100         303000           1.923           18.07        1
+Adaptive - Starting Fitness Calculation 21-Jan-2019 06:41:46
+Fitness Calculated 21-Jan-2019 08:15:57
+Iterating ...
+  101         306000           1.923           18.21        2
+Adaptive - Starting Fitness Calculation 21-Jan-2019 08:16:01
+Fitness Calculated 21-Jan-2019 09:50:08
+Iterating ...
+  102         309000           1.923           17.97        3
+Adaptive - Starting Fitness Calculation 21-Jan-2019 09:50:11
+Fitness Calculated 21-Jan-2019 11:25:41
+Iterating ...
+  103         312000           1.923           18.16        0
+Adaptive - Starting Fitness Calculation 21-Jan-2019 11:25:45
+Fitness Calculated 21-Jan-2019 13:00:56
+Iterating ...
+  104         315000           1.923           18.37        1
+Adaptive - Starting Fitness Calculation 21-Jan-2019 13:01:00
+Fitness Calculated 21-Jan-2019 14:35:38
+Iterating ...
+  105         318000           1.923           18.46        2
+Adaptive - Starting Fitness Calculation 21-Jan-2019 14:35:42
+Fitness Calculated 21-Jan-2019 16:09:26
+Iterating ...
+  106         321000           1.923           18.33        3
+Adaptive - Starting Fitness Calculation 21-Jan-2019 16:09:30
+Fitness Calculated 21-Jan-2019 17:43:23
+Iterating ...
+  107         324000           1.923           18.39        0
+Adaptive - Starting Fitness Calculation 21-Jan-2019 17:43:27
+Fitness Calculated 21-Jan-2019 19:18:24
+Iterating ...
+  108         327000           1.923           18.21        1
+Adaptive - Starting Fitness Calculation 21-Jan-2019 19:18:28
+Fitness Calculated 21-Jan-2019 20:55:18
+Iterating ...
+  109         330000           1.923           18.18        2
+Adaptive - Starting Fitness Calculation 21-Jan-2019 20:55:22
+Fitness Calculated 21-Jan-2019 22:29:38
+Iterating ...
+  110         333000           1.922           18.38        0
+Adaptive - Starting Fitness Calculation 21-Jan-2019 22:29:42
+Fitness Calculated 22-Jan-2019 00:02:16
+Iterating ...
+  111         336000           1.922           18.53        0
+Adaptive - Starting Fitness Calculation 22-Jan-2019 00:02:20
+Fitness Calculated 22-Jan-2019 01:38:14
+Iterating ...
+  112         339000           1.922           18.36        0
+Adaptive - Starting Fitness Calculation 22-Jan-2019 01:38:18
+Fitness Calculated 22-Jan-2019 03:12:25
+Iterating ...
+  113         342000           1.922           18.48        1
+Adaptive - Starting Fitness Calculation 22-Jan-2019 03:12:29
+Fitness Calculated 22-Jan-2019 04:46:27
+Iterating ...
+  114         345000           1.921            18.4        0
+Adaptive - Starting Fitness Calculation 22-Jan-2019 04:46:31
+Fitness Calculated 22-Jan-2019 06:21:54
+Iterating ...
+  115         348000           1.921           18.08        1
+Adaptive - Starting Fitness Calculation 22-Jan-2019 06:21:58
+Fitness Calculated 22-Jan-2019 07:54:40
+Iterating ...
+  116         351000           1.921           18.53        2
+Adaptive - Starting Fitness Calculation 22-Jan-2019 07:54:44
+Fitness Calculated 22-Jan-2019 09:30:26
+Iterating ...
+  117         354000           1.921           18.23        3
+Adaptive - Starting Fitness Calculation 22-Jan-2019 09:30:30
+Fitness Calculated 22-Jan-2019 11:05:09
+Iterating ...
+  118         357000           1.921           18.15        4
+Adaptive - Starting Fitness Calculation 22-Jan-2019 11:05:13
+Fitness Calculated 22-Jan-2019 12:39:46
+Iterating ...
+  119         360000           1.921           18.29        5
+Adaptive - Starting Fitness Calculation 22-Jan-2019 12:39:51
+Fitness Calculated 22-Jan-2019 14:13:27
+Iterating ...
+  120         363000           1.921           18.16        6
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive - Starting Fitness Calculation 22-Jan-2019 14:13:31
+Fitness Calculated 22-Jan-2019 15:48:12
+Iterating ...
+  121         366000           1.921           18.19        7
+Adaptive - Starting Fitness Calculation 22-Jan-2019 15:48:17
+Fitness Calculated 22-Jan-2019 17:22:26
+Iterating ...
+  122         369000           1.921           18.25        8
+Adaptive - Starting Fitness Calculation 22-Jan-2019 17:22:30
