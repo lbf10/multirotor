@@ -14,7 +14,7 @@ algorithms = { %'PID','Passive NMAC';
                %'SOSMC Passive','Passive NMAC';
                %'SOSMC Passive with PIDD','Passive NMAC';
                %'SOSMC Passive Direct','None';
-               'Adaptive','Passive NMAC';
+               %'Adaptive','Passive NMAC';
                'Adaptive with PIDD','Passive NMAC';
                'Adaptive Direct','None';
                'Markovian RLQ-R Passive Modified','Passive NMAC'};
