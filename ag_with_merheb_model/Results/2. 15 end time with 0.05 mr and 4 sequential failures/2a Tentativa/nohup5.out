@@ -1,0 +1,508 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+Adaptive with PIDD - Starting Fitness Calculation 22-Jan-2019 18:38:19
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 22-Jan-2019 18:41:57
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive with PIDD - Starting Fitness Calculation 22-Jan-2019 18:41:58
+Fitness Calculated 22-Jan-2019 18:45:28
+Iterating ...
+    1          6000           2.508           49.98        0
+Adaptive with PIDD - Starting Fitness Calculation 22-Jan-2019 18:45:28
+Fitness Calculated 22-Jan-2019 18:54:59
+Iterating ...
+    2          9000           2.443           48.68        0
+Adaptive with PIDD - Starting Fitness Calculation 22-Jan-2019 18:54:59
+Fitness Calculated 22-Jan-2019 19:27:44
+Iterating ...
+    3         12000           2.443           46.17        0
+Adaptive with PIDD - Starting Fitness Calculation 22-Jan-2019 19:27:45
+Fitness Calculated 22-Jan-2019 20:24:32
+Iterating ...
+    4         15000           2.442            41.8        0
+Adaptive with PIDD - Starting Fitness Calculation 22-Jan-2019 20:24:33
+Fitness Calculated 22-Jan-2019 21:23:50
+Iterating ...
+    5         18000           2.288           36.88        0
+Adaptive with PIDD - Starting Fitness Calculation 22-Jan-2019 21:23:51
+Fitness Calculated 22-Jan-2019 22:28:52
+Iterating ...
+    6         21000           2.201            32.3        0
+Adaptive with PIDD - Starting Fitness Calculation 22-Jan-2019 22:28:53
+Fitness Calculated 22-Jan-2019 23:40:50
+Iterating ...
+    7         24000           2.159           28.71        0
+Adaptive with PIDD - Starting Fitness Calculation 22-Jan-2019 23:40:51
+Fitness Calculated 23-Jan-2019 00:55:17
+Iterating ...
+    8         27000            2.05           25.57        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 00:55:17
+Fitness Calculated 23-Jan-2019 02:16:58
+Iterating ...
+    9         30000            2.04           23.48        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 02:16:59
+Fitness Calculated 23-Jan-2019 03:38:30
+Iterating ...
+   10         33000            2.04           22.26        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 03:38:31
+Fitness Calculated 23-Jan-2019 05:04:41
+Iterating ...
+   11         36000           2.036            21.3        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 05:04:42
+Fitness Calculated 23-Jan-2019 06:33:07
+Iterating ...
+   12         39000           1.918           20.86        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 06:33:08
+Fitness Calculated 23-Jan-2019 07:58:40
+Iterating ...
+   13         42000           1.918           21.04        1
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 07:58:41
+Fitness Calculated 23-Jan-2019 09:24:39
+Iterating ...
+   14         45000           1.918           21.01        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 09:24:40
+Fitness Calculated 23-Jan-2019 10:50:18
+Iterating ...
+   15         48000           1.916           20.94        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 10:50:19
+Fitness Calculated 23-Jan-2019 12:17:22
+Iterating ...
+   16         51000           1.915           20.76        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 12:17:23
+Fitness Calculated 23-Jan-2019 13:42:07
+Iterating ...
+   17         54000           1.912           20.81        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 13:42:08
+Fitness Calculated 23-Jan-2019 15:11:23
+Iterating ...
+   18         57000            1.89           20.79        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 15:11:25
+Fitness Calculated 23-Jan-2019 16:38:12
+Iterating ...
+   19         60000            1.89           20.82        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 16:38:13
+Fitness Calculated 23-Jan-2019 18:07:26
+Iterating ...
+   20         63000           1.872           21.02        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 18:07:27
+Fitness Calculated 23-Jan-2019 19:34:07
+Iterating ...
+   21         66000           1.872           20.83        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 19:34:08
+Fitness Calculated 23-Jan-2019 21:02:34
+Iterating ...
+   22         69000           1.872           20.54        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 21:02:36
+Fitness Calculated 23-Jan-2019 22:31:20
+Iterating ...
+   23         72000           1.872           20.84        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 22:31:22
+Fitness Calculated 23-Jan-2019 23:58:12
+Iterating ...
+   24         75000           1.846           21.09        0
+Adaptive with PIDD - Starting Fitness Calculation 23-Jan-2019 23:58:14
+Fitness Calculated 24-Jan-2019 01:24:24
+Iterating ...
+   25         78000           1.846           21.31        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 01:24:26
+Fitness Calculated 24-Jan-2019 02:55:16
+Iterating ...
+   26         81000           1.845           21.04        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 02:55:18
+Fitness Calculated 24-Jan-2019 04:27:02
+Iterating ...
+   27         84000           1.844           20.78        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 04:27:04
+Fitness Calculated 24-Jan-2019 05:56:04
+Iterating ...
+   28         87000           1.844           20.78        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 05:56:06
+Fitness Calculated 24-Jan-2019 07:24:18
+Iterating ...
+   29         90000           1.784           21.11        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 07:24:20
+Fitness Calculated 24-Jan-2019 08:52:49
+Iterating ...
+   30         93000           1.749           21.25        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 08:52:52
+Fitness Calculated 24-Jan-2019 10:17:11
+Iterating ...
+   31         96000           1.745           21.72        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 10:17:13
+Fitness Calculated 24-Jan-2019 11:40:39
+Iterating ...
+   32         99000           1.745           21.81        1
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 11:40:41
+Fitness Calculated 24-Jan-2019 13:04:50
+Iterating ...
+   33         102000           1.742           21.69        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 13:04:53
+Fitness Calculated 24-Jan-2019 14:29:32
+Iterating ...
+   34         105000           1.742           21.69        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 14:29:34
+Fitness Calculated 24-Jan-2019 15:54:09
+Iterating ...
+   35         108000           1.718           21.78        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 15:54:11
+Fitness Calculated 24-Jan-2019 17:16:12
+Iterating ...
+   36         111000           1.716           21.76        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 17:16:14
+Fitness Calculated 24-Jan-2019 18:42:58
+Iterating ...
+   37         114000           1.716            21.7        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 18:43:01
+Fitness Calculated 24-Jan-2019 20:09:42
+Iterating ...
+   38         117000           1.715           21.74        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 20:09:44
+Fitness Calculated 24-Jan-2019 21:36:05
+Iterating ...
+   39         120000           1.715           21.52        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 21:36:08
+Fitness Calculated 24-Jan-2019 23:04:45
+Iterating ...
+   40         123000           1.714           21.31        0
+Adaptive with PIDD - Starting Fitness Calculation 24-Jan-2019 23:04:47
+Fitness Calculated 25-Jan-2019 00:32:52
+Iterating ...
+   41         126000           1.713           21.24        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 00:32:55
+Fitness Calculated 25-Jan-2019 02:00:48
+Iterating ...
+   42         129000           1.713           20.83        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 02:00:50
+Fitness Calculated 25-Jan-2019 03:31:32
+Iterating ...
+   43         132000           1.712           21.28        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 03:31:35
+Fitness Calculated 25-Jan-2019 05:00:40
+Iterating ...
+   44         135000            1.71           21.12        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 05:00:43
+Fitness Calculated 25-Jan-2019 06:30:58
+Iterating ...
+   45         138000            1.71           21.38        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 06:31:00
+Fitness Calculated 25-Jan-2019 08:00:01
+Iterating ...
+   46         141000           1.702           21.32        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 08:00:04
+Fitness Calculated 25-Jan-2019 09:30:37
+Iterating ...
+   47         144000           1.701           20.97        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 09:30:40
+Fitness Calculated 25-Jan-2019 10:59:04
+Iterating ...
+   48         147000           1.698           20.65        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 10:59:07
+Fitness Calculated 25-Jan-2019 12:28:20
+Iterating ...
+   49         150000           1.698            21.2        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 12:28:23
+Fitness Calculated 25-Jan-2019 13:57:07
+Iterating ...
+   50         153000           1.698            21.2        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 13:57:10
+Fitness Calculated 25-Jan-2019 15:25:37
+Iterating ...
+   51         156000           1.697           21.32        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 15:25:40
+Fitness Calculated 25-Jan-2019 16:52:56
+Iterating ...
+   52         159000           1.697           21.22        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 16:52:59
+Fitness Calculated 25-Jan-2019 18:18:56
+Iterating ...
+   53         162000           1.697           21.18        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 18:18:59
+Fitness Calculated 25-Jan-2019 19:45:45
+Iterating ...
+   54         165000           1.697           21.35        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 19:45:48
+Fitness Calculated 25-Jan-2019 21:13:26
+Iterating ...
+   55         168000           1.697           21.64        1
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 21:13:30
+Fitness Calculated 25-Jan-2019 22:38:24
+Iterating ...
+   56         171000           1.697           21.73        0
+Adaptive with PIDD - Starting Fitness Calculation 25-Jan-2019 22:38:28
+Fitness Calculated 26-Jan-2019 00:02:46
+Iterating ...
+   57         174000           1.697            21.7        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 00:02:49
+Fitness Calculated 26-Jan-2019 01:33:24
+Iterating ...
+   58         177000           1.697            21.2        1
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 01:33:28
+Fitness Calculated 26-Jan-2019 03:00:42
+Iterating ...
+   59         180000           1.697           21.11        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 03:00:46
+Fitness Calculated 26-Jan-2019 04:28:50
+Iterating ...
+   60         183000           1.697           21.09        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 04:28:53
+Fitness Calculated 26-Jan-2019 05:57:41
+Iterating ...
+   61         186000           1.697           21.49        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 05:57:45
+Fitness Calculated 26-Jan-2019 07:27:17
+Iterating ...
+   62         189000           1.697           21.01        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 07:27:21
+Fitness Calculated 26-Jan-2019 08:57:23
+Iterating ...
+   63         192000           1.697           20.77        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 08:57:27
+Fitness Calculated 26-Jan-2019 10:25:12
+Iterating ...
+   64         195000           1.696           21.15        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 10:25:16
+Fitness Calculated 26-Jan-2019 11:54:51
+Iterating ...
+   65         198000           1.693           21.39        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 11:54:55
+Fitness Calculated 26-Jan-2019 13:22:55
+Iterating ...
+   66         201000           1.692           21.13        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 13:22:59
+Fitness Calculated 26-Jan-2019 14:52:04
+Iterating ...
+   67         204000           1.692           20.59        1
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 14:52:08
+Fitness Calculated 26-Jan-2019 16:22:09
+Iterating ...
+   68         207000           1.692           20.74        2
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 16:22:13
+Fitness Calculated 26-Jan-2019 17:50:53
+Iterating ...
+   69         210000           1.692           21.25        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 17:50:57
+Fitness Calculated 26-Jan-2019 19:22:13
+Iterating ...
+   70         213000           1.692           20.95        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 19:22:17
+Fitness Calculated 26-Jan-2019 20:51:04
+Iterating ...
+   71         216000           1.692           20.86        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 20:51:09
+Fitness Calculated 26-Jan-2019 22:21:35
+Iterating ...
+   72         219000           1.692           20.99        1
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 22:21:39
+Fitness Calculated 26-Jan-2019 23:50:18
+Iterating ...
+   73         222000           1.692           21.07        0
+Adaptive with PIDD - Starting Fitness Calculation 26-Jan-2019 23:50:22
+Fitness Calculated 27-Jan-2019 01:16:42
+Iterating ...
+   74         225000           1.692           21.13        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 01:16:46
+Fitness Calculated 27-Jan-2019 02:47:25
+Iterating ...
+   75         228000           1.692           20.91        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 02:47:29
+Fitness Calculated 27-Jan-2019 04:17:11
+Iterating ...
+   76         231000           1.692           20.58        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 04:17:15
+Fitness Calculated 27-Jan-2019 05:50:16
+Iterating ...
+   77         234000           1.692           20.66        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 05:50:21
+Fitness Calculated 27-Jan-2019 07:21:11
+Iterating ...
+   78         237000           1.692           20.52        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 07:21:15
+Fitness Calculated 27-Jan-2019 08:50:05
+Iterating ...
+   79         240000           1.692            20.8        1
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 08:50:10
+Fitness Calculated 27-Jan-2019 10:20:42
+Iterating ...
+   80         243000           1.692              21        2
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 10:20:47
+Fitness Calculated 27-Jan-2019 11:52:45
+Iterating ...
+   81         246000           1.692           20.55        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 11:52:50
+Fitness Calculated 27-Jan-2019 13:25:02
+Iterating ...
+   82         249000           1.692            20.9        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 13:25:06
+Fitness Calculated 27-Jan-2019 14:59:42
+Iterating ...
+   83         252000           1.692           20.74        1
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 14:59:47
+Fitness Calculated 27-Jan-2019 16:34:27
+Iterating ...
+   84         255000           1.692           20.53        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 16:34:32
+Fitness Calculated 27-Jan-2019 18:04:55
+Iterating ...
+   85         258000           1.692           20.63        1
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 18:05:00
+Fitness Calculated 27-Jan-2019 19:34:11
+Iterating ...
+   86         261000           1.692            20.7        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 19:34:16
+Fitness Calculated 27-Jan-2019 21:07:06
+Iterating ...
+   87         264000           1.692           20.79        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 21:07:11
+Fitness Calculated 27-Jan-2019 22:37:59
+Iterating ...
+   88         267000           1.692           20.48        0
+Adaptive with PIDD - Starting Fitness Calculation 27-Jan-2019 22:38:04
+Fitness Calculated 28-Jan-2019 00:11:08
+Iterating ...
+   89         270000           1.692           20.87        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 00:11:13
+Fitness Calculated 28-Jan-2019 01:43:36
+Iterating ...
+   90         273000           1.692           20.82        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 01:43:41
+Fitness Calculated 28-Jan-2019 03:14:23
+Iterating ...
+   91         276000           1.691           20.61        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 03:14:28
+Fitness Calculated 28-Jan-2019 04:44:41
+Iterating ...
+   92         279000           1.691           20.86        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 04:44:47
+Fitness Calculated 28-Jan-2019 06:15:26
+Iterating ...
+   93         282000           1.691           20.75        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 06:15:32
+Fitness Calculated 28-Jan-2019 07:46:40
+Iterating ...
+   94         285000           1.691           20.85        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 07:46:46
+Fitness Calculated 28-Jan-2019 09:18:20
+Iterating ...
+   95         288000            1.69           20.55        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 09:18:26
+Fitness Calculated 28-Jan-2019 10:48:46
+Iterating ...
+   96         291000            1.69           20.78        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 10:48:52
+Fitness Calculated 28-Jan-2019 12:19:34
+Iterating ...
+   97         294000            1.69           20.87        1
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 12:19:39
+Fitness Calculated 28-Jan-2019 13:48:58
+Iterating ...
+   98         297000            1.69           20.97        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 13:49:03
+Fitness Calculated 28-Jan-2019 15:21:02
+Iterating ...
+   99         300000            1.69            20.8        1
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 15:21:07
+Fitness Calculated 28-Jan-2019 16:52:09
+Iterating ...
+  100         303000            1.69           20.74        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 16:52:14
+Fitness Calculated 28-Jan-2019 18:22:59
+Iterating ...
+  101         306000            1.69           20.69        1
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 18:23:05
+Fitness Calculated 28-Jan-2019 19:54:25
+Iterating ...
+  102         309000            1.69           20.56        2
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 19:54:31
+Fitness Calculated 28-Jan-2019 21:24:40
+Iterating ...
+  103         312000            1.69           20.58        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 21:24:46
+Fitness Calculated 28-Jan-2019 22:55:17
+Iterating ...
+  104         315000            1.69           20.81        0
+Adaptive with PIDD - Starting Fitness Calculation 28-Jan-2019 22:55:23
+Fitness Calculated 29-Jan-2019 00:25:48
+Iterating ...
+  105         318000            1.69           20.63        0
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 00:25:54
+Fitness Calculated 29-Jan-2019 01:58:57
+Iterating ...
+  106         321000           1.689            20.7        0
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 01:59:03
+Fitness Calculated 29-Jan-2019 03:30:19
+Iterating ...
+  107         324000           1.689           20.35        0
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 03:30:25
+Fitness Calculated 29-Jan-2019 05:00:12
+Iterating ...
+  108         327000           1.689           20.63        0
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 05:00:18
+Fitness Calculated 29-Jan-2019 06:32:47
+Iterating ...
+  109         330000           1.689           20.83        0
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 06:32:53
+Fitness Calculated 29-Jan-2019 08:02:06
+Iterating ...
+  110         333000           1.689           20.96        1
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 08:02:12
+Fitness Calculated 29-Jan-2019 09:35:10
+Iterating ...
+  111         336000           1.689           20.63        0
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 09:35:17
+Fitness Calculated 29-Jan-2019 11:06:07
+Iterating ...
+  112         339000           1.689           20.92        0
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 11:06:14
+Fitness Calculated 29-Jan-2019 12:34:08
+Iterating ...
+  113         342000           1.689           20.99        1
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 12:34:14
+Fitness Calculated 29-Jan-2019 14:04:11
+Iterating ...
+  114         345000           1.689           21.24        0
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 14:04:17
+Fitness Calculated 29-Jan-2019 15:33:00
+Iterating ...
+  115         348000           1.689           20.88        1
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 15:33:07
+Fitness Calculated 29-Jan-2019 17:02:42
+Iterating ...
+  116         351000           1.689           21.26        2
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 17:02:48
+Fitness Calculated 29-Jan-2019 18:34:53
+Iterating ...
+  117         354000           1.689           20.94        3
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 18:35:00
+Fitness Calculated 29-Jan-2019 20:08:02
+Iterating ...
+  118         357000           1.689            20.6        4
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 20:08:09
+Fitness Calculated 29-Jan-2019 21:39:39
+Iterating ...
+  119         360000           1.689            20.1        0
+Adaptive with PIDD - Starting Fitness Calculation 29-Jan-2019 21:39:46
