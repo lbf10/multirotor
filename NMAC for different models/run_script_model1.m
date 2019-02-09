@@ -14,8 +14,8 @@ numberOfRotors = 10;
 multirotor = multicontrol(numberOfRotors);
 % Define rotor positions
 angles = 2*pi*(0:72:359)/360;
-positions = [0.1125*cos(angles) 0.225*cos(angles)
-             0.1125*sin(angles) 0.225*sin(angles)
+positions = [0.1125*cos(angles) 0.3375*cos(angles)
+             0.1125*sin(angles) 0.3375*sin(angles)
              0*angles 0*angles];
 multirotor.setRotorPosition(1:numberOfRotors,positions);
 % Define rotor orientations
@@ -32,8 +32,8 @@ friction = [0.25	0	0
 multirotor.setFriction(friction);
 multirotor.setAngularFilterGain([0,0,0.5]);
 % Define lift and drag coefficients
-multirotor.setRotorLiftCoeff(1:numberOfRotors,ones(1,numberOfRotors)*2.980e-6);
-multirotor.setRotorDragCoeff(1:numberOfRotors,ones(1,numberOfRotors)*1.140e-7);
+multirotor.setRotorLiftCoeff(1:numberOfRotors,ones(1,numberOfRotors)*1.5e-6);
+multirotor.setRotorDragCoeff(1:numberOfRotors,ones(1,numberOfRotors)*0.57e-7);
 % Define rotor inertia
 multirotor.setRotorInertia(1:numberOfRotors,3.357e-5*ones(1,numberOfRotors));
 % Sets rotors rotation direction for control allocation
@@ -70,6 +70,8 @@ multirotor.setAttitudeReferenceCA('Passive NMAC');
 endTime = 15;
 [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto', 2*pi);
 multirotor.setTrajectory('waypoints',waypoints,time);
+
+% multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.5)'},endTime/2)
 
 multirotor.setSimEffects('motor dynamics off','solver euler')
 multirotor.setControlDelay(0.20);

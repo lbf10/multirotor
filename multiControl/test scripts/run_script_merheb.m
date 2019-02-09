@@ -57,16 +57,23 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % kp = [40 40 40];ki = [10 10 10];kd = [20 20 20];kdd = [0 0 0];
 % SOSMC Passive and with PIDD:
 % kp = [300 300 100];ki = [10 10 40];kd = [70 70 70];kdd = [35 35 2];
+% SOSMC Passive and with PIDD:
+ kp = [40 40 40];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
 % SOSMC Passive Direct:
 % kp = [40 40 40];ki = [10 10 10];kd = [20 20 20];kdd = [0 0 0];
+% SOSMC Active Direct:
+% kp = [40 40 40];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
 % % Adaptive:
 % kp = [30 30 40];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
 % Adaptive with PIDD:
 % kp = [30 30 40];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
 % Adaptive Direct:
-kp = [30 30 40];ki = [0 0 0];kd = [5 5 5];kdd = [0 0 0];
+%kp = [30 30 40];ki = [0 0 0];kd = [10 10 10];kdd = [0 0 0];
 % Markovian passive:
 % kp = [70 70 100];ki = [40 40 40];kd = [40 40 70];kdd = [15 15 2];
+% kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
+% Markovian active:
+% kp = [40 40 40];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
@@ -279,11 +286,11 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % Configure simulator
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
-multirotor.setControlTimeStep(0.025);
-multirotor.setController('Adaptive');
-multirotor.setControlAllocator('Passive NMAC');
-multirotor.setAttitudeReferenceCA('Passive NMAC');
-multirotor.configFDD(.95,0.05)
+multirotor.setControlTimeStep(0.05);
+multirotor.setController('RLQ-R Active Modified with PIDD');
+multirotor.setControlAllocator('Active NMAC');
+multirotor.setAttitudeReferenceCA('Active NMAC');
+multirotor.configFDD(.9,0.5)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
 % multirotor.setTrajectory('waypoints',[50 50 50 170*pi/180]',10);

@@ -2455,7 +2455,6 @@ classdef multicontrol < multicopter
                     %attitudeControlOutput = obj.inertia()*(u+desiredAngularAcceleration-auxA*desiredAngularVelocity);
                 case 6 %'RLQ-R Active Modified'
                     index = 6;
-                    diagnosis{1}.motorEfficiency
                     Mt = [];
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
