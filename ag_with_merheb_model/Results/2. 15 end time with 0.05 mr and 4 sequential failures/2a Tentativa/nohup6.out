@@ -1,0 +1,1570 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:10:03
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 29-Jan-2019 23:11:54
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:11:54
+Fitness Calculated 29-Jan-2019 23:13:33
+Iterating ...
+    1          6000           19.31           49.96        0
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:13:34
+Fitness Calculated 29-Jan-2019 23:15:58
+Iterating ...
+    2          9000           18.58           48.74        0
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:15:59
+Fitness Calculated 29-Jan-2019 23:20:08
+Iterating ...
+    3         12000           16.51            47.3        0
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:20:09
+Fitness Calculated 29-Jan-2019 23:24:34
+Iterating ...
+    4         15000           15.32           45.35        0
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:24:35
+Fitness Calculated 29-Jan-2019 23:29:47
+Iterating ...
+    5         18000           11.75           42.72        0
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:29:48
+Fitness Calculated 29-Jan-2019 23:35:25
+Iterating ...
+    6         21000           9.231           40.13        0
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:35:26
+Fitness Calculated 29-Jan-2019 23:41:23
+Iterating ...
+    7         24000           8.761           37.65        0
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:41:25
+Fitness Calculated 29-Jan-2019 23:47:47
+Iterating ...
+    8         27000           8.759           35.23        0
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:47:49
+Fitness Calculated 29-Jan-2019 23:54:27
+Iterating ...
+    9         30000            8.39           32.88        0
+Adaptive Direct - Starting Fitness Calculation 29-Jan-2019 23:54:29
+Fitness Calculated 30-Jan-2019 00:01:30
+Iterating ...
+   10         33000           8.088           30.81        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 00:01:32
+Fitness Calculated 30-Jan-2019 00:08:47
+Iterating ...
+   11         36000           7.884           28.98        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 00:08:49
+Fitness Calculated 30-Jan-2019 00:15:58
+Iterating ...
+   12         39000           7.642           27.64        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 00:16:01
+Fitness Calculated 30-Jan-2019 00:23:32
+Iterating ...
+   13         42000            7.27            26.9        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 00:23:34
+Fitness Calculated 30-Jan-2019 00:30:48
+Iterating ...
+   14         45000           7.066           25.83        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 00:30:50
+Fitness Calculated 30-Jan-2019 00:37:58
+Iterating ...
+   15         48000           7.066           25.95        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 00:38:01
+Fitness Calculated 30-Jan-2019 00:44:54
+Iterating ...
+   16         51000           6.895           25.61        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 00:44:57
+Fitness Calculated 30-Jan-2019 00:51:46
+Iterating ...
+   17         54000           6.809           24.71        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 00:51:49
+Fitness Calculated 30-Jan-2019 00:58:41
+Iterating ...
+   18         57000           6.678           24.35        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 00:58:44
+Fitness Calculated 30-Jan-2019 01:05:28
+Iterating ...
+   19         60000           6.641           24.03        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 01:05:31
+Fitness Calculated 30-Jan-2019 01:12:13
+Iterating ...
+   20         63000           6.606           24.03        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 01:12:17
+Fitness Calculated 30-Jan-2019 01:18:58
+Iterating ...
+   21         66000           6.572           23.66        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 01:19:01
+Fitness Calculated 30-Jan-2019 01:25:49
+Iterating ...
+   22         69000           6.572           23.49        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 01:25:52
+Fitness Calculated 30-Jan-2019 01:32:11
+Iterating ...
+   23         72000           6.537           23.42        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 01:32:15
+Fitness Calculated 30-Jan-2019 01:38:27
+Iterating ...
+   24         75000           6.537           23.27        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 01:38:31
+Fitness Calculated 30-Jan-2019 01:44:57
+Iterating ...
+   25         78000           6.531           22.83        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 01:45:01
+Fitness Calculated 30-Jan-2019 01:51:25
+Iterating ...
+   26         81000           6.531           22.83        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 01:51:29
+Fitness Calculated 30-Jan-2019 01:57:39
+Iterating ...
+   27         84000           6.531           22.89        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 01:57:44
+Fitness Calculated 30-Jan-2019 02:03:50
+Iterating ...
+   28         87000           6.531           22.87        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 02:03:55
+Fitness Calculated 30-Jan-2019 02:10:03
+Iterating ...
+   29         90000           6.528           22.94        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 02:10:07
+Fitness Calculated 30-Jan-2019 02:16:18
+Iterating ...
+   30         93000           6.521           22.23        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 02:16:22
+Fitness Calculated 30-Jan-2019 02:22:35
+Iterating ...
+   31         96000           6.517           22.48        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 02:22:39
+Fitness Calculated 30-Jan-2019 02:29:01
+Iterating ...
+   32         99000           6.516           22.66        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 02:29:06
+Fitness Calculated 30-Jan-2019 02:35:14
+Iterating ...
+   33         102000           6.515           22.93        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 02:35:18
+Fitness Calculated 30-Jan-2019 02:41:39
+Iterating ...
+   34         105000           6.513            22.5        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 02:41:44
+Fitness Calculated 30-Jan-2019 02:47:59
+Iterating ...
+   35         108000           6.513           22.92        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 02:48:04
+Fitness Calculated 30-Jan-2019 02:54:10
+Iterating ...
+   36         111000           6.511           23.22        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 02:54:16
+Fitness Calculated 30-Jan-2019 03:00:25
+Iterating ...
+   37         114000           6.511           23.39        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:00:30
+Fitness Calculated 30-Jan-2019 03:06:37
+Iterating ...
+   38         117000            6.51           23.39        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:06:43
+Fitness Calculated 30-Jan-2019 03:13:00
+Iterating ...
+   39         120000           6.509           23.71        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:13:05
+Fitness Calculated 30-Jan-2019 03:19:18
+Iterating ...
+   40         123000           6.507            23.7        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:19:24
+Fitness Calculated 30-Jan-2019 03:25:33
+Iterating ...
+   41         126000           6.506           23.97        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:25:38
+Fitness Calculated 30-Jan-2019 03:31:34
+Iterating ...
+   42         129000           6.505           24.08        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:31:40
+Fitness Calculated 30-Jan-2019 03:37:52
+Iterating ...
+   43         132000           6.505           23.82        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:37:58
+Fitness Calculated 30-Jan-2019 03:43:59
+Iterating ...
+   44         135000           6.505           23.73        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:44:05
+Fitness Calculated 30-Jan-2019 03:50:09
+Iterating ...
+   45         138000           6.505           24.01        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:50:16
+Fitness Calculated 30-Jan-2019 03:56:25
+Iterating ...
+   46         141000           6.504           23.89        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 03:56:31
+Fitness Calculated 30-Jan-2019 04:02:32
+Iterating ...
+   47         144000           6.504           24.18        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:02:39
+Fitness Calculated 30-Jan-2019 04:08:45
+Iterating ...
+   48         147000           6.504           24.22        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:08:51
+Fitness Calculated 30-Jan-2019 04:14:52
+Iterating ...
+   49         150000           6.504           24.64        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:14:58
+Fitness Calculated 30-Jan-2019 04:20:57
+Iterating ...
+   50         153000           6.504           24.57        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:21:03
+Fitness Calculated 30-Jan-2019 04:27:01
+Iterating ...
+   51         156000           6.503           24.83        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:27:08
+Fitness Calculated 30-Jan-2019 04:33:11
+Iterating ...
+   52         159000           6.503           24.51        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:33:18
+Fitness Calculated 30-Jan-2019 04:39:13
+Iterating ...
+   53         162000           6.503           25.29        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:39:20
+Fitness Calculated 30-Jan-2019 04:45:21
+Iterating ...
+   54         165000           6.503            25.2        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:45:28
+Fitness Calculated 30-Jan-2019 04:51:29
+Iterating ...
+   55         168000           6.503           25.16        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:51:37
+Fitness Calculated 30-Jan-2019 04:57:39
+Iterating ...
+   56         171000           6.503            25.2        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 04:57:46
+Fitness Calculated 30-Jan-2019 05:03:46
+Iterating ...
+   57         174000           6.503           25.38        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:03:54
+Fitness Calculated 30-Jan-2019 05:09:53
+Iterating ...
+   58         177000           6.503            25.7        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:10:01
+Fitness Calculated 30-Jan-2019 05:15:55
+Iterating ...
+   59         180000           6.503           25.61        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:16:03
+Fitness Calculated 30-Jan-2019 05:21:56
+Iterating ...
+   60         183000           6.503           25.59        2
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:22:04
+Fitness Calculated 30-Jan-2019 05:27:58
+Iterating ...
+   61         186000           6.502           25.68        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:28:06
+Fitness Calculated 30-Jan-2019 05:34:09
+Iterating ...
+   62         189000           6.502            25.7        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:34:18
+Fitness Calculated 30-Jan-2019 05:40:19
+Iterating ...
+   63         192000           6.502           25.32        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:40:28
+Fitness Calculated 30-Jan-2019 05:46:27
+Iterating ...
+   64         195000           6.502           25.22        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:46:36
+Fitness Calculated 30-Jan-2019 05:52:40
+Iterating ...
+   65         198000           6.502           25.13        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:52:49
+Fitness Calculated 30-Jan-2019 05:58:48
+Iterating ...
+   66         201000           6.502           25.21        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 05:58:57
+Fitness Calculated 30-Jan-2019 06:04:51
+Iterating ...
+   67         204000           6.502           25.13        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:05:00
+Fitness Calculated 30-Jan-2019 06:10:59
+Iterating ...
+   68         207000           6.502           25.36        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:11:08
+Fitness Calculated 30-Jan-2019 06:16:52
+Iterating ...
+   69         210000           6.502           25.25        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:17:01
+Fitness Calculated 30-Jan-2019 06:23:00
+Iterating ...
+   70         213000           6.502            25.2        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:23:09
+Fitness Calculated 30-Jan-2019 06:29:10
+Iterating ...
+   71         216000           6.502           25.07        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:29:19
+Fitness Calculated 30-Jan-2019 06:35:16
+Iterating ...
+   72         219000           6.502           25.45        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:35:25
+Fitness Calculated 30-Jan-2019 06:41:19
+Iterating ...
+   73         222000           6.502           25.66        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:41:28
+Fitness Calculated 30-Jan-2019 06:47:23
+Iterating ...
+   74         225000           6.502           25.34        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:47:32
+Fitness Calculated 30-Jan-2019 06:53:29
+Iterating ...
+   75         228000           6.502            25.2        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:53:39
+Fitness Calculated 30-Jan-2019 06:59:32
+Iterating ...
+   76         231000           6.502           24.84        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 06:59:42
+Fitness Calculated 30-Jan-2019 07:05:41
+Iterating ...
+   77         234000           6.501           24.87        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 07:05:51
+Fitness Calculated 30-Jan-2019 07:11:55
+Iterating ...
+   78         237000           6.501           24.88        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 07:12:05
+Fitness Calculated 30-Jan-2019 07:18:04
+Iterating ...
+   79         240000           6.501           24.74        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 07:18:14
+Fitness Calculated 30-Jan-2019 07:24:15
+Iterating ...
+   80         243000           6.501           24.94        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 07:24:26
+Fitness Calculated 30-Jan-2019 07:30:29
+Iterating ...
+   81         246000             6.5           24.65        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 07:30:39
+Fitness Calculated 30-Jan-2019 07:36:40
+Iterating ...
+   82         249000             6.5           24.84        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 07:36:51
+Fitness Calculated 30-Jan-2019 07:42:51
+Iterating ...
+   83         252000             6.5           24.69        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 07:43:02
+Fitness Calculated 30-Jan-2019 07:49:02
+Iterating ...
+   84         255000             6.5           24.95        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 07:49:13
+Fitness Calculated 30-Jan-2019 07:55:07
+Iterating ...
+   85         258000             6.5           24.63        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 07:55:18
+Fitness Calculated 30-Jan-2019 08:01:21
+Iterating ...
+   86         261000             6.5           24.85        2
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:01:32
+Fitness Calculated 30-Jan-2019 08:07:35
+Iterating ...
+   87         264000             6.5           24.88        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:07:46
+Fitness Calculated 30-Jan-2019 08:13:53
+Iterating ...
+   88         267000             6.5           24.93        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:14:04
+Fitness Calculated 30-Jan-2019 08:19:59
+Iterating ...
+   89         270000             6.5           24.64        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:20:11
+Fitness Calculated 30-Jan-2019 08:26:07
+Iterating ...
+   90         273000             6.5           24.85        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:26:18
+Fitness Calculated 30-Jan-2019 08:32:21
+Iterating ...
+   91         276000             6.5           25.02        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:32:33
+Fitness Calculated 30-Jan-2019 08:38:16
+Iterating ...
+   92         279000             6.5           25.29        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:38:27
+Fitness Calculated 30-Jan-2019 08:44:27
+Iterating ...
+   93         282000             6.5           25.21        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:44:39
+Fitness Calculated 30-Jan-2019 08:50:30
+Iterating ...
+   94         285000             6.5           24.93        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:50:42
+Fitness Calculated 30-Jan-2019 08:56:49
+Iterating ...
+   95         288000             6.5           24.93        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 08:57:01
+Fitness Calculated 30-Jan-2019 09:02:52
+Iterating ...
+   96         291000             6.5           24.99        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:03:04
+Fitness Calculated 30-Jan-2019 09:08:57
+Iterating ...
+   97         294000             6.5           25.09        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:09:09
+Fitness Calculated 30-Jan-2019 09:15:05
+Iterating ...
+   98         297000           6.499           24.74        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:15:17
+Fitness Calculated 30-Jan-2019 09:21:11
+Iterating ...
+   99         300000           6.499           24.85        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:21:23
+Fitness Calculated 30-Jan-2019 09:27:21
+Iterating ...
+  100         303000           6.499           24.86        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:27:34
+Fitness Calculated 30-Jan-2019 09:33:26
+Iterating ...
+  101         306000           6.499           24.86        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:33:39
+Fitness Calculated 30-Jan-2019 09:39:34
+Iterating ...
+  102         309000           6.499           24.92        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:39:47
+Fitness Calculated 30-Jan-2019 09:45:55
+Iterating ...
+  103         312000           6.499           25.01        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:46:08
+Fitness Calculated 30-Jan-2019 09:52:09
+Iterating ...
+  104         315000           6.499           24.92        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:52:22
+Fitness Calculated 30-Jan-2019 09:58:19
+Iterating ...
+  105         318000           6.499           24.87        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 09:58:32
+Fitness Calculated 30-Jan-2019 10:04:38
+Iterating ...
+  106         321000           6.499           24.48        2
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 10:04:51
+Fitness Calculated 30-Jan-2019 10:10:59
+Iterating ...
+  107         324000           6.499           24.09        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 10:11:13
+Fitness Calculated 30-Jan-2019 10:17:18
+Iterating ...
+  108         327000           6.499           24.15        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 10:17:32
+Fitness Calculated 30-Jan-2019 10:23:36
+Iterating ...
+  109         330000           6.499           24.28        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 10:23:50
+Fitness Calculated 30-Jan-2019 10:29:52
+Iterating ...
+  110         333000           6.498            23.9        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 10:30:05
+Fitness Calculated 30-Jan-2019 10:36:12
+Iterating ...
+  111         336000           6.498              24        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 10:36:26
+Fitness Calculated 30-Jan-2019 10:42:31
+Iterating ...
+  112         339000           6.498           24.32        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 10:42:45
+Fitness Calculated 30-Jan-2019 10:48:47
+Iterating ...
+  113         342000           6.498           24.63        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 10:49:01
+Fitness Calculated 30-Jan-2019 10:55:10
+Iterating ...
+  114         345000           6.498           24.46        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 10:55:25
+Fitness Calculated 30-Jan-2019 11:01:33
+Iterating ...
+  115         348000           6.498           24.74        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:01:47
+Fitness Calculated 30-Jan-2019 11:07:48
+Iterating ...
+  116         351000           6.498           24.23        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:08:03
+Fitness Calculated 30-Jan-2019 11:14:06
+Iterating ...
+  117         354000           6.498           24.18        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:14:21
+Fitness Calculated 30-Jan-2019 11:20:25
+Iterating ...
+  118         357000           6.498           24.16        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:20:40
+Fitness Calculated 30-Jan-2019 11:26:37
+Iterating ...
+  119         360000           6.498           24.24        2
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:26:52
+Fitness Calculated 30-Jan-2019 11:32:57
+Iterating ...
+  120         363000           6.498           23.87        3
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:33:12
+Fitness Calculated 30-Jan-2019 11:39:09
+Iterating ...
+  121         366000           6.498           23.65        4
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:39:24
+Fitness Calculated 30-Jan-2019 11:45:29
+Iterating ...
+  122         369000           6.498           23.72        5
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:45:44
+Fitness Calculated 30-Jan-2019 11:52:04
+Iterating ...
+  123         372000           6.498           23.99        6
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:52:19
+Fitness Calculated 30-Jan-2019 11:58:31
+Iterating ...
+  124         375000           6.498           23.87        7
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 11:58:46
+Fitness Calculated 30-Jan-2019 12:04:48
+Iterating ...
+  125         378000           6.498           24.29        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 12:05:04
+Fitness Calculated 30-Jan-2019 12:11:13
+Iterating ...
+  126         381000           6.498           23.94        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 12:11:28
+Fitness Calculated 30-Jan-2019 12:17:29
+Iterating ...
+  127         384000           6.498           24.02        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 12:17:45
+Fitness Calculated 30-Jan-2019 12:23:41
+Iterating ...
+  128         387000           6.498           24.14        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 12:23:57
+Fitness Calculated 30-Jan-2019 12:30:03
+Iterating ...
+  129         390000           6.498           24.44        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 12:30:19
+Fitness Calculated 30-Jan-2019 12:36:21
+Iterating ...
+  130         393000           6.498           24.33        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 12:36:36
+Fitness Calculated 30-Jan-2019 12:42:40
+Iterating ...
+  131         396000           6.498           24.12        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 12:42:57
+Fitness Calculated 30-Jan-2019 12:49:02
+Iterating ...
+  132         399000           6.498           24.22        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 12:49:18
+Fitness Calculated 30-Jan-2019 12:55:14
+Iterating ...
+  133         402000           6.498           23.96        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 12:55:30
+Fitness Calculated 30-Jan-2019 13:01:34
+Iterating ...
+  134         405000           6.498           24.17        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:01:50
+Fitness Calculated 30-Jan-2019 13:07:55
+Iterating ...
+  135         408000           6.498           24.16        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:08:11
+Fitness Calculated 30-Jan-2019 13:14:13
+Iterating ...
+  136         411000           6.498           24.05        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:14:30
+Fitness Calculated 30-Jan-2019 13:20:37
+Iterating ...
+  137         414000           6.498           24.02        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:20:53
+Fitness Calculated 30-Jan-2019 13:26:55
+Iterating ...
+  138         417000           6.497           23.94        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:27:12
+Fitness Calculated 30-Jan-2019 13:33:10
+Iterating ...
+  139         420000           6.497           24.11        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:33:27
+Fitness Calculated 30-Jan-2019 13:39:30
+Iterating ...
+  140         423000           6.497           24.17        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:39:47
+Fitness Calculated 30-Jan-2019 13:45:49
+Iterating ...
+  141         426000           6.497           24.12        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:46:06
+Fitness Calculated 30-Jan-2019 13:52:05
+Iterating ...
+  142         429000           6.497           23.76        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:52:22
+Fitness Calculated 30-Jan-2019 13:58:23
+Iterating ...
+  143         432000           6.497           24.07        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 13:58:40
+Fitness Calculated 30-Jan-2019 14:04:44
+Iterating ...
+  144         435000           6.497           24.02        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 14:05:01
+Fitness Calculated 30-Jan-2019 14:10:54
+Iterating ...
+  145         438000           6.497           24.26        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 14:11:12
+Fitness Calculated 30-Jan-2019 14:17:08
+Iterating ...
+  146         441000           6.497           24.09        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 14:17:25
+Fitness Calculated 30-Jan-2019 14:23:30
+Iterating ...
+  147         444000           6.497            24.6        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 14:23:48
+Fitness Calculated 30-Jan-2019 14:29:51
+Iterating ...
+  148         447000           6.497           24.29        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 14:30:09
+Fitness Calculated 30-Jan-2019 14:36:16
+Iterating ...
+  149         450000           6.497           24.24        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 14:36:33
+Fitness Calculated 30-Jan-2019 14:42:27
+Iterating ...
+  150         453000           6.497           24.51        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 14:42:45
+Fitness Calculated 30-Jan-2019 14:48:36
+Iterating ...
+  151         456000           6.497           24.36        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 14:48:54
+Fitness Calculated 30-Jan-2019 14:54:53
+Iterating ...
+  152         459000           6.497           24.06        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 14:55:12
+Fitness Calculated 30-Jan-2019 15:01:12
+Iterating ...
+  153         462000           6.497              24        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:01:30
+Fitness Calculated 30-Jan-2019 15:07:28
+Iterating ...
+  154         465000           6.497           24.31        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:07:47
+Fitness Calculated 30-Jan-2019 15:13:36
+Iterating ...
+  155         468000           6.497           24.14        2
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:13:54
+Fitness Calculated 30-Jan-2019 15:19:57
+Iterating ...
+  156         471000           6.497           24.11        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:20:15
+Fitness Calculated 30-Jan-2019 15:26:27
+Iterating ...
+  157         474000           6.497           24.27        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:26:46
+Fitness Calculated 30-Jan-2019 15:32:44
+Iterating ...
+  158         477000           6.497           24.43        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:33:03
+Fitness Calculated 30-Jan-2019 15:39:10
+Iterating ...
+  159         480000           6.497           23.89        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:39:29
+Fitness Calculated 30-Jan-2019 15:45:39
+Iterating ...
+  160         483000           6.497           23.87        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:45:58
+Fitness Calculated 30-Jan-2019 15:52:00
+Iterating ...
+  161         486000           6.497           23.78        0
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:52:19
+Fitness Calculated 30-Jan-2019 15:58:23
+Iterating ...
+  162         489000           6.497           23.78        1
+Adaptive Direct - Starting Fitness Calculation 30-Jan-2019 15:58:42
+Fitness Calculated 30-Jan-2019 16:04:45
+Iterating ...
+  163         492000           6.497           24.01        0
+Optimization terminated: average change in the fitness value less than options.TolFun.
+Performing final task
+Parallel pool using the 'ClusterPandora' profile is shutting down.
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 16:05:39
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 30-Jan-2019 16:20:12
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 16:20:13
+Fitness Calculated 30-Jan-2019 16:33:31
+Iterating ...
+    1          6000           3.072           19.95        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 16:33:32
+Fitness Calculated 30-Jan-2019 16:53:35
+Iterating ...
+    2          9000           3.072           18.42        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 16:53:36
+Fitness Calculated 30-Jan-2019 17:30:14
+Iterating ...
+    3         12000           2.991           17.37        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 17:30:16
+Fitness Calculated 30-Jan-2019 18:13:39
+Iterating ...
+    4         15000           2.985           16.53        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 18:13:40
+Fitness Calculated 30-Jan-2019 19:07:14
+Iterating ...
+    5         18000           2.984           15.73        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 19:07:16
+Fitness Calculated 30-Jan-2019 20:04:30
+Iterating ...
+    6         21000           2.841           15.07        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 20:04:32
+Fitness Calculated 30-Jan-2019 21:04:51
+Iterating ...
+    7         24000           2.841           14.17        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 21:04:53
+Fitness Calculated 30-Jan-2019 22:08:50
+Iterating ...
+    8         27000           2.788           13.43        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 22:08:53
+Fitness Calculated 30-Jan-2019 23:15:33
+Iterating ...
+    9         30000           2.788           12.72        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 30-Jan-2019 23:15:36
+Fitness Calculated 31-Jan-2019 00:24:32
+Iterating ...
+   10         33000           2.738           12.16        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 00:24:35
+Fitness Calculated 31-Jan-2019 01:34:52
+Iterating ...
+   11         36000           2.627           11.74        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 01:34:55
+Fitness Calculated 31-Jan-2019 02:47:50
+Iterating ...
+   12         39000           2.529           11.31        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 02:47:53
+Fitness Calculated 31-Jan-2019 04:00:59
+Iterating ...
+   13         42000           2.323           11.15        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 04:01:03
+Fitness Calculated 31-Jan-2019 05:15:34
+Iterating ...
+   14         45000           2.323           11.01        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 05:15:38
+Fitness Calculated 31-Jan-2019 06:29:32
+Iterating ...
+   15         48000           2.313           11.07        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 06:29:36
+Fitness Calculated 31-Jan-2019 07:41:40
+Iterating ...
+   16         51000           2.313           11.39        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 07:41:44
+Fitness Calculated 31-Jan-2019 08:54:47
+Iterating ...
+   17         54000           2.313           11.25        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 08:54:51
+Fitness Calculated 31-Jan-2019 10:05:47
+Iterating ...
+   18         57000           2.276           11.31        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 10:05:51
+Fitness Calculated 31-Jan-2019 11:17:48
+Iterating ...
+   19         60000           2.274           11.17        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 11:17:53
+Fitness Calculated 31-Jan-2019 12:32:21
+Iterating ...
+   20         63000           2.272           11.18        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 12:32:26
+Fitness Calculated 31-Jan-2019 13:45:42
+Iterating ...
+   21         66000           2.272           11.11        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 13:45:47
+Fitness Calculated 31-Jan-2019 14:58:08
+Iterating ...
+   22         69000           2.254            11.3        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 14:58:13
+Fitness Calculated 31-Jan-2019 16:09:56
+Iterating ...
+   23         72000           2.252           11.33        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 16:10:01
+Fitness Calculated 31-Jan-2019 17:22:29
+Iterating ...
+   24         75000           2.251            11.4        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 17:22:35
+Fitness Calculated 31-Jan-2019 18:33:58
+Iterating ...
+   25         78000           2.248           11.44        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 18:34:04
+Fitness Calculated 31-Jan-2019 19:46:18
+Iterating ...
+   26         81000           2.248           11.43        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 19:46:24
+Fitness Calculated 31-Jan-2019 20:56:51
+Iterating ...
+   27         84000           2.248           11.52        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 20:56:56
+Fitness Calculated 31-Jan-2019 22:09:23
+Iterating ...
+   28         87000           2.246           11.79        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 22:09:28
+Fitness Calculated 31-Jan-2019 23:20:29
+Iterating ...
+   29         90000           2.244           11.72        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 31-Jan-2019 23:20:35
+Fitness Calculated 01-Feb-2019 00:30:54
+Iterating ...
+   30         93000           2.232           11.81        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 00:31:00
+Fitness Calculated 01-Feb-2019 01:40:36
+Iterating ...
+   31         96000           2.226           11.85        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 01:40:42
+Fitness Calculated 01-Feb-2019 02:50:32
+Iterating ...
+   32         99000           2.224           11.97        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 02:50:38
+Fitness Calculated 01-Feb-2019 04:01:55
+Iterating ...
+   33         102000           2.224           11.97        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 04:02:01
+Fitness Calculated 01-Feb-2019 05:11:03
+Iterating ...
+   34         105000           2.217           11.86        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 05:11:10
+Fitness Calculated 01-Feb-2019 06:21:22
+Iterating ...
+   35         108000           2.217           11.82        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 06:21:29
+Fitness Calculated 01-Feb-2019 07:30:35
+Iterating ...
+   36         111000           2.215           11.85        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 07:30:42
+Fitness Calculated 01-Feb-2019 08:38:05
+Iterating ...
+   37         114000           2.215           11.99        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 08:38:12
+Fitness Calculated 01-Feb-2019 09:45:53
+Iterating ...
+   38         117000           2.208           11.95        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 09:46:00
+Fitness Calculated 01-Feb-2019 10:54:32
+Iterating ...
+   39         120000           2.202           11.91        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 10:54:40
+Fitness Calculated 01-Feb-2019 12:03:11
+Iterating ...
+   40         123000             2.2           12.01        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 12:03:19
+Fitness Calculated 01-Feb-2019 13:13:01
+Iterating ...
+   41         126000           2.198            11.8        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 13:13:09
+Fitness Calculated 01-Feb-2019 14:22:45
+Iterating ...
+   42         129000           2.198           11.98        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 14:22:53
+Fitness Calculated 01-Feb-2019 15:31:42
+Iterating ...
+   43         132000           2.198           12.04        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 15:31:50
+Fitness Calculated 01-Feb-2019 16:40:18
+Iterating ...
+   44         135000           2.198           12.16        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 16:40:27
+Fitness Calculated 01-Feb-2019 17:50:05
+Iterating ...
+   45         138000           2.149            12.1        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 17:50:14
+Fitness Calculated 01-Feb-2019 19:00:29
+Iterating ...
+   46         141000           2.149           11.86        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 19:00:38
+Fitness Calculated 01-Feb-2019 20:10:22
+Iterating ...
+   47         144000           2.149            12.1        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 20:10:31
+Fitness Calculated 01-Feb-2019 21:18:57
+Iterating ...
+   48         147000           2.147           12.27        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 21:19:06
+Fitness Calculated 01-Feb-2019 22:28:16
+Iterating ...
+   49         150000           2.147           12.11        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 22:28:25
+Fitness Calculated 01-Feb-2019 23:36:29
+Iterating ...
+   50         153000           2.147           12.12        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 01-Feb-2019 23:36:39
+Fitness Calculated 02-Feb-2019 00:45:33
+Iterating ...
+   51         156000           2.147           12.01        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 00:45:42
+Fitness Calculated 02-Feb-2019 01:56:52
+Iterating ...
+   52         159000           2.147           11.85        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 01:57:01
+Fitness Calculated 02-Feb-2019 03:06:49
+Iterating ...
+   53         162000           2.147           11.96        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 03:06:59
+Fitness Calculated 02-Feb-2019 04:15:15
+Iterating ...
+   54         165000           2.147           11.85        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 04:15:25
+Fitness Calculated 02-Feb-2019 05:25:53
+Iterating ...
+   55         168000           2.129           11.82        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 05:26:03
+Fitness Calculated 02-Feb-2019 06:36:05
+Iterating ...
+   56         171000           2.124           11.77        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 06:36:15
+Fitness Calculated 02-Feb-2019 07:46:32
+Iterating ...
+   57         174000           2.123           11.83        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 07:46:43
+Fitness Calculated 02-Feb-2019 08:56:46
+Iterating ...
+   58         177000           2.123           11.93        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 08:56:57
+Fitness Calculated 02-Feb-2019 10:06:55
+Iterating ...
+   59         180000           2.123           11.81        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 10:07:06
+Fitness Calculated 02-Feb-2019 11:16:44
+Iterating ...
+   60         183000           2.122           11.82        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 11:16:56
+Fitness Calculated 02-Feb-2019 12:26:38
+Iterating ...
+   61         186000           2.122           11.89        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 12:26:50
+Fitness Calculated 02-Feb-2019 13:35:37
+Iterating ...
+   62         189000           2.122           11.99        2
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 13:35:48
+Fitness Calculated 02-Feb-2019 14:44:33
+Iterating ...
+   63         192000           2.122           11.99        3
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 14:44:45
+Fitness Calculated 02-Feb-2019 15:53:59
+Iterating ...
+   64         195000           2.075           12.16        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 15:54:10
+Fitness Calculated 02-Feb-2019 17:03:18
+Iterating ...
+   65         198000           2.057           12.12        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 17:03:30
+Fitness Calculated 02-Feb-2019 18:11:45
+Iterating ...
+   66         201000           2.048           12.12        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 18:11:57
+Fitness Calculated 02-Feb-2019 19:20:48
+Iterating ...
+   67         204000           2.048           12.16        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 19:21:00
+Fitness Calculated 02-Feb-2019 20:29:42
+Iterating ...
+   68         207000           2.048           12.04        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 20:29:54
+Fitness Calculated 02-Feb-2019 21:39:15
+Iterating ...
+   69         210000           2.047           12.11        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 21:39:28
+Fitness Calculated 02-Feb-2019 22:49:03
+Iterating ...
+   70         213000           2.043           12.16        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 22:49:16
+Fitness Calculated 02-Feb-2019 23:57:47
+Iterating ...
+   71         216000           2.043           12.09        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 02-Feb-2019 23:58:00
+Fitness Calculated 03-Feb-2019 01:07:27
+Iterating ...
+   72         219000           2.037           12.06        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 01:07:39
+Fitness Calculated 03-Feb-2019 02:17:41
+Iterating ...
+   73         222000           2.037           11.91        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 02:17:55
+Fitness Calculated 03-Feb-2019 03:26:07
+Iterating ...
+   74         225000           2.036           12.12        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 03:26:21
+Fitness Calculated 03-Feb-2019 04:36:33
+Iterating ...
+   75         228000           2.036           12.05        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 04:36:47
+Fitness Calculated 03-Feb-2019 05:44:12
+Iterating ...
+   76         231000           2.036           12.16        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 05:44:25
+Fitness Calculated 03-Feb-2019 06:52:41
+Iterating ...
+   77         234000           2.036           12.13        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 06:52:55
+Fitness Calculated 03-Feb-2019 08:01:48
+Iterating ...
+   78         237000           2.034           12.01        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 08:02:02
+Fitness Calculated 03-Feb-2019 09:10:54
+Iterating ...
+   79         240000           2.034           12.04        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 09:11:08
+Fitness Calculated 03-Feb-2019 10:20:13
+Iterating ...
+   80         243000           2.034           11.92        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 10:20:28
+Fitness Calculated 03-Feb-2019 11:29:00
+Iterating ...
+   81         246000           2.034           11.95        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 11:29:14
+Fitness Calculated 03-Feb-2019 12:38:50
+Iterating ...
+   82         249000           2.034            11.9        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 12:39:05
+Fitness Calculated 03-Feb-2019 13:48:00
+Iterating ...
+   83         252000           2.034           12.01        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 13:48:15
+Fitness Calculated 03-Feb-2019 14:57:21
+Iterating ...
+   84         255000           2.033           11.89        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 14:57:36
+Fitness Calculated 03-Feb-2019 16:07:08
+Iterating ...
+   85         258000           2.032           11.78        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 16:07:23
+Fitness Calculated 03-Feb-2019 17:15:43
+Iterating ...
+   86         261000           2.032           11.98        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 17:15:58
+Fitness Calculated 03-Feb-2019 18:24:06
+Iterating ...
+   87         264000           2.032           12.19        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 18:24:22
+Fitness Calculated 03-Feb-2019 19:32:10
+Iterating ...
+   88         267000           1.995            12.2        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 19:32:25
+Fitness Calculated 03-Feb-2019 20:39:08
+Iterating ...
+   89         270000           1.994           12.05        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 20:39:24
+Fitness Calculated 03-Feb-2019 21:45:40
+Iterating ...
+   90         273000           1.993           12.07        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 21:45:56
+Fitness Calculated 03-Feb-2019 22:53:05
+Iterating ...
+   91         276000           1.992            12.1        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 22:53:21
+Fitness Calculated 03-Feb-2019 23:59:00
+Iterating ...
+   92         279000            1.99           12.08        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 03-Feb-2019 23:59:16
+Fitness Calculated 04-Feb-2019 01:04:23
+Iterating ...
+   93         282000            1.99           12.22        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 01:04:40
+Fitness Calculated 04-Feb-2019 02:07:59
+Iterating ...
+   94         285000            1.99           12.47        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 02:08:15
+Fitness Calculated 04-Feb-2019 03:12:14
+Iterating ...
+   95         288000           1.989           12.53        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 03:12:30
+Fitness Calculated 04-Feb-2019 04:15:32
+Iterating ...
+   96         291000           1.989           12.64        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 04:15:49
+Fitness Calculated 04-Feb-2019 05:19:49
+Iterating ...
+   97         294000           1.988           12.67        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 05:20:06
+Fitness Calculated 04-Feb-2019 06:23:55
+Iterating ...
+   98         297000           1.988           12.69        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 06:24:12
+Fitness Calculated 04-Feb-2019 07:28:44
+Iterating ...
+   99         300000           1.988           12.76        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 07:29:01
+Fitness Calculated 04-Feb-2019 08:33:17
+Iterating ...
+  100         303000           1.988           12.67        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 08:33:34
+Fitness Calculated 04-Feb-2019 09:37:22
+Iterating ...
+  101         306000           1.988           12.63        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 09:37:39
+Fitness Calculated 04-Feb-2019 10:40:52
+Iterating ...
+  102         309000           1.988           12.69        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 10:41:10
+Fitness Calculated 04-Feb-2019 11:44:16
+Iterating ...
+  103         312000           1.987           12.67        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 11:44:34
+Fitness Calculated 04-Feb-2019 12:47:02
+Iterating ...
+  104         315000           1.987           12.68        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 12:47:20
+Fitness Calculated 04-Feb-2019 13:50:44
+Iterating ...
+  105         318000           1.987           12.58        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 13:51:02
+Fitness Calculated 04-Feb-2019 14:54:59
+Iterating ...
+  106         321000           1.987           12.61        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 14:55:17
+Fitness Calculated 04-Feb-2019 15:58:41
+Iterating ...
+  107         324000           1.987           12.38        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 15:59:00
+Fitness Calculated 04-Feb-2019 17:02:52
+Iterating ...
+  108         327000           1.987            12.5        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 17:03:11
+Fitness Calculated 04-Feb-2019 18:07:48
+Iterating ...
+  109         330000           1.987           12.37        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 18:08:07
+Fitness Calculated 04-Feb-2019 19:12:38
+Iterating ...
+  110         333000           1.987           12.34        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 19:12:57
+Fitness Calculated 04-Feb-2019 20:16:10
+Iterating ...
+  111         336000           1.987           12.33        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 20:16:30
+Fitness Calculated 04-Feb-2019 21:19:39
+Iterating ...
+  112         339000           1.987           12.39        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 21:19:58
+Fitness Calculated 04-Feb-2019 22:24:08
+Iterating ...
+  113         342000           1.987           12.22        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 22:24:28
+Fitness Calculated 04-Feb-2019 23:27:38
+Iterating ...
+  114         345000           1.987           12.29        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 04-Feb-2019 23:27:57
+Fitness Calculated 05-Feb-2019 00:31:02
+Iterating ...
+  115         348000           1.986           12.54        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 00:31:22
+Fitness Calculated 05-Feb-2019 01:34:22
+Iterating ...
+  116         351000           1.986           12.55        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 01:34:41
+Fitness Calculated 05-Feb-2019 02:37:42
+Iterating ...
+  117         354000           1.986           12.47        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 02:38:02
+Fitness Calculated 05-Feb-2019 03:39:43
+Iterating ...
+  118         357000           1.986           12.45        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 03:40:03
+Fitness Calculated 05-Feb-2019 04:43:12
+Iterating ...
+  119         360000           1.986           12.36        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 04:43:32
+Fitness Calculated 05-Feb-2019 05:46:43
+Iterating ...
+  120         363000           1.986            12.4        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 05:47:04
+Fitness Calculated 05-Feb-2019 06:50:21
+Iterating ...
+  121         366000           1.986           12.39        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 06:50:41
+Fitness Calculated 05-Feb-2019 07:52:02
+Iterating ...
+  122         369000           1.986           12.39        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 07:52:22
+Fitness Calculated 05-Feb-2019 08:55:34
+Iterating ...
+  123         372000           1.986           12.33        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 08:55:55
+Fitness Calculated 05-Feb-2019 09:58:46
+Iterating ...
+  124         375000           1.986           12.34        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 09:59:07
+Fitness Calculated 05-Feb-2019 11:01:39
+Iterating ...
+  125         378000           1.986           12.39        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 11:02:00
+Fitness Calculated 05-Feb-2019 12:04:51
+Iterating ...
+  126         381000           1.985           12.59        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 12:05:12
+Fitness Calculated 05-Feb-2019 13:07:14
+Iterating ...
+  127         384000           1.985            12.4        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 13:07:36
+Fitness Calculated 05-Feb-2019 14:10:23
+Iterating ...
+  128         387000           1.985           12.43        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 14:10:45
+Fitness Calculated 05-Feb-2019 15:14:29
+Iterating ...
+  129         390000           1.985           12.39        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 15:14:51
+Fitness Calculated 05-Feb-2019 16:17:46
+Iterating ...
+  130         393000           1.984           12.37        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 16:18:08
+Fitness Calculated 05-Feb-2019 17:23:02
+Iterating ...
+  131         396000           1.983           12.28        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 17:23:24
+Fitness Calculated 05-Feb-2019 18:28:48
+Iterating ...
+  132         399000           1.983           12.34        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 18:29:11
+Fitness Calculated 05-Feb-2019 19:33:07
+Iterating ...
+  133         402000           1.983           12.44        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 19:33:30
+Fitness Calculated 05-Feb-2019 20:37:14
+Iterating ...
+  134         405000           1.983           12.49        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 20:37:37
+Fitness Calculated 05-Feb-2019 21:39:45
+Iterating ...
+  135         408000           1.983           12.58        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 21:40:09
+Fitness Calculated 05-Feb-2019 22:43:46
+Iterating ...
+  136         411000           1.983           12.37        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 22:44:09
+Fitness Calculated 05-Feb-2019 23:46:02
+Iterating ...
+  137         414000           1.983           12.47        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 05-Feb-2019 23:46:26
+Fitness Calculated 06-Feb-2019 00:49:18
+Iterating ...
+  138         417000           1.983           12.47        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 00:49:41
+Fitness Calculated 06-Feb-2019 01:52:24
+Iterating ...
+  139         420000           1.983           12.33        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 01:52:48
+Fitness Calculated 06-Feb-2019 02:57:36
+Iterating ...
+  140         423000           1.983           12.42        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 02:58:00
+Fitness Calculated 06-Feb-2019 04:01:06
+Iterating ...
+  141         426000           1.983           12.28        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 04:01:30
+Fitness Calculated 06-Feb-2019 05:04:25
+Iterating ...
+  142         429000           1.983           12.53        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 05:04:49
+Fitness Calculated 06-Feb-2019 06:09:52
+Iterating ...
+  143         432000           1.981           12.41        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 06:10:16
+Fitness Calculated 06-Feb-2019 07:13:34
+Iterating ...
+  144         435000           1.981           12.43        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 07:13:58
+Fitness Calculated 06-Feb-2019 08:19:11
+Iterating ...
+  145         438000           1.981           12.26        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 08:19:36
+Fitness Calculated 06-Feb-2019 09:23:42
+Iterating ...
+  146         441000           1.981           12.31        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 09:24:07
+Fitness Calculated 06-Feb-2019 10:26:40
+Iterating ...
+  147         444000           1.981            12.4        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 10:27:05
+Fitness Calculated 06-Feb-2019 11:29:58
+Iterating ...
+  148         447000           1.981           12.42        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 11:30:23
+Fitness Calculated 06-Feb-2019 12:33:53
+Iterating ...
+  149         450000           1.981           12.56        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 12:34:18
+Fitness Calculated 06-Feb-2019 13:37:08
+Iterating ...
+  150         453000           1.981           12.57        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 13:37:42
+Fitness Calculated 06-Feb-2019 14:40:43
+Iterating ...
+  151         456000           1.981           12.64        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 14:41:13
+Fitness Calculated 06-Feb-2019 15:44:42
+Iterating ...
+  152         459000           1.981           12.37        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 15:45:17
+Fitness Calculated 06-Feb-2019 16:47:16
+Iterating ...
+  153         462000           1.981           12.66        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 16:47:46
+Fitness Calculated 06-Feb-2019 17:50:36
+Iterating ...
+  154         465000           1.981           12.45        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 17:51:13
+Fitness Calculated 06-Feb-2019 18:53:32
+Iterating ...
+  155         468000           1.981           12.37        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 18:54:09
+Fitness Calculated 06-Feb-2019 19:57:54
+Iterating ...
+  156         471000            1.98            12.3        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 19:58:30
+Fitness Calculated 06-Feb-2019 21:01:25
+Iterating ...
+  157         474000            1.98            12.4        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 21:01:59
+Fitness Calculated 06-Feb-2019 22:04:38
+Iterating ...
+  158         477000            1.98           12.43        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 22:05:11
+Fitness Calculated 06-Feb-2019 23:08:06
+Iterating ...
+  159         480000            1.98           12.44        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 06-Feb-2019 23:08:44
+Fitness Calculated 07-Feb-2019 00:13:42
+Iterating ...
+  160         483000            1.98           12.43        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 00:14:21
+Fitness Calculated 07-Feb-2019 01:16:45
+Iterating ...
+  161         486000            1.98           12.49        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 01:17:21
+Fitness Calculated 07-Feb-2019 02:20:11
+Iterating ...
+  162         489000            1.98           12.43        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 02:20:48
+Fitness Calculated 07-Feb-2019 03:24:27
+Iterating ...
+  163         492000            1.98           12.44        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 03:25:00
+Fitness Calculated 07-Feb-2019 04:27:52
+Iterating ...
+  164         495000            1.98           12.46        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 04:28:30
+Fitness Calculated 07-Feb-2019 05:31:03
+Iterating ...
+  165         498000            1.98           12.36        2
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 05:31:35
+Fitness Calculated 07-Feb-2019 06:35:19
+Iterating ...
+  166         501000            1.98           12.26        3
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 06:36:01
+Fitness Calculated 07-Feb-2019 07:38:20
+Iterating ...
+  167         504000            1.98           12.28        4
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 07:39:02
+Fitness Calculated 07-Feb-2019 08:41:37
+Iterating ...
+  168         507000            1.98           12.27        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 08:42:10
+Fitness Calculated 07-Feb-2019 09:45:49
+Iterating ...
+  169         510000            1.98           12.27        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 09:46:28
+Fitness Calculated 07-Feb-2019 10:49:47
+Iterating ...
+  170         513000           1.979           12.29        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 10:50:27
+Fitness Calculated 07-Feb-2019 11:53:48
+Iterating ...
+  171         516000           1.978            12.4        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 11:54:26
+Fitness Calculated 07-Feb-2019 12:57:10
+Iterating ...
+  172         519000           1.978           12.42        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 12:57:43
+Fitness Calculated 07-Feb-2019 14:02:03
+Iterating ...
+  173         522000           1.978           12.24        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 14:02:45
+Fitness Calculated 07-Feb-2019 15:06:16
+Iterating ...
+  174         525000           1.978           12.32        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 15:06:58
+Fitness Calculated 07-Feb-2019 16:11:14
+Iterating ...
+  175         528000           1.978           12.22        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 16:11:46
+Fitness Calculated 07-Feb-2019 17:16:59
+Iterating ...
+  176         531000           1.978           12.32        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 17:17:34
+Fitness Calculated 07-Feb-2019 18:20:46
+Iterating ...
+  177         534000           1.978           12.47        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 18:21:21
+Fitness Calculated 07-Feb-2019 19:25:40
+Iterating ...
+  178         537000           1.978           12.41        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 19:26:15
+Fitness Calculated 07-Feb-2019 20:29:39
+Iterating ...
+  179         540000           1.972           12.37        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 20:30:14
+Fitness Calculated 07-Feb-2019 21:32:39
+Iterating ...
+  180         543000           1.971           12.38        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 21:33:18
+Fitness Calculated 07-Feb-2019 22:37:07
+Iterating ...
+  181         546000            1.97           12.43        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 22:37:54
+Fitness Calculated 07-Feb-2019 23:41:47
+Iterating ...
+  182         549000            1.97           12.39        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 07-Feb-2019 23:42:28
+Fitness Calculated 08-Feb-2019 00:45:43
+Iterating ...
+  183         552000            1.97           12.28        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 00:46:17
+Fitness Calculated 08-Feb-2019 01:50:29
+Iterating ...
+  184         555000           1.965           12.14        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 01:51:07
+Fitness Calculated 08-Feb-2019 02:55:21
+Iterating ...
+  185         558000           1.961           12.09        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 02:56:00
+Fitness Calculated 08-Feb-2019 04:00:10
+Iterating ...
+  186         561000            1.94           11.92        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 04:00:46
+Fitness Calculated 08-Feb-2019 05:05:49
+Iterating ...
+  187         564000           1.938           11.79        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 05:06:27
+Fitness Calculated 08-Feb-2019 06:11:27
+Iterating ...
+  188         567000           1.938           11.85        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 06:12:04
+Fitness Calculated 08-Feb-2019 07:17:13
+Iterating ...
+  189         570000           1.938           11.99        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 07:17:53
+Fitness Calculated 08-Feb-2019 08:26:24
+Iterating ...
+  190         573000           1.938           11.97        1
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 08:27:06
+Fitness Calculated 08-Feb-2019 09:33:18
+Iterating ...
+  191         576000           1.936           11.87        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 09:33:58
+Fitness Calculated 08-Feb-2019 10:42:22
+Iterating ...
+  192         579000           1.936              12        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 10:43:08
+Fitness Calculated 08-Feb-2019 11:50:39
+Iterating ...
+  193         582000           1.936           12.07        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 11:51:23
+Fitness Calculated 08-Feb-2019 12:58:36
+Iterating ...
+  194         585000           1.936           12.26        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 12:59:16
+Fitness Calculated 08-Feb-2019 14:06:32
+Iterating ...
+  195         588000           1.935            12.1        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 14:07:13
+Fitness Calculated 08-Feb-2019 15:13:23
+Iterating ...
+  196         591000           1.935           12.01        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 15:14:10
+Fitness Calculated 08-Feb-2019 16:21:14
+Iterating ...
+  197         594000           1.934           12.12        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 16:21:53
+Fitness Calculated 08-Feb-2019 17:28:30
+Iterating ...
+  198         597000           1.934           11.94        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 17:29:16
+Fitness Calculated 08-Feb-2019 18:36:16
+Iterating ...
+  199         600000           1.934            12.1        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 18:37:01
+Fitness Calculated 08-Feb-2019 19:44:51
+Iterating ...
+  200         603000           1.934           11.86        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 19:45:34
+Fitness Calculated 08-Feb-2019 20:53:40
+Iterating ...
+  201         606000           1.934           11.95        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 20:54:19
+Fitness Calculated 08-Feb-2019 22:03:21
+Iterating ...
+  202         609000           1.934           11.81        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 22:04:07
+Fitness Calculated 08-Feb-2019 23:12:48
+Iterating ...
+  203         612000           1.933           11.89        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 08-Feb-2019 23:13:26
+Fitness Calculated 09-Feb-2019 00:20:56
+Iterating ...
+  204         615000           1.933           11.93        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 09-Feb-2019 00:21:36
+Fitness Calculated 09-Feb-2019 01:28:26
+Iterating ...
+  205         618000           1.933           12.03        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 09-Feb-2019 01:29:03
+Fitness Calculated 09-Feb-2019 02:36:49
+Iterating ...
+  206         621000           1.933           12.05        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 09-Feb-2019 02:37:28
+Fitness Calculated 09-Feb-2019 03:44:37
+Iterating ...
+  207         624000           1.933           12.04        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 09-Feb-2019 03:45:17
+Fitness Calculated 09-Feb-2019 04:51:08
+Iterating ...
+  208         627000           1.933           12.24        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 09-Feb-2019 04:51:55
+Fitness Calculated 09-Feb-2019 05:59:23
+Iterating ...
+  209         630000           1.933           12.15        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 09-Feb-2019 06:00:10
+Fitness Calculated 09-Feb-2019 07:07:41
+Iterating ...
+  210         633000           1.933           12.07        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 09-Feb-2019 07:08:27
+Fitness Calculated 09-Feb-2019 08:15:43
+Iterating ...
+  211         636000           1.933           12.04        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 09-Feb-2019 08:16:24
+Fitness Calculated 09-Feb-2019 09:23:13
+Iterating ...
+  212         639000           1.933           12.01        0
+Markovian RLQ-R Passive Modified - Starting Fitness Calculation 09-Feb-2019 09:23:58
