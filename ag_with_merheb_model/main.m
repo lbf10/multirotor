@@ -7,22 +7,18 @@ addpath('../multiControl/utils')
 warning('off','all')
 
 %% Algorithms to train
-algorithms = { %'PID','Passive NMAC';
-               %'RLQ-R Passive', 'Passive NMAC';
-               %'RLQ-R Passive Modified','Passive NMAC';
-               %'RLQ-R Passive Modified with PIDD','Passive NMAC';
-               %'SOSMC Passive','Passive NMAC';
-               %'SOSMC Passive with PIDD','Passive NMAC';
-               %'SOSMC Passive Direct','None';
-               %'Adaptive','Passive NMAC';
-               %'Adaptive with PIDD','Passive NMAC';
-               'Adaptive Direct','None';
-               'Markovian RLQ-R Passive Modified','Passive NMAC'};
+algorithms = { 'RLQ-R Active','Active NMAC';
+               'RLQ-R Active Modified', 'Active NMAC';
+               'RLQ-R Active Modified with PIDD','Active NMAC';
+               'SOSMC Active','Active NMAC';
+               'SOSMC Active with PIDD','Active NMAC';
+               'SOSMC Active Direct','None';
+               'Markovian RLQ-R Active Modified','Active NMAC'};
            
 for it=1:length(algorithms)
     attitudeController = algorithms{it,1};
     controlAllocator = algorithms{it,2};
-    attitudeReference = 'Passive NMAC';
+    attitudeReference = 'Active NMAC';
 
     fullfilename = 0;
 
@@ -101,7 +97,7 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'RLQ-R Active'
-                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
+                initialPopulation = [40 40 40 10 10 10 10 10 10 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 Q = [1e4, 1e4, 1e4,1e-1,1e-1,1e-1];
@@ -121,7 +117,7 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'RLQ-R Active Modified'
-                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
+                initialPopulation = [40 40 40 10 10 10 10 10 10 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 Q = 500000*[1e1, 1e1, 1e1,1e1,1e1,1e1];
@@ -141,7 +137,7 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'RLQ-R Active Modified with PIDD'
-                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
+                initialPopulation = [40 40 40 10 10 10 10 10 10 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 Q = 500000*[1e1, 1e1, 1e1, 1e1, 1e1, 1e1,1e1,1e1,1e1];
@@ -238,7 +234,7 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'SOSMC Active'
-                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
+                initialPopulation = [40 40 40 10 10 10 10 10 10 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 c = [3 3 3];
@@ -253,7 +249,7 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'SOSMC Active with PIDD'
-                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
+                initialPopulation = [40 40 40 10 10 10 10 10 10 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 c = 3*[1,1,1,2,2,2];
@@ -268,7 +264,7 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'SOSMC Active Direct'
-                initialPopulation = [40 40 40 10 10 10 20 20 20 0 0 0];
+                initialPopulation = [40 40 40 10 10 10 10 10 10 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 c =1.5*[1,1,1,2,2,2];
@@ -509,7 +505,7 @@ for it=1:length(algorithms)
     filename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_result.mat'];
     iterFilename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
     outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
-    options = gaoptimset('PopulationSize',3000,'Generations',300,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on','CrossoverFraction',0.5,'MutationFcn', {@mutationuniform, 0.05}, 'StallGenLimit',25);
+    options = gaoptimset('PopulationSize',3000,'Generations',150,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on','CrossoverFraction',0.5,'MutationFcn', {@mutationuniform, 0.05}, 'StallGenLimit',25);
     poolobj = parpool(80);
     addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m','../multiControl/'})
     [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = ga(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
