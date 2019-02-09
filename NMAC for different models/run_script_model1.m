@@ -1,5 +1,5 @@
 % OK
-% Hexarotor simulation
+% decarotor simulation based on hexa
 % refer to "Mathematical modeling and control of a hexacopter", Alaimo,
 % A.,2013
 
@@ -10,16 +10,17 @@ clear all
 clc
 %% Configuration for +8 coaxial octorotor
 % Creates simulation class
-multirotor = multicontrol(6);
+numberOfRotors = 10;
+multirotor = multicontrol(numberOfRotors);
 % Define rotor positions
-angles = 2*pi*(0:60:359)/360;
-positions = [0.225*cos(angles)
-             0.225*sin(angles)
-             0*angles];
-multirotor.setRotorPosition(1:6,positions);
+angles = 2*pi*(0:72:359)/360;
+positions = [0.1125*cos(angles) 0.225*cos(angles)
+             0.1125*sin(angles) 0.225*sin(angles)
+             0*angles 0*angles];
+multirotor.setRotorPosition(1:numberOfRotors,positions);
 % Define rotor orientations
-orientations = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
-multirotor.setRotorOrientation(1:6,orientations);
+orientations = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
+multirotor.setRotorOrientation(1:numberOfRotors,orientations);
 % Define aircraft's inertia
 multirotor.setMass(0.468);
 inertia =   diag([4.856e-3,4.856e-3,8.801e-3]);
@@ -31,17 +32,17 @@ friction = [0.25	0	0
 multirotor.setFriction(friction);
 multirotor.setAngularFilterGain([0,0,0.5]);
 % Define lift and drag coefficients
-multirotor.setRotorLiftCoeff(1:6,ones(1,6)*2.980e-6);
-multirotor.setRotorDragCoeff(1:6,ones(1,6)*1.140e-7);
+multirotor.setRotorLiftCoeff(1:numberOfRotors,ones(1,numberOfRotors)*2.980e-6);
+multirotor.setRotorDragCoeff(1:numberOfRotors,ones(1,numberOfRotors)*1.140e-7);
 % Define rotor inertia
-multirotor.setRotorInertia(1:6,3.357e-5*ones(1,6));
+multirotor.setRotorInertia(1:numberOfRotors,3.357e-5*ones(1,numberOfRotors));
 % Sets rotors rotation direction for control allocation
-rotationDirection = [-1 1 -1 1 -1 1]';
-multirotor.setRotorDirection(1:6,rotationDirection);
-multirotor.setRotorMaxSpeed(1:6,1805*ones(1,6));
-multirotor.setRotorMinSpeed(1:6,0*ones(1,6));
+rotationDirection = [-1 1 -1 1 -1 1 -1 1 -1 1]';
+multirotor.setRotorDirection(1:numberOfRotors,rotationDirection);
+multirotor.setRotorMaxSpeed(1:numberOfRotors,1805*ones(1,numberOfRotors));
+multirotor.setRotorMinSpeed(1:numberOfRotors,0*ones(1,numberOfRotors));
 multirotor.setInitialRotorSpeeds(92*rotationDirection);
-multirotor.setRotorOperatingPoint(1:6,920*[1 1 1 1 1 1]);
+multirotor.setRotorOperatingPoint(1:numberOfRotors,920*[1 1 1 1 1 1 1 1 1 1]);
 
 %% Controller configuration
 % Trajectory controller
@@ -75,4 +76,4 @@ multirotor.setControlDelay(0.20);
 %% Run simulator
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
 multirotor.plotSim();
-% multirotor.save('graphs');
+multirotor.save('graphs');
