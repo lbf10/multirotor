@@ -29,14 +29,16 @@ friction = [0.25	0	0
 multirotor.setFriction(friction);
 multirotor.setAngularFilterGain([0,0,0.5]);
 % Define lift and drag coefficients
-multirotor.setRotorLiftCoeff(1:6,[ones(1,4)*0.0017899323,ones(1,2)*0.0129371703]);
-multirotor.setRotorDragCoeff(1:6,[ones(1,4)*7.5304514656581E-05,ones(1,2)*0.0006726965]);
+% multirotor.setRotorLiftCoeff(1:6,[ones(1,4)*0.0017899323,ones(1,2)*0.0129371703]);
+multirotor.setRotorLiftCoeff(1:6,[ones(1,4)*5.9664e-04,ones(1,2)*0.0229371703]);
+% multirotor.setRotorDragCoeff(1:6,[ones(1,4)*7.5304514656581E-05,ones(1,2)*0.0006726965]);
+multirotor.setRotorDragCoeff(1:6,[ones(1,4)*2.5102e-05,ones(1,2)*0.0006726965]);
 % Define rotor inertia
 multirotor.setRotorInertia(1:6,[ones(1,4)*0.023412776,ones(1,2)*7.8625708128]);
 % Sets rotors rotation direction for control allocation
 rotationDirection = [1 -1 1 -1 1 -1]';
 multirotor.setRotorDirection(1:6,rotationDirection);
-multirotor.setRotorMaxSpeed(1:6,[ones(1,4)*392,ones(1,2)*500]);
+multirotor.setRotorMaxSpeed(1:6,[ones(1,4)*600,ones(1,2)*300]);
 multirotor.setRotorMinSpeed(1:6,0*ones(1,6));
 multirotor.setInitialRotorSpeeds(200*rotationDirection);
 multirotor.setRotorOperatingPoint(1:6,[ones(1,4)*270,ones(1,2)*300]);
@@ -65,7 +67,7 @@ multirotor.setControlAllocator('Passive NMAC');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
 
 endTime = 30;
-[waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto', 0);
+[waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto', 2*pi);
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 multirotor.setSimEffects('motor dynamics off','solver euler')
@@ -74,3 +76,33 @@ multirotor.setControlDelay(0.20);
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
 multirotor.plotSim();
 % multirotor.save('graphs');
+
+numberOfRotors = 6;
+figure
+speed1 = [];
+time1 = [];
+names1 = [];
+speed2 = [];
+time2 = [];
+names2 = [];
+log = multirotor.log;
+for it=1:numberOfRotors
+    if mean(log.rotor(it).speed)>0
+        names1 = [names1; ['Rotor ',num2str(it)]];
+        time1 = [time1; log.time];
+        speed1 = [speed1; log.rotor(it).speed];
+    else
+        names2 = [names2; ['Rotor ',num2str(it)]];
+        time2 = [time2; log.time];
+        speed2 = [speed2; log.rotor(it).speed];        
+    end
+end
+subplot(2,1,1)
+plot(time1',speed1')
+ylabel('Rotor speeds (rad/s)')
+legend(names1)
+subplot(2,1,2)
+plot(time2',speed2')
+ylabel('Rotor speeds (rad/s)')
+legend(names2)
+xlabel('Time (s)')
