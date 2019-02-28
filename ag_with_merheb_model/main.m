@@ -7,10 +7,10 @@ addpath('../multiControl/utils')
 warning('off','all')
 
 %% Algorithms to train
-algorithms = { 'RLQ-R Active','Active NMAC';
-               'RLQ-R Active Modified', 'Active NMAC';
-               'RLQ-R Active Modified with PIDD','Active NMAC';
-               'SOSMC Active','Active NMAC';
+algorithms = { %'RLQ-R Active','Active NMAC';
+               %'RLQ-R Active Modified', 'Active NMAC';
+               %'RLQ-R Active Modified with PIDD','Active NMAC';
+               %'SOSMC Active','Active NMAC';
                'SOSMC Active with PIDD','Active NMAC';
                'SOSMC Active Direct','None';
                'Markovian RLQ-R Active Modified','Active NMAC'};
@@ -249,7 +249,7 @@ for it=1:length(algorithms)
                 ub = [ub,1,1,1];
                 nvars = nvars + 3;
             case 'SOSMC Active with PIDD'
-                initialPopulation = [40 40 40 10 10 10 10 10 10 0 0 0];
+                initialPopulation = [30 30 30 5 5 5 10 10 10 0 0 0];
                 lb = zeros(1,12);
                 ub = [1000 1000 1000 1000 1000 1000 1000 1000 1000 100 100 100];
                 c = 3*[1,1,1,2,2,2];

@@ -58,7 +58,7 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % SOSMC Passive and with PIDD:
 % kp = [300 300 100];ki = [10 10 40];kd = [70 70 70];kdd = [35 35 2];
 % SOSMC Passive and with PIDD:
- kp = [40 40 40];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
+ kp = [30 30 30];ki = [5 5 5];kd = [10 10 10];kdd = [0 0 0];
 % SOSMC Passive Direct:
 % kp = [40 40 40];ki = [10 10 10];kd = [20 20 20];kdd = [0 0 0];
 % SOSMC Active Direct:
@@ -287,7 +287,7 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('RLQ-R Active Modified with PIDD');
+multirotor.setController('SOSMC Active with PIDD');
 multirotor.setControlAllocator('Active NMAC');
 multirotor.setAttitudeReferenceCA('Active NMAC');
 multirotor.configFDD(.9,0.5)
@@ -317,8 +317,8 @@ endTime = 15;
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.5)'},endTime/2)   
-% multirotor.addCommand({'setRotorStatus(2,''prop loss'',0.001)'},endTime/2)    
+multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/4)   
+multirotor.addCommand({'setRotorStatus(2,''prop loss'',0.001)'},endTime/2)    
 % multirotor.addCommand({'setRotorStatus(3,''prop loss'',0.001)'},endTime/2)   
 % multirotor.addCommand({'setRotorStatus(4,''prop loss'',0.001)'},endTime/2)  
 % multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},0)
