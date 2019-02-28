@@ -1,0 +1,916 @@
+
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 14:32:11
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 09-Feb-2019 14:39:31
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 14:39:31
+Fitness Calculated 09-Feb-2019 14:46:16
+Iterating ...
+    1          6000           7.439            20.7        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 14:46:17
+Fitness Calculated 09-Feb-2019 14:53:53
+Iterating ...
+    2          9000           7.545           20.35        1
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 14:53:53
+Fitness Calculated 09-Feb-2019 15:05:08
+Iterating ...
+    3         12000           6.641           20.01        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 15:05:08
+Fitness Calculated 09-Feb-2019 15:21:06
+Iterating ...
+    4         15000            6.33           19.64        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 15:21:07
+Fitness Calculated 09-Feb-2019 15:39:35
+Iterating ...
+    5         18000           4.957           19.16        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 15:39:36
+Fitness Calculated 09-Feb-2019 15:57:24
+Iterating ...
+    6         21000           5.031           18.67        1
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 15:57:25
+Fitness Calculated 09-Feb-2019 16:18:26
+Iterating ...
+    7         24000           4.202           18.19        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 16:18:28
+Fitness Calculated 09-Feb-2019 16:41:36
+Iterating ...
+    8         27000           2.222           17.61        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 16:41:38
+Fitness Calculated 09-Feb-2019 17:08:04
+Iterating ...
+    9         30000           2.065           16.98        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 17:08:05
+Fitness Calculated 09-Feb-2019 17:39:27
+Iterating ...
+   10         33000           2.072           16.32        1
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 17:39:28
+Fitness Calculated 09-Feb-2019 18:13:27
+Iterating ...
+   11         36000           2.048           15.55        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 18:13:29
+Fitness Calculated 09-Feb-2019 18:50:29
+Iterating ...
+   12         39000           2.072           14.74        1
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 18:50:30
+Fitness Calculated 09-Feb-2019 19:29:09
+Iterating ...
+   13         42000           1.985           13.98        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 19:29:11
+Fitness Calculated 09-Feb-2019 20:09:47
+Iterating ...
+   14         45000           2.014           13.25        1
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 20:09:48
+Fitness Calculated 09-Feb-2019 20:53:06
+Iterating ...
+   15         48000           1.999           12.49        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 20:53:08
+Fitness Calculated 09-Feb-2019 21:36:57
+Iterating ...
+   16         51000           1.997            12.1        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 21:36:59
+Fitness Calculated 09-Feb-2019 22:21:11
+Iterating ...
+   17         54000           2.001           11.62        1
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 22:21:12
+Fitness Calculated 09-Feb-2019 23:07:29
+Iterating ...
+   18         57000           1.965           11.22        0
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 23:07:31
+Fitness Calculated 09-Feb-2019 23:53:49
+Iterating ...
+   19         60000           1.984           11.22        1
+RLQ-R Active - Starting Fitness Calculation 09-Feb-2019 23:53:52
+Fitness Calculated 10-Feb-2019 00:40:09
+Iterating ...
+   20         63000            1.95           11.26        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 00:40:10
+Fitness Calculated 10-Feb-2019 01:26:30
+Iterating ...
+   21         66000           1.924           11.12        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 01:26:32
+Fitness Calculated 10-Feb-2019 02:12:55
+Iterating ...
+   22         69000           1.926           11.02        1
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 02:12:57
+Fitness Calculated 10-Feb-2019 02:58:18
+Iterating ...
+   23         72000            1.93           11.17        2
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 02:58:21
+Fitness Calculated 10-Feb-2019 03:44:24
+Iterating ...
+   24         75000           1.925           11.08        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 03:44:26
+Fitness Calculated 10-Feb-2019 04:30:13
+Iterating ...
+   25         78000           1.916           11.18        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 04:30:16
+Fitness Calculated 10-Feb-2019 05:16:23
+Iterating ...
+   26         81000           1.928           10.98        1
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 05:16:25
+Fitness Calculated 10-Feb-2019 06:02:55
+Iterating ...
+   27         84000           1.909           11.11        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 06:02:58
+Fitness Calculated 10-Feb-2019 06:48:54
+Iterating ...
+   28         87000           1.929           11.08        1
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 06:48:57
+Fitness Calculated 10-Feb-2019 07:33:52
+Iterating ...
+   29         90000           1.909            11.1        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 07:33:55
+Fitness Calculated 10-Feb-2019 08:20:41
+Iterating ...
+   30         93000           1.919           11.06        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 08:20:43
+Fitness Calculated 10-Feb-2019 09:06:10
+Iterating ...
+   31         96000           1.911           10.93        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 09:06:13
+Fitness Calculated 10-Feb-2019 09:52:11
+Iterating ...
+   32         99000           1.906            10.9        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 09:52:15
+Fitness Calculated 10-Feb-2019 10:40:20
+Iterating ...
+   33         102000           1.902           10.97        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 10:40:23
+Fitness Calculated 10-Feb-2019 11:27:12
+Iterating ...
+   34         105000           1.907            10.8        1
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 11:27:15
+Fitness Calculated 10-Feb-2019 12:15:00
+Iterating ...
+   35         108000           1.912           10.73        2
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 12:15:03
+Fitness Calculated 10-Feb-2019 13:00:28
+Iterating ...
+   36         111000           1.895           10.96        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 13:00:31
+Fitness Calculated 10-Feb-2019 13:47:42
+Iterating ...
+   37         114000            1.91           11.05        1
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 13:47:47
+Fitness Calculated 10-Feb-2019 14:34:30
+Iterating ...
+   38         117000           1.893           10.93        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 14:34:33
+Fitness Calculated 10-Feb-2019 15:21:49
+Iterating ...
+   39         120000           1.906           10.82        1
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 15:21:52
+Fitness Calculated 10-Feb-2019 16:09:47
+Iterating ...
+   40         123000           1.909           10.69        2
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 16:09:50
+Fitness Calculated 10-Feb-2019 16:56:35
+Iterating ...
+   41         126000            1.91           10.73        3
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 16:56:40
+Fitness Calculated 10-Feb-2019 17:44:15
+Iterating ...
+   42         129000           1.902           10.87        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 17:44:19
+Fitness Calculated 10-Feb-2019 18:30:56
+Iterating ...
+   43         132000           1.876           10.65        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 18:31:01
+Fitness Calculated 10-Feb-2019 19:18:25
+Iterating ...
+   44         135000           1.912           10.57        1
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 19:18:29
+Fitness Calculated 10-Feb-2019 20:05:34
+Iterating ...
+   45         138000           1.886           10.71        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 20:05:37
+Fitness Calculated 10-Feb-2019 20:53:23
+Iterating ...
+   46         141000           1.887            10.7        1
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 20:53:28
+Fitness Calculated 10-Feb-2019 21:41:43
+Iterating ...
+   47         144000            1.89            10.8        2
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 21:41:48
+Fitness Calculated 10-Feb-2019 22:28:59
+Iterating ...
+   48         147000           1.903           10.82        3
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 22:29:03
+Fitness Calculated 10-Feb-2019 23:16:16
+Iterating ...
+   49         150000            1.87           10.86        0
+RLQ-R Active - Starting Fitness Calculation 10-Feb-2019 23:16:20
+Fitness Calculated 11-Feb-2019 00:02:57
+Iterating ...
+   50         153000           1.882           10.81        1
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 00:03:02
+Fitness Calculated 11-Feb-2019 00:50:01
+Iterating ...
+   51         156000           1.884           10.95        2
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 00:50:04
+Fitness Calculated 11-Feb-2019 01:38:22
+Iterating ...
+   52         159000           1.869           10.77        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 01:38:26
+Fitness Calculated 11-Feb-2019 02:24:29
+Iterating ...
+   53         162000           1.859           11.01        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 02:24:34
+Fitness Calculated 11-Feb-2019 03:12:13
+Iterating ...
+   54         165000           1.871           10.85        1
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 03:12:18
+Fitness Calculated 11-Feb-2019 03:58:53
+Iterating ...
+   55         168000           1.873           10.82        2
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 03:58:58
+Fitness Calculated 11-Feb-2019 04:45:23
+Iterating ...
+   56         171000            1.87           10.99        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 04:45:27
+Fitness Calculated 11-Feb-2019 05:32:26
+Iterating ...
+   57         174000           1.871           10.66        1
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 05:32:32
+Fitness Calculated 11-Feb-2019 06:19:32
+Iterating ...
+   58         177000           1.851           10.77        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 06:19:36
+Fitness Calculated 11-Feb-2019 07:06:24
+Iterating ...
+   59         180000           1.859           10.92        1
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 07:06:29
+Fitness Calculated 11-Feb-2019 07:53:10
+Iterating ...
+   60         183000           1.856           10.94        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 07:53:17
+Fitness Calculated 11-Feb-2019 08:39:25
+Iterating ...
+   61         186000           1.862           11.02        1
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 08:39:30
+Fitness Calculated 11-Feb-2019 09:26:02
+Iterating ...
+   62         189000           1.873           11.11        2
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 09:26:06
+Fitness Calculated 11-Feb-2019 10:13:39
+Iterating ...
+   63         192000           1.858           10.99        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 10:13:43
+Fitness Calculated 11-Feb-2019 11:00:15
+Iterating ...
+   64         195000           1.867           11.05        1
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 11:00:19
+Fitness Calculated 11-Feb-2019 11:47:51
+Iterating ...
+   65         198000           1.851           10.95        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 11:47:55
+Fitness Calculated 11-Feb-2019 12:32:51
+Iterating ...
+   66         201000           1.859           11.07        1
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 12:32:55
+Fitness Calculated 11-Feb-2019 13:19:49
+Iterating ...
+   67         204000           1.864           10.97        2
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 13:19:53
+Fitness Calculated 11-Feb-2019 14:06:32
+Iterating ...
+   68         207000           1.874           10.92        3
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 14:06:36
+Fitness Calculated 11-Feb-2019 14:53:20
+Iterating ...
+   69         210000           1.865           10.94        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 14:53:24
+Fitness Calculated 11-Feb-2019 15:40:24
+Iterating ...
+   70         213000           1.861           10.99        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 15:40:28
+Fitness Calculated 11-Feb-2019 16:28:02
+Iterating ...
+   71         216000           1.847           10.83        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 16:28:07
+Fitness Calculated 11-Feb-2019 17:15:10
+Iterating ...
+   72         219000           1.844           10.85        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 17:15:14
+Fitness Calculated 11-Feb-2019 18:02:07
+Iterating ...
+   73         222000           1.859           11.03        1
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 18:02:12
+Fitness Calculated 11-Feb-2019 18:49:30
+Iterating ...
+   74         225000           1.862           10.83        2
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 18:49:35
+Fitness Calculated 11-Feb-2019 19:35:34
+Iterating ...
+   75         228000           1.858           10.88        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 19:35:39
+Fitness Calculated 11-Feb-2019 20:23:55
+Iterating ...
+   76         231000           1.846           10.73        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 20:24:00
+Fitness Calculated 11-Feb-2019 21:11:43
+Iterating ...
+   77         234000           1.857           10.75        1
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 21:11:48
+Fitness Calculated 11-Feb-2019 21:59:02
+Iterating ...
+   78         237000           1.857           11.02        2
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 21:59:07
+Fitness Calculated 11-Feb-2019 22:47:57
+Iterating ...
+   79         240000            1.86           11.03        3
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 22:48:02
+Fitness Calculated 11-Feb-2019 23:35:37
+Iterating ...
+   80         243000           1.855           11.03        0
+RLQ-R Active - Starting Fitness Calculation 11-Feb-2019 23:35:42
+Fitness Calculated 12-Feb-2019 00:22:07
+Iterating ...
+   81         246000           1.856           11.05        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 00:22:12
+Fitness Calculated 12-Feb-2019 01:09:55
+Iterating ...
+   82         249000           1.853           10.83        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 01:10:00
+Fitness Calculated 12-Feb-2019 01:56:52
+Iterating ...
+   83         252000           1.849              11        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 01:56:58
+Fitness Calculated 12-Feb-2019 02:43:57
+Iterating ...
+   84         255000           1.864           10.84        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 02:44:03
+Fitness Calculated 12-Feb-2019 03:31:04
+Iterating ...
+   85         258000           1.851           10.85        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 03:31:09
+Fitness Calculated 12-Feb-2019 04:18:41
+Iterating ...
+   86         261000           1.853           10.98        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 04:18:46
+Fitness Calculated 12-Feb-2019 05:05:19
+Iterating ...
+   87         264000           1.846           11.01        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 05:05:24
+Fitness Calculated 12-Feb-2019 05:52:22
+Iterating ...
+   88         267000           1.856           11.26        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 05:52:28
+Fitness Calculated 12-Feb-2019 06:39:33
+Iterating ...
+   89         270000           1.853           11.23        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 06:39:38
+Fitness Calculated 12-Feb-2019 07:28:06
+Iterating ...
+   90         273000           1.852           10.78        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 07:28:11
+Fitness Calculated 12-Feb-2019 08:15:16
+Iterating ...
+   91         276000           1.853           10.71        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 08:15:22
+Fitness Calculated 12-Feb-2019 09:01:53
+Iterating ...
+   92         279000           1.847           10.89        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 09:01:59
+Fitness Calculated 12-Feb-2019 09:49:26
+Iterating ...
+   93         282000           1.847           10.92        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 09:49:32
+Fitness Calculated 12-Feb-2019 10:37:03
+Iterating ...
+   94         285000           1.852           10.77        2
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 10:37:09
+Fitness Calculated 12-Feb-2019 11:23:04
+Iterating ...
+   95         288000           1.854           10.95        3
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 11:23:10
+Fitness Calculated 12-Feb-2019 12:09:59
+Iterating ...
+   96         291000           1.852           10.82        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 12:10:05
+Fitness Calculated 12-Feb-2019 12:57:45
+Iterating ...
+   97         294000           1.854           10.89        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 12:57:52
+Fitness Calculated 12-Feb-2019 13:44:30
+Iterating ...
+   98         297000           1.854           10.97        2
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 13:44:37
+Fitness Calculated 12-Feb-2019 14:31:30
+Iterating ...
+   99         300000           1.848           10.96        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 14:31:36
+Fitness Calculated 12-Feb-2019 15:19:01
+Iterating ...
+  100         303000           1.856           10.82        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 15:19:07
+Fitness Calculated 12-Feb-2019 16:06:41
+Iterating ...
+  101         306000           1.853           10.73        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 16:06:47
+Fitness Calculated 12-Feb-2019 16:55:25
+Iterating ...
+  102         309000           1.847           10.73        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 16:55:31
+Fitness Calculated 12-Feb-2019 17:42:50
+Iterating ...
+  103         312000           1.853           10.65        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 17:42:57
+Fitness Calculated 12-Feb-2019 18:30:24
+Iterating ...
+  104         315000           1.847           10.54        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 18:30:30
+Fitness Calculated 12-Feb-2019 19:18:42
+Iterating ...
+  105         318000           1.847           10.61        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 19:18:49
+Fitness Calculated 12-Feb-2019 20:05:55
+Iterating ...
+  106         321000           1.848           10.71        2
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 20:06:02
+Fitness Calculated 12-Feb-2019 20:54:21
+Iterating ...
+  107         324000           1.847           10.79        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 20:54:28
+Fitness Calculated 12-Feb-2019 21:42:25
+Iterating ...
+  108         327000           1.833           10.85        0
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 21:42:32
+Fitness Calculated 12-Feb-2019 22:29:22
+Iterating ...
+  109         330000           1.843           10.84        1
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 22:29:29
+Fitness Calculated 12-Feb-2019 23:16:50
+Iterating ...
+  110         333000           1.848            10.9        2
+RLQ-R Active - Starting Fitness Calculation 12-Feb-2019 23:16:57
+Fitness Calculated 13-Feb-2019 00:05:31
+Iterating ...
+  111         336000           1.855           10.66        3
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 00:05:38
+Fitness Calculated 13-Feb-2019 00:53:42
+Iterating ...
+  112         339000           1.848           10.67        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 00:53:49
+Fitness Calculated 13-Feb-2019 01:40:27
+Iterating ...
+  113         342000           1.846           10.79        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 01:40:34
+Fitness Calculated 13-Feb-2019 02:27:49
+Iterating ...
+  114         345000           1.844           10.77        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 02:27:56
+Fitness Calculated 13-Feb-2019 03:15:24
+Iterating ...
+  115         348000           1.853           10.85        1
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 03:15:31
+Fitness Calculated 13-Feb-2019 04:02:39
+Iterating ...
+  116         351000           1.847           10.87        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 04:02:46
+Fitness Calculated 13-Feb-2019 04:50:23
+Iterating ...
+  117         354000           1.852           11.08        1
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 04:50:30
+Fitness Calculated 13-Feb-2019 05:38:25
+Iterating ...
+  118         357000           1.846           10.87        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 05:38:33
+Fitness Calculated 13-Feb-2019 06:24:53
+Iterating ...
+  119         360000           1.844           10.83        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 06:25:01
+Fitness Calculated 13-Feb-2019 07:13:00
+Iterating ...
+  120         363000           1.849           10.69        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 07:13:07
+Fitness Calculated 13-Feb-2019 08:00:01
+Iterating ...
+  121         366000           1.838           10.71        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 08:00:08
+Fitness Calculated 13-Feb-2019 08:48:13
+Iterating ...
+  122         369000           1.855           10.84        1
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 08:48:21
+Fitness Calculated 13-Feb-2019 09:35:36
+Iterating ...
+  123         372000           1.847           10.69        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 09:35:43
+Fitness Calculated 13-Feb-2019 10:23:17
+Iterating ...
+  124         375000           1.833           10.83        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 10:23:25
+Fitness Calculated 13-Feb-2019 11:10:00
+Iterating ...
+  125         378000           1.838           10.81        1
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 11:10:07
+Fitness Calculated 13-Feb-2019 11:57:03
+Iterating ...
+  126         381000           1.839           10.77        2
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 11:57:11
+Fitness Calculated 13-Feb-2019 12:43:50
+Iterating ...
+  127         384000           1.842           10.85        3
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 12:43:58
+Fitness Calculated 13-Feb-2019 13:31:39
+Iterating ...
+  128         387000           1.825           10.77        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 13:31:47
+Fitness Calculated 13-Feb-2019 14:18:38
+Iterating ...
+  129         390000           1.835           10.83        1
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 14:18:47
+Fitness Calculated 13-Feb-2019 15:06:09
+Iterating ...
+  130         393000           1.851           10.86        2
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 15:06:17
+Fitness Calculated 13-Feb-2019 15:54:23
+Iterating ...
+  131         396000           1.846           10.85        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 15:54:32
+Fitness Calculated 13-Feb-2019 16:41:38
+Iterating ...
+  132         399000           1.841           10.74        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 16:41:46
+Fitness Calculated 13-Feb-2019 17:29:59
+Iterating ...
+  133         402000           1.838           10.65        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 17:30:07
+Fitness Calculated 13-Feb-2019 18:16:37
+Iterating ...
+  134         405000            1.83           11.01        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 18:16:46
+Fitness Calculated 13-Feb-2019 19:04:42
+Iterating ...
+  135         408000           1.836           10.89        1
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 19:04:50
+Fitness Calculated 13-Feb-2019 19:51:19
+Iterating ...
+  136         411000            1.85           10.92        2
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 19:51:27
+Fitness Calculated 13-Feb-2019 20:39:37
+Iterating ...
+  137         414000           1.836           10.86        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 20:39:45
+Fitness Calculated 13-Feb-2019 21:27:05
+Iterating ...
+  138         417000            1.84            10.7        1
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 21:27:13
+Fitness Calculated 13-Feb-2019 22:14:47
+Iterating ...
+  139         420000           1.822           10.71        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 22:14:56
+Fitness Calculated 13-Feb-2019 23:02:13
+Iterating ...
+  140         423000           1.838           10.72        1
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 23:02:22
+Fitness Calculated 13-Feb-2019 23:50:01
+Iterating ...
+  141         426000           1.828           10.78        0
+RLQ-R Active - Starting Fitness Calculation 13-Feb-2019 23:50:10
+Fitness Calculated 14-Feb-2019 00:37:49
+Iterating ...
+  142         429000           1.832           10.53        1
+RLQ-R Active - Starting Fitness Calculation 14-Feb-2019 00:37:58
+Fitness Calculated 14-Feb-2019 01:25:00
+Iterating ...
+  143         432000           1.827           10.84        0
+RLQ-R Active - Starting Fitness Calculation 14-Feb-2019 01:25:09
+Fitness Calculated 14-Feb-2019 02:13:39
+Iterating ...
+  144         435000           1.841           10.46        1
+RLQ-R Active - Starting Fitness Calculation 14-Feb-2019 02:13:48
+Fitness Calculated 14-Feb-2019 03:02:22
+Iterating ...
+  145         438000            1.83           10.57        0
+RLQ-R Active - Starting Fitness Calculation 14-Feb-2019 03:02:32
+Fitness Calculated 14-Feb-2019 03:49:21
+Iterating ...
+  146         441000           1.829           10.65        0
+RLQ-R Active - Starting Fitness Calculation 14-Feb-2019 03:49:30
+Fitness Calculated 14-Feb-2019 04:36:17
+Iterating ...
+  147         444000           1.833           10.98        1
+RLQ-R Active - Starting Fitness Calculation 14-Feb-2019 04:36:26
+Fitness Calculated 14-Feb-2019 05:24:19
+Iterating ...
+  148         447000           1.834           10.79        2
+RLQ-R Active - Starting Fitness Calculation 14-Feb-2019 05:24:28
+Fitness Calculated 14-Feb-2019 06:11:23
+Iterating ...
+  149         450000           1.834           10.75        0
+RLQ-R Active - Starting Fitness Calculation 14-Feb-2019 06:11:32
+Fitness Calculated 14-Feb-2019 06:58:27
+Iterating ...
+  150         453000           1.833           10.73        0
+Optimization terminated: maximum number of generations exceeded.
+Performing final task
+Parallel pool using the 'ClusterPandora' profile is shutting down.
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 06:59:01
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 14-Feb-2019 07:05:48
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 07:05:49
+Fitness Calculated 14-Feb-2019 07:13:12
+Iterating ...
+    1          6000           6.479           26.03        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 07:13:13
+Fitness Calculated 14-Feb-2019 07:23:43
+Iterating ...
+    2          9000           4.065           24.38        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 07:23:43
+Fitness Calculated 14-Feb-2019 07:42:23
+Iterating ...
+    3         12000           3.412           24.03        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 07:42:23
+Fitness Calculated 14-Feb-2019 08:02:52
+Iterating ...
+    4         15000           4.097           23.85        1
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 08:02:53
+Fitness Calculated 14-Feb-2019 08:24:26
+Iterating ...
+    5         18000           3.823           23.15        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 08:24:27
+Fitness Calculated 14-Feb-2019 08:49:11
+Iterating ...
+    6         21000           3.427           21.69        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 08:49:12
+Fitness Calculated 14-Feb-2019 09:15:28
+Iterating ...
+    7         24000           3.741           20.04        1
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 09:15:29
+Fitness Calculated 14-Feb-2019 09:43:42
+Iterating ...
+    8         27000           2.795           17.91        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 09:43:43
+Fitness Calculated 14-Feb-2019 10:15:13
+Iterating ...
+    9         30000           2.406           16.58        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 10:15:14
+Fitness Calculated 14-Feb-2019 10:49:44
+Iterating ...
+   10         33000           2.118           15.45        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 10:49:45
+Fitness Calculated 14-Feb-2019 11:27:18
+Iterating ...
+   11         36000            2.23           14.74        1
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 11:27:20
+Fitness Calculated 14-Feb-2019 12:07:28
+Iterating ...
+   12         39000           1.981           14.01        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 12:07:29
+Fitness Calculated 14-Feb-2019 12:50:42
+Iterating ...
+   13         42000           1.989           13.35        1
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 12:50:44
+Fitness Calculated 14-Feb-2019 13:35:34
+Iterating ...
+   14         45000            1.95           12.76        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 13:35:36
+Fitness Calculated 14-Feb-2019 14:22:15
+Iterating ...
+   15         48000           1.919           12.63        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 14:22:17
+Fitness Calculated 14-Feb-2019 15:10:57
+Iterating ...
+   16         51000           1.914           12.08        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 15:10:58
+Fitness Calculated 14-Feb-2019 16:00:13
+Iterating ...
+   17         54000           1.919           11.63        1
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 16:00:15
+Fitness Calculated 14-Feb-2019 16:50:08
+Iterating ...
+   18         57000           1.912           11.31        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 16:50:10
+Fitness Calculated 14-Feb-2019 17:40:12
+Iterating ...
+   19         60000           1.908           11.31        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 17:40:14
+Fitness Calculated 14-Feb-2019 18:30:16
+Iterating ...
+   20         63000           1.903           10.98        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 18:30:18
+Fitness Calculated 14-Feb-2019 19:22:46
+Iterating ...
+   21         66000             1.9           11.05        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 19:22:48
+Fitness Calculated 14-Feb-2019 20:14:42
+Iterating ...
+   22         69000           1.902           10.67        1
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 20:14:44
+Fitness Calculated 14-Feb-2019 21:06:21
+Iterating ...
+   23         72000           1.881           10.68        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 21:06:23
+Fitness Calculated 14-Feb-2019 21:58:28
+Iterating ...
+   24         75000           1.879           10.71        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 21:58:30
+Fitness Calculated 14-Feb-2019 22:51:11
+Iterating ...
+   25         78000           1.879           10.81        1
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 22:51:13
+Fitness Calculated 14-Feb-2019 23:43:34
+Iterating ...
+   26         81000            1.86           10.64        0
+RLQ-R Active Modified - Starting Fitness Calculation 14-Feb-2019 23:43:36
+Fitness Calculated 15-Feb-2019 00:34:52
+Iterating ...
+   27         84000           1.866           10.71        1
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 00:34:54
+Fitness Calculated 15-Feb-2019 01:27:58
+Iterating ...
+   28         87000           1.842           10.78        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 01:28:00
+Fitness Calculated 15-Feb-2019 02:20:30
+Iterating ...
+   29         90000            1.84           10.69        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 02:20:32
+Fitness Calculated 15-Feb-2019 03:12:19
+Iterating ...
+   30         93000           1.847           10.75        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 03:12:21
+Fitness Calculated 15-Feb-2019 04:02:23
+Iterating ...
+   31         96000           1.841            10.9        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 04:02:25
+Fitness Calculated 15-Feb-2019 04:54:14
+Iterating ...
+   32         99000           1.826           10.69        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 04:54:16
+Fitness Calculated 15-Feb-2019 05:47:42
+Iterating ...
+   33         102000           1.839           10.61        1
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 05:47:45
+Fitness Calculated 15-Feb-2019 06:39:16
+Iterating ...
+   34         105000           1.834           10.94        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 06:39:19
+Fitness Calculated 15-Feb-2019 07:30:29
+Iterating ...
+   35         108000           1.834           10.81        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 07:30:31
+Fitness Calculated 15-Feb-2019 08:22:22
+Iterating ...
+   36         111000           1.832           10.79        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 08:22:25
+Fitness Calculated 15-Feb-2019 09:15:11
+Iterating ...
+   37         114000           1.822           10.86        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 09:15:14
+Fitness Calculated 15-Feb-2019 10:07:22
+Iterating ...
+   38         117000           1.829           10.81        1
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 10:07:25
+Fitness Calculated 15-Feb-2019 10:58:39
+Iterating ...
+   39         120000           1.829           10.81        2
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 10:58:42
+Fitness Calculated 15-Feb-2019 11:50:23
+Iterating ...
+   40         123000           1.813            10.7        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 11:50:27
+Fitness Calculated 15-Feb-2019 12:42:27
+Iterating ...
+   41         126000           1.814           10.78        1
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 12:42:30
+Fitness Calculated 15-Feb-2019 13:33:12
+Iterating ...
+   42         129000           1.814           11.24        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 13:33:15
+Fitness Calculated 15-Feb-2019 14:24:25
+Iterating ...
+   43         132000           1.809           11.09        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 14:24:29
+Fitness Calculated 15-Feb-2019 15:17:32
+Iterating ...
+   44         135000           1.819           10.87        1
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 15:17:35
+Fitness Calculated 15-Feb-2019 16:09:31
+Iterating ...
+   45         138000           1.813           10.93        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 16:09:35
+Fitness Calculated 15-Feb-2019 17:00:51
+Iterating ...
+   46         141000           1.817            11.2        1
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 17:00:55
+Fitness Calculated 15-Feb-2019 17:52:51
+Iterating ...
+   47         144000           1.794           11.21        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 17:52:55
+Fitness Calculated 15-Feb-2019 18:43:40
+Iterating ...
+   48         147000           1.801           11.24        1
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 18:43:43
+Fitness Calculated 15-Feb-2019 19:34:55
+Iterating ...
+   49         150000           1.809           11.21        2
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 19:34:59
+Fitness Calculated 15-Feb-2019 20:25:24
+Iterating ...
+   50         153000           1.806           11.17        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 20:25:28
+Fitness Calculated 15-Feb-2019 21:17:13
+Iterating ...
+   51         156000           1.794           10.97        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 21:17:17
+Fitness Calculated 15-Feb-2019 22:10:12
+Iterating ...
+   52         159000           1.802           11.02        1
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 22:10:16
+Fitness Calculated 15-Feb-2019 23:01:47
+Iterating ...
+   53         162000           1.779           11.24        0
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 23:01:51
+Fitness Calculated 15-Feb-2019 23:53:11
+Iterating ...
+   54         165000           1.791           11.03        1
+RLQ-R Active Modified - Starting Fitness Calculation 15-Feb-2019 23:53:15
+Fitness Calculated 16-Feb-2019 00:45:25
+Iterating ...
+   55         168000           1.782           11.27        0
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 00:45:29
+Fitness Calculated 16-Feb-2019 01:36:48
+Iterating ...
+   56         171000            1.76           11.14        0
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 01:36:52
+Fitness Calculated 16-Feb-2019 02:28:10
+Iterating ...
+   57         174000           1.778           11.19        1
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 02:28:15
+Fitness Calculated 16-Feb-2019 03:20:46
+Iterating ...
+   58         177000           1.784           11.24        2
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 03:20:51
+Fitness Calculated 16-Feb-2019 04:12:17
+Iterating ...
+   59         180000           1.788           11.01        3
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 04:12:21
+Fitness Calculated 16-Feb-2019 05:02:56
+Iterating ...
+   60         183000            1.78           11.21        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 05:03:01
+Fitness Calculated 16-Feb-2019 05:54:21
+Iterating ...
+   61         186000           1.769           11.16        0
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 05:54:25
+Fitness Calculated 16-Feb-2019 06:45:11
+Iterating ...
+   62         189000           1.771           11.25        1
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 06:45:16
+Fitness Calculated 16-Feb-2019 07:37:23
+Iterating ...
+   63         192000           1.775           11.04        2
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 07:37:28
+Fitness Calculated 16-Feb-2019 08:28:55
+Iterating ...
+   64         195000           1.783           11.09        3
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 08:29:00
+Fitness Calculated 16-Feb-2019 09:19:54
+Iterating ...
+   65         198000           1.781            11.1        0
+RLQ-R Active Modified - Starting Fitness Calculation 16-Feb-2019 09:19:59
+Fitness Calculated 16-Feb-2019 10:10:59
+Iterating ...
+   66         201000            1.78           11.18        0
