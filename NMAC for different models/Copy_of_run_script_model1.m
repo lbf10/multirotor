@@ -79,33 +79,33 @@ multirotor.setControlDelay(0.20);
 %% Run simulator
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
 multirotor.plotSim();
-% multirotor.save('graphs');
-figure
-speed1 = [];
-time1 = [];
-names1 = [];
-speed2 = [];
-time2 = [];
-names2 = [];
-log = multirotor.log;
-for it=1:numberOfRotors
-    if mean(log.rotor(it).speed)>0
-        names1 = [names1; ['Rotor ',num2str(it)]];
-        time1 = [time1; log.time];
-        speed1 = [speed1; log.rotor(it).speed];
-    else
-        names2 = [names2; ['Rotor ',num2str(it)]];
-        time2 = [time2; log.time];
-        speed2 = [speed2; log.rotor(it).speed];        
-    end
-end
-subplot(2,1,1)
-plot(time1',speed1')
-ylabel('Rotor speeds (rad/s)')
-legend(names1)
-subplot(2,1,2)
-plot(time2',speed2')
-ylabel('Rotor speeds (rad/s)')
-legend(names2)
-xlabel('Time (s)')
+% multirotor.save('figures');
+% figure
+% speed1 = [];
+% time1 = [];
+% names1 = [];
+% speed2 = [];
+% time2 = [];
+% names2 = [];
+% log = multirotor.log;
+% for it=1:numberOfRotors
+%     if mean(log.rotor(it).speed)>0
+%         names1 = [names1; ['Rotor ',num2str(it)]];
+%         time1 = [time1; log.time];
+%         speed1 = [speed1; log.rotor(it).speed];
+%     else
+%         names2 = [names2; ['Rotor ',num2str(it)]];
+%         time2 = [time2; log.time];
+%         speed2 = [speed2; log.rotor(it).speed];        
+%     end
+% end
+% subplot(2,1,1)
+% plot(time1',speed1')
+% ylabel('Rotor speeds (rad/s)')
+% legend(names1)
+% subplot(2,1,2)
+% plot(time2',speed2')
+% ylabel('Rotor speeds (rad/s)')
+% legend(names2)
+% xlabel('Time (s)')
 
