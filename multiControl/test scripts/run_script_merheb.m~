@@ -48,7 +48,7 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 %% Controller configuration
 % Trajectory controller
 % PID:
-kp = [30 30 30];ki = [5 5 5];kd = [10 10 10];kdd = [0 0 0];
+kp = [30 30 30];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
 % RLQ-R Passive:
 % kp = [40 40 40];ki = [10 10 10];kd = [20 20 20];kdd = [0 0 0];
 % RLQ-R Passive Modified:
@@ -310,7 +310,7 @@ multirotor.configFDD(.9,0.5)
 % multirotor.setTrajectory('waypoints',[xpos; ypos; zpos; xvel; yvel; zvel; yawpos; yawvel],time);
 % multirotor.setTrajectory('gerono',7,4,4,30,'fixed',0);
 % % 
-endTime = 30;
+endTime = 15;
 % [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto',0);
 [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto', 2*pi);
 % [waypoints, time] = geronoToWaypoints(0, 0, 0, endTime, endTime/8, 'goto',0);

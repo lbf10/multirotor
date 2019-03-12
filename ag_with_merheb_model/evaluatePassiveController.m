@@ -10,25 +10,27 @@
 % [filename, pathname] = uigetfile('*.mat', 'Pick a MATLAB data file');
 % data = load([pathname,filename]);
 
-% files = {%{'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive_Passive NMAC_Passive NMAC_14-Jan-2019 22:19:51_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive Direct_None_Passive NMAC_29-Jan-2019 23:09:42_result.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive with PIDD_Passive NMAC_Passive NMAC_22-Jan-2019 18:37:58_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Markovian RLQ-R Passive Modified_Passive NMAC_Passive NMAC_30-Jan-2019 16:05:28_light_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','RLQ-R Passive Modified with PIDD_Passive NMAC_Passive NMAC_16-Dec-2018 05:55:25_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive_Passive NMAC_Passive NMAC_02-Jan-2019 09:41:43_result.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive Direct_None_Passive NMAC_08-Jan-2019 15:19:25_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive with PIDD_Passive NMAC_Passive NMAC_06-Jan-2019 05:32:13_result.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','PID_Passive NMAC_Passive NMAC_09-Dec-2018 08:08:46_result.mat'}
+% files = {{'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive_Passive NMAC_Passive NMAC_14-Jan-2019 22:19:51_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive Direct_None_Passive NMAC_29-Jan-2019 23:09:42_result.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive with PIDD_Passive NMAC_Passive NMAC_22-Jan-2019 18:37:58_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Markovian RLQ-R Passive Modified_Passive NMAC_Passive NMAC_30-Jan-2019 16:05:28_light_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','RLQ-R Passive Modified with PIDD_Passive NMAC_Passive NMAC_16-Dec-2018 05:55:25_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive_Passive NMAC_Passive NMAC_02-Jan-2019 09:41:43_result.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive Direct_None_Passive NMAC_08-Jan-2019 15:19:25_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive with PIDD_Passive NMAC_Passive NMAC_06-Jan-2019 05:32:13_result.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','PID_Passive NMAC_Passive NMAC_09-Dec-2018 08:08:46_result.mat'}
 %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/1a Tentativa (Cluster parou)/','PID_Passive NMAC_Passive NMAC_05-Dec-2018 14:10:50_iterations.mat'}};
 
-for it=1:1
-    filename = files{it}{2};
-    foldername = files{it}{1};
+for jt=1:1
+%     filename = files{jt}{2};
+%     foldername = files{jt}{1};
 %     data = load([pathname,filename]);
-data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/1a Tentativa (Cluster parou)/PID_Passive NMAC_Passive NMAC_05-Dec-2018 14:10:50_iterations.mat');
+% data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/1a Tentativa (Cluster parou)/PID_Passive NMAC_Passive NMAC_05-Dec-2018 14:10:50_iterations.mat');
+    data = load(filename);
+    pathname = fileparts(filename);
     foldername = strsplit(filename,'.mat');
     foldername = ['Evaluation_',foldername{1}];
-    foldername = strrep(foldername,' ','_');
+%     foldername = strrep(foldername,' ','_');
     mkdir(pathname,foldername);
 
     % Verifica se é arquivo finalizado de simulação ou não e retira melhor
@@ -192,6 +194,6 @@ data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time 
 
         disp(['Finished calculation ',num2str(it)])
     end    
-    save([pathname,foldername,'/evaluationResult.mat'],'options');
+    save([pathname,foldername,'/evaluationResult.mat'],'options','-append');
     disp(['Evaluation finished.',datestr(now)])
 end
