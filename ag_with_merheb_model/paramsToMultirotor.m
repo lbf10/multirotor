@@ -6,7 +6,6 @@ function multirotor = paramsToMultirotor(attitudeController, controlAllocator, a
     pKd = x(7:9);
     pKdd = x(10:12);
     multirotor.configController('Position PIDD',pKp,pKi,pKd,pKdd);
-    
     switch attitudeController
         case 'PID'
             kp = x(13:15);
