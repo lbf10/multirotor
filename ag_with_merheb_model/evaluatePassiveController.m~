@@ -60,7 +60,7 @@ for jt=1:1
                 0.50*mass, 0, 0, -payloadRadius
                 0.75*mass, 0, 0, -payloadRadius
                 mass,      0, 0, -payloadRadius];
-    disturbances = mass*[0, 3.75, 7.50, 11.25, 15];
+    disturbances = mass*[0.0, 5, 10, 15, 20];
     controlLoop = [0.05 0.02];
     failures = {{''}
                 {'setRotorStatus(1,''motor loss'',0.70)'}
