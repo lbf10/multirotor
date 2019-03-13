@@ -10,27 +10,27 @@
 % [filename, pathname] = uigetfile('*.mat', 'Pick a MATLAB data file');
 % data = load([pathname,filename]);
 
-% files = {%{'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive_Passive NMAC_Passive NMAC_14-Jan-2019 22:19:51_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive Direct_None_Passive NMAC_29-Jan-2019 23:09:42_result.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive with PIDD_Passive NMAC_Passive NMAC_22-Jan-2019 18:37:58_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Markovian RLQ-R Passive Modified_Passive NMAC_Passive NMAC_30-Jan-2019 16:05:28_light_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','RLQ-R Passive Modified with PIDD_Passive NMAC_Passive NMAC_16-Dec-2018 05:55:25_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive_Passive NMAC_Passive NMAC_02-Jan-2019 09:41:43_result.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive Direct_None_Passive NMAC_08-Jan-2019 15:19:25_iterations.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive with PIDD_Passive NMAC_Passive NMAC_06-Jan-2019 05:32:13_result.mat'}
-% %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','PID_Passive NMAC_Passive NMAC_09-Dec-2018 08:08:46_result.mat'}
+% files = {{'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive_Passive NMAC_Passive NMAC_14-Jan-2019 22:19:51_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive Direct_None_Passive NMAC_29-Jan-2019 23:09:42_result.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Adaptive with PIDD_Passive NMAC_Passive NMAC_22-Jan-2019 18:37:58_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','Markovian RLQ-R Passive Modified_Passive NMAC_Passive NMAC_30-Jan-2019 16:05:28_light_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','RLQ-R Passive Modified with PIDD_Passive NMAC_Passive NMAC_16-Dec-2018 05:55:25_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive_Passive NMAC_Passive NMAC_02-Jan-2019 09:41:43_result.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive Direct_None_Passive NMAC_08-Jan-2019 15:19:25_iterations.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','SOSMC Passive with PIDD_Passive NMAC_Passive NMAC_06-Jan-2019 05:32:13_result.mat'}
+%         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/','PID_Passive NMAC_Passive NMAC_09-Dec-2018 08:08:46_result.mat'}
 %         {'/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/1a Tentativa (Cluster parou)/','PID_Passive NMAC_Passive NMAC_05-Dec-2018 14:10:50_iterations.mat'}};
-
-for it=1:1
-    filename = files{it}{2};
-    foldername = files{it}{1};
+clear multirotor bestIndividual scores population bestScore
+for jt=1:1
+%     filename = files{jt}{2};
+%     foldername = files{jt}{1};
 %     data = load([pathname,filename]);
-data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/1a Tentativa (Cluster parou)/PID_Passive NMAC_Passive NMAC_05-Dec-2018 14:10:50_iterations.mat');
-    foldername = strsplit(filename,'.mat');
-    foldername = ['Evaluation_',foldername{1}];
-    foldername = strrep(foldername,' ','_');
+% data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/1a Tentativa (Cluster parou)/PID_Passive NMAC_Passive NMAC_05-Dec-2018 14:10:50_iterations.mat');
+    data = load(filename);
+    [pathname,name,extension] = fileparts(filename);
+    foldername = ['Evaluation_',name]
+%     foldername = strrep(foldername,' ','_');
     mkdir(pathname,foldername);
-
     % Verifica se é arquivo finalizado de simulação ou não e retira melhor
     % indivíduo da otimização
     if any(strcmp(fieldnames(data),'bestIndividual'))
@@ -44,7 +44,7 @@ data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time 
     end
 
     %% Simulações
-    controllerConfig = strsplit(filename,'_');
+    controllerConfig = strsplit(name,'_');
     attitudeController = controllerConfig{1};
     controlAllocator = controllerConfig{2};
     attitudeReference = controllerConfig{3};
@@ -60,7 +60,7 @@ data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time 
                 0.50*mass, 0, 0, -payloadRadius
                 0.75*mass, 0, 0, -payloadRadius
                 mass,      0, 0, -payloadRadius];
-    disturbances = mass*[0.0, 1.5, 3.0, 4.5, 6.0];
+    disturbances = mass*[0, 3.75, 7.50, 11.25, 15];
     controlLoop = [0.05 0.02];
     failures = {{''}
                 {'setRotorStatus(1,''motor loss'',0.70)'}
@@ -74,7 +74,7 @@ data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time 
                 {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.70)'}
                 {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)'}
                 {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)','setRotorStatus(4,''motor loss'',0.7)'}
-                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)','setRotorStatus(4,''motor loss'',0.001)'}
+                {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)','setRotorStatus(4,''motor loss'',0.001)'}};
                 {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)','setRotorStatus(4,''motor loss'',0.001)','setRotorStatus(8,''motor loss'',0.9)'}
                 {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)','setRotorStatus(4,''motor loss'',0.001)','setRotorStatus(8,''motor loss'',0.8)'}
                 {'setRotorStatus(1,''motor loss'',0.001)','setRotorStatus(2,''motor loss'',0.001)','setRotorStatus(3,''motor loss'',0.001)','setRotorStatus(4,''motor loss'',0.001)','setRotorStatus(8,''motor loss'',0.7)'}
@@ -174,7 +174,8 @@ data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time 
         failure = option{5};
         nFails = length(failure);
         step = endTime/2/(1+nFails);
-        multirotor.addCommand(failure,step:step:endTime/2-0.000001);
+%         multirotor.addCommand(failure,step:step:endTime/2-0.000001);
+        multirotor.addCommand(failure,endTime/2+step:step:endTime-0.000001);
 
         try
             multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);
@@ -192,6 +193,6 @@ data = load('/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time 
 
         disp(['Finished calculation ',num2str(it)])
     end    
-    save([pathname,foldername,'/evaluationResult.mat'],'options');
+    save([pathname,'/',foldername,'/evaluationResult.mat'],'options');
     disp(['Evaluation finished.',datestr(now)])
 end
