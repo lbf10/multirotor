@@ -10,7 +10,7 @@ subFolders(1:2) = [];
 
 controller = struct([]);
 
-for it=1:length(subFolders)
+for it=1:1%length(subFolders)
     aux = strsplit(subFolders(it).name,'_');
     % Get controller name from folder name
     controller(it).name = aux(2);
@@ -35,6 +35,35 @@ for it=1:length(subFolders)
     controller(it).successMeanPower = sum(rmsPower(indexSuccesful))/numberOfSuccesses;
     controller(it).failMeanPower = sum(rmsPower(indexFail))/numberOfFailures;
     controller(it).meanPower = mean(rmsPower);
+    
+    %% Compound analysis
+    endTimes = sort(unique([controller(it).data{:,1}])','descend');
+    disturbances = unique([controller(it).data{:,4}])';
+    payloads = sortrows(unique(cell2mat(controller(it).data(:,3)),'rows'));
+    controlLoops = unique([controller(it).data{:,6}])';
+    
+    aux = controller(it).data(:,5);
+    aux1 = "";
+    for jt=1:length(aux)
+        aux1(jt,1) = strjoin(string(aux{jt}),'|');
+    end
+    allFailures = aux1;
+    failures = unique(aux1);
+    %% Find indexes
+    index0EndTimes = ([controller(it).data{:,1}] == endTimes(1))';
+    index0Disturbances = ([controller(it).data{:,4}] == disturbances(1))';
+    aux = [controller(it).data{:,3}];
+    aux = reshape(aux,4,length(aux)/4)';
+    index0Payloads = ismember(aux,payloads(1,:),'rows');
+    index0ControlLoops = ([controller(it).data{:,6}] == controlLoops(1))';
+    index0Failures = (allFailures == "");
+    % Compound indexes
+    indexPayloadEndTimes = find(index0Disturbances & index0ControlLoops & index0Failures);
+    indexPayloadDisturbances = find(index0EndTimes & index0ControlLoops & index0Failures);
+    indexPayloadFailures = find(index0Disturbances & index0ControlLoops & index0EndTimes);
+    indexEndTimesDisturbances = find(index0Payloads & index0ControlLoops & index0Failures);
+    indexEndTimesFailures = find(index0Payloads & index0ControlLoops & index0Disturbances);
+    indexFailuresDisturbances = find(index0Payloads & index0ControlLoops & index0EndTimes);
     
 %     %% Fitness by failure type and difficulty
 %     % Converts and lists failure types
