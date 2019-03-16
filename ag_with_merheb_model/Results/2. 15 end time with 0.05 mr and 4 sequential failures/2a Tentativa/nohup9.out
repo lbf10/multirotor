@@ -1,0 +1,582 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 80 workers.
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 10:01:34
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 13-Mar-2019 10:05:35
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 10:05:36
+Fitness Calculated 13-Mar-2019 10:08:48
+Iterating ...
+    1          6000           3.991           21.53        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 10:08:48
+Fitness Calculated 13-Mar-2019 10:19:15
+Iterating ...
+    2          9000           3.706           21.03        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 10:19:15
+Fitness Calculated 13-Mar-2019 10:41:22
+Iterating ...
+    3         12000           2.209           20.67        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 10:41:22
+Fitness Calculated 13-Mar-2019 11:06:14
+Iterating ...
+    4         15000           2.195           19.98        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 11:06:14
+Fitness Calculated 13-Mar-2019 11:31:18
+Iterating ...
+    5         18000           2.193           19.27        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 11:31:19
+Fitness Calculated 13-Mar-2019 11:59:49
+Iterating ...
+    6         21000           2.141           18.42        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 11:59:50
+Fitness Calculated 13-Mar-2019 12:28:47
+Iterating ...
+    7         24000           2.128           17.52        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 12:28:48
+Fitness Calculated 13-Mar-2019 12:59:43
+Iterating ...
+    8         27000           2.123           16.32        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 12:59:44
+Fitness Calculated 13-Mar-2019 13:32:52
+Iterating ...
+    9         30000           2.002           15.54        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 13:32:53
+Fitness Calculated 13-Mar-2019 14:05:36
+Iterating ...
+   10         33000           2.047           14.49        1
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 14:05:37
+Fitness Calculated 13-Mar-2019 14:38:39
+Iterating ...
+   11         36000           2.027           13.68        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 14:38:40
+Fitness Calculated 13-Mar-2019 15:11:01
+Iterating ...
+   12         39000           2.012           13.24        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 15:11:02
+Fitness Calculated 13-Mar-2019 15:44:05
+Iterating ...
+   13         42000           2.016           13.07        1
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 15:44:06
+Fitness Calculated 13-Mar-2019 16:17:19
+Iterating ...
+   14         45000           1.982           13.02        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 16:17:20
+Fitness Calculated 13-Mar-2019 16:50:36
+Iterating ...
+   15         48000            1.96           12.99        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 16:50:37
+Fitness Calculated 13-Mar-2019 17:24:00
+Iterating ...
+   16         51000           1.958           12.87        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 17:24:01
+Fitness Calculated 13-Mar-2019 17:57:16
+Iterating ...
+   17         54000           1.922           12.68        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 17:57:17
+Fitness Calculated 13-Mar-2019 18:30:35
+Iterating ...
+   18         57000           1.916           12.65        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 18:30:36
+Fitness Calculated 13-Mar-2019 19:03:55
+Iterating ...
+   19         60000           1.901           12.46        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 19:03:56
+Fitness Calculated 13-Mar-2019 19:37:10
+Iterating ...
+   20         63000           1.879            12.4        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 19:37:11
+Fitness Calculated 13-Mar-2019 20:10:38
+Iterating ...
+   21         66000           1.853           12.43        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 20:10:39
+Fitness Calculated 13-Mar-2019 20:44:00
+Iterating ...
+   22         69000           1.833           12.27        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 20:44:02
+Fitness Calculated 13-Mar-2019 21:17:17
+Iterating ...
+   23         72000           1.821           12.09        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 21:17:19
+Fitness Calculated 13-Mar-2019 21:50:33
+Iterating ...
+   24         75000           1.822           12.23        1
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 21:50:34
+Fitness Calculated 13-Mar-2019 22:23:51
+Iterating ...
+   25         78000           1.825           12.14        2
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 22:23:52
+Fitness Calculated 13-Mar-2019 22:57:12
+Iterating ...
+   26         81000           1.817              12        0
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 22:57:14
+Fitness Calculated 13-Mar-2019 23:30:32
+Iterating ...
+   27         84000           1.818           11.83        1
+SOSMC Active with PIDD - Starting Fitness Calculation 13-Mar-2019 23:30:34
+Fitness Calculated 14-Mar-2019 00:04:03
+Iterating ...
+   28         87000           1.809           11.85        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 00:04:05
+Fitness Calculated 14-Mar-2019 00:37:28
+Iterating ...
+   29         90000           1.794           11.73        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 00:37:29
+Fitness Calculated 14-Mar-2019 01:10:40
+Iterating ...
+   30         93000           1.805           11.77        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 01:10:41
+Fitness Calculated 14-Mar-2019 01:44:03
+Iterating ...
+   31         96000           1.801           11.76        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 01:44:05
+Fitness Calculated 14-Mar-2019 02:17:25
+Iterating ...
+   32         99000           1.794           11.87        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 02:17:26
+Fitness Calculated 14-Mar-2019 02:50:44
+Iterating ...
+   33         102000            1.79           11.63        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 02:50:46
+Fitness Calculated 14-Mar-2019 03:24:04
+Iterating ...
+   34         105000           1.787           11.77        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 03:24:05
+Fitness Calculated 14-Mar-2019 03:57:39
+Iterating ...
+   35         108000           1.769           11.75        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 03:57:41
+Fitness Calculated 14-Mar-2019 04:30:56
+Iterating ...
+   36         111000            1.77           11.86        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 04:30:58
+Fitness Calculated 14-Mar-2019 05:04:16
+Iterating ...
+   37         114000           1.769           11.66        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 05:04:18
+Fitness Calculated 14-Mar-2019 05:37:24
+Iterating ...
+   38         117000           1.767           11.69        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 05:37:26
+Fitness Calculated 14-Mar-2019 06:09:47
+Iterating ...
+   39         120000           1.763           11.89        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 06:09:49
+Fitness Calculated 14-Mar-2019 06:43:10
+Iterating ...
+   40         123000           1.758           11.95        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 06:43:12
+Fitness Calculated 14-Mar-2019 07:15:56
+Iterating ...
+   41         126000           1.751           11.93        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 07:15:58
+Fitness Calculated 14-Mar-2019 07:49:09
+Iterating ...
+   42         129000           1.752           12.09        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 07:49:11
+Fitness Calculated 14-Mar-2019 08:22:46
+Iterating ...
+   43         132000           1.752           11.69        2
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 08:22:48
+Fitness Calculated 14-Mar-2019 08:55:22
+Iterating ...
+   44         135000           1.749           11.68        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 08:55:25
+Fitness Calculated 14-Mar-2019 09:28:40
+Iterating ...
+   45         138000           1.751           11.74        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 09:28:42
+Fitness Calculated 14-Mar-2019 10:02:03
+Iterating ...
+   46         141000           1.746           11.94        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 10:02:05
+Fitness Calculated 14-Mar-2019 10:34:57
+Iterating ...
+   47         144000           1.742            12.1        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 10:34:59
+Fitness Calculated 14-Mar-2019 11:08:14
+Iterating ...
+   48         147000           1.746           12.02        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 11:08:16
+Fitness Calculated 14-Mar-2019 11:40:40
+Iterating ...
+   49         150000           1.746           11.81        2
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 11:40:42
+Fitness Calculated 14-Mar-2019 12:12:58
+Iterating ...
+   50         153000           1.733            11.9        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 12:13:00
+Fitness Calculated 14-Mar-2019 12:46:13
+Iterating ...
+   51         156000           1.727           12.16        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 12:46:15
+Fitness Calculated 14-Mar-2019 13:18:57
+Iterating ...
+   52         159000           1.727           12.15        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 13:18:59
+Fitness Calculated 14-Mar-2019 13:52:06
+Iterating ...
+   53         162000           1.735           12.07        2
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 13:52:08
+Fitness Calculated 14-Mar-2019 14:24:26
+Iterating ...
+   54         165000           1.735           12.17        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 14:24:28
+Fitness Calculated 14-Mar-2019 14:56:13
+Iterating ...
+   55         168000           1.724           12.35        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 14:56:16
+Fitness Calculated 14-Mar-2019 15:29:16
+Iterating ...
+   56         171000           1.708            12.5        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 15:29:18
+Fitness Calculated 14-Mar-2019 16:02:16
+Iterating ...
+   57         174000           1.713           12.28        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 16:02:19
+Fitness Calculated 14-Mar-2019 16:34:31
+Iterating ...
+   58         177000           1.711           12.41        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 16:34:34
+Fitness Calculated 14-Mar-2019 17:06:38
+Iterating ...
+   59         180000           1.714           12.53        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 17:06:40
+Fitness Calculated 14-Mar-2019 17:39:44
+Iterating ...
+   60         183000           1.714           12.52        2
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 17:39:47
+Fitness Calculated 14-Mar-2019 18:11:48
+Iterating ...
+   61         186000           1.706           12.25        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 18:11:50
+Fitness Calculated 14-Mar-2019 18:44:49
+Iterating ...
+   62         189000           1.713            12.4        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 18:44:52
+Fitness Calculated 14-Mar-2019 19:17:08
+Iterating ...
+   63         192000           1.715           12.36        2
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 19:17:11
+Fitness Calculated 14-Mar-2019 19:49:04
+Iterating ...
+   64         195000           1.708            12.6        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 19:49:07
+Fitness Calculated 14-Mar-2019 20:21:39
+Iterating ...
+   65         198000             1.7           12.51        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 20:21:42
+Fitness Calculated 14-Mar-2019 20:53:39
+Iterating ...
+   66         201000           1.711           12.73        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 20:53:42
+Fitness Calculated 14-Mar-2019 21:25:37
+Iterating ...
+   67         204000           1.716           12.75        2
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 21:25:40
+Fitness Calculated 14-Mar-2019 21:58:20
+Iterating ...
+   68         207000           1.715           12.59        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 21:58:23
+Fitness Calculated 14-Mar-2019 22:30:39
+Iterating ...
+   69         210000            1.72           12.77        1
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 22:30:42
+Fitness Calculated 14-Mar-2019 23:03:25
+Iterating ...
+   70         213000           1.708           12.38        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 23:03:29
+Fitness Calculated 14-Mar-2019 23:35:34
+Iterating ...
+   71         216000           1.698           12.46        0
+SOSMC Active with PIDD - Starting Fitness Calculation 14-Mar-2019 23:35:37
+Fitness Calculated 15-Mar-2019 00:07:51
+Iterating ...
+   72         219000           1.703           12.32        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 00:07:55
+Fitness Calculated 15-Mar-2019 00:40:21
+Iterating ...
+   73         222000           1.716           12.29        2
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 00:40:24
+Fitness Calculated 15-Mar-2019 01:13:18
+Iterating ...
+   74         225000             1.7            12.4        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 01:13:21
+Fitness Calculated 15-Mar-2019 01:46:04
+Iterating ...
+   75         228000           1.708           12.39        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 01:46:07
+Fitness Calculated 15-Mar-2019 02:18:37
+Iterating ...
+   76         231000           1.699           12.54        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 02:18:40
+Fitness Calculated 15-Mar-2019 02:51:03
+Iterating ...
+   77         234000           1.702           12.49        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 02:51:07
+Fitness Calculated 15-Mar-2019 03:22:50
+Iterating ...
+   78         237000           1.712           12.31        2
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 03:22:53
+Fitness Calculated 15-Mar-2019 03:55:16
+Iterating ...
+   79         240000           1.699              12        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 03:55:20
+Fitness Calculated 15-Mar-2019 04:27:08
+Iterating ...
+   80         243000           1.705           12.29        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 04:27:11
+Fitness Calculated 15-Mar-2019 04:59:38
+Iterating ...
+   81         246000            1.71           12.11        2
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 04:59:41
+Fitness Calculated 15-Mar-2019 05:32:28
+Iterating ...
+   82         249000           1.703           12.29        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 05:32:32
+Fitness Calculated 15-Mar-2019 06:05:30
+Iterating ...
+   83         252000           1.709           12.26        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 06:05:34
+Fitness Calculated 15-Mar-2019 06:37:33
+Iterating ...
+   84         255000           1.701           12.49        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 06:37:37
+Fitness Calculated 15-Mar-2019 07:09:45
+Iterating ...
+   85         258000             1.7           12.54        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 07:09:49
+Fitness Calculated 15-Mar-2019 07:42:00
+Iterating ...
+   86         261000           1.697           12.52        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 07:42:04
+Fitness Calculated 15-Mar-2019 08:14:02
+Iterating ...
+   87         264000           1.703           12.43        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 08:14:06
+Fitness Calculated 15-Mar-2019 08:47:04
+Iterating ...
+   88         267000           1.709           12.32        2
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 08:47:07
+Fitness Calculated 15-Mar-2019 09:20:15
+Iterating ...
+   89         270000           1.701           12.71        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 09:20:19
+Fitness Calculated 15-Mar-2019 09:52:34
+Iterating ...
+   90         273000           1.698           12.38        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 09:52:38
+Fitness Calculated 15-Mar-2019 10:25:06
+Iterating ...
+   91         276000           1.704           12.16        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 10:25:10
+Fitness Calculated 15-Mar-2019 10:56:42
+Iterating ...
+   92         279000           1.704           12.28        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 10:56:46
+Fitness Calculated 15-Mar-2019 11:29:25
+Iterating ...
+   93         282000           1.695           12.25        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 11:29:29
+Fitness Calculated 15-Mar-2019 12:02:21
+Iterating ...
+   94         285000           1.705           12.32        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 12:02:25
+Fitness Calculated 15-Mar-2019 12:34:07
+Iterating ...
+   95         288000           1.699           12.32        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 12:34:11
+Fitness Calculated 15-Mar-2019 13:07:09
+Iterating ...
+   96         291000           1.705           12.11        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 13:07:13
+Fitness Calculated 15-Mar-2019 13:39:10
+Iterating ...
+   97         294000           1.702           12.15        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 13:39:14
+Fitness Calculated 15-Mar-2019 14:11:41
+Iterating ...
+   98         297000           1.708           12.36        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 14:11:45
+Fitness Calculated 15-Mar-2019 14:44:38
+Iterating ...
+   99         300000           1.698           12.43        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 14:44:43
+Fitness Calculated 15-Mar-2019 15:17:45
+Iterating ...
+  100         303000           1.705           12.21        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 15:17:49
+Fitness Calculated 15-Mar-2019 15:50:59
+Iterating ...
+  101         306000           1.697           12.45        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 15:51:04
+Fitness Calculated 15-Mar-2019 16:24:02
+Iterating ...
+  102         309000           1.697           12.54        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 16:24:06
+Fitness Calculated 15-Mar-2019 16:56:25
+Iterating ...
+  103         312000           1.694           12.53        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 16:56:30
+Fitness Calculated 15-Mar-2019 17:29:12
+Iterating ...
+  104         315000           1.699            12.5        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 17:29:16
+Fitness Calculated 15-Mar-2019 18:02:28
+Iterating ...
+  105         318000           1.704           12.42        2
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 18:02:32
+Fitness Calculated 15-Mar-2019 18:35:42
+Iterating ...
+  106         321000           1.698           11.97        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 18:35:46
+Fitness Calculated 15-Mar-2019 19:08:25
+Iterating ...
+  107         324000           1.693           12.08        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 19:08:30
+Fitness Calculated 15-Mar-2019 19:41:10
+Iterating ...
+  108         327000           1.697           12.12        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 19:41:14
+Fitness Calculated 15-Mar-2019 20:13:50
+Iterating ...
+  109         330000           1.694           12.31        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 20:13:55
+Fitness Calculated 15-Mar-2019 20:46:29
+Iterating ...
+  110         333000           1.697           12.22        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 20:46:33
+Fitness Calculated 15-Mar-2019 21:19:30
+Iterating ...
+  111         336000             1.7           12.51        2
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 21:19:34
+Fitness Calculated 15-Mar-2019 21:52:38
+Iterating ...
+  112         339000           1.702           12.32        3
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 21:52:42
+Fitness Calculated 15-Mar-2019 22:25:03
+Iterating ...
+  113         342000           1.689           12.42        0
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 22:25:08
+Fitness Calculated 15-Mar-2019 22:58:52
+Iterating ...
+  114         345000           1.697           12.52        1
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 22:58:57
+Fitness Calculated 15-Mar-2019 23:31:51
+Iterating ...
+  115         348000           1.701           12.49        2
+SOSMC Active with PIDD - Starting Fitness Calculation 15-Mar-2019 23:31:56
+Fitness Calculated 16-Mar-2019 00:05:21
+Iterating ...
+  116         351000           1.695           12.29        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 00:05:26
+Fitness Calculated 16-Mar-2019 00:38:40
+Iterating ...
+  117         354000           1.699           12.47        1
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 00:38:45
+Fitness Calculated 16-Mar-2019 01:11:00
+Iterating ...
+  118         357000           1.695           12.69        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 01:11:05
+Fitness Calculated 16-Mar-2019 01:43:13
+Iterating ...
+  119         360000           1.694           12.53        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 01:43:18
+Fitness Calculated 16-Mar-2019 02:16:33
+Iterating ...
+  120         363000           1.698           12.44        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 02:16:38
+Fitness Calculated 16-Mar-2019 02:49:10
+Iterating ...
+  121         366000             1.7            12.2        2
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 02:49:16
+Fitness Calculated 16-Mar-2019 03:22:01
+Iterating ...
+  122         369000           1.693           12.33        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 03:22:06
+Fitness Calculated 16-Mar-2019 03:54:32
+Iterating ...
+  123         372000             1.7           12.78        1
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 03:54:37
+Fitness Calculated 16-Mar-2019 04:27:39
+Iterating ...
+  124         375000           1.699           12.72        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 04:27:44
+Fitness Calculated 16-Mar-2019 05:00:21
+Iterating ...
+  125         378000           1.693           12.56        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 05:00:26
+Fitness Calculated 16-Mar-2019 05:33:33
+Iterating ...
+  126         381000           1.702           12.51        1
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 05:33:38
+Fitness Calculated 16-Mar-2019 06:06:47
+Iterating ...
+  127         384000           1.696           12.38        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 06:06:53
+Fitness Calculated 16-Mar-2019 06:39:48
+Iterating ...
+  128         387000           1.697           12.29        1
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 06:39:53
+Fitness Calculated 16-Mar-2019 07:12:10
+Iterating ...
+  129         390000           1.697           12.19        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 07:12:15
+Fitness Calculated 16-Mar-2019 07:45:21
+Iterating ...
+  130         393000           1.701           12.27        1
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 07:45:26
+Fitness Calculated 16-Mar-2019 08:18:13
+Iterating ...
+  131         396000             1.7           12.38        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 08:18:19
+Fitness Calculated 16-Mar-2019 08:50:55
+Iterating ...
+  132         399000           1.692           12.32        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 08:51:00
+Fitness Calculated 16-Mar-2019 09:23:50
+Iterating ...
+  133         402000           1.698           12.11        1
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 09:23:56
+Fitness Calculated 16-Mar-2019 09:56:15
+Iterating ...
+  134         405000           1.699           12.14        2
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 09:56:21
+Fitness Calculated 16-Mar-2019 10:29:08
+Iterating ...
+  135         408000           1.697           12.24        0
+SOSMC Active with PIDD - Starting Fitness Calculation 16-Mar-2019 10:29:14
+Fitness Calculated 16-Mar-2019 11:02:13
+Iterating ...
+  136         411000             1.7           12.32        1
+Optimization terminated: average change in the fitness value less than options.TolFun.
+Performing final task
+Parallel pool using the 'ClusterPandora' profile is shutting down.
+
