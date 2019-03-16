@@ -6,7 +6,6 @@ function multirotor = paramsToMultirotor(attitudeController, controlAllocator, a
     pKd = x(7:9);
     pKdd = x(10:12);
     multirotor.configController('Position PIDD',pKp,pKi,pKd,pKdd);
-    
     switch attitudeController
         case 'PID'
             kp = x(13:15);
@@ -82,38 +81,38 @@ function multirotor = paramsToMultirotor(attitudeController, controlAllocator, a
             index = 67;
         case 'SOSMC Passive'
             c = diag(x(13:15));
-            alpha = diag(x(16:18));
-            lambda = diag(x(19:21));
+            lambda = diag(x(16:18));
+            alpha = diag(x(19:21));
             multirotor.configController(attitudeController,c,lambda,alpha);
             index = 22;
         case 'SOSMC Passive with PIDD'
             c = diag(x(13:18));
-            alpha = diag(x(19:24));
-            lambda = diag(x(25:30));
+            lambda = diag(x(19:24));
+            alpha = diag(x(25:30));
             multirotor.configController(attitudeController,c,lambda,alpha);
             index = 31;
         case 'SOSMC Passive Direct'
             c = diag(x(13:18));
-            alpha = reshape(x(19:66),[8 6]);   
-            lambda = reshape(x(67:114),[8 6]);
+            lambda = reshape(x(19:66),[8 6]);   
+            alpha = reshape(x(67:114),[8 6]);
             multirotor.configController(attitudeController,c,lambda,alpha,1,0);
             index = 115;
         case 'SOSMC Active'
             c = diag(x(13:15));
-            alpha = diag(x(16:18));
-            lambda = diag(x(19:21));
+            lambda = diag(x(16:18));
+            alpha = diag(x(19:21));
             multirotor.configController(attitudeController,c,lambda,alpha);
             index = 22;
         case 'SOSMC Active with PIDD'
             c = diag(x(13:18));
-            alpha = diag(x(19:24));
-            lambda = diag(x(25:30));
+            lambda = diag(x(19:24));
+            alpha = diag(x(25:30));
             multirotor.configController(attitudeController,c,lambda,alpha);
             index = 31;
         case 'SOSMC Active Direct'
             c = diag(x(13:18));
-            alpha = reshape(x(19:66),[8 6]);   
-            lambda = reshape(x(67:114),[8 6]);
+            lambda = reshape(x(19:66),[8 6]);   
+            alpha = reshape(x(67:114),[8 6]);
             multirotor.configController(attitudeController,c,lambda,alpha,1,0);
             index = 115;
         case 'Adaptive'

@@ -1,8 +1,8 @@
 % Octorotor simulation
 % refer to "doc multicontrol" or "doc multicopter" for more information
 
-addpath('../multiControl/')
-addpath('../multiControl/utils')
+addpath('../../multiControl/')
+addpath('../../multiControl/utils')
 warning('off','all')
 clear all
 clc
@@ -130,7 +130,7 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % kd = [49.5000000000000 49.2500000000000 41];
 % kdd = [11.5001522749662 7.25000000000000 13.2500582933426];
 % RLQ-R Passive:
-% kp = [30 70 100];ki = [10 20 40];kd = [20 50 70];kdd = [3 5 2];
+kp = [30 70 100];ki = [10 20 40];kd = [20 50 70];kdd = [3 5 2];
 % RLQ-R Passive Modified:
 % kp = [135.996733981483 153.135876078688 60];
 % ki = [2 2 67.6223960552471]
@@ -149,7 +149,7 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % Adaptive Direct:
 % kp = [60 60 100];ki = [20 10 40];kd = [40 40 70];kdd = [15 15 2];
 % Markovian passive:
-kp = [40 50 60];ki = [12 12 12];kd = [15 15 15];kdd = [1.5 1.8 1.5];
+% kp = [40 40 80];ki = [12 12 12];kd = [15 15 15];kdd = [1.5 1.8 1.5];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 % kp = [389.67 404.17 108.46]; ki =[52.17 11.03 61.61]; kd = [35.83 40 70]; kdd = [8.58 9.65 1.04];
 % Markovian active:
@@ -286,11 +286,11 @@ Eg(:,:,5) = [1000 1000 1000 1000 1000 1000 1000 1000];
 k = 1;
 
 Eq = [];
-Eq(:,:,1) = 0.1*diag([.1 .1 .1 1 1 1]);
-Eq(:,:,2) = 0.1*diag([.1 .1 .1 1 1 1]);
-Eq(:,:,3) = 0.1*diag([.1 .1 .1 1 1 1]);
-Eq(:,:,4) = 0.1*diag([.1 .1 .1 1 1 1]);
-Eq(:,:,5) = 0.1*diag([.1 .1 .1 1 1 1]);
+Eq(:,:,1) = diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,2) = diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,3) = diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,4) = diag([1 1 1 1e-6 1e-6 1e-6]);
+Eq(:,:,5) = diag([1 1 1 1e-6 1e-6 1e-6]);
 
 Er = [];
 Er(:,:,1) = diag(0.00001*modes(1,:)+~modes(1,:));
@@ -299,7 +299,7 @@ Er(:,:,3) = diag(0.00001*modes(3,:)+~modes(3,:));
 Er(:,:,4) = diag(0.00001*modes(4,:)+~modes(4,:));
 Er(:,:,5) = diag(0.00001*modes(5,:)+~modes(5,:));
 
-lambda = 10;
+lambda = 1;
 pij = 0.5*eye(numberOfModes);
 eij = 2*ones(numberOfModes, numberOfModes);
 multirotor.configController('Markovian RLQ-R Passive Modified',modes,P,Ef,Eg,k,Er,Eq,lambda,pij,eij);
@@ -330,18 +330,18 @@ R(:,:,4) = 1*diag(modes(4,:)+~modes(4,:));
 R(:,:,5) = 1*diag(modes(5,:)+~modes(5,:));
 
 Ef = [];
-Ef(:,:,1) = 1*ones(1,6);
-Ef(:,:,2) = 1*ones(1,6);
-Ef(:,:,3) = 1*ones(1,6);
-Ef(:,:,4) = 1*ones(1,6);
-Ef(:,:,5) = 1*ones(1,6);
+Ef(:,:,1) = 10000*ones(1,6);
+Ef(:,:,2) = 10000*ones(1,6);
+Ef(:,:,3) = 10000*ones(1,6);
+Ef(:,:,4) = 10000*ones(1,6);
+Ef(:,:,5) = 10000*ones(1,6);
 
 Eg = [];
-Eg(:,:,1) = 1*ones(1,8);
-Eg(:,:,2) = 1*ones(1,8);
-Eg(:,:,3) = 1*ones(1,8);
-Eg(:,:,4) = 1*ones(1,8);
-Eg(:,:,5) = 1*ones(1,8);
+Eg(:,:,1) = 1000*ones(1,8);
+Eg(:,:,2) = 1000*ones(1,8);
+Eg(:,:,3) = 1000*ones(1,8);
+Eg(:,:,4) = 1000*ones(1,8);
+Eg(:,:,5) = 1000*ones(1,8);
 
 H = [];
 H(:,:,1) = [1 1 1 1 1 1]';
@@ -369,7 +369,7 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('Markovian RLQ-R Passive Modified');
+multirotor.setController('RLQ-R Passive');
 multirotor.setControlAllocator('Passive NMAC');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.001)
