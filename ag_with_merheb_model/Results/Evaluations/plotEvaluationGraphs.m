@@ -180,6 +180,7 @@ end
 nameCategories = categorical(names);
 nameCategories = reordercats(nameCategories,names);
 bar(nameCategories,values)
+title('Overall success rate')
 
 % Overall success mean error
 figure
@@ -188,6 +189,7 @@ for it=1:length(controller)
     values = [values; controller(it).successMeanError];
 end
 bar(nameCategories,values)
+title('Overall success mean error')
 
 % Overall success mean power
 figure
@@ -196,6 +198,7 @@ for it=1:length(controller)
     values = [values; controller(it).successMeanPower];
 end
 bar(nameCategories,values)
+title('Overall success mean power')
 
 %% Compound tests
 % Success rate
@@ -206,6 +209,7 @@ for it=1:length(controller)
 end
 plot(nameCategories,values)
 legend('Payload X endTimes','Payload X Disturbances','Payload X Failures','EndTimes X Disturbances','EndTimes X Failures','Failures X Disturbances');
+title('Success rate')
 % Success mean error
 figure
 values = [];
@@ -214,6 +218,7 @@ for it=1:length(controller)
 end
 plot(nameCategories,values)
 legend('Payload X endTimes','Payload X Disturbances','Payload X Failures','EndTimes X Disturbances','EndTimes X Failures','Failures X Disturbances');
+title('Success mean error')
 % Success mean power
 figure
 values = [];
@@ -222,7 +227,7 @@ for it=1:length(controller)
 end
 plot(nameCategories,values)
 legend('Payload X endTimes','Payload X Disturbances','Payload X Failures','EndTimes X Disturbances','EndTimes X Failures','Failures X Disturbances');
-
+title('Success mean power')
 
 % %% Payload X EndTimes
 % % Success rate

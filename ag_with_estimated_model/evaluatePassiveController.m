@@ -36,7 +36,7 @@ payloads = [0,         0, 0, 0
             0.50*mass, 0, 0, -payloadRadius
             0.75*mass, 0, 0, -payloadRadius
             mass,      0, 0, -payloadRadius];
-disturbances = mass*[0.0, 1.5, 3.0, 4.5, 6.0];
+disturbances = mass*[0.0, 7.5, 15.0, 22.5, 30.0];
 variableCoeffs = [1,0];
 failures = {{''}
             {'setRotorStatus(1,''motor loss'',0.70)'}
