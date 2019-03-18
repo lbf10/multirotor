@@ -6,23 +6,17 @@ warning('off','all')
 poolobj = parpool('local',2);
 addAttachedFiles(poolobj,{'evaluateActiveController.m','paramsToMultirotor.m','../multiControl/'})
 
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/Adaptive_Passive NMAC_Passive NMAC_14-Jan-2019 22:19:51_iterations.mat';
+filename = '/export/home/leonardof/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/Markovian RLQ-R Active Modified_Active NMAC_Active NMAC_05-Mar-2019 01:11:46_light_iterations.mat';
 evaluateActiveController
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/Adaptive Direct_None_Passive NMAC_29-Jan-2019 23:09:42_result.mat';
+filename = '/export/home/leonardof/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/RLQ-R Active_Active NMAC_Active NMAC_09-Feb-2019 14:31:46_result.mat';
 evaluateActiveController
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/Adaptive with PIDD_Passive NMAC_Passive NMAC_22-Jan-2019 18:37:58_iterations.mat';
+filename = '/export/home/leonardof/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/RLQ-R Active Modified_Active NMAC_Active NMAC_14-Feb-2019 06:58:49_result.mat';
 evaluateActiveController
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/Markovian RLQ-R Passive Modified_Passive NMAC_Passive NMAC_30-Jan-2019 16:05:28_light_iterations.mat';
+filename = '/export/home/leonardof/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/RLQ-R Active Modified with PIDD_Active NMAC_Active NMAC_19-Feb-2019 09:01:18_result.mat';
 evaluateActiveController
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/RLQ-R Passive Modified with PIDD_Passive NMAC_Passive NMAC_16-Dec-2018 05:55:25_iterations.mat';
+filename = '/export/home/leonardof/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/SOSMC Active_Active NMAC_Active NMAC_24-Feb-2019 12:18:43_result.mat';
 evaluateActiveController
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/SOSMC Passive_Passive NMAC_Passive NMAC_02-Jan-2019 09:41:43_result.mat';
+filename = '/export/home/leonardof/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/SOSMC Active Direct_None_Active NMAC_28-Feb-2019 20:09:49_result.mat';
 evaluateActiveController
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/SOSMC Passive Direct_None_Passive NMAC_08-Jan-2019 15:19:25_iterations.mat';
-evaluateActiveController
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/SOSMC Passive with PIDD_Passive NMAC_Passive NMAC_06-Jan-2019 05:32:13_result.mat';
-evaluateActiveController
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/PID_Passive NMAC_Passive NMAC_09-Dec-2018 08:08:46_result.mat';
-evaluateActiveController
-filename = '/home/lbf10/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/1a Tentativa (Cluster parou)/PID_Passive NMAC_Passive NMAC_05-Dec-2018 14:10:50_iterations.mat';
+filename = '/export/home/leonardof/multirotor/ag_with_merheb_model/Results/2. 15 end time with 0.05 mr and 4 sequential failures/2a Tentativa/SOSMC Active with PIDD_Active NMAC_Active NMAC_13-Mar-2019 10:01:17_result.mat';
 evaluateActiveController
