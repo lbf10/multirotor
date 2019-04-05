@@ -20,7 +20,7 @@ multirotor.setRotorOrientation(1:8,orientations);
 multirotor.setMass(1.64);
 inertia = diag([44e-3,44e-3,88e-3]);
 multirotor.setInertia(inertia);
-mass = 0.4;
+mass = 0;
 payloadRadius = 0.3*mean(sqrt(sum(positions.^2)));
 multirotor.setPayload([0, 0, -payloadRadius],mass,eye(3)*2*mass*payloadRadius*payloadRadius/5);
 % Define aircraft's drag coeff
@@ -48,9 +48,9 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 %% Controller configuration
 % Trajectory controller
 % PID:
-% kp = [30 30 30];ki = [5 5 5];kd = [10 10 10];kdd = [0 0 0];
+kp = [30 30 30];ki = [5 5 5];kd = [10 12 10];kdd = [0 2 0];
 % RLQ-R Passive:
-% kp = [40 40 40];ki = [10 10 10];kd = [20 20 20];kdd = [0 0 0];
+kp = [40 40 40];ki = [10 10 10];kd = [20 20 20];kdd = [0 0 0];
 % RLQ-R Passive Modified:
 % kp = [40 40 40];ki = [10 10 10];kd = [20 20 20];kdd = [0 0 0];
 % RLQ-R Passive Modified with PIDD:
@@ -64,10 +64,10 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % SOSMC Active Direct:
 % kp = [40 40 40];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
 % % Adaptive:
-kp = [64.2413262869079 68.4173073668255 260.999072540177];
-ki = [0 0.348895923412140 646.014029331818];
-kd = [5 17.2948198127745 25.7845685972313];
-kdd = [0 0 0];
+% kp = [64.2413262869079 68.4173073668255 260.999072540177];
+% ki = [0 0.348895923412140 646.014029331818];
+% kd = [5 17.2948198127745 25.7845685972313];
+% kdd = [0 0 0];
 % Adaptive with PIDD:
 % kp = [30 30 40];ki = [10 10 10];kd = [10 10 10];kdd = [0 0 0];
 % Adaptive Direct:
@@ -80,11 +80,11 @@ kdd = [0 0 0];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
-% % PID attitude controller
-% kp = [400 400 400];
-% ki = [10 10 10];
-% kd = [50 50 50];
-% multirotor.configController('PID',kp,ki,kd);
+% PID attitude controller
+kp = [400 400 400];
+ki = [10 10 10];
+kd = [50 50 50];
+multirotor.configController('PID',kp,ki,kd);
 % 
 % % R-LQR attitude controller
 % Q = diag([1e4, 1e4, 1e4,1e-1,1e-1,1e-1]);
@@ -97,16 +97,16 @@ multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 % alpha = 1.5;
 % multirotor.configController('RLQ-R Passive',P,Q,R,Ef,Eg,H,mu,alpha);
 % multirotor.configController('RLQ-R Active',P,Q,R,Ef,Eg,H,mu,alpha);
-% Q = 500000*blkdiag(1e1, 1e1, 1e1,1e1,1e1,1e1);
-% P = Q;
-% R = 0.00001*eye(8);
-% Ef = 10*[2 2 1 0 0 0];
-% Eg = 1000*[1 1 1 1 1 1 1 1];
-% H = [1 1 1 1 1 1]';
-% mu = 1e20;
-% alpha = 1.5;
-% multirotor.configController('RLQ-R Passive Modified',P,Q,R,Ef,Eg,H,mu,alpha);
-% multirotor.configController('RLQ-R Active Modified',P,Q,R,Ef,Eg,H,mu,alpha);
+Q = 500000*blkdiag(1e1, 1e1, 1e1,1e1,1e1,1e1);
+P = Q;
+R = 0.00001*eye(8);
+Ef = 10*[2 2 1 0 0 0];
+Eg = 1000*[1 1 1 1 1 1 1 1];
+H = [1 1 1 1 1 1]';
+mu = 1e20;
+alpha = 1.5;
+multirotor.configController('RLQ-R Passive Modified',P,Q,R,Ef,Eg,H,mu,alpha);
+multirotor.configController('RLQ-R Active Modified',P,Q,R,Ef,Eg,H,mu,alpha);
 % % P = eye(9);
 % Q = 500000*blkdiag(1e1, 1e1, 1e1, 1e1, 1e1, 1e1,1e1,1e1,1e1);
 % P = Q;
@@ -125,11 +125,11 @@ multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 % lambda = .1*diag([1,1,1]);
 % multirotor.configController('SOSMC Passive',c,lambda,alpha);
 % multirotor.configController('SOSMC Active',c,lambda,alpha);
-% c = 3*diag([1,1,1,2,2,2]);
-% alpha = 2*diag([1,1,1,2,2,2]);
-% lambda = .1*diag([1,1,1,2,2,2]);
-% multirotor.configController('SOSMC Passive with PIDD',c,lambda,alpha);
-% multirotor.configController('SOSMC Active with PIDD',c,lambda,alpha);
+c = 3*diag([1,1,1,2,2,2]);
+alpha = 2*diag([1,1,1,2,2,2]);
+lambda = .1*diag([1,1,1,2,2,2]);
+multirotor.configController('SOSMC Passive with PIDD',c,lambda,alpha);
+multirotor.configController('SOSMC Active with PIDD',c,lambda,alpha);
 % c =1.5*diag([1,1,1,2,2,2]);
 % alpha = 5500*...
 %            [ 1 -1  0.1 -0.001 -0.01 1
@@ -153,13 +153,13 @@ multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 % multirotor.configController('SOSMC Active Direct',c,lambda,alpha,1,0);
 % 
 % Adaptive controller
-Am = diag([-0.200000000000000 -0.200000000000000 -0.0946904253898779]);
-Q = diag([0.0100000000000000 0.0100000000000000 0.0100000000000000]);
-gamma1 = diag([0.858370481210675 0.00100000000000000 0.00100000000000000]);
-gamma2 = diag([0.00100000000000000 0.00100000000000000 0.00100000000000000]);
-gamma3 = diag([13.6890297065626 12.4283173084251 4]);
-gamma4 = diag([0.000100000000000000 0.000100000000000000 12.1952752741048]);
-multirotor.configController('Adaptive',Am,Q,gamma1,gamma2,gamma3,gamma4);
+% Am = diag([-0.200000000000000 -0.200000000000000 -0.0946904253898779]);
+% Q = diag([0.0100000000000000 0.0100000000000000 0.0100000000000000]);
+% gamma1 = diag([0.858370481210675 0.00100000000000000 0.00100000000000000]);
+% gamma2 = diag([0.00100000000000000 0.00100000000000000 0.00100000000000000]);
+% gamma3 = diag([13.6890297065626 12.4283173084251 4]);
+% gamma4 = diag([0.000100000000000000 0.000100000000000000 12.1952752741048]);
+% multirotor.configController('Adaptive',Am,Q,gamma1,gamma2,gamma3,gamma4);
 % Am = -diag([.1,.1,2,2,2,0.01]);
 % Q = diag([1,1,1,.5,.5,.0005]);
 % gamma1 = diag([1,1,1,1,1,1])*.0001;
@@ -289,11 +289,11 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % Configure simulator
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
-multirotor.setControlTimeStep(0.02);
-multirotor.setController('Adaptive');
+multirotor.setControlTimeStep(0.05);
+multirotor.setController('RLQ-R Passive Modified');
 multirotor.setControlAllocator('Passive NMAC');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
-multirotor.configFDD(.9,0.5)
+multirotor.configFDD(1,0)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
 % multirotor.setTrajectory('waypoints',[50 50 50 170*pi/180]',10);
@@ -320,20 +320,20 @@ endTime = 15;
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/4)   
+% multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2) 
+% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)
+% multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/2)
+% multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2)   
 % multirotor.addCommand({'setRotorStatus(2,''prop loss'',0.001)'},endTime/2)    
 % multirotor.addCommand({'setRotorStatus(3,''prop loss'',0.001)'},endTime/2)   
-% multirotor.addCommand({'setRotorStatus(4,''prop loss'',0.001)'},endTime/2)  
-% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/5)
-% multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/4)
-% multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},0)
+% multirotor.addCommand({'setRotorStatus(4,''prop loss'',0.001)'},endTime/2) 
 % multirotor.addCommand({'setRotorStatus(5,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.75)'},endTime/2)
 multirotor.setSimEffects('motor dynamics off','solver euler')
-multirotor.setLinearDisturbance('@(t) [0;1;0]*5*exp(-(t-3.75)^2/(0.5))')
+multirotor.setLinearDisturbance(['@(t) [0;1;0]*80*(exp(-(t-',num2str(endTime/4),')^2/(0.5))+exp(-(t-',num2str(3*endTime/4),')^2/(0.5)))'])
 multirotor.setControlDelay(0.20);
-multirotor.setAngularFilterGain([0.00523421487906961 0 0.428449651429948]);
+multirotor.setAngularFilterGain([0 0 0.5]);
 %% Run simulator
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5);
 multirotor.plotSim();
