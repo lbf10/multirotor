@@ -143,7 +143,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
         multirotor.configControlAllocator('Active NMAC',1,0);
         multirotor.setTimeStep(0.005);
         multirotor.setControlTimeStep(controlTimeStep);
-        multirotor.configFDD(0.9,0.5);
+        multirotor.configFDD(0.95,0.5);
         multirotor.setSimEffects('motor dynamics on','solver euler')
         multirotor.setControlDelay(0.20);
         multirotor = paramsToMultirotor(attitudeController, controlAllocator, attitudeReference, multirotor, option{6});
