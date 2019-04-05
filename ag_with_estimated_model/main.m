@@ -9,7 +9,7 @@ warning('off','all')
 %% Algorithms to train
 algorithms = { %'RLQ-R Active','Active NMAC';
                %'RLQ-R Active Modified', 'Active NMAC';
-               'PID','Active NMAC';
+               %'PID','Active NMAC';
 	       'RLQ-R Active Modified with PIDD','Active NMAC';
                'SOSMC Active','Active NMAC';
                'SOSMC Active with PIDD','Active NMAC';
