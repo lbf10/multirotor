@@ -2292,7 +2292,7 @@ classdef multicontrol < multicopter
 
                     F = sysD.A;
                     G = sysD.B;
-                    if ~obj.isRunning()
+                    if ~obj.isRunning() 
                         obj.controlConfig_{index}.P = obj.controlConfig_{index}.initialP;
                     end
                     P = obj.controlConfig_{index}.P;
