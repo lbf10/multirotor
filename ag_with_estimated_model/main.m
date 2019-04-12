@@ -7,19 +7,18 @@ addpath('../multiControl/utils')
 warning('off','all')
 
 %% Algorithms to train
-algorithms = { %'RLQ-R Active','Active NMAC';
-               %'RLQ-R Active Modified', 'Active NMAC';
-               %'PID','Active NMAC';
-	       %'RLQ-R Active Modified with PIDD','Active NMAC';
-               %'SOSMC Active','Active NMAC';
-               %'SOSMC Active with PIDD','Active NMAC';
-               'SOSMC Active Direct','None';
-               'Markovian RLQ-R Active Modified','Active NMAC'};
+algorithms = { %'SOSMC Passive','Passive NMAC';
+               'SOSMC Passive with PIDD','Passive NMAC';
+               'SOSMC Passive Direct','None';
+               'Adaptive','Passive NMAC';
+               'Adaptive with PIDD','Passive NMAC';
+               'Adaptive Direct','None';
+               'Markovian RLQ-R Passive Modified','Passive NMAC'};
            
 for it=1:length(algorithms)
     attitudeController = algorithms{it,1};
     controlAllocator = algorithms{it,2};
-    attitudeReference = 'Active NMAC';
+    attitudeReference = 'Passive NMAC';
 
     fullfilename = 0;
 
@@ -508,7 +507,7 @@ for it=1:length(algorithms)
     iterFilename = ['Results/',attitudeController,'_',controlAllocator,'_',attitudeReference,'_',datestr(now),'_iterations.mat'];
     outFunction = @(options,state,flag) saveIter(options,state,flag,iterFilename);
     options = gaoptimset('PopulationSize',3000,'Generations',150,'Display','iter','InitialPopulation',initialPopulation,'OutputFcn',outFunction,'Vectorized','on','CrossoverFraction',0.5,'MutationFcn', {@mutationuniform, 0.05}, 'StallGenLimit',25);
-    poolobj = parpool(40);
+    poolobj = parpool(76);
     addAttachedFiles(poolobj,{'controlFitness.m','saveIter.m','paramsToMultirotor.m','../multiControl/'})
     [bestIndividual,bestFitness, EXITFLAG,OUTPUT,POPULATION,SCORES] = ga(fitnessfcn,nvars,[],[],[],[],lb,ub,[],options);
     delete(poolobj)
