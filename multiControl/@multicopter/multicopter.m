@@ -2917,6 +2917,23 @@ classdef multicopter < handle
                             end
                             t = simTime';
                             output = deval(obj.solver_,t)';
+                        case 'solver ode15s'
+                            if firstRun==true
+                                y0 = [obj.previousState_.position; obj.previousState_.attitude; obj.previousState_.velocity; obj.previousState_.angularVelocity];
+                                switch obj.simEffects_{1}
+                                    case 'motor dynamics on'
+                                        y0 = [y0; [obj.previousState_.rotor(:).speed]'];
+                                    case 'motor dynamics tf on'
+                                        y0 = [y0; [obj.previousState_.rotor(:).speed]'; [obj.previousState_.rotor(:).acceleration]'];
+                                    otherwise
+                                        % does nothing
+                                end                    
+                                obj.solver_ = ode15s(@(t,y) obj.model(t,y,simTime,simInput), [simTime(1) simTime(end)], y0, obj.opts_);
+                            else
+                                obj.solver_ = odextend(obj.solver_, @(t,y) obj.model(t,y,simTime,simInput), simTime(end));
+                            end
+                            t = simTime';
+                            output = deval(obj.solver_,t)';
                         case 'solver euler'
                             y0 = [obj.previousState_.position; obj.previousState_.attitude; obj.previousState_.velocity; obj.previousState_.angularVelocity];
                             switch obj.simEffects_{1}
@@ -2931,6 +2948,25 @@ classdef multicopter < handle
                             output(:,1) = y0;
                             for it=1:length(simTime)-1
                                 dydt = obj.model(simTime(it),output(:,it),simTime,simInput);
+                                output(:,it+1) = output(:,it) + obj.timeStep_*dydt;
+                                output(4:7,it+1) = output(4:7,it+1)/norm(output(4:7,it+1));
+                            end
+                            t = simTime';
+                            output = output';
+                        case 'solver midpoint'
+                            y0 = [obj.previousState_.position; obj.previousState_.attitude; obj.previousState_.velocity; obj.previousState_.angularVelocity];
+                            switch obj.simEffects_{1}
+                                case 'motor dynamics on'
+                                    y0 = [y0; [obj.previousState_.rotor(:).speed]'];
+                                case 'motor dynamics tf on'
+                                    y0 = [y0; [obj.previousState_.rotor(:).speed]'; [obj.previousState_.rotor(:).acceleration]'];
+                                otherwise
+                                    % does nothing
+                            end  
+                            output = zeros(size(y0,1),length(simTime));
+                            output(:,1) = y0;
+                            for it=1:length(simTime)-1
+                                dydt = obj.model(simTime(it)+0.5*obj.timeStep_,output(:,it)+0.5*obj.timeStep_*obj.model(simTime(it),output(:,it),simTime,simInput),simTime,simInput);
                                 output(:,it+1) = output(:,it) + obj.timeStep_*dydt;
                                 output(4:7,it+1) = output(4:7,it+1)/norm(output(4:7,it+1));
                             end
@@ -3140,8 +3176,14 @@ classdef multicopter < handle
         %       - 'solver ode45': Uses MATLAB's ode45 solver for
         %       simulation.
         %       No effectArg needed.
+        %       - 'solver ode15s': Uses MATLAB's ode15s solver for
+        %       simulation.
+        %       No effectArg needed.
         %       - 'solver euler': Uses Euler's method for diff equation
-        %       solving (x(t+h) = dydt(t)*h+x(t)).
+        %       solving (x(t+h) = x(t)+h*dydt(t,x(t))).
+        %       No effectArg needed.
+        %       - 'solver midpoint': Uses Midpoint method for diff equation
+        %       solving (x(t+h) = x(t)+h*dydt(t+h/2,x(t)+h*dydt(t,x(t))/2)).
         %       No effectArg needed.
         %   
         %   effectType and effectArg can be
@@ -3165,6 +3207,10 @@ classdef multicopter < handle
                     case 'solver ode45'
                         obj.simEffects_{2} = varargin{i};
                     case 'solver euler'
+                        obj.simEffects_{2} = varargin{i};
+                    case 'solver ode15s'
+                        obj.simEffects_{2} = varargin{i};
+                    case 'solver midpoint'
                         obj.simEffects_{2} = varargin{i};
                     otherwise
                         warning('Simulation configuration unknown.');
