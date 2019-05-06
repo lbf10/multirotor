@@ -2292,7 +2292,7 @@ classdef multicontrol < multicopter
 
                     F = sysD.A;
                     G = sysD.B;
-                    if ~obj.isRunning()
+                    if ~obj.isRunning() 
                         obj.controlConfig_{index}.P = obj.controlConfig_{index}.initialP;
                     end
                     P = obj.controlConfig_{index}.P;
@@ -3054,7 +3054,7 @@ classdef multicontrol < multicopter
                     index = 15;
                     invQ = obj.matrixAbsoluteToBody();
                     r = [invQ*desiredImpulse;desiredAngularAcceleration];
-                    x = [obj.previousVelocity();obj.previousAngularVelocity()];    
+                    x = [invQ*obj.previousVelocity();obj.previousAngularVelocity()];    
                     Am = obj.controlConfig_{index}.Am;
                     Bm = [eye(3)/obj.mass(),zeros(3,3);zeros(3,3),eye(3)];
                     if ~obj.isRunning()
@@ -3143,7 +3143,7 @@ classdef multicontrol < multicopter
                     index = 16;
                     invQ = obj.matrixAbsoluteToBody();
                     r = [invQ*desiredImpulse;desiredAngularAcceleration];
-                    x = [obj.previousVelocity();obj.previousAngularVelocity];    
+                    x = [invQ*obj.previousVelocity();obj.previousAngularVelocity];    
                     Am = obj.controlConfig_{index}.Am;
                     Bm = [eye(3)/obj.mass(),zeros(3,3);zeros(3,3),eye(3)];
                     if ~obj.isRunning()

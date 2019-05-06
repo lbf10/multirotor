@@ -472,7 +472,7 @@ classdef multicopter < handle
                     relativeInertia(2,3) = obj.inertiaTensor_(2,3) + obj.mass_*(Rcm(2)*Rcm(3));
                     relativeInertia(3,1) = obj.inertiaTensor_(3,1) + obj.mass_*(Rcm(3)*Rcm(1));
                     relativeInertia(2,1) = obj.inertiaTensor_(2,1) + obj.mass_*(Rcm(1)*Rcm(2));
-                    relativeInertia(3,1) = obj.inertiaTensor_(3,2) + obj.mass_*(Rcm(2)*Rcm(3));
+                    relativeInertia(3,2) = obj.inertiaTensor_(3,2) + obj.mass_*(Rcm(2)*Rcm(3));
                     relativeInertia(1,3) = obj.inertiaTensor_(1,3) + obj.mass_*(Rcm(3)*Rcm(1));
                     
                     Rpl = relativePosition-Rcm;
@@ -483,7 +483,7 @@ classdef multicopter < handle
                     plInertia(2,3) = inertiaTensor(2,3) + mass*(Rpl(2)*Rpl(3));
                     plInertia(3,1) = inertiaTensor(3,1) + mass*(Rpl(3)*Rpl(1));
                     plInertia(2,1) = inertiaTensor(2,1) + mass*(Rpl(1)*Rpl(2));
-                    plInertia(3,1) = inertiaTensor(3,2) + mass*(Rpl(2)*Rpl(3));
+                    plInertia(3,2) = inertiaTensor(3,2) + mass*(Rpl(2)*Rpl(3));
                     plInertia(1,3) = inertiaTensor(1,3) + mass*(Rpl(3)*Rpl(1));
                     
                     newInertia = relativeInertia+plInertia;
@@ -880,20 +880,20 @@ classdef multicopter < handle
                 warning('Input will be converted to numeric array.')
                 dragCoeff = cell2mat(dragCoeff);
             end
-            if isnumeric(dragCoeff)
-                if isvector(rotorID) && isscalar(dragCoeff)
+            if isnumeric(dragCoeff)%Checks if its numbers
+                if isvector(rotorID) && isscalar(dragCoeff) %Coeffs are scalars and all the same
                     for it=1:length(rotorID)
                         obj.rotor_(rotorID(it)).dragCoeff.data = dragCoeff;
                         obj.rotor_(rotorID(it)).dragCoeff.fit = [];
                     end                    
                 else
-                    if isvector(rotorID) && isequal(size(dragCoeff),size(rotorID))
+                    if isvector(rotorID) && isequal(size(dragCoeff),size(rotorID)) %Coeffs are scalars and different
                         for it=1:length(rotorID)
                             obj.rotor_(rotorID(it)).dragCoeff.data = dragCoeff(it);
                             obj.rotor_(rotorID(it)).dragCoeff.fit = [];
                         end  
                     else
-                        if isvector(rotorID) && size(dragCoeff,2)==2 && ischar(varargin{1})
+                        if isvector(rotorID) && size(dragCoeff,2)==2 && ischar(varargin{1}) %Coeffs are a fitted function and all the same
                             for it=1:length(rotorID)
                                 obj.rotor_(rotorID(it)).dragCoeff.data = dragCoeff;
                                 obj.rotor_(rotorID(it)).dragCoeff.fit = fit(dragCoeff(:,1),dragCoeff(:,2),varargin{1});
@@ -1870,21 +1870,23 @@ classdef multicopter < handle
         %   See also ROTOR,ROTORPOSITION, ROTORORIENTATION, ROTORINERTIA, 
         %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORMAXSPEED.
             rotorDragCoeffValue = zeros(1,length(rotorID));
-             if isempty(varargin)
+             if isempty(varargin) %Returns either the scalar data or fitted value to last rotor speeds
                 for it=1:length(rotorID)
                     if isempty(obj.rotor_(rotorID(it)).dragCoeff.fit)
+                        % Returns scalar data
                         rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.data;
                     else
+                        % Returns fitted value to last rotor speeds
                         rotorDragCoeffValue(it) = max(0,obj.rotor_(rotorID(it)).dragCoeff.fit(abs(obj.previousState_.rotor(rotorID(it)).speed)));
                     end
                 end
             else
-                if strcmp(varargin{1},'data')
+                if strcmp(varargin{1},'data') % Returns raw data
                     for it=1:length(rotorID)
                         rotorDragCoeffValue{it} = obj.rotor_(rotorID(it)).dragCoeff.data;
                     end
                 else
-                    if isscalar(varargin{1})
+                    if isscalar(varargin{1}) %Returns either the scalar data or fitted value to given rotor speed scalar
                         for it=1:length(rotorID)
                             if isempty(obj.rotor_(rotorID(it)).dragCoeff.fit)
                                 rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.data;
@@ -1893,7 +1895,7 @@ classdef multicopter < handle
                             end
                         end
                     else
-                        if isequal(size(varargin{1}),size(rotorID))
+                        if isequal(size(varargin{1}),size(rotorID))%Returns either the scalar data or fitted value to given rotor speed vector
                             for it=1:length(rotorID)
                                 if isempty(obj.rotor_(rotorID(it)).dragCoeff.fit)
                                     rotorDragCoeffValue(it) = obj.rotor_(rotorID(it)).dragCoeff.data;

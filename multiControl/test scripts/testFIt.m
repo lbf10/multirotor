@@ -82,19 +82,26 @@ liftCoeff = 0.8*[0.00004
             0];
     
  figure
- plot(speed, liftCoeff)
+ plot(speed, liftCoeff,'r*')
  hold on
  f = fit(speed, liftCoeff, 'smoothingspline') 
- plot(min(speed):10:max(speed),f(min(speed):10:max(speed)))
- legend('Sem fit','Com fit')
+ plot(min(speed):10:max(speed),f(min(speed):10:max(speed)),'b')
+ legend('Raw data','Spline fitting')
+ title('Lift coefficient curve for Model 2')
+ xlabel('Rotor speed (rad/s)')
+ ylabel('Lift coeff (N s²)')
+ grid minor
  
   figure
- plot(speed, dragCoeff)
+ plot(speed, dragCoeff,'r*')
  hold on
  f = fit(speed, dragCoeff, 'smoothingspline') 
- plot(min(speed):10:max(speed),f(min(speed):10:max(speed)))
- legend('Sem fit','Com fit')
- 
+ plot(min(speed):10:max(speed),f(min(speed):10:max(speed)),'b')
+ legend('Raw data','Spline fitting')
+ title('Drag coefficient curve for Model 2')
+ xlabel('Rotor speed (rad/s)')
+ ylabel('Drag coeff (Nm s²)')
+ grid minor
 %   figure
 %  f = fit(speed, liftCoeff, 'linear') 
 %  speeds = min(speed):10:max(speed);
