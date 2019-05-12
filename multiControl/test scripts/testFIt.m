@@ -77,31 +77,47 @@ liftCoeff = [0.00004
             0.00000136514255905061
             0.0000005];
     
- figure
- plot(speed, liftCoeff,'r*')
- hold on
- f = fit(speed, liftCoeff, 'smoothingspline') 
- plot(min(speed):10:max(speed),f(min(speed):10:max(speed)),'b')
- legend('Raw data','Spline fitting')
- title('Lift coefficient curve for Model 2')
- xlabel('Rotor speed (rad/s)')
- ylabel('Lift coeff (N s²)')
- grid minor
+%  figure
+%  plot(speed, liftCoeff,'r*')
+%  hold on
+ f = fit(speed, liftCoeff, 'smoothingspline')
+%  fittedLift = f(min(speed):10:max(speed));
+%  plot(min(speed):10:max(speed),fittedLift,'b')
+%  legend('Raw data','Spline fitting')
+%  title('Lift coefficient curve for Model 2')
+%  xlabel('Rotor speed (rad/s)')
+%  ylabel('Lift coeff (N s²)')
+%  grid minor
  
-  figure
- plot(speed, dragCoeff,'r*')
- hold on
- f = fit(speed, dragCoeff, 'smoothingspline') 
- plot(min(speed):10:max(speed),f(min(speed):10:max(speed)),'b')
- legend('Raw data','Spline fitting')
- title('Drag coefficient curve for Model 2')
- xlabel('Rotor speed (rad/s)')
- ylabel('Drag coeff (Nm s²)')
- grid minor
 %   figure
-%  f = fit(speed, liftCoeff, 'linear') 
-%  speeds = min(speed):10:max(speed);
-%  plot(min(speed):10:max(speed),8*f(min(speed):10:max(speed)).*(speeds.^2)')
+%  plot(speed, dragCoeff,'r*')
+%  hold on
+ f = fit(speed, dragCoeff, 'smoothingspline')
+%  fittedDrag = f(min(speed):10:max(speed));
+%  plot(min(speed):10:max(speed),fittedDrag,'b')
+%  legend('Raw data','Spline fitting')
+%  title('Drag coefficient curve for Model 2')
+%  xlabel('Rotor speed (rad/s)')
+%  ylabel('Drag coeff (Nm s²)')
+%  grid minor
+
+fittedSpeeds = min(speed):1:max(speed);
+fittedDrag = f(fittedSpeeds);
+fittedLift = f(fittedSpeeds);
+auxLift = [];
+auxDrag = [];
+for x=min(speed):.1:max(speed)
+    [~,index] = min(abs(fittedSpeeds-x));
+    auxLift = [auxLift, fittedLift(index)];
+    auxDrag = [auxDrag, fittedDrag(index)];
+end
+
+figure
+stairs(fittedSpeeds,fittedLift)
+figure
+stairs(fittedSpeeds,fittedDrag)
+
+
 
 
 %  figure
