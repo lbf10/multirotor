@@ -1203,7 +1203,7 @@ classdef multicontrol < multicopter
                     obj.evalCommands(commandsIndex);
                     % Simulates aircraft
                     inputTime = currentTime-(1-obj.controlDelay_)*dt;
-                    [t, output] = run@multicopter(obj,actuatorInput,[inputTime,currentTime]);
+                    [~, ~] = run@multicopter(obj,actuatorInput,[inputTime,currentTime]);
                     if visualizeGraph==true                      
                         log = obj.log();
                         %Update Body plots

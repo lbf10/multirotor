@@ -226,60 +226,60 @@ lambda = 1;
 pij = 0.5*eye(numberOfModes);
 eij = 2*ones(numberOfModes, numberOfModes);
 multirotor.configController('Markovian RLQ-R Passive Modified',modes,P,Ef,Eg,k,Er,Eq,lambda,pij,eij);
-% 
-% modes = [1 1 1 1 1 1 1 1
-%          0 1 1 1 1 1 1 1
-%          0 0 1 1 1 1 1 1
-%          0 0 0 1 1 1 1 1
-%          0 0 0 0 1 1 1 1];
-% numberOfModes = size(modes,1);
-% P = [];
-% for it = 1:numberOfModes
-%       P(:,:,it) = eye(6);  
-% end
-% Q = [];
-% Q(:,:,1) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
-% Q(:,:,2) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
-% Q(:,:,3) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
-% Q(:,:,4) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
-% Q(:,:,5) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
-% 
-% R = [];
-% R(:,:,1) = diag(1*modes(1,:)+~modes(1,:));
-% R(:,:,2) = diag(1*modes(2,:)+~modes(2,:));
-% R(:,:,3) = diag(1*modes(3,:)+~modes(3,:));
-% R(:,:,4) = diag(1*modes(4,:)+~modes(4,:));
-% R(:,:,5) = diag(1*modes(5,:)+~modes(5,:));
-% 
-% Ef = [];
-% Ef(:,:,1) = 10000*ones(1,6);
-% Ef(:,:,2) = 10000*ones(1,6);
-% Ef(:,:,3) = 10000*ones(1,6);
-% Ef(:,:,4) = 10000*ones(1,6);
-% Ef(:,:,5) = 10000*ones(1,6);
-% 
-% Eg = [];
-% Eg(:,:,1) = [1000 1000 1000 1000 1000 1000 1000 1000];
-% Eg(:,:,2) = [1000 1000 1000 1000 1000 1000 1000 1000];
-% Eg(:,:,3) = [1000 1000 1000 1000 1000 1000 1000 1000];
-% Eg(:,:,4) = [1000 1000 1000 1000 1000 1000 1000 1000];
-% Eg(:,:,5) = [1000 1000 1000 1000 1000 1000 1000 1000];
-% 
-% H = [];
-% H(:,:,1) = [1 1 1 1 1 1]';
-% H(:,:,2) = [1 1 1 1 1 1]';
-% H(:,:,3) = [1 1 1 1 1 1]';
-% H(:,:,4) = [1 1 1 1 1 1]';
-% H(:,:,5) = [1 1 1 1 1 1]';
-% 
-% pij = 0.5*eye(numberOfModes);
-% ei = 2*ones(1,numberOfModes);
-% k = 1;
-% mu = 1e10;
-% alpha = 1.5;
-% 
-% multirotor.configController('Markovian RLQ-R Active Modified',modes,P,Q,R,Ef,Eg,H,pij,ei,k,mu,alpha);
-% multirotor.setAngularFilterGain([0.00523421487906961 0 0.428449651429948]);
+
+modes = [1 1 1 1 1 1 1 1
+         0 1 1 1 1 1 1 1
+         0 0 1 1 1 1 1 1
+         0 0 0 1 1 1 1 1
+         0 0 0 0 1 1 1 1];
+numberOfModes = size(modes,1);
+P = [];
+for it = 1:numberOfModes
+      P(:,:,it) = eye(6);  
+end
+Q = [];
+Q(:,:,1) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+Q(:,:,2) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+Q(:,:,3) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+Q(:,:,4) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+Q(:,:,5) = 50000*blkdiag(1e10, 1e10, 1e1,1e-1,1e-1,1e-1);
+
+R = [];
+R(:,:,1) = diag(1*modes(1,:)+~modes(1,:));
+R(:,:,2) = diag(1*modes(2,:)+~modes(2,:));
+R(:,:,3) = diag(1*modes(3,:)+~modes(3,:));
+R(:,:,4) = diag(1*modes(4,:)+~modes(4,:));
+R(:,:,5) = diag(1*modes(5,:)+~modes(5,:));
+
+Ef = [];
+Ef(:,:,1) = 10000*ones(1,6);
+Ef(:,:,2) = 10000*ones(1,6);
+Ef(:,:,3) = 10000*ones(1,6);
+Ef(:,:,4) = 10000*ones(1,6);
+Ef(:,:,5) = 10000*ones(1,6);
+
+Eg = [];
+Eg(:,:,1) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,2) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,3) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,4) = [1000 1000 1000 1000 1000 1000 1000 1000];
+Eg(:,:,5) = [1000 1000 1000 1000 1000 1000 1000 1000];
+
+H = [];
+H(:,:,1) = [1 1 1 1 1 1]';
+H(:,:,2) = [1 1 1 1 1 1]';
+H(:,:,3) = [1 1 1 1 1 1]';
+H(:,:,4) = [1 1 1 1 1 1]';
+H(:,:,5) = [1 1 1 1 1 1]';
+
+pij = 0.5*eye(numberOfModes);
+ei = 2*ones(1,numberOfModes);
+k = 1;
+mu = 1e10;
+alpha = 1.5;
+
+multirotor.configController('Markovian RLQ-R Active Modified',modes,P,Q,R,Ef,Eg,H,pij,ei,k,mu,alpha);
+multirotor.setAngularFilterGain([0.00523421487906961 0 0.428449651429948]);
 
 % Adaptive control allocation
 % multirotor.configControlAllocator('Adaptive',-1e14*eye(6),1,0);
@@ -290,9 +290,9 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('Markovian RLQ-R Passive Modified');
-multirotor.setControlAllocator('Passive NMAC');
-multirotor.setAttitudeReferenceCA('Passive NMAC');
+multirotor.setController('Markovian RLQ-R Active Modified');
+multirotor.setControlAllocator('Active NMAC');
+multirotor.setAttitudeReferenceCA('Active NMAC');
 multirotor.configFDD(1,0)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
@@ -321,7 +321,7 @@ multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
 multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2) 
-% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)
+multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/3)
 % multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2)   
 % multirotor.addCommand({'setRotorStatus(2,''prop loss'',0.001)'},endTime/2)    

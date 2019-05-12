@@ -20,7 +20,7 @@ orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.0616284
 multirotor.setRotorOrientation(1:8,orientations);
 % Define aircraft's inertia
 multirotor.setMass(6.015);
-mass = 1.5;
+mass = 0;
 inertia =   [0.3143978800	0.0000861200	-0.0014397600
             0.0000861200	0.3122127800	0.0002368800
             -0.0014397600	0.0002368800	0.5557912400];
@@ -153,7 +153,7 @@ kdd = [11.5001522749662 7.25000000000000 13.2500582933426];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 % kp = [389.67 404.17 108.46]; ki =[52.17 11.03 61.61]; kd = [35.83 40 70]; kdd = [8.58 9.65 1.04];
 % Markovian active:
-% kp = [40 50 60];ki = [10 12 10];kd = [15 15 15];kdd = [1.5 1.8 0];
+kp = [40 50 60];ki = [10 12 10];kd = [15 15 15];kdd = [1.5 1.8 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
 % PID attitude controller
@@ -368,11 +368,11 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % Configure simulator
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.005);
-multirotor.setControlTimeStep(0.05);
+multirotor.setControlTimeStep(0.04);
 multirotor.setController('PID');
-multirotor.setControlAllocator('Active NMAC');
-multirotor.setAttitudeReferenceCA('Active NMAC');
-multirotor.configFDD(.98,0.25)
+multirotor.setControlAllocator('Passive NMAC');
+multirotor.setAttitudeReferenceCA('Passive NMAC');
+multirotor.configFDD(1,0.25)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
 % multirotor.setTrajectory('waypoints',[50 50 50 170*pi/180]',10);
@@ -392,7 +392,7 @@ multirotor.configFDD(.98,0.25)
 % multirotor.setTrajectory('waypoints',[xpos; ypos; zpos; xvel; yvel; zvel; yawpos; yawvel],time);
 % multirotor.setTrajectory('gerono',7,4,4,30,'fixed',0);
 % % 
-endTime = 15;
+endTime = 5;
 % [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto',0);
 [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto', 2*pi);
 multirotor.setTrajectory('waypoints',waypoints,time);
@@ -405,7 +405,7 @@ multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(5,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.75)'},endTime/2)
-multirotor.setSimEffects('motor dynamics on','solver euler')
+multirotor.setSimEffects('motor dynamics on','solver ode45')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.20);
 %% Run simulator
