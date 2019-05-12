@@ -848,9 +848,9 @@ classdef multicopter < handle
                             varargin{2}
                             speeds = liftCoeff(:,1);
                             values = liftCoeff(:,2);
+                            f = fit(speeds,values,varargin{1});
                             speedsFitted = min(speeds):varargin{2}:max(speeds);
                             valuesFitted = f(speedsFitted);
-                            f = fit(speeds,values,varargin{1});
                             for it=1:length(rotorID)
                                 obj.rotor_(rotorID(it)).liftCoeff.data = liftCoeff;
                                 obj.rotor_(rotorID(it)).liftCoeff.fit.x = speedsFitted;
