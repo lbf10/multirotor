@@ -4,12 +4,12 @@ addpath('../multiControl/utils')
 warning('off','all')
 
 if  isempty(gcp('nocreate'))
-    poolobj = parpool('local',44);
+    poolobj = parpool('ClusterPandora',44);
 end
 addAttachedFiles(poolobj,{'evaluatePassiveController.m','paramsToMultirotor.m','../multiControl/'})
 
 filename = 'Results/2. Two cases: 4 sequential failures with and without 3kg load/1. PID_PassiveNMAC_PassiveNMAC/1a Tentativa/PID_Passive NMAC_Passive NMAC_30-Sep-2018 15:23:09_result.mat';
-evaluatePassiveController
+evaluatePassiveController(filename)
 % filename = 'Results/2. Two cases: 4 sequential failures with and without 3kg load/2. RLQ-RPassive_PassiveNMAC_PassiveNMAC/1a Tentativa/RLQ-R Passive_Passive NMAC_Passive NMAC_01-Oct-2018 23:02:15_result.mat';
 % evaluatePassiveController
 % filename = 'Results/2. Two cases: 4 sequential failures with and without 3kg load/3. RLQ-RPassiveModified_PassiveNMAC_PassiveNMAC/1a Tentativa (Melhor)/RLQ-R Passive Modified_Passive NMAC_Passive NMAC_02-Oct-2018 22:33:01_result.mat';

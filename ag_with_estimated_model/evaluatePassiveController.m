@@ -18,7 +18,7 @@
 %     [bestScore,bestIndex] = min(scores);
 %     bestIndividual = population(bestIndex,:);
 % end
-clear multirotor bestIndividual scores population bestScore
+function evaluatePassiveController(filename)
 for jt=1:1
     data = load(filename);
     [pathname,name,extension] = fileparts(filename);
@@ -467,3 +467,4 @@ end
 save([pathname,'/',foldername,'/evaluationResult_individual.mat'],'options');
 
 disp(['Evaluation finished.',datestr(now)])
+end
