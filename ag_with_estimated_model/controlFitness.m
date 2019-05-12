@@ -87,7 +87,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
 %                 567.7172084
 %                 586.4096847
 %                 748.2865294
-%                 1000];
+%                 1511];
 %         liftCoeff = [0.00004
 %                     0.00007
 %                     0.00009663400821486720
@@ -117,7 +117,7 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
 %                     0.00000201512348657737
 %                     0.00000203398711313428
 %                     0.00000136514255905061
-%                     0];
+%                     0.0000005];
 %         multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline');
 %         multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline');
         multirotor.setRotorLiftCoeff(1:8,ones(1,8)*6.97e-5);
