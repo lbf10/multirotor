@@ -843,9 +843,9 @@ classdef multicopter < handle
                         end  
                     else
                         if isvector(rotorID) && size(liftCoeff,2)==2 && ischar(varargin{1})
-                            disp('foi')
-                            varargin{1}
-                            varargin{2}
+%                             disp('foi')
+%                             varargin{1}
+%                             varargin{2}
                             speeds = liftCoeff(:,1);
                             values = liftCoeff(:,2);
                             f = fit(speeds,values,varargin{1});
