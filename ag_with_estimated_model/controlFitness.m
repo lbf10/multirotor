@@ -118,8 +118,8 @@ function fitness = controlFitness(attitudeController, controlAllocator, attitude
 %                     0.00000203398711313428
 %                     0.00000136514255905061
 %                     0.0000005];
-%         multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline');
-%         multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline');
+%         multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline',1);
+%         multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline',1);
         multirotor.setRotorLiftCoeff(1:8,ones(1,8)*6.97e-5);
         multirotor.setRotorDragCoeff(1:8,ones(1,8)*1.033e-6);
         % Define rotor inertia
