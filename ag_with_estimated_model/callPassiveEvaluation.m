@@ -4,7 +4,8 @@ addpath('../multiControl/utils')
 warning('off','all')
 
 if  isempty(gcp('nocreate'))
-    poolobj = parpool('ClusterPandora',44);
+%     poolobj = parpool('ClusterPandora',44);
+    poolobj = parpool('local',2);
 end
 addAttachedFiles(poolobj,{'evaluatePassiveController.m','paramsToMultirotor.m','../multiControl/'})
 

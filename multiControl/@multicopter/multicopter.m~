@@ -844,15 +844,13 @@ classdef multicopter < handle
                     else
                         if isvector(rotorID) && size(liftCoeff,2)==2 && ischar(varargin{1})
                             disp('foi')
-                            varargin{1}
-                            varargin{2}
-                            speeds = liftCoeff(:,1);
-                            values = liftCoeff(:,2);
-                            speedsFitted = min(speeds):varargin{2}:max(speeds);
-                            valuesFitted = f(speedsFitted);
-                            f = fit(speeds,values,varargin{1});
+                                speedsFitted = min(speeds):varargin{2}:max(speeds);
+                                valuesFitted = f(speedsFitted);
                             for it=1:length(rotorID)
                                 obj.rotor_(rotorID(it)).liftCoeff.data = liftCoeff;
+                                speeds = liftCoeff(:,1);
+                                values = liftCoeff(:,2);
+                                f = fit(speeds,values,varargin{1});
                                 obj.rotor_(rotorID(it)).liftCoeff.fit.x = speedsFitted;
                                 obj.rotor_(rotorID(it)).liftCoeff.fit.y = valuesFitted;
                             end  
@@ -903,13 +901,13 @@ classdef multicopter < handle
                         end  
                     else
                         if isvector(rotorID) && size(dragCoeff,2)==2 && ischar(varargin{1}) %Coeffs are a fitted function and all the same
-                            speeds = dragCoeff(:,1);
-                            values = dragCoeff(:,2);
-                            f = fit(speeds,values,varargin{1});
-                            speedsFitted = min(speeds):varargin{2}:max(speeds);
-                            valuesFitted = f(speedsFitted);
                             for it=1:length(rotorID)
                                 obj.rotor_(rotorID(it)).dragCoeff.data = dragCoeff;
+                                speeds = dragCoeff(:,1);
+                                values = dragCoeff(:,2);
+                                f = fit(speeds,values,varargin{1});
+                                speedsFitted = min(speeds):varargin{2}:max(speeds);
+                                valuesFitted = f(speedsFitted);
                                 obj.rotor_(rotorID(it)).dragCoeff.fit.x = speedsFitted;
                                 obj.rotor_(rotorID(it)).dragCoeff.fit.y = valuesFitted;
                             end  
