@@ -12,15 +12,17 @@ multirotor = multicontrol(8);
 % multirotor.supressVerbose()
 % Define rotor positions
 positions = [[0.34374 0.34245 0.0143]',[-0.341 0.34213 0.0143]',[-0.34068 -0.34262 0.0143]',[0.34407 -0.34229 0.0143]',[0.33898 0.33769 0.0913]',[-0.33624 0.33736 0.0913]',[-0.33591 -0.33785 0.0913]',[0.3393 -0.33753 0.0913]'];
-% positions = [[0.34374 0.34374 0.0143]',[-0.34374 0.34374 0.0143]',[-0.34374 -0.34374 0.0143]',[0.34374 -0.34374 0.0143]',[0.34374 0.34374 0.0913]',[-0.34374 0.34374 0.0913]',[-0.34374 -0.34374 0.0913]',[0.34374 -0.34374 0.0913]'];
+% positions = [0.4852*cos(pi*(0:45:359)/180)
+%              0.4852*sin(pi*(0:45:359)/180)
+%              ones(1,8)*0.0143];             
 multirotor.setRotorPosition(1:8,positions);
 % Define rotor orientations
 orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.061628417 0.996194698]',[0.061628417 0.061628417 0.996194698]',[-0.061628417 0.061628417 0.996194698]',[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.061628417 0.996194698]',[0.061628417 0.061628417 0.996194698]',[-0.061628417 0.061628417 0.996194698]'];
-% orientations = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
+%orientations = [[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]',[0 0 1]'];
 multirotor.setRotorOrientation(1:8,orientations);
 % Define aircraft's inertia
 multirotor.setMass(6.015);
-mass = 1;
+mass = 0;
 inertia =   [0.3143978800	0.0000861200	-0.0014397600
             0.0000861200	0.3122127800	0.0002368800
             -0.0014397600	0.0002368800	0.5557912400];
@@ -80,10 +82,10 @@ liftCoeff = [0.00004
             0.00000203398711313428
             0.00000136514255905061
             0.0000005];
-multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline',1);
-multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline',1);
-% multirotor.setRotorLiftCoeff(1:8,ones(1,8)*6.97e-5);
-% multirotor.setRotorDragCoeff(1:8,ones(1,8)*1.033e-6);
+% multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline',1);
+% multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline',1);
+multirotor.setRotorLiftCoeff(1:8,ones(1,8)*6.97e-5);
+multirotor.setRotorDragCoeff(1:8,ones(1,8)*1.033e-6);
 % Define rotor inertia
 multirotor.setRotorInertia(1:8,0.00047935*ones(1,8));
 % Sets rotors rotation direction for control allocation
@@ -126,7 +128,7 @@ multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
 % Trajectory controller
 % PID:
 kp = [95.75 100.250020593405 150.0000495910645];
-ki = [14.0625572204590 13 19];
+ki = [14.0625572204590 15 19];
 kd = [49.5000000000000 49.2500000000000 60];
 kdd = [11.5001522749662 7.25000000000000 13.2500582933426];
 % RLQ-R Passive:
@@ -153,13 +155,16 @@ kdd = [11.5001522749662 7.25000000000000 13.2500582933426];
 % kp = [0 0 0];ki = [0 0 0];kd = [0 0 0];kdd = [0 0 0];
 % kp = [389.67 404.17 108.46]; ki =[52.17 11.03 61.61]; kd = [35.83 40 70]; kdd = [8.58 9.65 1.04];
 % Markovian active:
-kp = [40 50 60];ki = [10 12 10];kd = [15 15 15];kdd = [1.5 1.8 0];
+% kp = [40 50 60];ki = [10 12 10];kd = [15 15 15];kdd = [1.5 1.8 0];
 multirotor.configController('Position PIDD',kp,ki,kd,kdd);
 
 % PID attitude controller
 kp = [133.015695810318 139.750023871660 100.0000053495169];
 ki = [205.937575563788 206 202];
 kd = [23.0000121444464 19.2501215338707 7];
+% kp = [1000 1000 1000];
+% ki = [0 0 0];
+% kd = [0 0 0];
 multirotor.configController('PID',kp,ki,kd);
 
 % R-LQR attitude controller
@@ -370,8 +375,8 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 multirotor.setTimeStep(0.002);
 multirotor.setControlTimeStep(0.03);
 multirotor.setController('PID');
-multirotor.setControlAllocator('Passive NMAC');
-multirotor.setAttitudeReferenceCA('Passive NMAC');
+multirotor.setControlAllocator('RPI Passive');
+multirotor.setAttitudeReferenceCA('RPI Passive');
 multirotor.configFDD(1,0.25)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
@@ -405,7 +410,7 @@ multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},0)
 % multirotor.addCommand({'setRotorStatus(5,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.75)'},endTime/2)
-multirotor.setSimEffects('motor dynamics on','solver ode45')
+multirotor.setSimEffects('motor dynamics on','solver euler')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.20);
 %% Run simulator

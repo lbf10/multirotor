@@ -55,7 +55,7 @@ payloads = [0,         0, 0, 0
             0.75*mass, 0, 0, -payloadRadius
             mass,      0, 0, -payloadRadius];
 disturbances = mass*[0.0, 7.5, 15.0, 22.5, 30.0];
-controlLoopTimes = 0.020:0.010:0.050;
+controlLoopTimes = [0.020, 0.050];
 variableCoeffs = [1,0];
 failures = {{''}
             {'setRotorStatus(1,''motor loss'',0.78)'}
@@ -234,6 +234,9 @@ parfor it = 1:numberOfOptions
 end
 %%
 save([pathname,'/',foldername,'/evaluationResult.mat'],'options');
+
+
+disp([attitudeController,' - Starting Controller evaluation ',datestr(now)])
 fitnessVector = [options{:,8}];
 [bestFitness, bestIndex] = min(fitnessVector);
 bestCase = options(bestIndex,:);
