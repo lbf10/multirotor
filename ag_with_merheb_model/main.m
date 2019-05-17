@@ -7,7 +7,7 @@ addpath('../multiControl/utils')
 warning('off','all')
 
 %% Algorithms to train
-algorithms = { 'SOSMC Passive','Passive NMAC';
+algorithms = { %'SOSMC Passive','Passive NMAC';
                'SOSMC Passive with PIDD','Passive NMAC';
                'SOSMC Passive Direct','None';
 	       'Adaptive with PIDD','Passive NMAC';
