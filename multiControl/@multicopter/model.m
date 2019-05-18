@@ -81,6 +81,12 @@ function dydt = model(obj,t,y,simTime,simInput)
     dc = (obj.rotorDragCoeff(rotorIDs).*(1+[obj.rotor_(rotorIDs).dragCoeffPError])).*propEfficiencyMatrix;
     m = obj.mass_*(1+obj.massPError_);
     I = obj.inertiaTensor_.*(eye(3)+obj.inertiaTensorPError_);
+    I(1,2) = -I(1,2);
+    I(1,3) = -I(1,3);
+    I(2,1) = -I(2,1);
+    I(2,3) = -I(2,3);
+    I(3,1) = -I(3,1);
+    I(3,2) = -I(3,2);
     A = obj.translationalFriction_.*(eye(3)+obj.translationalFrictionPError_);
     
     %%% Rotor dynamics

@@ -22,7 +22,7 @@ orientations = [[-0.061628417 -0.061628417 0.996194698]',[0.061628417 -0.0616284
 multirotor.setRotorOrientation(1:8,orientations);
 % Define aircraft's inertia
 multirotor.setMass(6.015);
-mass = 0;
+mass = 2;
 inertia =   [0.3143978800	0.0000861200	-0.0014397600
             0.0000861200	0.3122127800	0.0002368800
             -0.0014397600	0.0002368800	0.5557912400];
@@ -375,8 +375,8 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 multirotor.setTimeStep(0.002);
 multirotor.setControlTimeStep(0.03);
 multirotor.setController('PID');
-multirotor.setControlAllocator('RPI Passive');
-multirotor.setAttitudeReferenceCA('RPI Passive');
+multirotor.setControlAllocator('Passive NMAC');
+multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.25)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);

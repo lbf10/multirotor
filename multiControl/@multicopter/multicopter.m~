@@ -59,7 +59,7 @@ classdef multicopter < handle
         % Parameters' errors
         massPError_                     % Mass percentage error in relation to nominal mass
         translationalFrictionPError_    % Friction percentage error in relation to nominal friction
-        inertiaMatrixPError_            % Inertia percentage error in relation to nominal inertia matrix
+        inertiaMatrixPError_            % Inertia percentage error in relation to nominal inertia matri
         cgPositionError_                % Absolute position error for the CG in relation to nominal CG
         
         %%% Simulation parameters
@@ -256,9 +256,9 @@ classdef multicopter < handle
             end
         end       
         function setInertia(obj, inertia)
-        %SETINERTIA  Sets inertia matrix of multicopter.
+        %SETINERTIA  Sets inertia tensor of multicopter.
         %
-        %   SETINERTIA(I) Sets the inertia matrix for multicopter object.
+        %   SETINERTIA(I) Sets the inertia tensor for multicopter object.
         %   I must be numeric, related to the body reference frame and:
         %       - Column or row vector of length 3, with I(1), I(2) and
         %       I(3) equivalent to moments of inertia around x, y and z 
@@ -286,7 +286,7 @@ classdef multicopter < handle
                     disp(obj.inertiaMatrix_)
                 end
             else
-                error('Inertia matrix must be numeric, have at least 3 values and be symmetric in case it is a matrix!')
+                error('Inertia matrix must be numeric, have at least 3 values and be symmetric in case it is a tensor!')
             end
         end        
         function setFriction(obj, friction)    
@@ -366,9 +366,9 @@ classdef multicopter < handle
             end
         end   
         function setInertiaError(obj, inertiaError)
-        %SETINERTIAERROR  Sets inertia percentage error matrix of multicopter.
+        %SETINERTIAERROR  Sets inertia percentage error tensor of multicopter.
         %
-        %   SETINERTIAERROR(I) Sets the inertia percentage error matrix for multicopter object.
+        %   SETINERTIAERROR(I) Sets the inertia percentage error tensor for multicopter object.
         %   I must be numeric, related to the body reference frame and:
         %       - Column or row vector of length 3, with I(1), I(2) and
         %       I(3) equivalent to the percentage error (0.1 = 10%) of the 
@@ -390,11 +390,11 @@ classdef multicopter < handle
                     obj.inertiaMatrixPError_ = inertiaError;
                 end
                 if obj.verbose_ == true
-                    disp('Inertia matrix error set to (%):')
+                    disp('Inertia tensor error set to (%):')
                     disp(100.*obj.inertiaMatrixPError_)
                 end
             else
-                error('Inertia percentage error matrix must be numeric, have at least 3 values and be symmetric in case it is a matrix!')
+                error('Inertia percentage error matrix must be numeric, have at least 3 values and be symmetric in case it is a tensor!')
             end
         end         
         function setFrictionError(obj, frictionError)    
@@ -454,12 +454,12 @@ classdef multicopter < handle
                 error('CG position error must be a numeric vector of length 3.')
             end
         end       
-        function setPayload(obj, relativePosition, mass, inertiaMatrix)
+        function setPayload(obj, relativePosition, mass, inertiaTensor)
         %UNTITLED Summary of this function goes here
         %   Detailed explanation goes here
             if ~isempty(obj.mass_) && ~isempty(obj.inertiaMatrix_)
                 if isnumeric(relativePosition) && isvector(relativePosition) && ...
-                        isnumeric(mass) && isnumeric(inertiaMatrix) && isequal(size(inertiaMatrix),[3 3])
+                        isnumeric(mass) && isnumeric(inertiaTensor) && isequal(size(inertiaTensor),[3 3])
                     Rcm = mass*relativePosition/(obj.mass_+mass);
                     obj.setCGPositionError(Rcm);
                     obj.setMassError(mass/obj.mass_);
@@ -476,15 +476,15 @@ classdef multicopter < handle
                     relativeInertia(1,3) = obj.inertiaMatrix_(1,3) + obj.mass_*(Rcm(3)*Rcm(1));
                     
                     Rpl = relativePosition-Rcm;
-                    plInertia(1,1) = inertiaMatrix(1,1) + mass*(Rpl(2)^2+Rpl(3)^2);
-                    plInertia(2,2) = inertiaMatrix(2,2) + mass*(Rpl(1)^2+Rpl(3)^2);   
-                    plInertia(3,3) = inertiaMatrix(3,3) + mass*(Rpl(1)^2+Rpl(2)^2); 
-                    plInertia(1,2) = inertiaMatrix(1,2) + mass*(Rpl(1)*Rpl(2));
-                    plInertia(2,3) = inertiaMatrix(2,3) + mass*(Rpl(2)*Rpl(3));
-                    plInertia(3,1) = inertiaMatrix(3,1) + mass*(Rpl(3)*Rpl(1));
-                    plInertia(2,1) = inertiaMatrix(2,1) + mass*(Rpl(1)*Rpl(2));
-                    plInertia(3,2) = inertiaMatrix(3,2) + mass*(Rpl(2)*Rpl(3));
-                    plInertia(1,3) = inertiaMatrix(1,3) + mass*(Rpl(3)*Rpl(1));
+                    plInertia(1,1) = inertiaTensor(1,1) + mass*(Rpl(2)^2+Rpl(3)^2);
+                    plInertia(2,2) = inertiaTensor(2,2) + mass*(Rpl(1)^2+Rpl(3)^2);   
+                    plInertia(3,3) = inertiaTensor(3,3) + mass*(Rpl(1)^2+Rpl(2)^2); 
+                    plInertia(1,2) = inertiaTensor(1,2) + mass*(Rpl(1)*Rpl(2));
+                    plInertia(2,3) = inertiaTensor(2,3) + mass*(Rpl(2)*Rpl(3));
+                    plInertia(3,1) = inertiaTensor(3,1) + mass*(Rpl(3)*Rpl(1));
+                    plInertia(2,1) = inertiaTensor(2,1) + mass*(Rpl(1)*Rpl(2));
+                    plInertia(3,2) = inertiaTensor(3,2) + mass*(Rpl(2)*Rpl(3));
+                    plInertia(1,3) = inertiaTensor(1,3) + mass*(Rpl(3)*Rpl(1));
                     
                     newInertia = relativeInertia+plInertia;
                     inertiaError = (newInertia-obj.inertiaMatrix_)./obj.inertiaMatrix_;
@@ -496,10 +496,10 @@ classdef multicopter < handle
                         disp('Payload configured.')
                     end
                 else
-                    error('Payload relative position must be numeric and a vector. Payload mass must be numeric. Payload inertia matrix must be numeric and of size 3x3.')
+                    error('Payload relative position must be numeric and a vector. Payload mass must be numeric. Payload inertia tensor must be numeric and of size 3x3.')
                 end
             else
-                error('Configure mass and inertia matrix before adding payload.')
+                error('Configure mass and inertia tensor before adding payload.')
             end
         end
                         
@@ -1667,12 +1667,11 @@ classdef multicopter < handle
             massValue = obj.mass_;
         end
         function inertiaValue = inertia(obj)
-        %INERTIA  Returns the multicopter inertia matrix.
+        %INERTIA  Returns the multicopter inertia tensor.
         %   
-        %   I = INERTIA() Returns the multicopter inertia matrix. I is a
+        %   I = INERTIA() Returns the multicopter inertia tensor. I is a
         %   symmetric 3x3 matrix or an empty matrix in case inertia has not
-        %   been set. The main diagonal is composed of the main moments of
-        %   inertia while other elements are the products of inertia.
+        %   been set.
         %
         %   See also MASS, GETALL, FRICTION, NUMBEROFROTORS, ROTOR
         
@@ -1716,10 +1715,10 @@ classdef multicopter < handle
             massErrorValue = obj.massPError_;
         end
         function inertiaErrorValue = inertiaError(obj)
-        %INERTIAERROR  Returns the multicopter percentage error for the inertia matrix.
+        %INERTIAERROR  Returns the multicopter percentage error for the inertia tensor.
         %   
         %   I = INERTIAERROR() Returns a matrix containing the percentage 
-        %   error for each element of the inertia matrix set using setInertia(). 
+        %   error for each element of the inertia tensor set using setInertia(). 
         %   I is a symmetric 3x3 matrix or an empty matrix in case the error has not
         %   been set. A value of 0.1 corresponds to 10% of error in
         %   relation to the nominal value.
