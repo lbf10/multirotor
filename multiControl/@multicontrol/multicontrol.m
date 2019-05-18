@@ -1398,13 +1398,13 @@ classdef multicontrol < multicopter
                     end
                 case 'multirotor'
                     mass_ = obj.mass_;
-                    inertiaTensor_ = obj.inertiaTensor_;
+                    inertiaMatrix_ = obj.inertiaMatrix_;
                     translationalFriction_ = obj.translationalFriction_;
                     numberOfRotors_ = obj.numberOfRotors_;
                     rotor_ = obj.rotor_;
                     massPError_ = obj.massPError_;
                     translationalFrictionPError_ = obj.translationalFrictionPError_;
-                    inertiaTensorPError_ = obj.inertiaTensorPError_;
+                    inertiaMatrixPError_ = obj.inertiaMatrixPError_;
                     cgPositionError_ = obj.cgPositionError_;
                     timeStep_ = obj.timeStep_;
                     initialState_ = obj.initialState_;
@@ -1417,15 +1417,15 @@ classdef multicontrol < multicopter
                     
                     if isempty(varargin)
                         [filename, pathname] = uiputfile('multirotor.mat');
-                        save([pathname,filename],'mass_','inertiaTensor_','translationalFriction_',...
+                        save([pathname,filename],'mass_','inertiaMatrix_','translationalFriction_',...
                             'numberOfRotors_','rotor_','massPError_','translationalFrictionPError_',...
-                            'inertiaTensorPError_','cgPositionError_','timeStep_',...
+                            'inertiaMatrixPError_','cgPositionError_','timeStep_',...
                             'initialState_','isLogging_','opts_','simEffects_',...
                             'solver_','linearDisturbance_','verbose_');
                     else
-                        save(varargin{1},'mass_','inertiaTensor_','translationalFriction_',...
+                        save(varargin{1},'mass_','inertiaMatrix_','translationalFriction_',...
                             'numberOfRotors_','rotor_','massPError_','translationalFrictionPError_',...
-                            'inertiaTensorPError_','cgPositionError_','timeStep_',...
+                            'inertiaMatrixPError_','cgPositionError_','timeStep_',...
                             'initialState_','isLogging_','opts_','simEffects_',...
                             'solver_','linearDisturbance_','verbose_');
                     end
@@ -2269,7 +2269,7 @@ classdef multicontrol < multicopter
                     end    
                     errorVector = [qe(2); qe(3); qe(4)];
                     obj.controlConfig_{1}.ierror = obj.controlConfig_{1}.ierror+errorVector*obj.controlTimeStep_;
-                    attitudeControlOutput = obj.inertiaTensor_*(-reshape(obj.controlConfig_{1}.kd,[3 1]).*angularVelocity+reshape(obj.controlConfig_{1}.kp,[3 1]).*errorVector+reshape(obj.controlConfig_{1}.ki,[3 1]).*obj.controlConfig_{1}.ierror);
+                    attitudeControlOutput = obj.inertiaMatrix_*(-reshape(obj.controlConfig_{1}.kd,[3 1]).*angularVelocity+reshape(obj.controlConfig_{1}.kp,[3 1]).*errorVector+reshape(obj.controlConfig_{1}.ki,[3 1]).*obj.controlConfig_{1}.ierror);
                 case 2 %'RLQ-R Passive'
                     index = 2;
                     
