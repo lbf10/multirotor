@@ -1,0 +1,1682 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 68 workers.
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 19:07:59
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 17-May-2019 19:10:28
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 19:10:29
+Fitness Calculated 17-May-2019 19:12:59
+Iterating ...
+    1          6000           2.117           19.79        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 19:13:00
+Fitness Calculated 17-May-2019 19:18:55
+Iterating ...
+    2          9000           2.117           19.12        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 19:18:56
+Fitness Calculated 17-May-2019 19:36:23
+Iterating ...
+    3         12000           2.076           19.18        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 19:36:24
+Fitness Calculated 17-May-2019 19:52:38
+Iterating ...
+    4         15000           2.006           19.19        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 19:52:39
+Fitness Calculated 17-May-2019 20:12:38
+Iterating ...
+    5         18000           1.936           18.76        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 20:12:39
+Fitness Calculated 17-May-2019 20:32:52
+Iterating ...
+    6         21000            1.93           18.39        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 20:32:53
+Fitness Calculated 17-May-2019 20:53:10
+Iterating ...
+    7         24000           1.802           17.84        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 20:53:12
+Fitness Calculated 17-May-2019 21:13:39
+Iterating ...
+    8         27000           1.802           17.37        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 21:13:40
+Fitness Calculated 17-May-2019 21:34:27
+Iterating ...
+    9         30000           1.782           16.95        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 21:34:28
+Fitness Calculated 17-May-2019 21:54:54
+Iterating ...
+   10         33000            1.77           16.26        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 21:54:55
+Fitness Calculated 17-May-2019 22:15:26
+Iterating ...
+   11         36000           1.763           15.68        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 22:15:27
+Fitness Calculated 17-May-2019 22:36:03
+Iterating ...
+   12         39000           1.722           15.45        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 22:36:04
+Fitness Calculated 17-May-2019 22:56:37
+Iterating ...
+   13         42000           1.722           15.14        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 22:56:38
+Fitness Calculated 17-May-2019 23:17:10
+Iterating ...
+   14         45000           1.686            15.3        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 23:17:11
+Fitness Calculated 17-May-2019 23:37:45
+Iterating ...
+   15         48000           1.686           15.15        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 23:37:47
+Fitness Calculated 17-May-2019 23:58:29
+Iterating ...
+   16         51000           1.672           14.98        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 17-May-2019 23:58:30
+Fitness Calculated 18-May-2019 00:19:03
+Iterating ...
+   17         54000           1.659            14.9        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 00:19:04
+Fitness Calculated 18-May-2019 00:42:00
+Iterating ...
+   18         57000           1.635           14.78        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 00:42:01
+Fitness Calculated 18-May-2019 01:06:28
+Iterating ...
+   19         60000           1.632           14.87        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 01:06:29
+Fitness Calculated 18-May-2019 01:28:14
+Iterating ...
+   20         63000           1.608           15.18        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 01:28:15
+Fitness Calculated 18-May-2019 01:48:54
+Iterating ...
+   21         66000           1.605           15.38        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 01:48:56
+Fitness Calculated 18-May-2019 02:09:31
+Iterating ...
+   22         69000           1.604           15.09        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 02:09:33
+Fitness Calculated 18-May-2019 02:30:10
+Iterating ...
+   23         72000           1.597              15        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 02:30:12
+Fitness Calculated 18-May-2019 02:52:37
+Iterating ...
+   24         75000           1.593           15.04        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 02:52:39
+Fitness Calculated 18-May-2019 03:14:43
+Iterating ...
+   25         78000           1.592           14.46        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 03:14:45
+Fitness Calculated 18-May-2019 03:35:23
+Iterating ...
+   26         81000           1.589           14.34        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 03:35:24
+Fitness Calculated 18-May-2019 03:58:51
+Iterating ...
+   27         84000           1.584           14.22        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 03:58:53
+Fitness Calculated 18-May-2019 04:23:29
+Iterating ...
+   28         87000           1.582           14.18        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 04:23:31
+Fitness Calculated 18-May-2019 04:48:00
+Iterating ...
+   29         90000            1.58           13.93        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 04:48:02
+Fitness Calculated 18-May-2019 05:09:01
+Iterating ...
+   30         93000            1.58           14.12        1
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 05:09:03
+Fitness Calculated 18-May-2019 05:30:33
+Iterating ...
+   31         96000            1.58           14.44        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 05:30:35
+Fitness Calculated 18-May-2019 05:52:37
+Iterating ...
+   32         99000           1.575           14.57        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 05:52:39
+Fitness Calculated 18-May-2019 06:17:45
+Iterating ...
+   33         102000           1.574           14.54        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 06:17:47
+Fitness Calculated 18-May-2019 06:42:46
+Iterating ...
+   34         105000           1.573           14.26        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 06:42:48
+Fitness Calculated 18-May-2019 07:05:07
+Iterating ...
+   35         108000           1.572            14.1        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 07:05:09
+Fitness Calculated 18-May-2019 07:28:40
+Iterating ...
+   36         111000           1.572           13.75        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 07:28:42
+Fitness Calculated 18-May-2019 07:51:32
+Iterating ...
+   37         114000            1.57           13.78        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 07:51:34
+Fitness Calculated 18-May-2019 08:16:47
+Iterating ...
+   38         117000            1.57           13.78        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 08:16:50
+Fitness Calculated 18-May-2019 08:41:21
+Iterating ...
+   39         120000            1.57           13.52        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 08:41:23
+Fitness Calculated 18-May-2019 09:07:57
+Iterating ...
+   40         123000           1.567           13.72        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 09:07:59
+Fitness Calculated 18-May-2019 09:31:28
+Iterating ...
+   41         126000           1.565           13.54        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 09:31:31
+Fitness Calculated 18-May-2019 09:56:17
+Iterating ...
+   42         129000           1.564           13.57        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 09:56:19
+Fitness Calculated 18-May-2019 10:17:42
+Iterating ...
+   43         132000           1.564            13.9        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 10:17:44
+Fitness Calculated 18-May-2019 10:41:09
+Iterating ...
+   44         135000           1.563           13.72        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 10:41:12
+Fitness Calculated 18-May-2019 11:04:55
+Iterating ...
+   45         138000           1.563           13.75        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 11:04:58
+Fitness Calculated 18-May-2019 11:28:07
+Iterating ...
+   46         141000           1.562           13.98        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 11:28:10
+Fitness Calculated 18-May-2019 11:50:31
+Iterating ...
+   47         144000           1.562           14.02        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 11:50:33
+Fitness Calculated 18-May-2019 12:16:23
+Iterating ...
+   48         147000           1.561           13.79        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 12:16:26
+Fitness Calculated 18-May-2019 12:40:40
+Iterating ...
+   49         150000            1.56           13.95        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 12:40:43
+Fitness Calculated 18-May-2019 13:05:52
+Iterating ...
+   50         153000            1.56           13.87        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 13:05:55
+Fitness Calculated 18-May-2019 13:30:03
+Iterating ...
+   51         156000            1.56           13.95        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 13:30:06
+Fitness Calculated 18-May-2019 13:53:32
+Iterating ...
+   52         159000           1.559            13.7        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 13:53:35
+Fitness Calculated 18-May-2019 14:16:05
+Iterating ...
+   53         162000           1.559           13.83        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 14:16:08
+Fitness Calculated 18-May-2019 14:39:38
+Iterating ...
+   54         165000           1.558           13.92        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 14:39:41
+Fitness Calculated 18-May-2019 15:06:26
+Iterating ...
+   55         168000           1.558           13.84        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 15:06:29
+Fitness Calculated 18-May-2019 15:29:26
+Iterating ...
+   56         171000           1.557           13.87        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 15:29:29
+Fitness Calculated 18-May-2019 15:52:55
+Iterating ...
+   57         174000           1.557           13.79        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 15:52:58
+Fitness Calculated 18-May-2019 16:16:04
+Iterating ...
+   58         177000           1.557           13.82        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 16:16:07
+Fitness Calculated 18-May-2019 16:37:59
+Iterating ...
+   59         180000           1.557              14        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 16:38:02
+Fitness Calculated 18-May-2019 17:01:19
+Iterating ...
+   60         183000           1.556           14.22        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 17:01:22
+Fitness Calculated 18-May-2019 17:23:09
+Iterating ...
+   61         186000           1.556            14.1        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 17:23:12
+Fitness Calculated 18-May-2019 17:46:02
+Iterating ...
+   62         189000           1.556           14.12        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 17:46:05
+Fitness Calculated 18-May-2019 18:09:10
+Iterating ...
+   63         192000           1.555           14.11        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 18:09:13
+Fitness Calculated 18-May-2019 18:29:50
+Iterating ...
+   64         195000           1.555           14.61        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 18:29:53
+Fitness Calculated 18-May-2019 18:53:48
+Iterating ...
+   65         198000           1.555            14.5        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 18:53:52
+Fitness Calculated 18-May-2019 19:16:20
+Iterating ...
+   66         201000           1.554           14.39        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 19:16:24
+Fitness Calculated 18-May-2019 19:37:23
+Iterating ...
+   67         204000           1.553           14.32        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 19:37:26
+Fitness Calculated 18-May-2019 20:01:40
+Iterating ...
+   68         207000           1.553           14.34        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 20:01:44
+Fitness Calculated 18-May-2019 20:24:06
+Iterating ...
+   69         210000           1.552           14.56        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 20:24:09
+Fitness Calculated 18-May-2019 20:45:28
+Iterating ...
+   70         213000           1.552           14.33        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 20:45:32
+Fitness Calculated 18-May-2019 21:06:07
+Iterating ...
+   71         216000           1.552           14.31        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 21:06:11
+Fitness Calculated 18-May-2019 21:28:38
+Iterating ...
+   72         219000           1.551           14.13        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 21:28:42
+Fitness Calculated 18-May-2019 21:53:50
+Iterating ...
+   73         222000           1.551            14.3        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 21:53:53
+Fitness Calculated 18-May-2019 22:17:30
+Iterating ...
+   74         225000           1.549           14.24        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 22:17:34
+Fitness Calculated 18-May-2019 22:40:23
+Iterating ...
+   75         228000           1.549           14.12        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 22:40:27
+Fitness Calculated 18-May-2019 23:02:52
+Iterating ...
+   76         231000           1.548           14.17        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 23:02:56
+Fitness Calculated 18-May-2019 23:24:57
+Iterating ...
+   77         234000           1.548           14.27        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 23:25:01
+Fitness Calculated 18-May-2019 23:45:36
+Iterating ...
+   78         237000           1.548           14.24        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 18-May-2019 23:45:40
+Fitness Calculated 19-May-2019 00:08:47
+Iterating ...
+   79         240000           1.548           13.88        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 00:08:51
+Fitness Calculated 19-May-2019 00:29:31
+Iterating ...
+   80         243000           1.548           14.13        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 00:29:35
+Fitness Calculated 19-May-2019 00:51:48
+Iterating ...
+   81         246000           1.548           13.82        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 00:51:52
+Fitness Calculated 19-May-2019 01:14:14
+Iterating ...
+   82         249000           1.548           14.02        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 01:14:18
+Fitness Calculated 19-May-2019 01:39:07
+Iterating ...
+   83         252000           1.548           13.73        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 01:39:11
+Fitness Calculated 19-May-2019 02:02:41
+Iterating ...
+   84         255000           1.548              14        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 02:02:45
+Fitness Calculated 19-May-2019 02:24:07
+Iterating ...
+   85         258000           1.547           13.86        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 02:24:11
+Fitness Calculated 19-May-2019 02:47:49
+Iterating ...
+   86         261000           1.547           14.02        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 02:47:53
+Fitness Calculated 19-May-2019 03:10:40
+Iterating ...
+   87         264000           1.547              14        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 03:10:44
+Fitness Calculated 19-May-2019 03:36:55
+Iterating ...
+   88         267000           1.547           13.81        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 03:36:59
+Fitness Calculated 19-May-2019 03:58:13
+Iterating ...
+   89         270000           1.547           13.97        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 03:58:18
+Fitness Calculated 19-May-2019 04:21:10
+Iterating ...
+   90         273000           1.546           14.12        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 04:21:15
+Fitness Calculated 19-May-2019 04:44:01
+Iterating ...
+   91         276000           1.545           13.79        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 04:44:05
+Fitness Calculated 19-May-2019 05:08:25
+Iterating ...
+   92         279000           1.545           13.76        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 05:08:29
+Fitness Calculated 19-May-2019 05:33:27
+Iterating ...
+   93         282000           1.545           14.02        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 05:33:31
+Fitness Calculated 19-May-2019 05:56:44
+Iterating ...
+   94         285000           1.544           13.95        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 05:56:49
+Fitness Calculated 19-May-2019 06:23:37
+Iterating ...
+   95         288000           1.544           13.89        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 06:23:42
+Fitness Calculated 19-May-2019 06:48:13
+Iterating ...
+   96         291000           1.544           13.64        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 06:48:18
+Fitness Calculated 19-May-2019 07:11:44
+Iterating ...
+   97         294000           1.544           13.66        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 07:11:49
+Fitness Calculated 19-May-2019 07:33:56
+Iterating ...
+   98         297000           1.543           13.81        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 07:34:01
+Fitness Calculated 19-May-2019 07:57:02
+Iterating ...
+   99         300000           1.542           13.83        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 07:57:07
+Fitness Calculated 19-May-2019 08:21:56
+Iterating ...
+  100         303000           1.542           13.83        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 08:22:00
+Fitness Calculated 19-May-2019 08:45:34
+Iterating ...
+  101         306000           1.542           13.88        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 08:45:39
+Fitness Calculated 19-May-2019 09:09:34
+Iterating ...
+  102         309000           1.542           13.82        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 09:09:39
+Fitness Calculated 19-May-2019 09:32:58
+Iterating ...
+  103         312000           1.542           13.81        2
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 09:33:03
+Fitness Calculated 19-May-2019 09:56:16
+Iterating ...
+  104         315000           1.542           13.99        3
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 09:56:21
+Fitness Calculated 19-May-2019 10:22:36
+Iterating ...
+  105         318000           1.542           14.04        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 10:22:41
+Fitness Calculated 19-May-2019 10:45:39
+Iterating ...
+  106         321000           1.542           13.66        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 10:45:44
+Fitness Calculated 19-May-2019 11:10:33
+Iterating ...
+  107         324000           1.542           13.67        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 11:10:38
+Fitness Calculated 19-May-2019 11:33:17
+Iterating ...
+  108         327000           1.541           13.67        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 11:33:22
+Fitness Calculated 19-May-2019 11:56:04
+Iterating ...
+  109         330000           1.541           13.63        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 11:56:09
+Fitness Calculated 19-May-2019 12:18:55
+Iterating ...
+  110         333000           1.541           13.93        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 12:19:00
+Fitness Calculated 19-May-2019 12:40:43
+Iterating ...
+  111         336000           1.541           14.32        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 12:40:48
+Fitness Calculated 19-May-2019 13:03:51
+Iterating ...
+  112         339000           1.541           14.17        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 13:03:56
+Fitness Calculated 19-May-2019 13:27:27
+Iterating ...
+  113         342000            1.54           14.09        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 13:27:33
+Fitness Calculated 19-May-2019 13:51:30
+Iterating ...
+  114         345000           1.539           13.94        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 13:51:36
+Fitness Calculated 19-May-2019 14:13:52
+Iterating ...
+  115         348000           1.539           13.79        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 14:13:58
+Fitness Calculated 19-May-2019 14:36:28
+Iterating ...
+  116         351000           1.539           13.81        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 14:36:34
+Fitness Calculated 19-May-2019 15:02:11
+Iterating ...
+  117         354000           1.539            13.7        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 15:02:16
+Fitness Calculated 19-May-2019 15:25:39
+Iterating ...
+  118         357000           1.539           13.88        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 15:25:45
+Fitness Calculated 19-May-2019 15:50:06
+Iterating ...
+  119         360000           1.539           13.91        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 15:50:11
+Fitness Calculated 19-May-2019 16:13:27
+Iterating ...
+  120         363000           1.539           13.77        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 16:13:32
+Fitness Calculated 19-May-2019 16:34:19
+Iterating ...
+  121         366000           1.538            13.7        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 16:34:25
+Fitness Calculated 19-May-2019 16:59:09
+Iterating ...
+  122         369000           1.538           13.94        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 16:59:15
+Fitness Calculated 19-May-2019 17:23:36
+Iterating ...
+  123         372000           1.538           13.99        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 17:23:41
+Fitness Calculated 19-May-2019 17:47:04
+Iterating ...
+  124         375000           1.538           14.08        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 17:47:10
+Fitness Calculated 19-May-2019 18:11:22
+Iterating ...
+  125         378000           1.538              14        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 18:11:27
+Fitness Calculated 19-May-2019 18:36:35
+Iterating ...
+  126         381000           1.538           13.86        2
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 18:36:41
+Fitness Calculated 19-May-2019 19:00:22
+Iterating ...
+  127         384000           1.538           13.86        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 19:00:28
+Fitness Calculated 19-May-2019 19:24:20
+Iterating ...
+  128         387000           1.538           13.82        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 19:24:26
+Fitness Calculated 19-May-2019 19:48:29
+Iterating ...
+  129         390000           1.538           13.55        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 19:48:35
+Fitness Calculated 19-May-2019 20:12:12
+Iterating ...
+  130         393000           1.538           13.72        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 20:12:19
+Fitness Calculated 19-May-2019 20:39:31
+Iterating ...
+  131         396000           1.538           13.75        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 20:39:37
+Fitness Calculated 19-May-2019 21:04:21
+Iterating ...
+  132         399000           1.538           13.99        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 21:04:28
+Fitness Calculated 19-May-2019 21:27:22
+Iterating ...
+  133         402000           1.537           14.11        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 21:27:28
+Fitness Calculated 19-May-2019 21:49:07
+Iterating ...
+  134         405000           1.537           13.98        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 21:49:14
+Fitness Calculated 19-May-2019 22:11:28
+Iterating ...
+  135         408000           1.537           13.96        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 22:11:34
+Fitness Calculated 19-May-2019 22:34:14
+Iterating ...
+  136         411000           1.537           13.79        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 22:34:21
+Fitness Calculated 19-May-2019 22:59:09
+Iterating ...
+  137         414000           1.537           13.78        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 22:59:15
+Fitness Calculated 19-May-2019 23:21:25
+Iterating ...
+  138         417000           1.537           13.85        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 23:21:31
+Fitness Calculated 19-May-2019 23:44:59
+Iterating ...
+  139         420000           1.537           13.82        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 19-May-2019 23:45:06
+Fitness Calculated 20-May-2019 00:09:37
+Iterating ...
+  140         423000           1.537           13.83        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 00:09:44
+Fitness Calculated 20-May-2019 00:32:28
+Iterating ...
+  141         426000           1.537           13.77        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 00:32:35
+Fitness Calculated 20-May-2019 00:56:57
+Iterating ...
+  142         429000           1.537           13.73        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 00:57:03
+Fitness Calculated 20-May-2019 01:20:36
+Iterating ...
+  143         432000           1.537           13.74        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 01:20:43
+Fitness Calculated 20-May-2019 01:45:16
+Iterating ...
+  144         435000           1.537           13.97        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 01:45:22
+Fitness Calculated 20-May-2019 02:09:38
+Iterating ...
+  145         438000           1.537           13.84        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 02:09:44
+Fitness Calculated 20-May-2019 02:33:56
+Iterating ...
+  146         441000           1.537           13.73        1
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 02:34:03
+Fitness Calculated 20-May-2019 02:58:43
+Iterating ...
+  147         444000           1.537            13.8        2
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 02:58:50
+Fitness Calculated 20-May-2019 03:22:30
+Iterating ...
+  148         447000           1.537           13.81        3
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 03:22:36
+Fitness Calculated 20-May-2019 03:44:11
+Iterating ...
+  149         450000           1.537           13.42        0
+SOSMC Passive with PIDD - Starting Fitness Calculation 20-May-2019 03:44:18
+Fitness Calculated 20-May-2019 04:10:05
+Iterating ...
+  150         453000           1.537           13.36        0
+Optimization terminated: maximum number of generations exceeded.
+Performing final task
+Parallel pool using the 'ClusterPandora' profile is shutting down.
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 68 workers.
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 04:11:16
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 20-May-2019 04:14:09
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 04:14:10
+Fitness Calculated 20-May-2019 04:17:08
+Iterating ...
+    1          6000           8.397           26.08        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 04:17:09
+Fitness Calculated 20-May-2019 04:21:45
+Iterating ...
+    2          9000           7.837           25.19        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 04:21:46
+Fitness Calculated 20-May-2019 04:37:36
+Iterating ...
+    3         12000           6.145           23.98        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 04:37:38
+Fitness Calculated 20-May-2019 04:56:09
+Iterating ...
+    4         15000           2.786           22.83        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 04:56:11
+Fitness Calculated 20-May-2019 05:14:53
+Iterating ...
+    5         18000           1.959           21.65        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 05:14:55
+Fitness Calculated 20-May-2019 05:37:42
+Iterating ...
+    6         21000           1.815           20.48        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 05:37:44
+Fitness Calculated 20-May-2019 06:11:56
+Iterating ...
+    7         24000           1.814           19.13        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 06:11:59
+Fitness Calculated 20-May-2019 06:46:50
+Iterating ...
+    8         27000           1.808           17.75        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 06:46:53
+Fitness Calculated 20-May-2019 07:21:54
+Iterating ...
+    9         30000           1.776           16.73        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 07:21:56
+Fitness Calculated 20-May-2019 07:56:50
+Iterating ...
+   10         33000           1.753           15.71        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 07:56:53
+Fitness Calculated 20-May-2019 08:31:50
+Iterating ...
+   11         36000           1.748           15.32        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 08:31:53
+Fitness Calculated 20-May-2019 09:06:49
+Iterating ...
+   12         39000           1.746           15.08        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 09:06:53
+Fitness Calculated 20-May-2019 09:41:52
+Iterating ...
+   13         42000           1.741           14.65        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 09:41:55
+Fitness Calculated 20-May-2019 10:16:51
+Iterating ...
+   14         45000            1.74           14.42        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 10:16:55
+Fitness Calculated 20-May-2019 10:51:50
+Iterating ...
+   15         48000            1.72           14.09        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 10:51:54
+Fitness Calculated 20-May-2019 11:26:59
+Iterating ...
+   16         51000           1.712           14.18        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 11:27:02
+Fitness Calculated 20-May-2019 12:02:01
+Iterating ...
+   17         54000           1.711           14.06        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 12:02:05
+Fitness Calculated 20-May-2019 12:37:07
+Iterating ...
+   18         57000           1.707           13.79        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 12:37:11
+Fitness Calculated 20-May-2019 13:12:26
+Iterating ...
+   19         60000           1.698           13.84        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 13:12:30
+Fitness Calculated 20-May-2019 13:47:30
+Iterating ...
+   20         63000           1.694           13.75        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 13:47:34
+Fitness Calculated 20-May-2019 14:22:32
+Iterating ...
+   21         66000           1.694           13.83        1
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 14:22:36
+Fitness Calculated 20-May-2019 14:57:34
+Iterating ...
+   22         69000           1.678           13.91        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 14:57:38
+Fitness Calculated 20-May-2019 15:32:37
+Iterating ...
+   23         72000           1.678           13.88        1
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 15:32:42
+Fitness Calculated 20-May-2019 16:07:41
+Iterating ...
+   24         75000           1.663           14.03        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 16:07:46
+Fitness Calculated 20-May-2019 16:42:48
+Iterating ...
+   25         78000           1.656           13.86        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 16:42:54
+Fitness Calculated 20-May-2019 17:17:52
+Iterating ...
+   26         81000           1.653           13.88        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 17:17:57
+Fitness Calculated 20-May-2019 17:52:55
+Iterating ...
+   27         84000           1.648           13.83        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 17:53:01
+Fitness Calculated 20-May-2019 18:28:11
+Iterating ...
+   28         87000           1.639            13.8        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 18:28:17
+Fitness Calculated 20-May-2019 19:03:25
+Iterating ...
+   29         90000           1.628           13.84        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 19:03:31
+Fitness Calculated 20-May-2019 19:38:28
+Iterating ...
+   30         93000           1.628           14.16        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 19:38:33
+Fitness Calculated 20-May-2019 20:13:30
+Iterating ...
+   31         96000           1.628           14.39        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 20:13:36
+Fitness Calculated 20-May-2019 20:48:59
+Iterating ...
+   32         99000           1.626           14.48        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 20:49:05
+Fitness Calculated 20-May-2019 21:24:04
+Iterating ...
+   33         102000           1.624           14.74        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 21:24:10
+Fitness Calculated 20-May-2019 21:59:14
+Iterating ...
+   34         105000           1.621           14.77        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 21:59:20
+Fitness Calculated 20-May-2019 22:34:21
+Iterating ...
+   35         108000            1.62           14.43        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 22:34:27
+Fitness Calculated 20-May-2019 23:09:24
+Iterating ...
+   36         111000           1.617            14.6        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 23:09:31
+Fitness Calculated 20-May-2019 23:44:30
+Iterating ...
+   37         114000           1.617           14.71        0
+SOSMC Passive Direct - Starting Fitness Calculation 20-May-2019 23:44:37
+Fitness Calculated 21-May-2019 00:19:38
+Iterating ...
+   38         117000           1.614           14.97        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 00:19:44
+Fitness Calculated 21-May-2019 00:54:58
+Iterating ...
+   39         120000           1.613           14.97        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 00:55:04
+Fitness Calculated 21-May-2019 01:30:04
+Iterating ...
+   40         123000           1.612           14.66        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 01:30:11
+Fitness Calculated 21-May-2019 02:05:12
+Iterating ...
+   41         126000           1.611            14.8        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 02:05:19
+Fitness Calculated 21-May-2019 02:40:17
+Iterating ...
+   42         129000           1.609           14.68        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 02:40:24
+Fitness Calculated 21-May-2019 03:15:25
+Iterating ...
+   43         132000           1.609           14.48        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 03:15:32
+Fitness Calculated 21-May-2019 03:50:35
+Iterating ...
+   44         135000           1.607           14.73        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 03:50:43
+Fitness Calculated 21-May-2019 04:25:41
+Iterating ...
+   45         138000           1.607           14.84        1
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 04:25:48
+Fitness Calculated 21-May-2019 05:01:18
+Iterating ...
+   46         141000           1.606           14.43        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 05:01:25
+Fitness Calculated 21-May-2019 05:36:27
+Iterating ...
+   47         144000           1.605           14.49        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 05:36:35
+Fitness Calculated 21-May-2019 06:11:31
+Iterating ...
+   48         147000           1.605           14.42        1
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 06:11:39
+Fitness Calculated 21-May-2019 06:46:46
+Iterating ...
+   49         150000           1.604           14.63        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 06:46:53
+Fitness Calculated 21-May-2019 07:21:56
+Iterating ...
+   50         153000           1.602           14.68        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 07:22:04
+Fitness Calculated 21-May-2019 07:57:15
+Iterating ...
+   51         156000           1.602           14.74        1
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 07:57:23
+Fitness Calculated 21-May-2019 08:32:24
+Iterating ...
+   52         159000           1.602           14.65        2
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 08:32:32
+Fitness Calculated 21-May-2019 09:07:35
+Iterating ...
+   53         162000           1.602           14.55        3
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 09:07:44
+Fitness Calculated 21-May-2019 09:42:43
+Iterating ...
+   54         165000           1.601           14.52        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 09:42:51
+Fitness Calculated 21-May-2019 10:17:53
+Iterating ...
+   55         168000             1.6           14.51        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 10:18:01
+Fitness Calculated 21-May-2019 10:53:03
+Iterating ...
+   56         171000             1.6           14.85        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 10:53:12
+Fitness Calculated 21-May-2019 11:28:15
+Iterating ...
+   57         174000           1.599            14.8        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 11:28:23
+Fitness Calculated 21-May-2019 12:03:30
+Iterating ...
+   58         177000           1.598           15.03        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 12:03:39
+Fitness Calculated 21-May-2019 12:38:54
+Iterating ...
+   59         180000           1.597            14.8        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 12:39:03
+Fitness Calculated 21-May-2019 13:14:21
+Iterating ...
+   60         183000           1.595           14.81        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 13:14:30
+Fitness Calculated 21-May-2019 13:49:31
+Iterating ...
+   61         186000           1.595           14.85        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 13:49:41
+Fitness Calculated 21-May-2019 14:24:39
+Iterating ...
+   62         189000           1.594           15.08        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 14:24:48
+Fitness Calculated 21-May-2019 14:59:49
+Iterating ...
+   63         192000           1.591           14.78        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 14:59:58
+Fitness Calculated 21-May-2019 15:35:07
+Iterating ...
+   64         195000           1.591           14.68        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 15:35:17
+Fitness Calculated 21-May-2019 16:10:15
+Iterating ...
+   65         198000            1.59           14.63        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 16:10:25
+Fitness Calculated 21-May-2019 16:45:42
+Iterating ...
+   66         201000            1.59           14.77        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 16:45:52
+Fitness Calculated 21-May-2019 17:21:04
+Iterating ...
+   67         204000            1.59           14.68        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 17:21:14
+Fitness Calculated 21-May-2019 17:56:32
+Iterating ...
+   68         207000            1.59           15.08        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 17:56:42
+Fitness Calculated 21-May-2019 18:31:42
+Iterating ...
+   69         210000           1.589           14.78        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 18:31:53
+Fitness Calculated 21-May-2019 19:06:53
+Iterating ...
+   70         213000           1.588           14.92        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 19:07:03
+Fitness Calculated 21-May-2019 19:42:11
+Iterating ...
+   71         216000           1.587           14.85        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 19:42:22
+Fitness Calculated 21-May-2019 20:17:23
+Iterating ...
+   72         219000           1.586           14.79        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 20:17:33
+Fitness Calculated 21-May-2019 20:52:33
+Iterating ...
+   73         222000           1.586           14.75        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 20:52:44
+Fitness Calculated 21-May-2019 21:27:43
+Iterating ...
+   74         225000           1.585            14.8        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 21:27:54
+Fitness Calculated 21-May-2019 22:02:57
+Iterating ...
+   75         228000           1.585           14.88        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 22:03:08
+Fitness Calculated 21-May-2019 22:38:11
+Iterating ...
+   76         231000           1.584           14.89        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 22:38:22
+Fitness Calculated 21-May-2019 23:13:17
+Iterating ...
+   77         234000           1.584           14.67        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 23:13:28
+Fitness Calculated 21-May-2019 23:48:26
+Iterating ...
+   78         237000           1.584            14.8        0
+SOSMC Passive Direct - Starting Fitness Calculation 21-May-2019 23:48:37
+Fitness Calculated 22-May-2019 00:23:38
+Iterating ...
+   79         240000           1.584           15.05        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 00:23:50
+Fitness Calculated 22-May-2019 00:58:47
+Iterating ...
+   80         243000           1.584           14.95        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 00:58:59
+Fitness Calculated 22-May-2019 01:33:58
+Iterating ...
+   81         246000           1.583           15.24        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 01:34:10
+Fitness Calculated 22-May-2019 02:09:13
+Iterating ...
+   82         249000           1.583           14.81        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 02:09:25
+Fitness Calculated 22-May-2019 02:44:21
+Iterating ...
+   83         252000           1.583           14.67        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 02:44:33
+Fitness Calculated 22-May-2019 03:19:44
+Iterating ...
+   84         255000           1.583           14.57        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 03:19:57
+Fitness Calculated 22-May-2019 03:54:58
+Iterating ...
+   85         258000           1.583           14.48        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 03:55:11
+Fitness Calculated 22-May-2019 04:30:17
+Iterating ...
+   86         261000           1.582           14.66        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 04:30:29
+Fitness Calculated 22-May-2019 05:05:29
+Iterating ...
+   87         264000           1.582           14.73        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 05:05:42
+Fitness Calculated 22-May-2019 05:40:38
+Iterating ...
+   88         267000           1.582           14.74        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 05:40:50
+Fitness Calculated 22-May-2019 06:15:49
+Iterating ...
+   89         270000           1.582           14.57        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 06:16:02
+Fitness Calculated 22-May-2019 06:51:01
+Iterating ...
+   90         273000           1.581           14.95        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 06:51:13
+Fitness Calculated 22-May-2019 07:26:39
+Iterating ...
+   91         276000           1.581           14.78        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 07:26:52
+Fitness Calculated 22-May-2019 08:01:57
+Iterating ...
+   92         279000           1.581           14.54        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 08:02:10
+Fitness Calculated 22-May-2019 08:37:12
+Iterating ...
+   93         282000            1.58           14.66        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 08:37:26
+Fitness Calculated 22-May-2019 09:12:25
+Iterating ...
+   94         285000           1.579           14.81        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 09:12:38
+Fitness Calculated 22-May-2019 09:47:38
+Iterating ...
+   95         288000           1.579           14.86        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 09:47:51
+Fitness Calculated 22-May-2019 10:22:48
+Iterating ...
+   96         291000           1.579           14.95        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 10:23:02
+Fitness Calculated 22-May-2019 10:58:11
+Iterating ...
+   97         294000           1.579           14.89        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 10:58:25
+Fitness Calculated 22-May-2019 11:33:30
+Iterating ...
+   98         297000           1.579           14.72        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 11:33:43
+Fitness Calculated 22-May-2019 12:08:41
+Iterating ...
+   99         300000           1.579           14.88        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 12:08:55
+Fitness Calculated 22-May-2019 12:43:54
+Iterating ...
+  100         303000           1.578           14.89        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 12:44:08
+Fitness Calculated 22-May-2019 13:19:11
+Iterating ...
+  101         306000           1.578            14.8        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 13:19:25
+Fitness Calculated 22-May-2019 13:54:29
+Iterating ...
+  102         309000           1.578           14.78        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 13:54:43
+Fitness Calculated 22-May-2019 14:29:42
+Iterating ...
+  103         312000           1.578           14.65        1
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 14:29:56
+Fitness Calculated 22-May-2019 15:04:58
+Iterating ...
+  104         315000           1.578           14.66        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 15:05:12
+Fitness Calculated 22-May-2019 15:40:12
+Iterating ...
+  105         318000           1.578           14.66        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 15:40:27
+Fitness Calculated 22-May-2019 16:15:26
+Iterating ...
+  106         321000           1.577           14.85        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 16:15:40
+Fitness Calculated 22-May-2019 16:50:47
+Iterating ...
+  107         324000           1.577           14.88        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 16:51:01
+Fitness Calculated 22-May-2019 17:25:58
+Iterating ...
+  108         327000           1.577           14.86        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 17:26:13
+Fitness Calculated 22-May-2019 18:01:10
+Iterating ...
+  109         330000           1.577           14.96        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 18:01:25
+Fitness Calculated 22-May-2019 18:36:25
+Iterating ...
+  110         333000           1.577           14.88        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 18:36:40
+Fitness Calculated 22-May-2019 19:11:39
+Iterating ...
+  111         336000           1.574           14.52        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 19:11:55
+Fitness Calculated 22-May-2019 19:46:57
+Iterating ...
+  112         339000           1.574           14.72        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 19:47:12
+Fitness Calculated 22-May-2019 20:22:16
+Iterating ...
+  113         342000           1.574           14.79        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 20:22:31
+Fitness Calculated 22-May-2019 20:57:56
+Iterating ...
+  114         345000           1.574           14.82        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 20:58:12
+Fitness Calculated 22-May-2019 21:33:13
+Iterating ...
+  115         348000           1.573           14.84        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 21:33:29
+Fitness Calculated 22-May-2019 22:08:35
+Iterating ...
+  116         351000           1.573           14.93        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 22:08:50
+Fitness Calculated 22-May-2019 22:43:53
+Iterating ...
+  117         354000           1.573           14.82        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 22:44:09
+Fitness Calculated 22-May-2019 23:19:06
+Iterating ...
+  118         357000           1.573           15.06        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 23:19:22
+Fitness Calculated 22-May-2019 23:54:23
+Iterating ...
+  119         360000           1.573           14.96        0
+SOSMC Passive Direct - Starting Fitness Calculation 22-May-2019 23:54:39
+Fitness Calculated 23-May-2019 00:29:55
+Iterating ...
+  120         363000           1.573           15.05        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 00:30:12
+Fitness Calculated 23-May-2019 01:05:25
+Iterating ...
+  121         366000           1.573           15.03        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 01:05:42
+Fitness Calculated 23-May-2019 01:40:53
+Iterating ...
+  122         369000           1.573           15.03        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 01:41:10
+Fitness Calculated 23-May-2019 02:16:10
+Iterating ...
+  123         372000           1.573           14.76        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 02:16:26
+Fitness Calculated 23-May-2019 02:51:41
+Iterating ...
+  124         375000           1.573           14.84        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 02:51:57
+Fitness Calculated 23-May-2019 03:26:55
+Iterating ...
+  125         378000           1.573           14.81        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 03:27:11
+Fitness Calculated 23-May-2019 04:02:13
+Iterating ...
+  126         381000           1.571           14.54        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 04:02:30
+Fitness Calculated 23-May-2019 04:37:30
+Iterating ...
+  127         384000           1.571           14.76        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 04:37:48
+Fitness Calculated 23-May-2019 05:12:52
+Iterating ...
+  128         387000           1.571           14.71        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 05:13:09
+Fitness Calculated 23-May-2019 05:48:06
+Iterating ...
+  129         390000           1.571           14.71        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 05:48:23
+Fitness Calculated 23-May-2019 06:23:20
+Iterating ...
+  130         393000           1.571            14.7        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 06:23:37
+Fitness Calculated 23-May-2019 06:58:41
+Iterating ...
+  131         396000           1.571           14.72        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 06:58:58
+Fitness Calculated 23-May-2019 07:34:01
+Iterating ...
+  132         399000           1.571           14.53        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 07:34:19
+Fitness Calculated 23-May-2019 08:09:16
+Iterating ...
+  133         402000           1.571           14.83        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 08:09:33
+Fitness Calculated 23-May-2019 08:44:31
+Iterating ...
+  134         405000            1.57           14.93        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 08:44:49
+Fitness Calculated 23-May-2019 09:19:51
+Iterating ...
+  135         408000            1.57           14.64        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 09:20:09
+Fitness Calculated 23-May-2019 09:55:21
+Iterating ...
+  136         411000            1.57           14.93        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 09:55:39
+Fitness Calculated 23-May-2019 10:30:40
+Iterating ...
+  137         414000            1.57           14.92        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 10:30:58
+Fitness Calculated 23-May-2019 11:06:05
+Iterating ...
+  138         417000            1.57            14.7        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 11:06:23
+Fitness Calculated 23-May-2019 11:41:23
+Iterating ...
+  139         420000            1.57           14.78        1
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 11:41:41
+Fitness Calculated 23-May-2019 12:16:49
+Iterating ...
+  140         423000            1.57           14.98        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 12:17:08
+Fitness Calculated 23-May-2019 12:52:10
+Iterating ...
+  141         426000            1.57           15.09        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 12:52:29
+Fitness Calculated 23-May-2019 13:27:26
+Iterating ...
+  142         429000            1.57           15.15        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 13:27:44
+Fitness Calculated 23-May-2019 14:02:42
+Iterating ...
+  143         432000            1.57           15.06        1
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 14:03:01
+Fitness Calculated 23-May-2019 14:37:59
+Iterating ...
+  144         435000            1.57           15.05        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 14:38:18
+Fitness Calculated 23-May-2019 15:13:28
+Iterating ...
+  145         438000            1.57              15        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 15:13:47
+Fitness Calculated 23-May-2019 15:48:46
+Iterating ...
+  146         441000            1.57           15.01        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 15:49:05
+Fitness Calculated 23-May-2019 16:24:09
+Iterating ...
+  147         444000            1.57           15.06        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 16:24:29
+Fitness Calculated 23-May-2019 16:59:31
+Iterating ...
+  148         447000            1.57           14.83        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 16:59:50
+Fitness Calculated 23-May-2019 17:34:52
+Iterating ...
+  149         450000           1.569              15        0
+SOSMC Passive Direct - Starting Fitness Calculation 23-May-2019 17:35:11
+Fitness Calculated 23-May-2019 18:10:16
+Iterating ...
+  150         453000           1.569           14.94        0
+Optimization terminated: maximum number of generations exceeded.
+Performing final task
+Parallel pool using the 'ClusterPandora' profile is shutting down.
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 68 workers.
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 18:11:53
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 23-May-2019 18:14:08
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 18:14:08
+Fitness Calculated 23-May-2019 18:16:42
+Iterating ...
+    1          6000            2.49           50.01        0
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 18:16:43
+Fitness Calculated 23-May-2019 18:23:39
+Iterating ...
+    2          9000           2.442            48.7        0
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 18:23:40
+Fitness Calculated 23-May-2019 18:56:19
+Iterating ...
+    3         12000           2.358           46.43        0
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 18:56:19
+Fitness Calculated 23-May-2019 19:46:16
+Iterating ...
+    4         15000           2.358           42.11        1
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 19:46:17
+Fitness Calculated 23-May-2019 20:44:58
+Iterating ...
+    5         18000           2.216           36.89        0
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 20:45:00
+Fitness Calculated 23-May-2019 21:44:12
+Iterating ...
+    6         21000           2.216            32.2        0
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 21:44:13
+Fitness Calculated 23-May-2019 22:43:48
+Iterating ...
+    7         24000           2.133            28.4        0
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 22:43:49
+Fitness Calculated 23-May-2019 23:43:18
+Iterating ...
+    8         27000           2.133           25.94        0
+Adaptive with PIDD - Starting Fitness Calculation 23-May-2019 23:43:19
+Fitness Calculated 24-May-2019 00:42:50
+Iterating ...
+    9         30000           2.131           24.24        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 00:42:51
+Fitness Calculated 24-May-2019 01:42:25
+Iterating ...
+   10         33000           1.806           22.83        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 01:42:26
+Fitness Calculated 24-May-2019 02:42:42
+Iterating ...
+   11         36000           1.806           21.72        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 02:42:44
+Fitness Calculated 24-May-2019 03:42:34
+Iterating ...
+   12         39000           1.796           21.32        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 03:42:35
+Fitness Calculated 24-May-2019 04:42:18
+Iterating ...
+   13         42000           1.796            21.3        1
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 04:42:19
+Fitness Calculated 24-May-2019 05:42:25
+Iterating ...
+   14         45000           1.784           21.27        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 05:42:27
+Fitness Calculated 24-May-2019 06:42:20
+Iterating ...
+   15         48000           1.781           21.13        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 06:42:22
+Fitness Calculated 24-May-2019 07:42:29
+Iterating ...
+   16         51000            1.78            21.2        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 07:42:31
+Fitness Calculated 24-May-2019 08:46:21
+Iterating ...
+   17         54000            1.78           21.38        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 08:46:23
+Fitness Calculated 24-May-2019 09:46:34
+Iterating ...
+   18         57000           1.776           21.17        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 09:46:36
+Fitness Calculated 24-May-2019 10:46:40
+Iterating ...
+   19         60000           1.773           21.28        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 10:46:42
+Fitness Calculated 24-May-2019 11:46:44
+Iterating ...
+   20         63000           1.773           21.34        1
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 11:46:46
+Fitness Calculated 24-May-2019 12:47:53
+Iterating ...
+   21         66000           1.765           21.36        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 12:47:55
+Fitness Calculated 24-May-2019 13:48:24
+Iterating ...
+   22         69000           1.753           21.52        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 13:48:26
+Fitness Calculated 24-May-2019 14:48:23
+Iterating ...
+   23         72000            1.75           21.61        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 14:48:26
+Fitness Calculated 24-May-2019 15:48:09
+Iterating ...
+   24         75000            1.75           21.68        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 15:48:11
+Fitness Calculated 24-May-2019 16:48:02
+Iterating ...
+   25         78000            1.75            21.3        1
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 16:48:05
+Fitness Calculated 24-May-2019 17:53:48
+Iterating ...
+   26         81000           1.749           21.36        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 17:53:51
+Fitness Calculated 24-May-2019 18:54:05
+Iterating ...
+   27         84000           1.748           21.56        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 18:54:07
+Fitness Calculated 24-May-2019 19:54:38
+Iterating ...
+   28         87000           1.739           21.15        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 19:54:41
+Fitness Calculated 24-May-2019 20:54:36
+Iterating ...
+   29         90000           1.738           21.11        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 20:54:39
+Fitness Calculated 24-May-2019 21:54:54
+Iterating ...
+   30         93000           1.738           20.92        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 21:54:56
+Fitness Calculated 24-May-2019 22:55:25
+Iterating ...
+   31         96000           1.731           20.96        0
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 22:55:28
+Fitness Calculated 24-May-2019 23:55:37
+Iterating ...
+   32         99000           1.731            21.4        1
+Adaptive with PIDD - Starting Fitness Calculation 24-May-2019 23:55:40
+Fitness Calculated 25-May-2019 00:55:53
+Iterating ...
+   33         102000           1.728           21.38        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 00:55:56
+Fitness Calculated 25-May-2019 01:56:19
+Iterating ...
+   34         105000           1.728           21.31        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 01:56:21
+Fitness Calculated 25-May-2019 02:56:39
+Iterating ...
+   35         108000           1.728           20.92        1
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 02:56:41
+Fitness Calculated 25-May-2019 03:56:51
+Iterating ...
+   36         111000           1.728           21.32        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 03:56:54
+Fitness Calculated 25-May-2019 04:57:04
+Iterating ...
+   37         114000           1.728           21.03        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 04:57:07
+Fitness Calculated 25-May-2019 05:57:27
+Iterating ...
+   38         117000           1.728           21.26        1
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 05:57:30
+Fitness Calculated 25-May-2019 06:57:26
+Iterating ...
+   39         120000           1.728           20.89        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 06:57:29
+Fitness Calculated 25-May-2019 07:57:27
+Iterating ...
+   40         123000           1.727           21.09        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 07:57:30
+Fitness Calculated 25-May-2019 08:57:26
+Iterating ...
+   41         126000           1.726           20.79        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 08:57:29
+Fitness Calculated 25-May-2019 10:02:58
+Iterating ...
+   42         129000           1.726           20.89        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 10:03:02
+Fitness Calculated 25-May-2019 11:03:00
+Iterating ...
+   43         132000           1.726           20.72        1
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 11:03:03
+Fitness Calculated 25-May-2019 12:03:15
+Iterating ...
+   44         135000           1.726           21.12        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 12:03:18
+Fitness Calculated 25-May-2019 13:03:42
+Iterating ...
+   45         138000           1.726           21.21        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 13:03:46
+Fitness Calculated 25-May-2019 14:05:33
+Iterating ...
+   46         141000           1.726           21.06        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 14:05:36
+Fitness Calculated 25-May-2019 15:05:53
+Iterating ...
+   47         144000           1.726           21.11        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 15:05:56
+Fitness Calculated 25-May-2019 16:06:08
+Iterating ...
+   48         147000           1.726           21.11        1
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 16:06:12
+Fitness Calculated 25-May-2019 17:06:22
+Iterating ...
+   49         150000           1.726           21.19        2
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 17:06:26
+Fitness Calculated 25-May-2019 18:06:45
+Iterating ...
+   50         153000           1.726           20.97        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 18:06:49
+Fitness Calculated 25-May-2019 19:06:55
+Iterating ...
+   51         156000           1.726           20.97        1
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 19:06:59
+Fitness Calculated 25-May-2019 20:07:07
+Iterating ...
+   52         159000           1.726           21.03        2
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 20:07:10
+Fitness Calculated 25-May-2019 21:07:07
+Iterating ...
+   53         162000           1.725           20.88        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 21:07:11
+Fitness Calculated 25-May-2019 22:07:14
+Iterating ...
+   54         165000           1.725           21.05        1
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 22:07:18
+Fitness Calculated 25-May-2019 23:07:26
+Iterating ...
+   55         168000           1.725           21.26        0
+Adaptive with PIDD - Starting Fitness Calculation 25-May-2019 23:07:30
+Fitness Calculated 26-May-2019 00:07:35
+Iterating ...
+   56         171000           1.725           21.33        0
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 00:07:39
+Fitness Calculated 26-May-2019 01:07:41
+Iterating ...
+   57         174000           1.725           21.13        0
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 01:07:45
+Fitness Calculated 26-May-2019 02:07:59
+Iterating ...
+   58         177000           1.725              21        1
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 02:08:04
+Fitness Calculated 26-May-2019 03:08:05
+Iterating ...
+   59         180000           1.725            21.1        2
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 03:08:09
+Fitness Calculated 26-May-2019 04:08:33
+Iterating ...
+   60         183000           1.725           21.33        3
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 04:08:37
+Fitness Calculated 26-May-2019 05:09:22
+Iterating ...
+   61         186000           1.725            21.3        0
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 05:09:26
+Fitness Calculated 26-May-2019 06:10:11
+Iterating ...
+   62         189000           1.725           20.78        1
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 06:10:16
+Fitness Calculated 26-May-2019 07:10:20
+Iterating ...
+   63         192000           1.725           20.89        2
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 07:10:25
+Fitness Calculated 26-May-2019 08:10:42
+Iterating ...
+   64         195000           1.725           21.09        0
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 08:10:46
+Fitness Calculated 26-May-2019 09:10:48
+Iterating ...
+   65         198000           1.725           20.96        1
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 09:10:53
+Fitness Calculated 26-May-2019 10:13:27
+Iterating ...
+   66         201000           1.725           20.78        0
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 10:13:32
+Fitness Calculated 26-May-2019 11:17:54
+Iterating ...
+   67         204000           1.725           20.57        0
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 11:17:59
+Fitness Calculated 26-May-2019 12:18:02
+Iterating ...
+   68         207000           1.725            20.7        1
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 12:18:07
+Fitness Calculated 26-May-2019 13:18:27
+Iterating ...
+   69         210000           1.725            20.6        2
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 13:18:32
+Fitness Calculated 26-May-2019 14:21:20
+Iterating ...
+   70         213000           1.725           20.64        3
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 14:21:25
+Fitness Calculated 26-May-2019 15:21:45
+Iterating ...
+   71         216000           1.725           21.03        4
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 15:21:50
+Fitness Calculated 26-May-2019 16:21:48
+Iterating ...
+   72         219000           1.725           20.86        5
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 16:21:53
+Fitness Calculated 26-May-2019 17:22:04
+Iterating ...
+   73         222000           1.725           21.21        6
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 17:22:09
+Fitness Calculated 26-May-2019 18:22:08
+Iterating ...
+   74         225000           1.725           21.46        7
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 18:22:13
+Fitness Calculated 26-May-2019 19:22:25
+Iterating ...
+   75         228000           1.725           21.51        8
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 19:22:30
+Fitness Calculated 26-May-2019 20:22:33
+Iterating ...
+   76         231000           1.725           21.29        9
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 20:22:38
+Fitness Calculated 26-May-2019 21:22:45
+Iterating ...
+   77         234000           1.725           21.15       10
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 21:22:50
+Fitness Calculated 26-May-2019 22:22:58
+Iterating ...
+   78         237000           1.725           20.56        0
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 22:23:03
+Fitness Calculated 26-May-2019 23:23:16
+Iterating ...
+   79         240000           1.725           20.73        0
+Adaptive with PIDD - Starting Fitness Calculation 26-May-2019 23:23:21
+Fitness Calculated 27-May-2019 00:23:37
+Iterating ...
+   80         243000           1.725            20.8        1
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 00:23:42
+Fitness Calculated 27-May-2019 01:23:44
+Iterating ...
+   81         246000           1.725           20.69        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 01:23:50
+Fitness Calculated 27-May-2019 02:24:00
+Iterating ...
+   82         249000           1.725           20.59        1
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 02:24:05
+Fitness Calculated 27-May-2019 03:23:59
+Iterating ...
+   83         252000           1.725           20.85        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 03:24:04
+Fitness Calculated 27-May-2019 04:24:19
+Iterating ...
+   84         255000           1.725           20.88        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 04:24:24
+Fitness Calculated 27-May-2019 05:24:21
+Iterating ...
+   85         258000           1.725           21.15        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 05:24:26
+Fitness Calculated 27-May-2019 06:25:28
+Iterating ...
+   86         261000           1.725           21.13        1
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 06:25:34
+Fitness Calculated 27-May-2019 07:25:59
+Iterating ...
+   87         264000           1.724           21.16        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 07:26:04
+Fitness Calculated 27-May-2019 08:26:26
+Iterating ...
+   88         267000           1.724           20.81        1
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 08:26:32
+Fitness Calculated 27-May-2019 09:26:47
+Iterating ...
+   89         270000           1.724            21.2        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 09:26:53
+Fitness Calculated 27-May-2019 10:26:59
+Iterating ...
+   90         273000           1.724            20.9        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 10:27:05
+Fitness Calculated 27-May-2019 11:29:54
+Iterating ...
+   91         276000           1.724            20.7        1
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 11:30:00
+Fitness Calculated 27-May-2019 12:30:14
+Iterating ...
+   92         279000           1.724           20.67        2
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 12:30:20
+Fitness Calculated 27-May-2019 13:30:17
+Iterating ...
+   93         282000           1.723           20.85        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 13:30:23
+Fitness Calculated 27-May-2019 14:30:52
+Iterating ...
+   94         285000           1.723           20.96        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 14:30:58
+Fitness Calculated 27-May-2019 15:31:31
+Iterating ...
+   95         288000           1.723           20.82        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 15:31:37
+Fitness Calculated 27-May-2019 16:32:00
+Iterating ...
+   96         291000           1.723           20.48        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 16:32:07
+Fitness Calculated 27-May-2019 17:39:27
+Iterating ...
+   97         294000           1.723           20.56        1
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 17:39:33
+Fitness Calculated 27-May-2019 18:39:46
+Iterating ...
+   98         297000           1.723           20.91        2
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 18:39:53
+Fitness Calculated 27-May-2019 19:40:12
+Iterating ...
+   99         300000           1.723           20.58        0
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 19:40:18
+Fitness Calculated 27-May-2019 20:40:38
+Iterating ...
+  100         303000           1.723           20.78        1
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 20:40:45
+Fitness Calculated 27-May-2019 21:41:10
+Iterating ...
+  101         306000           1.723           20.62        2
+Adaptive with PIDD - Starting Fitness Calculation 27-May-2019 21:41:16
