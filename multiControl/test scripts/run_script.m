@@ -403,16 +403,16 @@ endTime = 15;
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
-% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2)   
-multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},0)
-% multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},0)
-% multirotor.addCommand({'setRotorStatus(5,''motor loss'',0.75)'},endTime/2)
+% multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
+% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2+endTime/10)   
+% multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/2+2*endTime/10)
+% multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2+3*endTime/10)
+multirotor.addCommand({'setRotorStatus(1,''prop loss'',0.5)'},0)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.75)'},endTime/2)
-multirotor.setSimEffects('motor dynamics on','solver euler')
+multirotor.setSimEffects('motor dynamics on','solver ode45')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
-multirotor.setControlDelay(0.20);
+multirotor.setControlDelay(.2);
 %% Run simulator
 tic
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);

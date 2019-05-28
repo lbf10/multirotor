@@ -7,16 +7,16 @@ addpath('../multiControl/utils')
 warning('off','all')
 
 %% Algorithms to train
-algorithms = { %'SOSMC Passive','Passive NMAC';
-               'SOSMC Passive with PIDD','Passive NMAC';
-               'SOSMC Passive Direct','None';
-	       'Adaptive with PIDD','Passive NMAC';
-	       'Adaptive Direct','None'}; 
+algorithms = { 'SOSMC Active','Active NMAC';
+               'SOSMC Active Direct','None'};
+               %'SOSMC Passive Direct','None';
+	       %'Adaptive with PIDD','Passive NMAC';
+	       %'Adaptive Direct','None'}; 
            
 for it=1:length(algorithms)
     attitudeController = algorithms{it,1};
     controlAllocator = algorithms{it,2};
-    attitudeReference = 'Passive NMAC';
+    attitudeReference = 'Active NMAC';
 
     fullfilename = 0;
 
