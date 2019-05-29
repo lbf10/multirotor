@@ -34,7 +34,7 @@ for jt = 1:numel(samplesFields)
         options(1,end+1) = {0};
         numberOfOptions = length(options);
         for it = 1:numberOfOptions
-            option = options(it,:)
+            option = options(it,:);
 
             % Creates simulation class
             multirotor = multicontrol(8);
@@ -162,7 +162,7 @@ for jt = 1:numel(samplesFields)
             end
             option{8} = multirotor.metrics();
             options(it,:) = option;
-            disp(['Finished calculation ',num2str(it)])
+%            disp(['Finished calculation ',num2str(it)])
         end
         samples.(samplesFields{jt}) = options;
         disp([samplesFields{jt},' - Finished samples matrix ',datestr(now)])
