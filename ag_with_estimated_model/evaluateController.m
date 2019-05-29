@@ -33,7 +33,7 @@ for jt = 1:numel(samplesFields)
         options(1,end+1) = {0};
         options(1,end+1) = {0};
         numberOfOptions = length(options);
-        for it = 1:numberOfOptions
+        parfor it = 1:numberOfOptions
             option = options(it,:);
 
             % Creates simulation class
