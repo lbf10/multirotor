@@ -1,0 +1,238 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 68 workers.
+SOSMC Active - Starting Fitness Calculation 27-May-2019 22:31:00
+Analyzing and transferring files to the workers ...done.
+Fitness Calculated 27-May-2019 22:34:08
+Starting the algorithm
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Active - Starting Fitness Calculation 27-May-2019 22:34:09
+Fitness Calculated 27-May-2019 22:37:26
+Iterating ...
+    1          6000           5.963           23.61        0
+SOSMC Active - Starting Fitness Calculation 27-May-2019 22:37:27
+Fitness Calculated 27-May-2019 22:42:42
+Iterating ...
+    2          9000           4.983           22.85        0
+SOSMC Active - Starting Fitness Calculation 27-May-2019 22:42:42
+Fitness Calculated 27-May-2019 22:56:32
+Iterating ...
+    3         12000           2.133           21.93        0
+SOSMC Active - Starting Fitness Calculation 27-May-2019 22:56:33
+Fitness Calculated 27-May-2019 23:21:37
+Iterating ...
+    4         15000           2.081           20.81        0
+SOSMC Active - Starting Fitness Calculation 27-May-2019 23:21:38
+Fitness Calculated 27-May-2019 23:47:33
+Iterating ...
+    5         18000           1.996            19.5        0
+SOSMC Active - Starting Fitness Calculation 27-May-2019 23:47:34
+Fitness Calculated 28-May-2019 00:23:22
+Iterating ...
+    6         21000           2.058           18.21        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 00:23:23
+Fitness Calculated 28-May-2019 01:01:08
+Iterating ...
+    7         24000           2.009           17.04        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 01:01:09
+Fitness Calculated 28-May-2019 01:39:36
+Iterating ...
+    8         27000           1.978           15.98        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 01:39:37
+Fitness Calculated 28-May-2019 02:18:13
+Iterating ...
+    9         30000           2.004           15.05        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 02:18:14
+Fitness Calculated 28-May-2019 02:56:50
+Iterating ...
+   10         33000           1.989           14.29        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 02:56:51
+Fitness Calculated 28-May-2019 03:35:09
+Iterating ...
+   11         36000           1.976           13.68        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 03:35:10
+Fitness Calculated 28-May-2019 04:14:01
+Iterating ...
+   12         39000           1.979           13.47        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 04:14:02
+Fitness Calculated 28-May-2019 04:52:46
+Iterating ...
+   13         42000           1.962           13.08        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 04:52:47
+Fitness Calculated 28-May-2019 05:31:37
+Iterating ...
+   14         45000           1.969           12.91        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 05:31:38
+Fitness Calculated 28-May-2019 06:10:41
+Iterating ...
+   15         48000           1.949           12.67        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 06:10:42
+Fitness Calculated 28-May-2019 06:49:17
+Iterating ...
+   16         51000           1.957           12.45        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 06:49:18
+Fitness Calculated 28-May-2019 07:27:58
+Iterating ...
+   17         54000           1.955           12.22        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 07:27:59
+Fitness Calculated 28-May-2019 08:06:42
+Iterating ...
+   18         57000           1.948           11.82        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 08:06:43
+Fitness Calculated 28-May-2019 08:45:55
+Iterating ...
+   19         60000           1.938           11.76        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 08:45:56
+Fitness Calculated 28-May-2019 09:24:45
+Iterating ...
+   20         63000           1.902            11.6        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 09:24:46
+Fitness Calculated 28-May-2019 10:03:33
+Iterating ...
+   21         66000           1.885           11.45        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 10:03:35
+Fitness Calculated 28-May-2019 10:42:20
+Iterating ...
+   22         69000           1.859           11.44        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 10:42:22
+Fitness Calculated 28-May-2019 11:21:48
+Iterating ...
+   23         72000            1.87           11.62        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 11:21:50
+Fitness Calculated 28-May-2019 12:00:21
+Iterating ...
+   24         75000           1.857           11.94        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 12:00:23
+Fitness Calculated 28-May-2019 12:39:07
+Iterating ...
+   25         78000           1.836           11.97        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 12:39:08
+Fitness Calculated 28-May-2019 13:17:56
+Iterating ...
+   26         81000           1.821           11.57        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 13:17:57
+Fitness Calculated 28-May-2019 13:56:37
+Iterating ...
+   27         84000           1.821           11.61        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 13:56:39
+Fitness Calculated 28-May-2019 14:35:37
+Iterating ...
+   28         87000           1.814           11.42        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 14:35:38
+Fitness Calculated 28-May-2019 15:14:32
+Iterating ...
+   29         90000           1.808           11.33        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 15:14:34
+Fitness Calculated 28-May-2019 15:53:17
+Iterating ...
+   30         93000             1.8           11.37        0
+
+                               Best           Mean      Stall
+Generation      f-count        f(x)           f(x)    Generations
+SOSMC Active - Starting Fitness Calculation 28-May-2019 15:53:19
+Fitness Calculated 28-May-2019 16:32:09
+Iterating ...
+   31         96000           1.792            11.3        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 16:32:11
+Fitness Calculated 28-May-2019 17:11:17
+Iterating ...
+   32         99000           1.791           11.39        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 17:11:18
+Fitness Calculated 28-May-2019 17:50:19
+Iterating ...
+   33         102000           1.785           11.57        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 17:50:21
+Fitness Calculated 28-May-2019 18:28:57
+Iterating ...
+   34         105000           1.775            11.4        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 18:28:59
+Fitness Calculated 28-May-2019 19:07:26
+Iterating ...
+   35         108000           1.773           11.34        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 19:07:28
+Fitness Calculated 28-May-2019 19:47:26
+Iterating ...
+   36         111000           1.773           11.22        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 19:47:28
+Fitness Calculated 28-May-2019 20:26:02
+Iterating ...
+   37         114000           1.765           11.33        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 20:26:04
+Fitness Calculated 28-May-2019 21:03:44
+Iterating ...
+   38         117000           1.766           11.64        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 21:03:46
+Fitness Calculated 28-May-2019 21:41:36
+Iterating ...
+   39         120000           1.767           11.69        2
+SOSMC Active - Starting Fitness Calculation 28-May-2019 21:41:38
+Fitness Calculated 28-May-2019 22:19:49
+Iterating ...
+   40         123000           1.766           11.49        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 22:19:51
+Fitness Calculated 28-May-2019 22:58:14
+Iterating ...
+   41         126000           1.767           11.74        1
+SOSMC Active - Starting Fitness Calculation 28-May-2019 22:58:16
+Fitness Calculated 28-May-2019 23:36:07
+Iterating ...
+   42         129000           1.765           11.84        0
+SOSMC Active - Starting Fitness Calculation 28-May-2019 23:36:09
+Fitness Calculated 29-May-2019 00:14:11
+Iterating ...
+   43         132000           1.759           11.58        0
+SOSMC Active - Starting Fitness Calculation 29-May-2019 00:14:13
+Fitness Calculated 29-May-2019 00:52:09
+Iterating ...
+   44         135000            1.76           11.62        1
+SOSMC Active - Starting Fitness Calculation 29-May-2019 00:52:11
+Fitness Calculated 29-May-2019 01:30:23
+Iterating ...
+   45         138000           1.759           11.81        0
+SOSMC Active - Starting Fitness Calculation 29-May-2019 01:30:25
+Fitness Calculated 29-May-2019 02:08:39
+Iterating ...
+   46         141000           1.764           11.74        1
+SOSMC Active - Starting Fitness Calculation 29-May-2019 02:08:41
+Fitness Calculated 29-May-2019 02:47:00
+Iterating ...
+   47         144000           1.758           11.53        0
+SOSMC Active - Starting Fitness Calculation 29-May-2019 02:47:02
+Fitness Calculated 29-May-2019 03:25:27
+Iterating ...
+   48         147000           1.755           11.97        0
+SOSMC Active - Starting Fitness Calculation 29-May-2019 03:25:30
+Fitness Calculated 29-May-2019 04:03:38
+Iterating ...
+   49         150000           1.757           11.98        1
+SOSMC Active - Starting Fitness Calculation 29-May-2019 04:03:40
+Fitness Calculated 29-May-2019 04:41:47
+Iterating ...
+   50         153000           1.747           11.81        0
+SOSMC Active - Starting Fitness Calculation 29-May-2019 04:41:50
+Fitness Calculated 29-May-2019 05:20:36
+Iterating ...
+   51         156000           1.755           11.71        1
+SOSMC Active - Starting Fitness Calculation 29-May-2019 05:20:38
+Fitness Calculated 29-May-2019 05:59:18
+Iterating ...
+   52         159000           1.749           11.84        0
+SOSMC Active - Starting Fitness Calculation 29-May-2019 05:59:20
+Fitness Calculated 29-May-2019 06:37:54
+Iterating ...
+   53         162000           1.748           11.87        0
+SOSMC Active - Starting Fitness Calculation 29-May-2019 06:37:56
