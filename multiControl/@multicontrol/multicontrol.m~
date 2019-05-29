@@ -1191,7 +1191,6 @@ classdef multicontrol < multicopter
                     % Calculates position control impulses
                     controllerOutput.positionController = obj.positionControl(desiredState);
                     % Calculates attitude reference for torque control
-                    timer = tic;
                     desiredAttitude = attitudeReference(obj, controllerOutput.positionController, auxYaw(1), diagnosis); 
                     obj.trajectory_.attitude(:,end+1) = desiredAttitude;
                     % Calculates attitude control output
@@ -1199,7 +1198,6 @@ classdef multicontrol < multicopter
                     % Allocates torques to actuators in case there's
                     % control allocation 
                     actuatorInput = obj.controlAllocation(controllerOutput, diagnosis);
-                    obj.metrics_.meanTime(end+1) = toc(timer);
                     % Executes automated commands
                     commandsIndex = find(obj.automationConfig_.time<currentTime & obj.automationConfig_.time>=obj.previousTime());
                     obj.evalCommands(commandsIndex);
@@ -2000,6 +1998,7 @@ classdef multicontrol < multicopter
         %UNTITLED Summary of this function goes here
         %   Detailed explanation goes here
             % Desired Attitude Calculation
+            tic
             % Step 1 - Find desired force vector in the body frame at the desired
             % yaw direction
             yawd = desiredYaw;
@@ -3911,7 +3910,6 @@ classdef multicontrol < multicopter
             obj.metrics_.energy                         = trapz(obj.log_.time,abs(powerAux));
             obj.metrics_.RMSPower                       = rms(powerAux);
             obj.metrics_.maxPower                       = max(abs(powerAux));
-            obj.metrics_.meanTime                       = mean(obj.metrics_.meanTime);
         end
         function result = inputsOK(obj,input,start,nelements)
             result = true;
