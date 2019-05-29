@@ -16,9 +16,9 @@ else
 end
 %% Simulações
 controllerConfig = strsplit(name,'_');
-attitudeController = controllerConfig{1};
-controlAllocator = controllerConfig{2};
-attitudeReference = controllerConfig{3};
+attitudeController = controllerConfig{1}
+controlAllocator = controllerConfig{2}
+attitudeReference = controllerConfig{3}
 
 disp([attitudeController,' - Starting Controller evaluation ',datestr(now)])
 positions = [[0.34374 0.34245 0.0143]',[-0.341 0.34213 0.0143]',[-0.34068 -0.34262 0.0143]',[0.34407 -0.34229 0.0143]',[0.33898 0.33769 0.0913]',[-0.33624 0.33736 0.0913]',[-0.33591 -0.33785 0.0913]',[0.3393 -0.33753 0.0913]'];
@@ -26,10 +26,11 @@ payloadRadius = 0.3*mean(sqrt(sum(positions.^2)));
 
 samples = load('../monteCarloSamples/monteCarlo_samples.mat');
 samplesFields = fields(samples);
+
 for jt = 1:numel(samplesFields)
-    if ~strcmp(samplesFields{it},'columnNames')
-        disp([samplesFields{it},' - Starting samples matrix ',datestr(now)])
-        options = samples.(samplesFields{it});
+    if ~strcmp(samplesFields{jt},'columnNames')
+        disp([samplesFields{jt},' - Starting samples matrix ',datestr(now)])
+        options = samples.(samplesFields{jt});
         options(1,end+1) = {0};
         options(1,end+1) = {0};
         numberOfOptions = length(options);
@@ -153,7 +154,6 @@ for jt = 1:numel(samplesFields)
             nFails = length(failure);
             step = endTime/2/(1+nFails);
             multirotor.addCommand(failure,endTime/2+step:step:endTime-0.000001);
-
             try
                 multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);
                 metrics = multirotor.metrics();          
@@ -163,15 +163,14 @@ for jt = 1:numel(samplesFields)
             end
             option{8} = multirotor.metrics();
             options(it,:) = option;
-            disp(['Finished calculation ',num2str(it)])
+%            disp(['Finished calculation ',num2str(it)])
         end
-        %%        
-        samples.(samplesFields{it}) = options;
-        disp([samplesFields{it},' - Finished samples matrix ',datestr(now)])
+        samples.(samplesFields{jt}) = options;
+        disp([samplesFields{jt},' - Finished samples matrix ',datestr(now)])
         save([pathname,'/',foldername,'/evaluationResult.mat'],'samples');
     end
 end
-
+%%
 % disp([attitudeController,' - Starting Controller evaluation ',datestr(now)])
 % fitnessVector = [options{:,8}];
 % [bestFitness, bestIndex] = min(fitnessVector);
