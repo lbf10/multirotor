@@ -157,11 +157,11 @@ for jt = 1:numel(samplesFields)
             try
                 multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);
                 metrics = multirotor.metrics();          
-                option{7} = 1*(1-metrics.simulationSuccess)+metrics.RMSPositionError+real(metrics.RMSAngularError)+metrics.RMSPower/3000;
+                option{8} = 1*(1-metrics.simulationSuccess)+metrics.RMSPositionError+real(metrics.RMSAngularError)+metrics.RMSPower/3000;
             catch
-                option{7} = 10;
+                option{8} = 10;
             end
-            option{8} = multirotor.metrics();
+            option{9} = multirotor.metrics();
             options(it,:) = option;
 %            disp(['Finished calculation ',num2str(it)])
         end
