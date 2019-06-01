@@ -372,11 +372,11 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 
 % Configure simulator
 % multirotor.setRotorStatus(1,'stuck',0.5)
-multirotor.setTimeStep(0.002);
-multirotor.setControlTimeStep(0.03);
+multirotor.setTimeStep(0.005);
+multirotor.setControlTimeStep(0.05);
 multirotor.setController('PID');
-multirotor.setControlAllocator('Passive NMAC');
-multirotor.setAttitudeReferenceCA('Passive NMAC');
+multirotor.setControlAllocator('Active NMAC');
+multirotor.setAttitudeReferenceCA('Active NMAC');
 multirotor.configFDD(1,0.25)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
@@ -410,7 +410,7 @@ multirotor.setTrajectory('waypoints',waypoints,time);
 multirotor.addCommand({'setRotorStatus(1,''prop loss'',0.5)'},0)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.75)'},endTime/2)
-multirotor.setSimEffects('motor dynamics on','solver ode45')
+multirotor.setSimEffects('motor dynamics on','solver euler')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(.2);
 %% Run simulator

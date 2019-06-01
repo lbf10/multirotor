@@ -1,4 +1,4 @@
-% test fit    
+%% For ESTIMATED model (model 2)    
 thrust = 0.8*[0
     0.5
         1.48
@@ -80,7 +80,7 @@ liftCoeff = [0.00004
 %  figure
 %  plot(speed, liftCoeff,'r*')
 %  hold on
- f = fit(speed, liftCoeff, 'smoothingspline')
+ fLift = fit(speed, liftCoeff, 'smoothingspline')
 %  fittedLift = f(min(speed):10:max(speed));
 %  plot(min(speed):10:max(speed),fittedLift,'b')
 %  legend('Raw data','Spline fitting')
@@ -92,7 +92,7 @@ liftCoeff = [0.00004
 %   figure
 %  plot(speed, dragCoeff,'r*')
 %  hold on
- f = fit(speed, dragCoeff, 'smoothingspline')
+ fDrag = fit(speed, dragCoeff, 'smoothingspline')
 %  fittedDrag = f(min(speed):10:max(speed));
 %  plot(min(speed):10:max(speed),fittedDrag,'b')
 %  legend('Raw data','Spline fitting')
@@ -102,8 +102,8 @@ liftCoeff = [0.00004
 %  grid minor
 
 fittedSpeeds = min(speed):1:max(speed);
-fittedDrag = f(fittedSpeeds);
-fittedLift = f(fittedSpeeds);
+fittedDrag = fDrag(fittedSpeeds);
+fittedLift = fLift(fittedSpeeds);
 auxLift = [];
 auxDrag = [];
 for x=min(speed):.1:max(speed)
@@ -112,10 +112,10 @@ for x=min(speed):.1:max(speed)
     auxDrag = [auxDrag, fittedDrag(index)];
 end
 
-figure
-stairs(fittedSpeeds,fittedLift)
-figure
-stairs(fittedSpeeds,fittedDrag)
+% figure
+% stairs(fittedSpeeds,fittedLift)
+% figure
+% stairs(fittedSpeeds,fittedDrag)
 
 
 
@@ -126,3 +126,83 @@ stairs(fittedSpeeds,fittedDrag)
 %  f = fit(speedThrust, thrust, 'smoothingspline') 
 %  plot(min(speedThrust):10:max(speedThrust),f(min(speedThrust):10:max(speedThrust)))
 %  legend('Sem fit','Com fit')
+
+%% For MERHEB model (model 1)  
+operationalSpeedEstimated = 352;
+operationalSpeed = 452;
+operationalLiftCoeff = 10e-6;
+operationalDragCoeff = 0.3e-6;
+   
+speed(2:end-1) = (speed(2:end-1)-352).*(452-352)/(429-352)+352;
+
+fLift = fit(speed, liftCoeff, 'smoothingspline');
+fDrag = fit(speed, dragCoeff, 'smoothingspline');
+correctionLift = operationalLiftCoeff/fLift(operationalSpeedEstimated)  
+correctionDrag = operationalDragCoeff/fDrag(operationalSpeedEstimated)        
+liftCoeff = liftCoeff*correctionLift;
+dragCoeff = dragCoeff*correctionDrag;
+%  figure
+%  plot(speed, liftCoeff,'r*')
+%  hold on
+ fLift = fit(speed, liftCoeff, 'smoothingspline')
+%  fittedLift = f(min(speed):10:max(speed));
+%  plot(min(speed):10:max(speed),fittedLift,'b')
+%  legend('Raw data','Spline fitting')
+%  title('Lift coefficient curve for Model 2')
+%  xlabel('Rotor speed (rad/s)')
+%  ylabel('Lift coeff (N s²)')
+%  grid minor
+ 
+%   figure
+%  plot(speed, dragCoeff,'r*')
+%  hold on
+fDrag = fit(speed, dragCoeff, 'smoothingspline')
+%  fittedDrag = f(min(speed):10:max(speed));
+%  plot(min(speed):10:max(speed),fittedDrag,'b')
+%  legend('Raw data','Spline fitting')
+%  title('Drag coefficient curve for Model 2')
+%  xlabel('Rotor speed (rad/s)')
+%  ylabel('Drag coeff (Nm s²)')
+%  grid minor
+
+fittedSpeeds = min(speed):1:max(speed);
+fittedDrag = fDrag(fittedSpeeds);
+fittedLift = fLift(fittedSpeeds);
+auxLift = [];
+auxDrag = [];
+for x=min(speed):.1:max(speed)
+    [~,index] = min(abs(fittedSpeeds-x));
+    auxLift = [auxLift, fittedLift(index)];
+    auxDrag = [auxDrag, fittedDrag(index)];
+end
+
+figure
+plot(operationalSpeedEstimated, operationalLiftCoeff,'r*')
+hold on
+stairs(fittedSpeeds,fittedLift)
+legend('Value for constant coefficient','Scalling to adapt to Model 2 curve')
+title('Lift coefficient curve for Model 1')
+xlabel('Rotor speed (rad/s)')
+ylabel('Lift coeff (N s²)')
+grid minor
+
+figure
+plot(operationalSpeedEstimated, operationalDragCoeff,'r*')
+hold on
+stairs(fittedSpeeds,fittedDrag,'b')
+legend('Value for constant coefficient','Scalling to adapt to Model 2 curve')
+title('Drag coefficient curve for Model 1')
+xlabel('Rotor speed (rad/s)')
+ylabel('Drag coeff (Nm s²)')
+grid minor
+
+
+
+
+%  figure
+%  plot(speedThrust, thrust)
+%  hold on
+%  f = fit(speedThrust, thrust, 'smoothingspline') 
+%  plot(min(speedThrust):10:max(speedThrust),f(min(speedThrust):10:max(speedThrust)))
+%  legend('Sem fit','Com fit')
+
