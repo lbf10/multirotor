@@ -112,10 +112,10 @@ for x=min(speed):.1:max(speed)
     auxDrag = [auxDrag, fittedDrag(index)];
 end
 
-% figure
-% stairs(fittedSpeeds,fittedLift)
-% figure
-% stairs(fittedSpeeds,fittedDrag)
+figure
+stairs(fittedSpeeds,fittedLift)
+figure
+stairs(fittedSpeeds,fittedDrag)
 
 
 
@@ -133,7 +133,8 @@ operationalSpeed = 452;
 operationalLiftCoeff = 10e-6;
 operationalDragCoeff = 0.3e-6;
    
-speed(2:end-1) = (speed(2:end-1)-352).*(452-352)/(429-352)+352;
+aux = speed(
+speed = (speed-352).*(452-352)/(429-352)+352;
 
 fLift = fit(speed, liftCoeff, 'smoothingspline');
 fDrag = fit(speed, dragCoeff, 'smoothingspline');
@@ -177,7 +178,7 @@ for x=min(speed):.1:max(speed)
 end
 
 figure
-plot(operationalSpeedEstimated, operationalLiftCoeff,'r*')
+plot(operationalSpeed, operationalLiftCoeff,'r*')
 hold on
 stairs(fittedSpeeds,fittedLift)
 legend('Value for constant coefficient','Scalling to adapt to Model 2 curve')
@@ -187,7 +188,7 @@ ylabel('Lift coeff (N s²)')
 grid minor
 
 figure
-plot(operationalSpeedEstimated, operationalDragCoeff,'r*')
+plot(operationalSpeed, operationalDragCoeff,'r*')
 hold on
 stairs(fittedSpeeds,fittedDrag,'b')
 legend('Value for constant coefficient','Scalling to adapt to Model 2 curve')
