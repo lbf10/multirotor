@@ -28,7 +28,7 @@ samples = load('../monteCarloSamples/monteCarlo_samples.mat');
 samplesFields = fields(samples);
 
 for jt = 1:numel(samplesFields)
-    if ~strcmp(samplesFields{jt},'columnNames') && ~strcmp(samplesFields{jt},'N4')
+    if ~strcmp(samplesFields{jt},'columnNames')
         disp([samplesFields{jt},' - Starting samples matrix ',datestr(now)])
         options = samples.(samplesFields{jt});
         options(1,end+1) = {0};
@@ -57,8 +57,58 @@ for jt = 1:numel(samplesFields)
                 0	0	0.25];
             multirotor.setFriction(friction);
             % Define lift and drag coefficients
-            multirotor.setRotorLiftCoeff(1:8,ones(1,8)*10e-6);
-            multirotor.setRotorDragCoeff(1:8,ones(1,8)*0.3e-6);
+            if option{4}==1
+                speed = [0
+                        200
+                        416.575185900000
+                        435.267662200000
+                        462.505270500000
+                        472.652614700000
+                        491.345091000000
+                        501.492435300000
+                        520.184911600000
+                        530.332255900000
+                        549.024732100000
+                        567.717208400000
+                        586.409684700000
+                        748.286529400000
+                        1511];
+                liftCoeff = [3.88065786798114e-06
+                            6.79115126896699e-06
+                            9.37508810733945e-06
+                            9.89280529489737e-06
+                            9.87382994851243e-06
+                            1.05616942837173e-05
+                            1.07191834175251e-05
+                            1.08950632578172e-05
+                            1.05832007629525e-05
+                            1.08924563346446e-05
+                            1.06683909885771e-05
+                            1.05382898632871e-05
+                            1.00984945899358e-05
+                            6.37179000758215e-06
+                            0];
+                 dragCoeff = [1.08345379036209e-07
+                              1.62518068554314e-07
+                              2.49537612991124e-07
+                              2.85706431826188e-07
+                              3.03655181924939e-07
+                              3.39216312747487e-07
+                              3.58739800906901e-07
+                              3.87415110248651e-07
+                              4.00080437746397e-07
+                              4.23408350188937e-07
+                              4.30983106511266e-07
+                              4.36658635915986e-07
+                              4.40746209454598e-07
+                              2.95813775997599e-07
+                              1.08345379036209e-07];
+                multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline',1);
+                multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline',1);
+            else
+                multirotor.setRotorLiftCoeff(1:8,ones(1,8)*10e-6);
+                multirotor.setRotorDragCoeff(1:8,ones(1,8)*0.3e-6);
+            end
             % Define rotor inertia
             multirotor.setRotorInertia(1:8,90e-6*ones(1,8));
             % Sets rotors rotation direction for control allocation
@@ -71,7 +121,7 @@ for jt = 1:numel(samplesFields)
             multirotor.setInitialVelocity([0;0;0]);
             multirotor.setInitialPosition([0;0;0]);
             multirotor.setInitialAngularVelocity([0;0;0]);
-            multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
+            multirotor.setRotorOperatingPoint(1:8,452*[1 1 1 1 1 1 1 1]);
             multirotor.configControlAllocator('Passive NMAC',1,0);
             multirotor.configControlAllocator('Active NMAC',1,0);
             multirotor.setTimeStep(0.002);
