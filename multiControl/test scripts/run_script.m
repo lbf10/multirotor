@@ -372,8 +372,8 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 
 % Configure simulator
 % multirotor.setRotorStatus(1,'stuck',0.5)
-multirotor.setTimeStep(0.005);
-multirotor.setControlTimeStep(0.05);
+multirotor.setTimeStep(0.002);
+multirotor.setControlTimeStep(0.02);
 multirotor.setController('PID');
 multirotor.setControlAllocator('Active NMAC');
 multirotor.setAttitudeReferenceCA('Active NMAC');

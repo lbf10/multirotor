@@ -29,7 +29,7 @@ lim_controlLoopTime = [0.020,0.060];    % [s]
 lim_controlDelay = [0.2,0.8];           % [%]     
 
 % Generates distributions
-numberOfSamples = 1200;
+numberOfSamples = 3000;
 rng shuffle
 
 figure
