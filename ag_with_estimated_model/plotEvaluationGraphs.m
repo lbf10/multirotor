@@ -1,7 +1,7 @@
 clear all
 
 % Get a list of all files and folders in this folder.
-files = dir(pwd);
+files = dir(uigetdir);
 % Get a logical vector that tells which is a directory.
 dirFlags = [files.isdir];
 % Extract only those that are directories.
@@ -11,7 +11,7 @@ subFolders(1:2) = [];
 controller = struct([]);
 
 for it=1:length(subFolders)
-    aux = strsplit(subFolders(it).name,'_');
+    aux = strsplit(subFolders(it).name,'Evaluation_');
     % Get controller name from folder name
     controller(it).name = aux(2);
     % Load evaluation data
@@ -25,22 +25,25 @@ for it=1:length(subFolders)
             allMetrics = [allMetrics controller(it).data.(samplesFields{jt}){:,9}];
         end
     end
-    numberOfSimulations = length(allMetrics);
-    numberOfSuccesses = sum([allMetrics.simulationSuccess] == 1);
+    controller(it).metrics = allMetrics;
+    numberOfSimulations = length(controller(it).metrics);
+    numberOfSuccesses = sum([controller(it).metrics.simulationSuccess] == 1);
     numberOfFailures = numberOfSimulations-numberOfSuccesses;
-    controller(it).overallSuccessRate = numberOfSuccesses/numberOfSimulations;
-%     %% Overall mean position error
-%     indexSuccesful = find([controller(it).metrics.simulationSuccess] == 1);
-%     indexFail = find([controller(it).metrics.simulationSuccess] ~= 1);
-%     rmsPositionError = [controller(it).metrics.RMSPositionError]';
-%     rmsPower = [controller(it).metrics.RMSPower]';
-%     controller(it).successMeanError = mean(rmsPositionError(indexSuccesful));
-%     controller(it).failMeanError = mean(rmsPositionError(indexFail));
-%     controller(it).meanError = mean(rmsPositionError);
-%     %% Overall mean power
-%     controller(it).successMeanPower = mean(rmsPower(indexSuccesful));
-%     controller(it).failMeanPower = mean(rmsPower(indexFail));
-%     controller(it).meanPower = mean(rmsPower);
+    controller(it).perfectSuccessRate = numberOfSuccesses/numberOfSimulations;
+    controller(it).meanSuccessRate = mean([controller(it).metrics.simulationSuccess]);
+    %% Overall mean position error
+    indexSuccesful = find([controller(it).metrics.simulationSuccess] == 1);
+    indexFail = find([controller(it).metrics.simulationSuccess] ~= 1);
+    rmsPositionError = [controller(it).metrics.RMSPositionError]';
+    meanPositionError = [controller(it).metrics.meanPositionError]';
+    rmsPower = [controller(it).metrics.RMSPower]';
+    controller(it).successMeanError = mean(rmsPositionError(indexSuccesful));
+    controller(it).failMeanError = mean(rmsPositionError(indexFail));
+    controller(it).meanError = mean(rmsPositionError);
+    %% Overall mean power
+    controller(it).successMeanPower = mean(rmsPower(indexSuccesful));
+    controller(it).failMeanPower = mean(rmsPower(indexFail));
+    controller(it).meanPower = mean(rmsPower);
 %     
 %     %% Compound analysis
 %     endTimes = sort(unique([controller(it).data{:,1}])','descend');

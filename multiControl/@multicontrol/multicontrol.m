@@ -3909,6 +3909,7 @@ classdef multicontrol < multicopter
             powerAux = obj.log_.power;
             powerAux(isnan(powerAux)) = max(obj.log_.power);
             obj.metrics_.energy                         = trapz(obj.log_.time,abs(powerAux));
+            obj.metrics_.meanPower                      = mean(powerAux);
             obj.metrics_.RMSPower                       = rms(powerAux);
             obj.metrics_.maxPower                       = max(abs(powerAux));
             obj.metrics_.meanTime                       = mean(obj.metrics_.meanTime);
@@ -4424,6 +4425,7 @@ classdef multicontrol < multicopter
             obj.metrics_.RMSAngularError        = [];
             obj.metrics_.maxAngularError        = [];
             obj.metrics_.energy                 = [];
+            obj.metrics_.meanPower              = [];
             obj.metrics_.RMSPower               = [];
             obj.metrics_.maxPower               = [];
             obj.metrics_.meanTime               = [];
