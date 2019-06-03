@@ -1,8 +1,8 @@
 %% Markov sample generator for controller evaluation
 % Defines limits
 lim_massPercentage = [0,0.75];     % [%]
-lim_endTime = [5,20];           % [s]
-lim_disturbance = [0,30];       % [m/s2]
+lim_endTime = [10,20];           % [s]
+lim_disturbance = [0,15];       % [m/s2]
 lim_coefficients = [0,1];
 lim_failures = {{''}
             {'setRotorStatus(1,''motor loss'',0.78)'}
@@ -29,7 +29,7 @@ lim_controlLoopTime = [0.020,0.060];    % [s]
 lim_controlDelay = [0.2,0.8];           % [%]     
 
 % Generates distributions
-numberOfSamples = 3000;
+numberOfSamples = 10000;
 rng shuffle
 
 figure
