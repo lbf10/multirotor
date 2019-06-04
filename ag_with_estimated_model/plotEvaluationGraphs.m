@@ -1,4 +1,4 @@
-clear all
+% clear all
 
 % Get a list of all files and folders in this folder.
 files = dir(uigetdir);
@@ -31,19 +31,41 @@ for it=1:length(subFolders)
     numberOfFailures = numberOfSimulations-numberOfSuccesses;
     controller(it).perfectSuccessRate = numberOfSuccesses/numberOfSimulations;
     controller(it).meanSuccessRate = mean([controller(it).metrics.simulationSuccess]);
-    %% Overall mean position error
+    %% Performance metrics
     indexSuccesful = find([controller(it).metrics.simulationSuccess] == 1);
-    indexFail = find([controller(it).metrics.simulationSuccess] ~= 1);
     rmsPositionError = [controller(it).metrics.RMSPositionError]';
     meanPositionError = [controller(it).metrics.meanPositionError]';
+    localVariancePositionError = rmsPositionError.^2-meanPositionError.^2;
+    rmsAngularError = [controller(it).metrics.RMSAngularError]';
+    meanAngularError = [controller(it).metrics.meanAngularError]';
+    localVarianceAngularError = rmsAngularError.^2-meanAngularError.^2;
     rmsPower = [controller(it).metrics.RMSPower]';
-    controller(it).successMeanError = mean(rmsPositionError(indexSuccesful));
-    controller(it).failMeanError = mean(rmsPositionError(indexFail));
-    controller(it).meanError = mean(rmsPositionError);
-    %% Overall mean power
-    controller(it).successMeanPower = mean(rmsPower(indexSuccesful));
-    controller(it).failMeanPower = mean(rmsPower(indexFail));
-    controller(it).meanPower = mean(rmsPower);
+    try
+    meanPower = [controller(it).metrics.meanPower]';
+    localVariancePower = rmsPower.^2-meanPower.^2;
+    end
+    computationalCost = [controller(it).metrics.meanTime]';
+    % Metrics for p_sim == 1
+    controller(it).bestPerformance.meanEp = mean(meanPositionError(indexSuccesful));
+    controller(it).bestPerformance.meanVarEp = mean(localVariancePositionError(indexSuccesful));
+    controller(it).bestPerformance.meanEatt = mean(meanAngularError(indexSuccesful));
+    controller(it).bestPerformance.meanVarEatt = mean(localVarianceAngularError(indexSuccesful));
+    try
+    controller(it).bestPerformance.meanP = mean(meanPower(indexSuccesful));
+    controller(it).bestPerformance.meanVarP = mean(localVariancePower(indexSuccesful));
+    end
+    controller(it).bestPerformance.computationalCost = mean(computationalCost(indexSuccesful));
+    % Metrics for all simulations
+    controller(it).meanPerformance.meanEp = mean(meanPositionError);
+    controller(it).meanPerformance.meanVarEp = mean(localVariancePositionError);
+    controller(it).meanPerformance.meanEatt = mean(meanAngularError);
+    controller(it).meanPerformance.meanVarEatt = mean(localVarianceAngularError);
+    try
+    controller(it).meanPerformance.meanP = mean(meanPower);
+    controller(it).meanPerformance.meanVarP = mean(localVariancePower);
+    end
+    controller(it).meanPerformance.computationalCost = mean(computationalCost);
+%%
 %     
 %     %% Compound analysis
 %     endTimes = sort(unique([controller(it).data{:,1}])','descend');
@@ -176,20 +198,20 @@ for it=1:length(subFolders)
     disp(['Finished controller ',controller(it).name]);
 end
 
-%% Compare all controllers
-%% Overall tests
-% Overall success rate
-figure
-names = [];
-values = [];
-for it=1:length(controller)
-    names = [names; controller(it).name];
-    values = [values; controller(it).overallSuccessRate];
-end
-nameCategories = categorical(names);
-nameCategories = reordercats(nameCategories,names);
-bar(nameCategories,values)
-title('Overall success rate')
+% %% Compare all controllers
+% %% Overall tests
+% % Overall success rate
+% figure
+% names = [];
+% values = [];
+% for it=1:length(controller)
+%     names = [names; controller(it).name];
+%     values = [values; controller(it).overallSuccessRate];
+% end
+% nameCategories = categorical(names);
+% nameCategories = reordercats(nameCategories,names);
+% bar(nameCategories,values)
+% title('Overall success rate')
 
 % % Overall success mean error
 % figure
