@@ -25,8 +25,8 @@ lim_failures = {{''}
             {'setRotorStatus(1,''prop loss'',0.10)','setRotorStatus(2,''prop loss'',0.10)','setRotorStatus(3,''prop loss'',0.10)','setRotorStatus(4,''prop loss'',0.10)'}
             {'setRotorStatus(1,''prop loss'',0.10)','setRotorStatus(2,''prop loss'',0.10)','setRotorStatus(7,''prop loss'',0.10)','setRotorStatus(8,''prop loss'',0.78)'}
             {'setRotorStatus(1,''prop loss'',0.10)','setRotorStatus(2,''prop loss'',0.10)','setRotorStatus(7,''prop loss'',0.10)','setRotorStatus(8,''prop loss'',0.10)'}};
-lim_controlLoopTime = [0.020,0.060];    % [s]
-lim_controlDelay = [0.2,0.8];           % [%]     
+lim_controlLoopTime = [0.010,0.060];    % [s]
+lim_controlDelay = [0.1,0.4];           % [%]     
 
 % Generates distributions
 numberOfSamples = 10000;
