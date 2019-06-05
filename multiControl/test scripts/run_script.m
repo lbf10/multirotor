@@ -372,11 +372,11 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 
 % Configure simulator
 % multirotor.setRotorStatus(1,'stuck',0.5)
-multirotor.setTimeStep(0.002);
-multirotor.setControlTimeStep(0.02);
+multirotor.setTimeStep(0.001);
+multirotor.setControlTimeStep(0.05);
 multirotor.setController('PID');
-multirotor.setControlAllocator('Active NMAC');
-multirotor.setAttitudeReferenceCA('Active NMAC');
+multirotor.setControlAllocator('Passive NMAC');
+multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.25)
 
 % multirotor.setTrajectory('waypoints',[[1 1 1 0 0.4 0.4 0]',[1 2 3 0 0 0 0]',[1 2 3 0 0 0 pi/2]'],[5 10 15]);
@@ -403,16 +403,16 @@ endTime = 15;
 multirotor.setTrajectory('waypoints',waypoints,time);
 
 % multirotor.addCommand({'setRotorStatus(1,''stuck'',0.05)'},7)
-% multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
-% multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2+endTime/10)   
-% multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/2+2*endTime/10)
-% multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2+3*endTime/10)
-multirotor.addCommand({'setRotorStatus(1,''prop loss'',0.5)'},0)
+multirotor.addCommand({'setRotorStatus(1,''motor loss'',0.001)'},endTime/2)   
+multirotor.addCommand({'setRotorStatus(2,''motor loss'',0.001)'},endTime/2+endTime/10)   
+multirotor.addCommand({'setRotorStatus(3,''motor loss'',0.001)'},endTime/2+2*endTime/10)
+multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2+3*endTime/10)
+% multirotor.addCommand({'setRotorStatus(1,''prop loss'',0.5)'},0)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.75)'},endTime/2)
 multirotor.setSimEffects('motor dynamics on','solver euler')
-multirotor.setLinearDisturbance('@(t) [0;1;0]*10*exp(-(t-3.75)^2/(0.5))')
-multirotor.setControlDelay(0.1);
+multirotor.setLinearDisturbance('@(t) [0;1;0]*0*exp(-(t-3.75)^2/(0.5))')
+multirotor.setControlDelay(0.2);
 %% Run simulator
 tic
 multirotor.run('visualizeGraph',false,'visualizeProgress',true,'metricPrecision',0.15,'angularPrecision',5,'endError',5);
