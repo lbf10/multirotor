@@ -1191,7 +1191,7 @@ classdef multicontrol < multicopter
                     % Calculates position control impulses
                     controllerOutput.positionController = obj.positionControl(desiredState);
                     % Calculates attitude reference for torque control
-                    timer = tic;
+                    timerController = tic;
                     desiredAttitude = attitudeReference(obj, controllerOutput.positionController, auxYaw(1), diagnosis); 
                     obj.trajectory_.attitude(:,end+1) = desiredAttitude;
                     % Calculates attitude control output
@@ -1199,7 +1199,7 @@ classdef multicontrol < multicopter
                     % Allocates torques to actuators in case there's
                     % control allocation 
                     actuatorInput = obj.controlAllocation(controllerOutput, diagnosis);
-                    obj.metrics_.meanTime(end+1) = toc(timer);
+                    obj.metrics_.meanTime(end+1) = toc(timerController);
                     % Executes automated commands
                     commandsIndex = find(obj.automationConfig_.time<currentTime & obj.automationConfig_.time>=obj.previousTime());
                     obj.evalCommands(commandsIndex);
