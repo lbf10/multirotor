@@ -3890,6 +3890,8 @@ classdef multicontrol < multicopter
             obj.metrics_.pathLengthRatio                = obj.metrics_.pathLength/obj.metrics_.desiredPathLength;
             obj.metrics_.pathTimeRatio                  = successTime/obj.trajectoryMap_.endTime(end);
             speed = sqrt(sum(obj.log_.velocity.^2,1));
+            speed(isnan(speed))=[];
+            speed(isinf(speed))=[];
             obj.metrics_.averageSpeed                   = mean(speed);
             obj.metrics_.maxSpeed                       = max(speed);
             for it=1:size(obj.trajectory_.time,2)
@@ -3897,21 +3899,27 @@ classdef multicontrol < multicopter
                 [~, index(it)] = min(difference);
             end
             positionError = sqrt(sum((obj.log_.position(:,index)-obj.trajectory_.position).^2,1));
-            positionError(isnan(positionError)) = 10*obj.metrics_.simulationEndError;
+            positionError(isnan(positionError)) = obj.metrics_.simulationEndError*10;
+            positionError(isinf(positionError)) = obj.metrics_.simulationEndError*10;
             obj.metrics_.meanPositionError              = mean(positionError);
             obj.metrics_.RMSPositionError               = rms(positionError);
             obj.metrics_.maxPositionError               = max(positionError);
             angularError = sqrt(sum((obj.toEuler(obj.log_.attitude(:,index))-obj.toEuler(obj.trajectory_.attitude)).^2,1));
-            angularError(isnan(angularError)) = 10*obj.metrics_.missionAngularPrecision*pi/180;
+            angularError(isnan(angularError)) = obj.metrics_.missionAngularPrecision*10;
+            angularError(isinf(angularError)) = obj.metrics_.missionAngularPrecision*10;
             obj.metrics_.meanAngularError           = mean(angularError);
             obj.metrics_.RMSAngularError               = rms(angularError);
             obj.metrics_.maxAngularError               = max(angularError);    
             powerAux = obj.log_.power;
-            powerAux(isnan(powerAux)) = max(obj.log_.power);
-            obj.metrics_.energy                         = trapz(obj.log_.time,abs(powerAux));
+            auxTime = obj.log_.time;
+            auxTime(isnan(powerAux)) = [];
+            powerAux(isnan(powerAux)) = [];
+            powerAux(isinf(powerAux)) = max(obj.log_.power);
+            obj.metrics_.energy                         = trapz(auxTime,abs(powerAux));
             obj.metrics_.meanPower                      = mean(powerAux);
             obj.metrics_.RMSPower                       = rms(powerAux);
             obj.metrics_.maxPower                       = max(abs(powerAux));
+            obj.metrics_.meanTime(obj.metrics_.meanTime>1)=[];
             obj.metrics_.meanTime                       = mean(obj.metrics_.meanTime);
         end
         function result = inputsOK(obj,input,start,nelements)

@@ -374,8 +374,8 @@ multirotor.configControlAllocator('Active NMAC',1,0);
 % multirotor.setRotorStatus(1,'stuck',0.5)
 multirotor.setTimeStep(0.001);
 multirotor.setControlTimeStep(0.05);
-multirotor.setController('PID');
-multirotor.setControlAllocator('Passive NMAC');
+multirotor.setController('Adaptive Direct');
+multirotor.setControlAllocator('None');
 multirotor.setAttitudeReferenceCA('Passive NMAC');
 multirotor.configFDD(1,0.25)
 

@@ -65,6 +65,120 @@ for it=1:length(subFolders)
     controller(it).meanPerformance.meanVarP = mean(localVariancePower);
     end
     controller(it).meanPerformance.computationalCost = mean(computationalCost);
+    %% Robustness metrics
+    % Aggregate results a0,a1,a2,a3,a4,a5,a6,a7,a1234567.
+    
+    for jt = 1:numel(samplesFields)
+        if ~strcmp(samplesFields{jt},'columnNames')
+            metrics = [controller(it).data.(samplesFields{jt}){:,9}];
+            controller(it).epRobustness.(samplesFields{jt}) = [];
+            controller(it).PRobustness.(samplesFields{jt}) = [];
+            for kt=1:length(metrics)
+                if isinf(metrics(kt).RMSPositionError)
+                    aux = 5/(0.002/controller(it).data.(samplesFields{jt}){2});
+                else
+                    aux = metrics(kt).RMSPositionError/metrics(kt).simulationSuccess;
+                end
+                controller(it).epRobustness.(samplesFields{jt}) = [controller(it).epRobustness.(samplesFields{jt}); aux];
+                if isinf(metrics(kt).RMSPower)
+                    aux = metrics(kt).RMSPower/(0.002/controller(it).data.(samplesFields{jt}){2});
+                else
+                    aux = metrics(kt).RMSPower/metrics(kt).simulationSuccess;
+                end
+                controller(it).PRobustness.(samplesFields{jt}) = [controller(it).PRobustness.(samplesFields{jt}); aux];
+            end
+        end
+    end
+    % RMS Position Error
+    % Sf index
+    squaredMeanSf = mean(controller(it).epRobustness.N0.*controller(it).epRobustness.N1234567);
+    variance = sum(controller(it).epRobustness.N1234567.^2.-squaredMeanSf)/(length(controller(it).epRobustness.N1234567)-1);
+    ufSf1 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N1)/(length(controller(it).epRobustness.N1234567)-1);
+    ufSf2 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N2)/(length(controller(it).epRobustness.N1234567)-1);
+    ufSf3 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N3)/(length(controller(it).epRobustness.N1234567)-1);
+    ufSf4 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N4)/(length(controller(it).epRobustness.N1234567)-1);
+    ufSf5 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N5)/(length(controller(it).epRobustness.N1234567)-1);
+    ufSf6 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N6)/(length(controller(it).epRobustness.N1234567)-1);
+    ufSf7 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N7)/(length(controller(it).epRobustness.N1234567)-1);
+    controller(it).epRobustness.Sf1 = (ufSf1-squaredMeanSf)/variance;
+    controller(it).epRobustness.Sf2 = (ufSf2-squaredMeanSf)/variance;
+    controller(it).epRobustness.Sf3 = (ufSf3-squaredMeanSf)/variance;
+    controller(it).epRobustness.Sf4 = (ufSf4-squaredMeanSf)/variance;
+    controller(it).epRobustness.Sf5 = (ufSf5-squaredMeanSf)/variance;
+    controller(it).epRobustness.Sf6 = (ufSf6-squaredMeanSf)/variance;
+    controller(it).epRobustness.Sf7 = (ufSf7-squaredMeanSf)/variance;
+    % STf index
+    squaredMeanSTf = mean(controller(it).epRobustness.N0)^2;
+    ufSTf1 = (controller(it).epRobustness.N0'*controller(it).epRobustness.N1)/(length(controller(it).epRobustness.N0)-1);
+    ufSTf2 = (controller(it).epRobustness.N0'*controller(it).epRobustness.N2)/(length(controller(it).epRobustness.N0)-1);
+    ufSTf3 = (controller(it).epRobustness.N0'*controller(it).epRobustness.N3)/(length(controller(it).epRobustness.N0)-1);
+    ufSTf4 = (controller(it).epRobustness.N0'*controller(it).epRobustness.N4)/(length(controller(it).epRobustness.N0)-1);
+    ufSTf5 = (controller(it).epRobustness.N0'*controller(it).epRobustness.N5)/(length(controller(it).epRobustness.N0)-1);
+    ufSTf6 = (controller(it).epRobustness.N0'*controller(it).epRobustness.N6)/(length(controller(it).epRobustness.N0)-1);
+    ufSTf7 = (controller(it).epRobustness.N0'*controller(it).epRobustness.N7)/(length(controller(it).epRobustness.N0)-1);
+    controller(it).epRobustness.STf1 = 1-(ufSTf1-squaredMeanSTf)/variance;
+    controller(it).epRobustness.STf2 = 1-(ufSTf2-squaredMeanSTf)/variance;
+    controller(it).epRobustness.STf3 = 1-(ufSTf3-squaredMeanSTf)/variance;
+    controller(it).epRobustness.STf4 = 1-(ufSTf4-squaredMeanSTf)/variance;
+    controller(it).epRobustness.STf5 = 1-(ufSTf5-squaredMeanSTf)/variance;
+    controller(it).epRobustness.STf6 = 1-(ufSTf6-squaredMeanSTf)/variance;
+    controller(it).epRobustness.STf7 = 1-(ufSTf7-squaredMeanSTf)/variance;
+    % SIf index
+    controller(it).epRobustness.SIf1 = controller(it).epRobustness.STf1-controller(it).epRobustness.Sf1;
+    controller(it).epRobustness.SIf2 = controller(it).epRobustness.STf2-controller(it).epRobustness.Sf2;
+    controller(it).epRobustness.SIf3 = controller(it).epRobustness.STf3-controller(it).epRobustness.Sf3;
+    controller(it).epRobustness.SIf4 = controller(it).epRobustness.STf4-controller(it).epRobustness.Sf4;
+    controller(it).epRobustness.SIf5 = controller(it).epRobustness.STf5-controller(it).epRobustness.Sf5;
+    controller(it).epRobustness.SIf6 = controller(it).epRobustness.STf6-controller(it).epRobustness.Sf6;
+    controller(it).epRobustness.SIf7 = controller(it).epRobustness.STf7-controller(it).epRobustness.Sf7;
+    %Variance    
+    controller(it).epRobustness.variance = variance;
+    % RMS Power
+    % Sf index
+    squaredMeanSf = mean(controller(it).PRobustness.N0.*controller(it).PRobustness.N1234567);
+    variance = sum(controller(it).PRobustness.N1234567.^2.-squaredMeanSf)/(length(controller(it).PRobustness.N1234567)-1);
+    ufSf1 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N1)/(length(controller(it).PRobustness.N1234567)-1);
+    ufSf2 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N2)/(length(controller(it).PRobustness.N1234567)-1);
+    ufSf3 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N3)/(length(controller(it).PRobustness.N1234567)-1);
+    ufSf4 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N4)/(length(controller(it).PRobustness.N1234567)-1);
+    ufSf5 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N5)/(length(controller(it).PRobustness.N1234567)-1);
+    ufSf6 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N6)/(length(controller(it).PRobustness.N1234567)-1);
+    ufSf7 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N7)/(length(controller(it).PRobustness.N1234567)-1);
+    controller(it).PRobustness.Sf1 = (ufSf1-squaredMeanSf)/variance;
+    controller(it).PRobustness.Sf2 = (ufSf2-squaredMeanSf)/variance;
+    controller(it).PRobustness.Sf3 = (ufSf3-squaredMeanSf)/variance;
+    controller(it).PRobustness.Sf4 = (ufSf4-squaredMeanSf)/variance;
+    controller(it).PRobustness.Sf5 = (ufSf5-squaredMeanSf)/variance;
+    controller(it).PRobustness.Sf6 = (ufSf6-squaredMeanSf)/variance;
+    controller(it).PRobustness.Sf7 = (ufSf7-squaredMeanSf)/variance;
+    % STf index
+    squaredMeanSTf = mean(controller(it).PRobustness.N0)^2;
+    ufSTf1 = (controller(it).PRobustness.N0'*controller(it).PRobustness.N1)/(length(controller(it).PRobustness.N0)-1);
+    ufSTf2 = (controller(it).PRobustness.N0'*controller(it).PRobustness.N2)/(length(controller(it).PRobustness.N0)-1);
+    ufSTf3 = (controller(it).PRobustness.N0'*controller(it).PRobustness.N3)/(length(controller(it).PRobustness.N0)-1);
+    ufSTf4 = (controller(it).PRobustness.N0'*controller(it).PRobustness.N4)/(length(controller(it).PRobustness.N0)-1);
+    ufSTf5 = (controller(it).PRobustness.N0'*controller(it).PRobustness.N5)/(length(controller(it).PRobustness.N0)-1);
+    ufSTf6 = (controller(it).PRobustness.N0'*controller(it).PRobustness.N6)/(length(controller(it).PRobustness.N0)-1);
+    ufSTf7 = (controller(it).PRobustness.N0'*controller(it).PRobustness.N7)/(length(controller(it).PRobustness.N0)-1);
+    controller(it).PRobustness.STf1 = 1-(ufSTf1-squaredMeanSTf)/variance;
+    controller(it).PRobustness.STf2 = 1-(ufSTf2-squaredMeanSTf)/variance;
+    controller(it).PRobustness.STf3 = 1-(ufSTf3-squaredMeanSTf)/variance;
+    controller(it).PRobustness.STf4 = 1-(ufSTf4-squaredMeanSTf)/variance;
+    controller(it).PRobustness.STf5 = 1-(ufSTf5-squaredMeanSTf)/variance;
+    controller(it).PRobustness.STf6 = 1-(ufSTf6-squaredMeanSTf)/variance;
+    controller(it).PRobustness.STf7 = 1-(ufSTf7-squaredMeanSTf)/variance;
+    % SIf index
+    controller(it).PRobustness.SIf1 = controller(it).PRobustness.STf1-controller(it).PRobustness.Sf1;
+    controller(it).PRobustness.SIf2 = controller(it).PRobustness.STf2-controller(it).PRobustness.Sf2;
+    controller(it).PRobustness.SIf3 = controller(it).PRobustness.STf3-controller(it).PRobustness.Sf3;
+    controller(it).PRobustness.SIf4 = controller(it).PRobustness.STf4-controller(it).PRobustness.Sf4;
+    controller(it).PRobustness.SIf5 = controller(it).PRobustness.STf5-controller(it).PRobustness.Sf5;
+    controller(it).PRobustness.SIf6 = controller(it).PRobustness.STf6-controller(it).PRobustness.Sf6;
+    controller(it).PRobustness.SIf7 = controller(it).PRobustness.STf7-controller(it).PRobustness.Sf7;
+    %Variance    
+    controller(it).PRobustness.variance = variance;
+    
+    
 %%
 %     
 %     %% Compound analysis
