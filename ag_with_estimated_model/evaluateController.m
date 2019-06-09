@@ -171,5 +171,3 @@ for jt = 1:numel(samplesFields)
     end
 end
 end
-
-

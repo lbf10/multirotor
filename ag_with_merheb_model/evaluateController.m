@@ -127,7 +127,7 @@ for jt = 1:numel(samplesFields)
             multirotor.setTimeStep(0.002);
             multirotor.setControlTimeStep(option{6});
             multirotor.configFDD(0.99,0.2);
-            multirotor.setSimEffects('motor dynamics on','solver ode45')
+            multirotor.setSimEffects('motor dynamics on','solver euler')
             multirotor.setControlDelay(option{7});
             multirotor = paramsToMultirotor(attitudeController, controlAllocator, attitudeReference, multirotor, bestIndividual);
             
