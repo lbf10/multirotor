@@ -83,8 +83,7 @@ for it=1:length(subFolders)
                 end
                 controller(it).epRobustness.(samplesFields{jt}) = [controller(it).epRobustness.(samplesFields{jt}); aux];
                 if isinf(metrics(kt).RMSPower)
-                    %aux = 400/metrics(kt).simulationSuccess;
-                    aux = metrics(kt).RMSPower;
+                    aux = 400/metrics(kt).simulationSuccess;
                 else
                     %aux = metrics(kt).RMSPower/metrics(kt).simulationSuccess;
                     aux = metrics(kt).RMSPower;
