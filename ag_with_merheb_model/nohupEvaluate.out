@@ -1,0 +1,346 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 68 workers.
+
+foldername =
+
+Evaluation_Adaptive Direct_None_Passive NMAC_29-Jan-2019 23:09:42_result
+
+
+attitudeController =
+
+Adaptive Direct
+
+
+controlAllocator =
+
+None
+
+
+attitudeReference =
+
+Passive NMAC
+
+Adaptive Direct - Starting Controller evaluation 17-Jun-2019 19:34:38
+N0 - Starting samples matrix 17-Jun-2019 19:34:39
+Analyzing and transferring files to the workers ...done.
+N0 - Finished samples matrix 17-Jun-2019 19:42:19
+N1 - Starting samples matrix 17-Jun-2019 19:42:20
+N1 - Finished samples matrix 17-Jun-2019 19:49:45
+N1234567 - Starting samples matrix 17-Jun-2019 19:49:46
+N1234567 - Finished samples matrix 17-Jun-2019 19:56:59
+N2 - Starting samples matrix 17-Jun-2019 19:57:00
+N2 - Finished samples matrix 17-Jun-2019 20:04:26
+N3 - Starting samples matrix 17-Jun-2019 20:04:28
+N3 - Finished samples matrix 17-Jun-2019 20:11:53
+N4 - Starting samples matrix 17-Jun-2019 20:11:54
+N4 - Finished samples matrix 17-Jun-2019 20:19:32
+N5 - Starting samples matrix 17-Jun-2019 20:19:34
+N5 - Finished samples matrix 17-Jun-2019 20:27:13
+N6 - Starting samples matrix 17-Jun-2019 20:27:15
+N6 - Finished samples matrix 17-Jun-2019 20:34:46
+N7 - Starting samples matrix 17-Jun-2019 20:34:48
+N7 - Finished samples matrix 17-Jun-2019 20:42:14
+
+foldername =
+
+Evaluation_Adaptive with PIDD_Passive NMAC_Passive NMAC_23-May-2019 18:10:58_iterations
+
+
+attitudeController =
+
+Adaptive with PIDD
+
+
+controlAllocator =
+
+Passive NMAC
+
+
+attitudeReference =
+
+Passive NMAC
+
+Adaptive with PIDD - Starting Controller evaluation 17-Jun-2019 20:42:16
+N0 - Starting samples matrix 17-Jun-2019 20:42:18
+N0 - Finished samples matrix 17-Jun-2019 21:02:18
+N1 - Starting samples matrix 17-Jun-2019 21:02:19
+N1 - Finished samples matrix 17-Jun-2019 21:23:44
+N1234567 - Starting samples matrix 17-Jun-2019 21:23:45
+N1234567 - Finished samples matrix 17-Jun-2019 21:44:13
+N2 - Starting samples matrix 17-Jun-2019 21:44:14
+N2 - Finished samples matrix 17-Jun-2019 22:08:41
+N3 - Starting samples matrix 17-Jun-2019 22:08:43
+N3 - Finished samples matrix 17-Jun-2019 22:30:02
+N4 - Starting samples matrix 17-Jun-2019 22:30:04
+N4 - Finished samples matrix 17-Jun-2019 22:51:30
+N5 - Starting samples matrix 17-Jun-2019 22:51:32
+N5 - Finished samples matrix 17-Jun-2019 23:12:32
+N6 - Starting samples matrix 17-Jun-2019 23:12:33
+N6 - Finished samples matrix 17-Jun-2019 23:32:13
+N7 - Starting samples matrix 17-Jun-2019 23:32:15
+N7 - Finished samples matrix 17-Jun-2019 23:52:11
+
+foldername =
+
+Evaluation_Adaptive_Passive NMAC_Passive NMAC_14-Jan-2019 22:19:51_iterations
+
+
+attitudeController =
+
+Adaptive
+
+
+controlAllocator =
+
+Passive NMAC
+
+
+attitudeReference =
+
+Passive NMAC
+
+Adaptive - Starting Controller evaluation 17-Jun-2019 23:52:13
+N0 - Starting samples matrix 17-Jun-2019 23:52:14
+N0 - Finished samples matrix 18-Jun-2019 00:05:44
+N1 - Starting samples matrix 18-Jun-2019 00:05:44
+N1 - Finished samples matrix 18-Jun-2019 00:20:13
+N1234567 - Starting samples matrix 18-Jun-2019 00:20:14
+N1234567 - Finished samples matrix 18-Jun-2019 00:33:29
+N2 - Starting samples matrix 18-Jun-2019 00:33:30
+N2 - Finished samples matrix 18-Jun-2019 00:46:41
+N3 - Starting samples matrix 18-Jun-2019 00:46:43
+N3 - Finished samples matrix 18-Jun-2019 01:00:02
+N4 - Starting samples matrix 18-Jun-2019 01:00:04
+N4 - Finished samples matrix 18-Jun-2019 01:14:23
+N5 - Starting samples matrix 18-Jun-2019 01:14:24
+N5 - Finished samples matrix 18-Jun-2019 01:27:58
+N6 - Starting samples matrix 18-Jun-2019 01:27:59
+N6 - Finished samples matrix 18-Jun-2019 01:41:50
+N7 - Starting samples matrix 18-Jun-2019 01:41:52
+N7 - Finished samples matrix 18-Jun-2019 01:55:18
+
+foldername =
+
+Evaluation_Markovian RLQ-R Active Modified_Active NMAC_Active NMAC_05-Mar-2019 01:11:46_light_iterations
+
+
+attitudeController =
+
+Markovian RLQ-R Active Modified
+
+
+controlAllocator =
+
+Active NMAC
+
+
+attitudeReference =
+
+Active NMAC
+
+Markovian RLQ-R Active Modified - Starting Controller evaluation 18-Jun-2019 01:55:21
+N0 - Starting samples matrix 18-Jun-2019 01:55:22
+N0 - Finished samples matrix 18-Jun-2019 02:20:58
+N1 - Starting samples matrix 18-Jun-2019 02:20:59
+N1 - Finished samples matrix 18-Jun-2019 02:48:48
+N1234567 - Starting samples matrix 18-Jun-2019 02:48:49
+N1234567 - Finished samples matrix 18-Jun-2019 03:10:01
+N2 - Starting samples matrix 18-Jun-2019 03:10:02
+N2 - Finished samples matrix 18-Jun-2019 03:32:19
+N3 - Starting samples matrix 18-Jun-2019 03:32:20
+N3 - Finished samples matrix 18-Jun-2019 03:54:56
+N4 - Starting samples matrix 18-Jun-2019 03:54:58
+N4 - Finished samples matrix 18-Jun-2019 04:21:49
+N5 - Starting samples matrix 18-Jun-2019 04:21:51
+N5 - Finished samples matrix 18-Jun-2019 04:47:54
+N6 - Starting samples matrix 18-Jun-2019 04:47:56
+N6 - Finished samples matrix 18-Jun-2019 05:09:26
+N7 - Starting samples matrix 18-Jun-2019 05:09:28
+N7 - Finished samples matrix 18-Jun-2019 05:36:12
+
+foldername =
+
+Evaluation_Markovian RLQ-R Passive Modified_Passive NMAC_Passive NMAC_30-Jan-2019 16:05:28_light_iterations
+
+
+attitudeController =
+
+Markovian RLQ-R Passive Modified
+
+
+controlAllocator =
+
+Passive NMAC
+
+
+attitudeReference =
+
+Passive NMAC
+
+Markovian RLQ-R Passive Modified - Starting Controller evaluation 18-Jun-2019 05:36:15
+N0 - Starting samples matrix 18-Jun-2019 05:36:16
+N0 - Finished samples matrix 18-Jun-2019 06:41:06
+N1 - Starting samples matrix 18-Jun-2019 06:41:06
+N1 - Finished samples matrix 18-Jun-2019 07:35:51
+N1234567 - Starting samples matrix 18-Jun-2019 07:35:52
+N1234567 - Finished samples matrix 18-Jun-2019 08:33:36
+N2 - Starting samples matrix 18-Jun-2019 08:33:37
+N2 - Finished samples matrix 18-Jun-2019 09:30:46
+N3 - Starting samples matrix 18-Jun-2019 09:30:47
+N3 - Finished samples matrix 18-Jun-2019 10:32:29
+N4 - Starting samples matrix 18-Jun-2019 10:32:30
+N4 - Finished samples matrix 18-Jun-2019 11:33:34
+N5 - Starting samples matrix 18-Jun-2019 11:33:35
+N5 - Finished samples matrix 18-Jun-2019 12:50:50
+N6 - Starting samples matrix 18-Jun-2019 12:50:52
+N6 - Finished samples matrix 18-Jun-2019 13:52:17
+N7 - Starting samples matrix 18-Jun-2019 13:52:18
+N7 - Finished samples matrix 18-Jun-2019 14:48:52
+
+foldername =
+
+Evaluation_PID_Active NMAC_Active NMAC_18-Mar-2019 16:20:59_result
+
+
+attitudeController =
+
+PID
+
+
+controlAllocator =
+
+Active NMAC
+
+
+attitudeReference =
+
+Active NMAC
+
+PID - Starting Controller evaluation 18-Jun-2019 14:48:54
+N0 - Starting samples matrix 18-Jun-2019 14:48:55
+N0 - Finished samples matrix 18-Jun-2019 16:19:50
+N1 - Starting samples matrix 18-Jun-2019 16:19:50
+N1 - Finished samples matrix 18-Jun-2019 17:36:33
+N1234567 - Starting samples matrix 18-Jun-2019 17:36:34
+N1234567 - Finished samples matrix 18-Jun-2019 18:47:48
+N2 - Starting samples matrix 18-Jun-2019 18:47:49
+N2 - Finished samples matrix 18-Jun-2019 20:20:30
+N3 - Starting samples matrix 18-Jun-2019 20:20:32
+N3 - Finished samples matrix 18-Jun-2019 21:47:51
+N4 - Starting samples matrix 18-Jun-2019 21:47:53
+N4 - Finished samples matrix 18-Jun-2019 23:19:48
+N5 - Starting samples matrix 18-Jun-2019 23:19:49
+N5 - Finished samples matrix 19-Jun-2019 01:08:21
+N6 - Starting samples matrix 19-Jun-2019 01:08:23
+N6 - Finished samples matrix 19-Jun-2019 02:24:07
+N7 - Starting samples matrix 19-Jun-2019 02:24:09
+N7 - Finished samples matrix 19-Jun-2019 03:52:29
+
+foldername =
+
+Evaluation_PID_Passive NMAC_Passive NMAC_05-Dec-2018 14:10:50_iterations
+
+
+attitudeController =
+
+PID
+
+
+controlAllocator =
+
+Passive NMAC
+
+
+attitudeReference =
+
+Passive NMAC
+
+PID - Starting Controller evaluation 19-Jun-2019 03:52:31
+N0 - Starting samples matrix 19-Jun-2019 03:52:32
+N0 - Finished samples matrix 19-Jun-2019 05:19:24
+N1 - Starting samples matrix 19-Jun-2019 05:19:24
+N1 - Finished samples matrix 19-Jun-2019 06:27:10
+N1234567 - Starting samples matrix 19-Jun-2019 06:27:11
+N1234567 - Finished samples matrix 19-Jun-2019 07:37:14
+N2 - Starting samples matrix 19-Jun-2019 07:37:15
+N2 - Finished samples matrix 19-Jun-2019 09:07:39
+N3 - Starting samples matrix 19-Jun-2019 09:07:41
+N3 - Finished samples matrix 19-Jun-2019 10:34:35
+N4 - Starting samples matrix 19-Jun-2019 10:34:36
+N4 - Finished samples matrix 19-Jun-2019 11:59:48
+N5 - Starting samples matrix 19-Jun-2019 11:59:49
+N5 - Finished samples matrix 19-Jun-2019 13:44:53
+N6 - Starting samples matrix 19-Jun-2019 13:44:54
+N6 - Finished samples matrix 19-Jun-2019 14:57:09
+N7 - Starting samples matrix 19-Jun-2019 14:57:11
+N7 - Finished samples matrix 19-Jun-2019 16:22:43
+
+foldername =
+
+Evaluation_RLQ-R Active Modified with PIDD_Active NMAC_Active NMAC_19-Feb-2019 09:01:18_result
+
+
+attitudeController =
+
+RLQ-R Active Modified with PIDD
+
+
+controlAllocator =
+
+Active NMAC
+
+
+attitudeReference =
+
+Active NMAC
+
+RLQ-R Active Modified with PIDD - Starting Controller evaluation 19-Jun-2019 16:22:45
+N0 - Starting samples matrix 19-Jun-2019 16:22:46
+N0 - Finished samples matrix 19-Jun-2019 16:45:45
+N1 - Starting samples matrix 19-Jun-2019 16:45:46
+N1 - Finished samples matrix 19-Jun-2019 17:15:51
+N1234567 - Starting samples matrix 19-Jun-2019 17:15:52
+N1234567 - Finished samples matrix 19-Jun-2019 17:40:54
+N2 - Starting samples matrix 19-Jun-2019 17:40:55
+N2 - Finished samples matrix 19-Jun-2019 18:03:32
+N3 - Starting samples matrix 19-Jun-2019 18:03:33
+N3 - Finished samples matrix 19-Jun-2019 18:24:55
+N4 - Starting samples matrix 19-Jun-2019 18:24:56
+N4 - Finished samples matrix 19-Jun-2019 18:50:47
+N5 - Starting samples matrix 19-Jun-2019 18:50:49
+N5 - Finished samples matrix 19-Jun-2019 19:15:55
+N6 - Starting samples matrix 19-Jun-2019 19:15:57
+N6 - Finished samples matrix 19-Jun-2019 19:43:19
+N7 - Starting samples matrix 19-Jun-2019 19:43:21
+N7 - Finished samples matrix 19-Jun-2019 20:07:30
+
+foldername =
+
+Evaluation_RLQ-R Active Modified_Active NMAC_Active NMAC_14-Feb-2019 06:58:49_result
+
+
+attitudeController =
+
+RLQ-R Active Modified
+
+
+controlAllocator =
+
+Active NMAC
+
+
+attitudeReference =
+
+Active NMAC
+
+RLQ-R Active Modified - Starting Controller evaluation 19-Jun-2019 20:07:32
+N0 - Starting samples matrix 19-Jun-2019 20:07:33
