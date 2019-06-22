@@ -10,8 +10,10 @@ subFolders(1:2) = [];
 
 controller = struct([]);
 
+saveDir = uigetdir('','Choose a folder to save files to');
+
 for it=1:length(subFolders)
-    try
+%     try
     aux = strsplit(subFolders(it).name,'Evaluation_');
     % Get controller name from folder name
     controller(it).name = aux(2);
@@ -225,9 +227,11 @@ for it=1:length(subFolders)
     controller(it).ssRobustness.SIf6 = controller(it).ssRobustness.STf6-controller(it).ssRobustness.Sf6;
     controller(it).ssRobustness.SIf7 = controller(it).ssRobustness.STf7-controller(it).ssRobustness.Sf7;
     %Variance    
-    controller(it).ssRobustness.variance = variance;   
+    controller(it).ssRobustness.variance = variance;  
+    data = controller(it);
+    save([saveDir,'/evaluationMetrics_',data.name{1}],'data');
     disp(['Finished controller ',controller(it).name]);
-    end
+%     end
 end
-uisave('controller','evaluationMetrics.mat');
+% uisave('controller','evaluationMetrics.mat');
 clear all
