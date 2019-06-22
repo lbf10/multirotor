@@ -1,0 +1,16 @@
+
+pKp = \left(\begin{array}{ccc} 90.68 & 72.54 & 100.0 \end{array}\right) 
+
+pKi = \left(\begin{array}{ccc} 46.84 & 10.0 & 56.31 \end{array}\right) 
+
+pKd = \left(\begin{array}{ccc} 25.56 & 22.41 & 35.18 \end{array}\right) 
+
+pKdd = \left(\begin{array}{ccc} 2.878 & 0.4223 & 7.595 \end{array}\right) 
+
+c = \left(\begin{array}{cccccc} 0.2763 & 0 & 0 & 0 & 0 & 0\\ 0 & 0.1697 & 0 & 0 & 0 & 0\\ 0 & 0 & 3.0 & 0 & 0 & 0\\ 0 & 0 & 0 & 69.39 & 0 & 0\\ 0 & 0 & 0 & 0 & 45.21 & 0\\ 0 & 0 & 0 & 0 & 0 & 6.0 \end{array}\right) 
+
+lambda = \left(\begin{array}{cccccc} 0.1 & 0 & 0 & 0 & 0 & 0\\ 0 & 0.1 & 0 & 0 & 0 & 0\\ 0 & 0 & 0.1 & 0 & 0 & 0\\ 0 & 0 & 0 & 33.64 & 0 & 0\\ 0 & 0 & 0 & 0 & 54.16 & 0\\ 0 & 0 & 0 & 0 & 0 & 0.2 \end{array}\right) 
+
+alpha = \left(\begin{array}{cccccc} 2.0 & 0 & 0 & 0 & 0 & 0\\ 0 & 1.199 & 0 & 0 & 0 & 0\\ 0 & 0 & 7.615 & 0 & 0 & 0\\ 0 & 0 & 0 & 35.83 & 0 & 0\\ 0 & 0 & 0 & 0 & 80.89 & 0\\ 0 & 0 & 0 & 0 & 0 & 0.009762 \end{array}\right) 
+
+angularFilterGain = \left(\begin{array}{ccc} 0.008067 & 0 & 0.9753 \end{array}\right) 

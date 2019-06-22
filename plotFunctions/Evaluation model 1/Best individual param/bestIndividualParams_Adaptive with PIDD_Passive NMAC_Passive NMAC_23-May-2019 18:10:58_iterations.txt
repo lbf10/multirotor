@@ -1,0 +1,22 @@
+
+$ K_P = \left(\begin{array}{ccc} 64.24 & 81.72 & 40.0 \end{array}\right) $
+
+$ K_I = \left(\begin{array}{ccc} 0 & 0 & 0 \end{array}\right) $
+
+$ K_D = \left(\begin{array}{ccc} 13.64 & 5.0 & 5.0 \end{array}\right) $
+
+$ K_DD = \left(\begin{array}{ccc} 0 & 0 & 0.04845 \end{array}\right) $
+
+$ Am = \left(\begin{array}{cccccc} -0.1 & 0 & 0 & 0 & 0 & 0\\ 0 & -12.92 & 0 & 0 & 0 & 0\\ 0 & 0 & -2.0 & 0 & 0 & 0\\ 0 & 0 & 0 & -2.0 & 0 & 0\\ 0 & 0 & 0 & 0 & -2.0 & 0\\ 0 & 0 & 0 & 0 & 0 & -0.01 \end{array}\right) $
+
+$ Q = \left(\begin{array}{cccccc} 1.0 & 0 & 0 & 0 & 0 & 0\\ 0 & 1.541 & 0 & 0 & 0 & 0\\ 0 & 0 & 3.442 & 0 & 0 & 0\\ 0 & 0 & 0 & 0.5 & 0 & 0\\ 0 & 0 & 0 & 0 & 0.5 & 0\\ 0 & 0 & 0 & 0 & 0 & 0.0005 \end{array}\right) $
+
+$ gamma_1 = \left(\begin{array}{cccccc} 0.0001 & 0 & 0 & 0 & 0 & 0\\ 0 & 0.0001 & 0 & 0 & 0 & 0\\ 0 & 0 & 1.122 & 0 & 0 & 0\\ 0 & 0 & 0 & 0.0001 & 0 & 0\\ 0 & 0 & 0 & 0 & 0.0001 & 0\\ 0 & 0 & 0 & 0 & 0 & 0.0001 \end{array}\right) $
+
+$ gamma_2 = \left(\begin{array}{cccccc} 0.0001 & 0 & 0 & 0 & 0 & 0\\ 0 & 0.0001 & 0 & 0 & 0 & 0\\ 0 & 0 & 0.0001 & 0 & 0 & 0\\ 0 & 0 & 0 & 0.0001 & 0 & 0\\ 0 & 0 & 0 & 0 & 0.0001 & 0\\ 0 & 0 & 0 & 0 & 0 & 0.0001 \end{array}\right) $
+
+$ gamma_3 = \left(\begin{array}{cccccc} 4.0 & 0 & 0 & 0 & 0 & 0\\ 0 & 4.0 & 0 & 0 & 0 & 0\\ 0 & 0 & 7.477 & 0 & 0 & 0\\ 0 & 0 & 0 & 3.981 & 0 & 0\\ 0 & 0 & 0 & 0 & 1.681 & 0\\ 0 & 0 & 0 & 0 & 0 & 3.775 \end{array}\right) $
+
+$ gamma_4 = \left(\begin{array}{cccccc} 1.0\,{10}^{-5} & 0 & 0 & 0 & 0 & 0\\ 0 & 1.0\,{10}^{-5} & 0 & 0 & 0 & 0\\ 0 & 0 & 1.0\,{10}^{-5} & 0 & 0 & 0\\ 0 & 0 & 0 & 1.0\,{10}^{-5} & 0 & 0\\ 0 & 0 & 0 & 0 & 1.0\,{10}^{-5} & 0\\ 0 & 0 & 0 & 0 & 0 & 16.85 \end{array}\right) $
+
+$ angularFilterGain = \left(\begin{array}{ccc} 0 & 0 & 0.2171 \end{array}\right) $

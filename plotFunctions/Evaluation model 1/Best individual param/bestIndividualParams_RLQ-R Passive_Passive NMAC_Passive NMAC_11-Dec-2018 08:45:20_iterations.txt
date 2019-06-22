@@ -1,0 +1,26 @@
+
+$ K_P = \left(\begin{array}{ccc} 124.4 & 135.0 & 40.0 \end{array}\right) $
+
+$ K_I = \left(\begin{array}{ccc} 10.0 & 4.444 & 74.89 \end{array}\right) $
+
+$ K_D = \left(\begin{array}{ccc} 20.0 & 20.0 & 13.97 \end{array}\right) $
+
+$ K_DD = \left(\begin{array}{ccc} 0 & 0 & 0 \end{array}\right) $
+
+$ P = \left(\begin{array}{cccccc} 4.712\,{10}^6 & 0 & 0 & 0 & 0 & 0\\ 0 & 9.914\,{10}^6 & 0 & 0 & 0 & 0\\ 0 & 0 & 3.064\,{10}^6 & 0 & 0 & 0\\ 0 & 0 & 0 & 9.863\,{10}^6 & 0 & 0\\ 0 & 0 & 0 & 0 & 8.612\,{10}^5 & 0\\ 0 & 0 & 0 & 0 & 0 & 3.251\,{10}^6 \end{array}\right) $
+
+$ Q = \left(\begin{array}{cccccc} 1.062\,{10}^6 & 0 & 0 & 0 & 0 & 0\\ 0 & 6.792\,{10}^6 & 0 & 0 & 0 & 0\\ 0 & 0 & 8.634\,{10}^6 & 0 & 0 & 0\\ 0 & 0 & 0 & 7.859\,{10}^6 & 0 & 0\\ 0 & 0 & 0 & 0 & 9.765\,{10}^6 & 0\\ 0 & 0 & 0 & 0 & 0 & 8.689\,{10}^6 \end{array}\right) $
+
+$ R = \left(\begin{array}{ccc} 70.0 & 0 & 0\\ 0 & 70.0 & 0\\ 0 & 0 & 7.0 \end{array}\right) $
+
+$ E_f = \left(\begin{array}{cccccc} 81.55 & 6.495 & 143.4 & 957.0 & 671.5 & 0 \end{array}\right) $
+
+$ E_g = \left(\begin{array}{ccc} 0.02 & 0.02 & 103.4 \end{array}\right) $
+
+$ H = \left(\begin{array}{c} 371.9\\ 7.06\\ 1.0\\ 1.0\\ 941.4\\ 335.8 \end{array}\right) $
+
+$ mu = 3.188\,{10}^{29} $
+
+$ alpha = 1.5 $
+
+$ angularFilterGain = \left(\begin{array}{ccc} 0 & 0 & 0.06539 \end{array}\right) $

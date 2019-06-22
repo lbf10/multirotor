@@ -1,0 +1,26 @@
+
+pKp = \left(\begin{array}{ccc} 1.388 & 1.036 & 506.6 \end{array}\right) 
+
+pKi = \left(\begin{array}{ccc} 663.1 & 69.81 & 992.1 \end{array}\right) 
+
+pKd = \left(\begin{array}{ccc} 55.85 & 6.395 & 95.4 \end{array}\right) 
+
+pKdd = \left(\begin{array}{ccc} 6.315 & 13.03 & 17.94 \end{array}\right) 
+
+P = \left(\begin{array}{cccccc} 6.603\,{10}^6 & 0 & 0 & 0 & 0 & 0\\ 0 & 9.263\,{10}^6 & 0 & 0 & 0 & 0\\ 0 & 0 & 2.612\,{10}^6 & 0 & 0 & 0\\ 0 & 0 & 0 & 4.983\,{10}^6 & 0 & 0\\ 0 & 0 & 0 & 0 & 1.532\,{10}^6 & 0\\ 0 & 0 & 0 & 0 & 0 & 9.053\,{10}^6 \end{array}\right) 
+
+Q = \left(\begin{array}{cccccc} 8.887\,{10}^6 & 0 & 0 & 0 & 0 & 0\\ 0 & 2.492\,{10}^5 & 0 & 0 & 0 & 0\\ 0 & 0 & 6.379\,{10}^6 & 0 & 0 & 0\\ 0 & 0 & 0 & 7.962\,{10}^6 & 0 & 0\\ 0 & 0 & 0 & 0 & 6.259\,{10}^6 & 0\\ 0 & 0 & 0 & 0 & 0 & 2.421\,{10}^6 \end{array}\right) 
+
+R = \left(\begin{array}{ccc} 2.207\,{10}^6 & 0 & 0\\ 0 & 9.851\,{10}^6 & 0\\ 0 & 0 & 7.821\,{10}^6 \end{array}\right) 
+
+Ef = \left(\begin{array}{cccccc} 483.2 & 168.5 & 532.9 & 860.8 & 130.7 & 71.74 \end{array}\right) 
+
+Eg = \left(\begin{array}{ccc} 6.831 & 21.11 & 123.9 \end{array}\right) 
+
+H = \left(\begin{array}{c} 41.94\\ 603.7\\ 145.5\\ 27.06\\ 138.6\\ 660.8 \end{array}\right) 
+
+mu = 2.009\,{10}^{28} 
+
+alpha = 75.99 
+
+angularFilterGain = \left(\begin{array}{ccc} 0.9958 & 0.02262 & 0.8353 \end{array}\right) 

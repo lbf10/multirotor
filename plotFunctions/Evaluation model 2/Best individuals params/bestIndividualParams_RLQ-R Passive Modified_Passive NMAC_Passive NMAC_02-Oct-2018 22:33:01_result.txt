@@ -1,0 +1,26 @@
+
+pKp = \left(\begin{array}{ccc} 136.0 & 153.1 & 60.0 \end{array}\right) 
+
+pKi = \left(\begin{array}{ccc} 2.0 & 2.0 & 67.62 \end{array}\right) 
+
+pKd = \left(\begin{array}{ccc} 25.0 & 42.66 & 30.0 \end{array}\right) 
+
+pKdd = \left(\begin{array}{ccc} 3.0 & 3.0 & 3.0 \end{array}\right) 
+
+P = \left(\begin{array}{cccccc} 1.364\,{10}^8 & 0 & 0 & 0 & 0 & 0\\ 0 & 1.653\,{10}^8 & 0 & 0 & 0 & 0\\ 0 & 0 & 3.38\,{10}^8 & 0 & 0 & 0\\ 0 & 0 & 0 & 8.117\,{10}^8 & 0 & 0\\ 0 & 0 & 0 & 0 & 4.707\,{10}^8 & 0\\ 0 & 0 & 0 & 0 & 0 & 5.0\,{10}^6 \end{array}\right) 
+
+Q = \left(\begin{array}{cccccc} 5.0\,{10}^6 & 0 & 0 & 0 & 0 & 0\\ 0 & 5.0\,{10}^6 & 0 & 0 & 0 & 0\\ 0 & 0 & 5.0\,{10}^6 & 0 & 0 & 0\\ 0 & 0 & 0 & 5.174\,{10}^7 & 0 & 0\\ 0 & 0 & 0 & 0 & 1.324\,{10}^7 & 0\\ 0 & 0 & 0 & 0 & 0 & 5.0\,{10}^6 \end{array}\right) 
+
+R = \left(\begin{array}{cccccccc} 582.1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\ 0 & 1.0\,{10}^{-5} & 0 & 0 & 0 & 0 & 0 & 0\\ 0 & 0 & 1.0\,{10}^{-5} & 0 & 0 & 0 & 0 & 0\\ 0 & 0 & 0 & 1.0\,{10}^{-5} & 0 & 0 & 0 & 0\\ 0 & 0 & 0 & 0 & 169.7 & 0 & 0 & 0\\ 0 & 0 & 0 & 0 & 0 & 1.0\,{10}^{-5} & 0 & 0\\ 0 & 0 & 0 & 0 & 0 & 0 & 1.0\,{10}^{-5} & 0\\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 42.8 \end{array}\right) 
+
+Ef = \left(\begin{array}{cccccc} 64244.0 & 35822.0 & 10.0 & 56099.0 & 0 & 0 \end{array}\right) 
+
+Eg = \left(\begin{array}{cccccccc} 15588.0 & 36288.0 & 1000.0 & 1000.0 & 1000.0 & 1000.0 & 1000.0 & 1000.0 \end{array}\right) 
+
+H = \left(\begin{array}{c} 1.0\\ 1.0\\ 1.0\\ 1.0\\ 1.0\\ 1.0 \end{array}\right) 
+
+mu = 1.0\,{10}^{20} 
+
+alpha = 1.5 
+
+angularFilterGain = \left(\begin{array}{ccc} 0.894 & 0.8669 & 0.7133 \end{array}\right) 

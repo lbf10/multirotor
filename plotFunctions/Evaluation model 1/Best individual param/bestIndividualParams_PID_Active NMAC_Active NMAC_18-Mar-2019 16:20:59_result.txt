@@ -1,0 +1,16 @@
+
+$ K_P = \left(\begin{array}{ccc} 58.84 & 72.95 & 16.53 \end{array}\right) $
+
+$ K_I = \left(\begin{array}{ccc} 1.511 & 0.04139 & 28.98 \end{array}\right) $
+
+$ K_D = \left(\begin{array}{ccc} 20.0 & 22.37 & 13.67 \end{array}\right) $
+
+$ K_DD = \left(\begin{array}{ccc} 0.7634 & 0.9384 & 0 \end{array}\right) $
+
+$ K_tauP = \left(\begin{array}{ccc} 352.1 & 401.1 & 123.7 \end{array}\right) $
+
+$ K_tauI = \left(\begin{array}{ccc} 987.2 & 974.0 & 26.49 \end{array}\right) $
+
+$ K_tauD = \left(\begin{array}{ccc} 22.23 & 24.58 & 10.0 \end{array}\right) $
+
+$ angularFilterGain = \left(\begin{array}{ccc} 0.9288 & 0.5393 & 0.7102 \end{array}\right) $

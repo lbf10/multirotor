@@ -1,0 +1,16 @@
+
+$ K_P = \left(\begin{array}{ccc} 154.5 & 161.3 & 86.1 \end{array}\right) $
+
+$ K_I = \left(\begin{array}{ccc} 0.5154 & 0.9925 & 174.1 \end{array}\right) $
+
+$ K_D = \left(\begin{array}{ccc} 20.0 & 20.0 & 19.81 \end{array}\right) $
+
+$ K_DD = \left(\begin{array}{ccc} 0 & 0 & 0 \end{array}\right) $
+
+$ c = \left(\begin{array}{ccc} 29.49 & 0 & 0\\ 0 & 54.15 & 0\\ 0 & 0 & 18.4 \end{array}\right) $
+
+$ lambda = \left(\begin{array}{ccc} 0.1 & 0 & 0\\ 0 & 0.1 & 0\\ 0 & 0 & 77.58 \end{array}\right) $
+
+$ alpha = \left(\begin{array}{ccc} 5.92 & 0 & 0\\ 0 & 8.586 & 0\\ 0 & 0 & 2.0 \end{array}\right) $
+
+$ angularFilterGain = \left(\begin{array}{ccc} 0.2619 & 0.4232 & 0.948 \end{array}\right) $

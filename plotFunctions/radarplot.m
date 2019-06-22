@@ -39,7 +39,7 @@ R=[R R(:,1)];
 [Theta,M]=meshgrid(2*pi/n*[0:n]+pi/n,ones(1,size(R,1)));
 X=R.*sin(Theta);
 Y=R.*cos(Theta);
-A=plot(X',Y','LineWidth',2);
+A=plot(X',Y','O-','LineWidth',2.5);
 MAXAXIS=max(max(R))*1.1;
 axis([-MAXAXIS MAXAXIS -MAXAXIS MAXAXIS]);
 axis equal
@@ -90,7 +90,7 @@ if nargin>3
             if sum(strcmpi({'y' 'm' 'c' 'r' 'g' 'b' 'w' 'k' },FillColor(i)))
                 hold on;
                 F=fill(X(i,:),Y(i,:),cell2mat(FillColor(i)),'LineStyle','none');
-                set(F,'FaceAlpha',0.3)
+                set(F,'FaceAlpha',0.05)
             end
         end
     end

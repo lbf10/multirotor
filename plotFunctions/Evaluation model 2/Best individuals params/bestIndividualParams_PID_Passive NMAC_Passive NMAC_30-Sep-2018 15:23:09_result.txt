@@ -1,0 +1,16 @@
+
+pKp = \left(\begin{array}{ccc} 90.0 & 90.23 & 90.0 \end{array}\right) 
+
+pKi = \left(\begin{array}{ccc} 9.762 & 4.265 & 219.3 \end{array}\right) 
+
+pKd = \left(\begin{array}{ccc} 41.77 & 37.41 & 40.0 \end{array}\right) 
+
+pKdd = \left(\begin{array}{ccc} 4.108 & 3.247 & 6.795 \end{array}\right) 
+
+kp = \left(\begin{array}{ccc} 130.1 & 131.5 & 45.14 \end{array}\right) 
+
+ki = \left(\begin{array}{ccc} 280.1 & 475.1 & 1.489 \end{array}\right) 
+
+kd = \left(\begin{array}{ccc} 14.45 & 18.78 & 2.0 \end{array}\right) 
+
+angularFilterGain = \left(\begin{array}{ccc} 0.853 & 0.3896 & 0.5 \end{array}\right) 
