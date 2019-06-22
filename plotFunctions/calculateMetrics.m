@@ -99,7 +99,7 @@ for it=1:length(subFolders)
     % RMS Position Error
     % Sf index
     squaredMeanSf = mean(controller(it).epRobustness.N0.*controller(it).epRobustness.N1234567);
-    variance = sum(controller(it).epRobustness.N1234567.^2.-squaredMeanSf)/(length(controller(it).epRobustness.N1234567)-1);
+    variance = sum(controller(it).epRobustness.N1234567.^2)/(length(controller(it).epRobustness.N1234567)-1)-squaredMeanSf;
     ufSf1 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N1)/(length(controller(it).epRobustness.N1234567)-1);
     ufSf2 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N2)/(length(controller(it).epRobustness.N1234567)-1);
     ufSf3 = (controller(it).epRobustness.N1234567'*controller(it).epRobustness.N3)/(length(controller(it).epRobustness.N1234567)-1);
@@ -143,7 +143,7 @@ for it=1:length(subFolders)
     % RMS Power
     % Sf index
     squaredMeanSf = mean(controller(it).PRobustness.N0.*controller(it).PRobustness.N1234567);
-    variance = sum(controller(it).PRobustness.N1234567.^2.-squaredMeanSf)/(length(controller(it).PRobustness.N1234567)-1);
+    variance = sum(controller(it).PRobustness.N1234567.^2)/(length(controller(it).PRobustness.N1234567)-1)-squaredMeanSf;
     ufSf1 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N1)/(length(controller(it).PRobustness.N1234567)-1);
     ufSf2 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N2)/(length(controller(it).PRobustness.N1234567)-1);
     ufSf3 = (controller(it).PRobustness.N1234567'*controller(it).PRobustness.N3)/(length(controller(it).PRobustness.N1234567)-1);
@@ -187,7 +187,7 @@ for it=1:length(subFolders)
     % Simulation Success
     % Sf index
     squaredMeanSf = mean(controller(it).ssRobustness.N0.*controller(it).ssRobustness.N1234567);
-    variance = sum(controller(it).ssRobustness.N1234567.^2.-squaredMeanSf)/(length(controller(it).ssRobustness.N1234567)-1);
+    variance = sum(controller(it).ssRobustness.N1234567.^2)/(length(controller(it).ssRobustness.N1234567)-1)-squaredMeanSf;
     ufSf1 = (controller(it).ssRobustness.N1234567'*controller(it).ssRobustness.N1)/(length(controller(it).ssRobustness.N1234567)-1);
     ufSf2 = (controller(it).ssRobustness.N1234567'*controller(it).ssRobustness.N2)/(length(controller(it).ssRobustness.N1234567)-1);
     ufSf3 = (controller(it).ssRobustness.N1234567'*controller(it).ssRobustness.N3)/(length(controller(it).ssRobustness.N1234567)-1);
