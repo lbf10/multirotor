@@ -1,4 +1,4 @@
-function evaluatePassiveController(filename)
+function evaluateController(filename)
 data = load(filename);
 [pathname,name,extension] = fileparts(filename);
 foldername = ['Evaluation_',name]
