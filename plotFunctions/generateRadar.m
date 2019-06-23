@@ -14,6 +14,7 @@ while ~strcmp(filename,'')
 end
 
 %% Radar 1 - Overall robustness
+figure
 sr = [];
 Vpsim = [];
 Vep = [];
@@ -34,6 +35,7 @@ radarPlot2([sr Vpsim Vep Vp]', 'o-','LineWidth', 3, 'MarkerFaceColor', [0,0,0])
 legend('2.2.1 (PID)','2.2.2.2 (SOSMC with PIDD)','2.2.3.2 (R-LQR with rotor failures)','2.2.4 (Mode-Dependent Markovian)')
 title('Factor-independent robustness metrics')
 %% Radar 2 - Simulation success STf
+figure
 ST1_ss = [];
 ST2_ss = [];
 ST3_ss = [];
@@ -56,6 +58,7 @@ radarplot([ST1_ss ST2_ss ST3_ss ST4_ss ST5_ss ST6_ss ST7_ss],{'|S_{T1,p_{sim}}|'
 legend('2.2.1 (PID)','2.2.2.2 (SOSMC with PIDD)','2.2.3.2 (R-LQR with rotor failures)','2.2.4 (Mode-Dependent Markovian)')
 title('Total effect indices for simulation success')
 %% Radar 3 - Position error STf
+figure
 ST1_ep = [];
 ST2_ep = [];
 ST3_ep = [];
@@ -78,6 +81,7 @@ radarplot([ST1_ep ST2_ep ST3_ep ST4_ep ST5_ep ST6_ep ST7_ep],{'|S_{T1,p_{pos}}|'
 legend('2.2.1 (PID)','2.2.2.2 (SOSMC with PIDD)','2.2.3.2 (R-LQR with rotor failures)','2.2.4 (Mode-Dependent Markovian)')
 title('Total effect indices for position error')
 %% Radar 4 - RMS power STf
+figure
 ST1_p = [];
 ST2_p = [];
 ST3_p = [];
@@ -100,6 +104,7 @@ radarplot([ST1_p ST2_p ST3_p ST4_p ST5_p ST6_p ST7_p],{'|S_{T1,p_{pow}}|','|S_{T
 legend('2.2.1 (PID)','2.2.2.2 (SOSMC with PIDD)','2.2.3.2 (R-LQR with rotor failures)','2.2.4 (Mode-Dependent Markovian)')
 title('Total effect indices for RMS power')
 %% Radar 5 - Performance
+figure
 meanEp = [];
 varEp = [];
 meanEAtt = [];
