@@ -29,26 +29,26 @@ attitudeReference =
 
 Passive NMAC
 
-Adaptive Direct - Starting Controller evaluation 22-Jun-2019 23:09:15
-N0 - Starting samples matrix 22-Jun-2019 23:09:17
+Adaptive Direct - Starting Controller evaluation 23-Jun-2019 01:34:47
+N0 - Starting samples matrix 23-Jun-2019 01:34:49
 Analyzing and transferring files to the workers ...done.
-N0 - Finished samples matrix 22-Jun-2019 23:10:37
-N1 - Starting samples matrix 22-Jun-2019 23:10:38
-N1 - Finished samples matrix 22-Jun-2019 23:11:44
-N1234567 - Starting samples matrix 22-Jun-2019 23:11:45
-N1234567 - Finished samples matrix 22-Jun-2019 23:12:56
-N2 - Starting samples matrix 22-Jun-2019 23:12:57
-N2 - Finished samples matrix 22-Jun-2019 23:14:01
-N3 - Starting samples matrix 22-Jun-2019 23:14:02
-N3 - Finished samples matrix 22-Jun-2019 23:15:07
-N4 - Starting samples matrix 22-Jun-2019 23:15:09
-N4 - Finished samples matrix 22-Jun-2019 23:16:13
-N5 - Starting samples matrix 22-Jun-2019 23:16:15
-N5 - Finished samples matrix 22-Jun-2019 23:17:19
-N6 - Starting samples matrix 22-Jun-2019 23:17:21
-N6 - Finished samples matrix 22-Jun-2019 23:18:27
-N7 - Starting samples matrix 22-Jun-2019 23:18:29
-N7 - Finished samples matrix 22-Jun-2019 23:19:32
+N0 - Finished samples matrix 23-Jun-2019 01:37:05
+N1 - Starting samples matrix 23-Jun-2019 01:37:06
+N1 - Finished samples matrix 23-Jun-2019 01:39:05
+N1234567 - Starting samples matrix 23-Jun-2019 01:39:07
+N1234567 - Finished samples matrix 23-Jun-2019 01:41:08
+N2 - Starting samples matrix 23-Jun-2019 01:41:10
+N2 - Finished samples matrix 23-Jun-2019 01:43:06
+N3 - Starting samples matrix 23-Jun-2019 01:43:09
+N3 - Finished samples matrix 23-Jun-2019 01:45:07
+N4 - Starting samples matrix 23-Jun-2019 01:45:09
+N4 - Finished samples matrix 23-Jun-2019 01:47:07
+N5 - Starting samples matrix 23-Jun-2019 01:47:10
+N5 - Finished samples matrix 23-Jun-2019 01:49:21
+N6 - Starting samples matrix 23-Jun-2019 01:49:24
+N6 - Finished samples matrix 23-Jun-2019 01:51:20
+N7 - Starting samples matrix 23-Jun-2019 01:51:23
+N7 - Finished samples matrix 23-Jun-2019 01:53:20
 
 foldername =
 
@@ -69,25 +69,25 @@ attitudeReference =
 
 Passive NMAC
 
-Adaptive with PIDD - Starting Controller evaluation 22-Jun-2019 23:19:35
-N0 - Starting samples matrix 22-Jun-2019 23:19:36
-N0 - Finished samples matrix 22-Jun-2019 23:24:06
-N1 - Starting samples matrix 22-Jun-2019 23:24:07
-N1 - Finished samples matrix 22-Jun-2019 23:28:14
-N1234567 - Starting samples matrix 22-Jun-2019 23:28:15
-N1234567 - Finished samples matrix 22-Jun-2019 23:32:04
-N2 - Starting samples matrix 22-Jun-2019 23:32:06
-N2 - Finished samples matrix 22-Jun-2019 23:35:40
-N3 - Starting samples matrix 22-Jun-2019 23:35:41
-N3 - Finished samples matrix 22-Jun-2019 23:40:20
-N4 - Starting samples matrix 22-Jun-2019 23:40:21
-N4 - Finished samples matrix 22-Jun-2019 23:44:16
-N5 - Starting samples matrix 22-Jun-2019 23:44:17
-N5 - Finished samples matrix 22-Jun-2019 23:48:39
-N6 - Starting samples matrix 22-Jun-2019 23:48:41
-N6 - Finished samples matrix 22-Jun-2019 23:52:10
-N7 - Starting samples matrix 22-Jun-2019 23:52:12
-N7 - Finished samples matrix 22-Jun-2019 23:57:08
+Adaptive with PIDD - Starting Controller evaluation 23-Jun-2019 01:53:25
+N0 - Starting samples matrix 23-Jun-2019 01:53:27
+N0 - Finished samples matrix 23-Jun-2019 02:00:36
+N1 - Starting samples matrix 23-Jun-2019 02:00:37
+N1 - Finished samples matrix 23-Jun-2019 02:07:49
+N1234567 - Starting samples matrix 23-Jun-2019 02:07:50
+N1234567 - Finished samples matrix 23-Jun-2019 02:14:01
+N2 - Starting samples matrix 23-Jun-2019 02:14:03
+N2 - Finished samples matrix 23-Jun-2019 02:20:40
+N3 - Starting samples matrix 23-Jun-2019 02:20:42
+N3 - Finished samples matrix 23-Jun-2019 02:27:54
+N4 - Starting samples matrix 23-Jun-2019 02:27:57
+N4 - Finished samples matrix 23-Jun-2019 02:34:36
+N5 - Starting samples matrix 23-Jun-2019 02:34:39
+N5 - Finished samples matrix 23-Jun-2019 02:41:29
+N6 - Starting samples matrix 23-Jun-2019 02:41:32
+N6 - Finished samples matrix 23-Jun-2019 02:48:46
+N7 - Starting samples matrix 23-Jun-2019 02:48:49
+N7 - Finished samples matrix 23-Jun-2019 02:55:13
 
 foldername =
 
@@ -108,25 +108,25 @@ attitudeReference =
 
 Passive NMAC
 
-Adaptive - Starting Controller evaluation 22-Jun-2019 23:57:11
-N0 - Starting samples matrix 22-Jun-2019 23:57:12
-N0 - Finished samples matrix 22-Jun-2019 23:59:33
-N1 - Starting samples matrix 22-Jun-2019 23:59:34
-N1 - Finished samples matrix 23-Jun-2019 00:02:15
-N1234567 - Starting samples matrix 23-Jun-2019 00:02:16
-N1234567 - Finished samples matrix 23-Jun-2019 00:04:48
-N2 - Starting samples matrix 23-Jun-2019 00:04:50
-N2 - Finished samples matrix 23-Jun-2019 00:07:12
-N3 - Starting samples matrix 23-Jun-2019 00:07:13
-N3 - Finished samples matrix 23-Jun-2019 00:09:35
-N4 - Starting samples matrix 23-Jun-2019 00:09:37
-N4 - Finished samples matrix 23-Jun-2019 00:11:53
-N5 - Starting samples matrix 23-Jun-2019 00:11:54
-N5 - Finished samples matrix 23-Jun-2019 00:14:17
-N6 - Starting samples matrix 23-Jun-2019 00:14:19
-N6 - Finished samples matrix 23-Jun-2019 00:16:45
-N7 - Starting samples matrix 23-Jun-2019 00:16:47
-N7 - Finished samples matrix 23-Jun-2019 00:19:16
+Adaptive - Starting Controller evaluation 23-Jun-2019 02:55:17
+N0 - Starting samples matrix 23-Jun-2019 02:55:19
+N0 - Finished samples matrix 23-Jun-2019 02:59:19
+N1 - Starting samples matrix 23-Jun-2019 02:59:20
+N1 - Finished samples matrix 23-Jun-2019 03:03:37
+N1234567 - Starting samples matrix 23-Jun-2019 03:03:39
+N1234567 - Finished samples matrix 23-Jun-2019 03:07:41
+N2 - Starting samples matrix 23-Jun-2019 03:07:43
+N2 - Finished samples matrix 23-Jun-2019 03:11:42
+N3 - Starting samples matrix 23-Jun-2019 03:11:45
+N3 - Finished samples matrix 23-Jun-2019 03:15:44
+N4 - Starting samples matrix 23-Jun-2019 03:15:46
+N4 - Finished samples matrix 23-Jun-2019 03:19:52
+N5 - Starting samples matrix 23-Jun-2019 03:19:55
+N5 - Finished samples matrix 23-Jun-2019 03:24:09
+N6 - Starting samples matrix 23-Jun-2019 03:24:12
+N6 - Finished samples matrix 23-Jun-2019 03:28:25
+N7 - Starting samples matrix 23-Jun-2019 03:28:28
+N7 - Finished samples matrix 23-Jun-2019 03:32:51
 
 foldername =
 
@@ -147,21 +147,91 @@ attitudeReference =
 
 Active NMAC
 
-Markovian RLQ-R Active Modified - Starting Controller evaluation 23-Jun-2019 00:19:18
-N0 - Starting samples matrix 23-Jun-2019 00:19:19
-N0 - Finished samples matrix 23-Jun-2019 00:25:56
-N1 - Starting samples matrix 23-Jun-2019 00:25:56
-N1 - Finished samples matrix 23-Jun-2019 00:33:42
-N1234567 - Starting samples matrix 23-Jun-2019 00:33:43
-N1234567 - Finished samples matrix 23-Jun-2019 00:40:09
-N2 - Starting samples matrix 23-Jun-2019 00:40:10
-N2 - Finished samples matrix 23-Jun-2019 00:46:42
-N3 - Starting samples matrix 23-Jun-2019 00:46:43
-N3 - Finished samples matrix 23-Jun-2019 00:53:22
-N4 - Starting samples matrix 23-Jun-2019 00:53:24
-N4 - Finished samples matrix 23-Jun-2019 00:59:55
-N5 - Starting samples matrix 23-Jun-2019 00:59:57
-N5 - Finished samples matrix 23-Jun-2019 01:07:23
-N6 - Starting samples matrix 23-Jun-2019 01:07:24
-N6 - Finished samples matrix 23-Jun-2019 01:13:42
-N7 - Starting samples matrix 23-Jun-2019 01:13:44
+Markovian RLQ-R Active Modified - Starting Controller evaluation 23-Jun-2019 03:32:55
+N0 - Starting samples matrix 23-Jun-2019 03:32:57
+N0 - Finished samples matrix 23-Jun-2019 03:45:01
+N1 - Starting samples matrix 23-Jun-2019 03:45:02
+N1 - Finished samples matrix 23-Jun-2019 03:56:55
+N1234567 - Starting samples matrix 23-Jun-2019 03:56:57
+N1234567 - Finished samples matrix 23-Jun-2019 04:09:55
+N2 - Starting samples matrix 23-Jun-2019 04:09:57
+N2 - Finished samples matrix 23-Jun-2019 04:21:33
+N3 - Starting samples matrix 23-Jun-2019 04:21:35
+N3 - Finished samples matrix 23-Jun-2019 04:34:03
+N4 - Starting samples matrix 23-Jun-2019 04:34:06
+N4 - Finished samples matrix 23-Jun-2019 04:45:51
+N5 - Starting samples matrix 23-Jun-2019 04:45:54
+N5 - Finished samples matrix 23-Jun-2019 04:57:55
+N6 - Starting samples matrix 23-Jun-2019 04:57:58
+N6 - Finished samples matrix 23-Jun-2019 05:09:43
+N7 - Starting samples matrix 23-Jun-2019 05:09:46
+N7 - Finished samples matrix 23-Jun-2019 05:24:05
+
+foldername =
+
+Evaluation_Markovian RLQ-R Passive Modified_Passive NMAC_Passive NMAC_30-Jan-2019 16:05:28_light_iterations
+
+
+attitudeController =
+
+Markovian RLQ-R Passive Modified
+
+
+controlAllocator =
+
+Passive NMAC
+
+
+attitudeReference =
+
+Passive NMAC
+
+Markovian RLQ-R Passive Modified - Starting Controller evaluation 23-Jun-2019 05:24:09
+N0 - Starting samples matrix 23-Jun-2019 05:24:11
+N0 - Finished samples matrix 23-Jun-2019 05:44:20
+N1 - Starting samples matrix 23-Jun-2019 05:44:22
+N1 - Finished samples matrix 23-Jun-2019 06:09:11
+N1234567 - Starting samples matrix 23-Jun-2019 06:09:12
+N1234567 - Finished samples matrix 23-Jun-2019 06:31:13
+N2 - Starting samples matrix 23-Jun-2019 06:31:15
+N2 - Finished samples matrix 23-Jun-2019 06:51:27
+N3 - Starting samples matrix 23-Jun-2019 06:51:29
+N3 - Finished samples matrix 23-Jun-2019 07:12:29
+N4 - Starting samples matrix 23-Jun-2019 07:12:31
+N4 - Finished samples matrix 23-Jun-2019 07:31:33
+N5 - Starting samples matrix 23-Jun-2019 07:31:36
+N5 - Finished samples matrix 23-Jun-2019 07:52:13
+N6 - Starting samples matrix 23-Jun-2019 07:52:16
+N6 - Finished samples matrix 23-Jun-2019 08:11:17
+N7 - Starting samples matrix 23-Jun-2019 08:11:20
+N7 - Finished samples matrix 23-Jun-2019 08:30:04
+
+foldername =
+
+Evaluation_PID_Active NMAC_Active NMAC_18-Mar-2019 16:20:59_result
+
+
+attitudeController =
+
+PID
+
+
+controlAllocator =
+
+Active NMAC
+
+
+attitudeReference =
+
+Active NMAC
+
+PID - Starting Controller evaluation 23-Jun-2019 08:30:08
+N0 - Starting samples matrix 23-Jun-2019 08:30:10
+N0 - Finished samples matrix 23-Jun-2019 08:47:52
+N1 - Starting samples matrix 23-Jun-2019 08:47:54
+N1 - Finished samples matrix 23-Jun-2019 09:06:21
+N1234567 - Starting samples matrix 23-Jun-2019 09:06:22
+N1234567 - Finished samples matrix 23-Jun-2019 09:24:49
+N2 - Starting samples matrix 23-Jun-2019 09:24:51
+N2 - Finished samples matrix 23-Jun-2019 09:41:41
+N3 - Starting samples matrix 23-Jun-2019 09:41:44
