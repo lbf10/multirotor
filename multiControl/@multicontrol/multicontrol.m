@@ -3309,7 +3309,7 @@ classdef multicontrol < multicopter
                         G(:,:,it) = sysD.B;
                         
                         for jt=1:numberOfModes
-                            Ea = [Ea; [pij(it,jt)   *F(:,:,it)' pij(it,jt)*Ef(:,:,it)' eij(it,jt)*F(:,:,it)' eij(it,jt)*Ef(:,:,it)']'];
+                            Ea = [Ea; [pij(it,jt)*F(:,:,it)' pij(it,jt)*Ef(:,:,it)' eij(it,jt)*F(:,:,it)' eij(it,jt)*Ef(:,:,it)']'];
                             Eb = [Eb; [pij(it,jt)*G(:,:,it)' pij(it,jt)*Eg(:,:,it)' eij(it,jt)*G(:,:,it)' eij(it,jt)*Eg(:,:,it)']'];
                         end
                     end 

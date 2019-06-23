@@ -95,6 +95,7 @@ title('System stability variation for FDD hit rate decrease')
 xlabel('FDD hit rate')
 ylabel('Simulation success variation (%)')
 legend(names)
+savefig([saveDir,'/fddRateXss.fig'])
 % FDD rate X RMSPositionError / rate variation
 figure
 names = []
@@ -108,6 +109,7 @@ title('Position error variation for FDD hit rate decrease')
 xlabel('FDD hit rate')
 ylabel('RMS Position error variation (%)')
 legend(names)
+savefig([saveDir,'/fddRateXep.fig'])
 % FDD rate X RMSPositionError / rate variation
 figure
 names = []
@@ -121,8 +123,9 @@ title('RMS Power variation for FDD hit rate decrease')
 xlabel('FDD hit rate')
 ylabel('RMS Power variation (%)')
 legend(names)
+savefig([saveDir,'/fddRateXpow.fig'])
 
-% FDD rate X simulationSuccess / delay variation
+% FDD delay X simulationSuccess / delay variation
 figure
 names = []
 for it=1:length(controller)
@@ -134,7 +137,8 @@ title('System stability variation for FDD delay increase')
 xlabel('FDD delay (s)')
 ylabel('Simulation success variation (%)')
 legend(names)
-% FDD rate X RMSPositionError / delay variation
+savefig([saveDir,'/fddDelayXss.fig'])
+% FDD delay X RMSPositionError / delay variation
 figure
 names = []
 for it=1:length(controller)
@@ -146,7 +150,8 @@ title('Position error variation for FDD delay increase')
 xlabel('FDD delay (s)')
 ylabel('RMS Position error variation (%)')
 legend(names)
-% FDD rate X RMSPositionError / delay variation
+savefig([saveDir,'/fddDelayXep.fig'])
+% FDD delay X RMSPositionError / delay variation
 figure
 names = []
 for it=1:length(controller)
@@ -158,6 +163,7 @@ title('RMS Power variation for FDD delay increase')
 xlabel('FDD delay (s)')
 ylabel('RMS Power variation (%)')
 legend(names)
+savefig([saveDir,'/fddDelayXpow.fig'])
 %% Table
 table1 = [0 0 0 0 0 0 0; 0 0 0 0 0 0 0];
 for it=1:length(controller)
