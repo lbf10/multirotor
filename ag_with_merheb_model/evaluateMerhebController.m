@@ -59,50 +59,50 @@ for jt = 1:numel(samplesFields)
             % Define lift and drag coefficients
             if option{4}==1
                 speed = [0
-                         154.597402597403
-                         435.863877792208
-                         460.139821038961
-                         495.513338311688
-                         508.691707402597
-                         532.967650649351
-                         546.146019870130
-                         570.421963116883
-                         583.600332337662
-                         607.876275454546
-                         632.152218701299
-                         656.428161948052
-                         866.657830389610
-                         1511];
+                    154.597402597403
+                    435.863877792208
+                    460.139821038961
+                    495.513338311688
+                    508.691707402597
+                    532.967650649351
+                    546.146019870130
+                    570.421963116883
+                    583.600332337662
+                    607.876275454546
+                    632.152218701299
+                    656.428161948052
+                    866.657830389610
+                    1511];
                 liftCoeff = [4.53097710435104e-06
-                             7.92920993261431e-06
-                             1.09461619680808e-05
-                             1.15506380139360e-05
-                             1.15284827858942e-05
-                             1.23316191766150e-05
-                             1.25155002822789e-05
-                             1.27208540023415e-05
-                             1.23567297038310e-05
-                             1.27178102119303e-05
-                             1.24561960765315e-05
-                             1.23042926519078e-05
-                             1.17907966463470e-05
-                             7.43957226332527e-06
-                             0];
-                 dragCoeff = [1.66415825838743e-07
-                              2.49623738758115e-07
-                              3.83283609445569e-07
-                              4.38838021729618e-07
-                              4.66406858509067e-07
-                              5.21027877017075e-07
-                              5.51015472558331e-07
-                              5.95060039366241e-07
-                              6.14513669542301e-07
-                              6.50344766805082e-07
-                              6.61979405403617e-07
-                              6.70696878371642e-07
-                              6.76975290355206e-07
-                              4.54362652704046e-07
-                              1.66415825838743e-07];
+                    7.92920993261431e-06
+                    1.09461619680808e-05
+                    1.15506380139360e-05
+                    1.15284827858942e-05
+                    1.23316191766150e-05
+                    1.25155002822789e-05
+                    1.27208540023415e-05
+                    1.23567297038310e-05
+                    1.27178102119303e-05
+                    1.24561960765315e-05
+                    1.23042926519078e-05
+                    1.17907966463470e-05
+                    7.43957226332527e-06
+                    0];
+                dragCoeff = [1.66415825838743e-07
+                    2.49623738758115e-07
+                    3.83283609445569e-07
+                    4.38838021729618e-07
+                    4.66406858509067e-07
+                    5.21027877017075e-07
+                    5.51015472558331e-07
+                    5.95060039366241e-07
+                    6.14513669542301e-07
+                    6.50344766805082e-07
+                    6.61979405403617e-07
+                    6.70696878371642e-07
+                    6.76975290355206e-07
+                    4.54362652704046e-07
+                    1.66415825838743e-07];
                 multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline',1);
                 multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline',1);
             else
@@ -127,11 +127,11 @@ for jt = 1:numel(samplesFields)
             multirotor.setTimeStep(0.002);
             multirotor.setControlTimeStep(option{6});
             multirotor.configFDD(0.99,0.2);
-            multirotor.setSimEffects('motor dynamics on','solver ode45')
+            multirotor.setSimEffects('motor dynamics off','solver ode45')
             multirotor.setControlDelay(option{7});
             multirotor = paramsToMultirotor(attitudeController, controlAllocator, attitudeReference, multirotor, bestIndividual);
             
-
+            
             endTime = option{2};
             [waypoints, time] = geronoToWaypoints(7, 4, 4, endTime, endTime/8, 'goto',2*pi);
             multirotor.setTrajectory('waypoints',waypoints,time);
@@ -150,14 +150,13 @@ for jt = 1:numel(samplesFields)
             multirotor.addCommand(failure,endTime/2+step:step:endTime-0.000001);
             try
                 multirotor.run('visualizeGraph',false,'visualizeProgress',false,'metricPrecision',0.15,'angularPrecision',5);
-                metrics = multirotor.metrics();          
+                metrics = multirotor.metrics();
                 option{8} = 1*(1-metrics.simulationSuccess)+metrics.RMSPositionError+real(metrics.RMSAngularError)+metrics.RMSPower/500;
             catch
                 option{8} = 10;
             end
             option{9} = multirotor.metrics();
             options(it,:) = option;
-%            disp(['Finished calculation ',num2str(it)])
         end
         samples.(samplesFields{jt}) = options;
         disp([samplesFields{jt},' - Finished samples matrix ',datestr(now)])
