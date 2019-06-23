@@ -124,10 +124,10 @@ for jt = 1:numel(samplesFields)
             multirotor.setRotorOperatingPoint(1:8,352*[1 1 1 1 1 1 1 1]);
             multirotor.configControlAllocator('Passive NMAC',1,0);
             multirotor.configControlAllocator('Active NMAC',1,0);
-            multirotor.setTimeStep(0.002);
+            multirotor.setTimeStep(0.005);
             multirotor.setControlTimeStep(option{6});
             multirotor.configFDD(0.99,0.2);
-            multirotor.setSimEffects('motor dynamics on','solver ode45')
+            multirotor.setSimEffects('motor dynamics on','solver euler')
             multirotor.setControlDelay(option{7});
             multirotor = paramsToMultirotor(attitudeController, controlAllocator, attitudeReference, multirotor, bestIndividual);
             
