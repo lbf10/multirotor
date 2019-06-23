@@ -235,3 +235,34 @@ N1234567 - Finished samples matrix 23-Jun-2019 09:24:49
 N2 - Starting samples matrix 23-Jun-2019 09:24:51
 N2 - Finished samples matrix 23-Jun-2019 09:41:41
 N3 - Starting samples matrix 23-Jun-2019 09:41:44
+N3 - Finished samples matrix 23-Jun-2019 09:59:54
+N4 - Starting samples matrix 23-Jun-2019 09:59:57
+N4 - Finished samples matrix 23-Jun-2019 10:18:18
+N5 - Starting samples matrix 23-Jun-2019 10:18:20
+N5 - Finished samples matrix 23-Jun-2019 10:35:43
+N6 - Starting samples matrix 23-Jun-2019 10:35:46
+N6 - Finished samples matrix 23-Jun-2019 10:55:14
+N7 - Starting samples matrix 23-Jun-2019 10:55:17
+N7 - Finished samples matrix 23-Jun-2019 11:13:17
+
+foldername =
+
+Evaluation_PID_Passive NMAC_Passive NMAC_05-Dec-2018 14:10:50_iterations
+
+
+attitudeController =
+
+PID
+
+
+controlAllocator =
+
+Passive NMAC
+
+
+attitudeReference =
+
+Passive NMAC
+
+PID - Starting Controller evaluation 23-Jun-2019 11:13:21
+N0 - Starting samples matrix 23-Jun-2019 11:13:23
