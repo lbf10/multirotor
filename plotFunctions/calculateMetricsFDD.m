@@ -50,13 +50,13 @@ for it=1:length(subFolders)
         auxIndex = auxIndex(ismember(auxIndex,indexRateVariation));
         % simulationSuccess
         reference = controller(it).metrics(1).simulationSuccess;
-        controller(it).graphs.rateSS = [controller(it).graphs.rateSS 100*(mean([controller(it).metrics(auxIndex).simulationSuccess])-reference)/reference];
+        controller(it).graphs.rateSS = [controller(it).graphs.rateSS (mean([controller(it).metrics(auxIndex).simulationSuccess])-reference)];
         % simulationSuccess
         reference = controller(it).metrics(1).RMSPositionError;
-        controller(it).graphs.rateEp = [controller(it).graphs.rateEp 100*(mean([controller(it).metrics(auxIndex).RMSPositionError])-reference)/reference];
+        controller(it).graphs.rateEp = [controller(it).graphs.rateEp (mean([controller(it).metrics(auxIndex).RMSPositionError])-reference)];
         % simulationSuccess
         reference = controller(it).metrics(1).RMSPower;
-        controller(it).graphs.rateP = [controller(it).graphs.rateP 100*(mean([controller(it).metrics(auxIndex).RMSPower])-reference)/reference];
+        controller(it).graphs.rateP = [controller(it).graphs.rateP (mean([controller(it).metrics(auxIndex).RMSPower])-reference)];
     end
     %% FDD delay graphs
     controller(it).graphs.delays = sort(unique(controller(it).fddDelay),'ascend');
@@ -68,13 +68,13 @@ for it=1:length(subFolders)
         auxIndex = auxIndex(ismember(auxIndex,indexDelayVariation));
         % simulationSuccess
         reference = controller(it).metrics(1).simulationSuccess;
-        controller(it).graphs.delaySS = [controller(it).graphs.delaySS 100*(mean([controller(it).metrics(auxIndex).simulationSuccess])-reference)/reference];
+        controller(it).graphs.delaySS = [controller(it).graphs.delaySS (mean([controller(it).metrics(auxIndex).simulationSuccess])-reference)];
         % simulationSuccess
         reference = controller(it).metrics(1).RMSPositionError;
-        controller(it).graphs.delayEp = [controller(it).graphs.delayEp 100*(mean([controller(it).metrics(auxIndex).RMSPositionError])-reference)/reference];
+        controller(it).graphs.delayEp = [controller(it).graphs.delayEp (mean([controller(it).metrics(auxIndex).RMSPositionError])-reference)];
         % simulationSuccess
         reference = controller(it).metrics(1).RMSPower;
-        controller(it).graphs.delayP = [controller(it).graphs.delayP 100*(mean([controller(it).metrics(auxIndex).RMSPower])-reference)/reference];
+        controller(it).graphs.delayP = [controller(it).graphs.delayP (mean([controller(it).metrics(auxIndex).RMSPower])-reference)];
     end   
     data = controller(it);
     save([saveDir,'/evaluationFDDMetrics_',data.name{1}],'data');
@@ -82,94 +82,101 @@ for it=1:length(subFolders)
 %     end
 end
 %% All controllers FDD graphs
+plotOrder = [2,8,7,6,5,4,3,1];
 % FDD rate X simulationSuccess / rate variation
 figure
 names = [];
-for it=1:length(controller)
-    names = [names; controller(it).name];
-    plot(controller(it).graphs.rates,controller(it).graphs.rateSS,'*-','LineWidth',2)
+for it=1:length(plotOrder)
+    names = [names; controller(plotOrder(it)).name];
+    plot(controller(plotOrder(it)).graphs.rates,controller(plotOrder(it)).graphs.rateSS,'*-','LineWidth',2)
     set ( gca, 'xdir', 'reverse' )
     hold on
 end
 title('System stability variation for FDD hit rate decrease')
 xlabel('FDD hit rate')
-ylabel('Simulation success variation (%)')
-legend(names)
+ylabel('Simulation success variation')
+% legend(names)
+legend('2.2.1 (PID)','2.2.2.1 (SOSMC)','2.2.2.2 (SOSMC with PIDD)','2.2.2.3 (SOSMC Direct)','2.2.3.1 (R-LQR)','2.2.3.2 (R-LQR with rotor failures)','2.2.3.3 (R-LQR with rotor failures and PIDD)','2.2.4 (Mode-Dependent Markovian)')
 savefig([saveDir,'/fddRateXss.fig'])
 % FDD rate X RMSPositionError / rate variation
 figure
 names = []
-for it=1:length(controller)
-    names = [names; controller(it).name];
-    plot(controller(it).graphs.rates,controller(it).graphs.rateEp,'*-','LineWidth',2)
+for it=1:length(plotOrder)
+    names = [names; controller(plotOrder(it)).name];
+    plot(controller(plotOrder(it)).graphs.rates,controller(plotOrder(it)).graphs.rateEp,'*-','LineWidth',2)
     set ( gca, 'xdir', 'reverse' )
     hold on
 end
 title('Position error variation for FDD hit rate decrease')
 xlabel('FDD hit rate')
-ylabel('RMS Position error variation (%)')
-legend(names)
+ylabel('RMS Position error variation (m)')
+% legend(names)
+legend('2.2.1 (PID)','2.2.2.1 (SOSMC)','2.2.2.2 (SOSMC with PIDD)','2.2.2.3 (SOSMC Direct)','2.2.3.1 (R-LQR)','2.2.3.2 (R-LQR with rotor failures)','2.2.3.3 (R-LQR with rotor failures and PIDD)','2.2.4 (Mode-Dependent Markovian)')
 savefig([saveDir,'/fddRateXep.fig'])
 % FDD rate X RMSPositionError / rate variation
 figure
 names = []
-for it=1:length(controller)
-    names = [names; controller(it).name];
-    plot(controller(it).graphs.rates,controller(it).graphs.rateP,'*-','LineWidth',2)
+for it=1:length(plotOrder)
+    names = [names; controller(plotOrder(it)).name];
+    plot(controller(plotOrder(it)).graphs.rates,controller(plotOrder(it)).graphs.rateP,'*-','LineWidth',2)
     set ( gca, 'xdir', 'reverse' )
     hold on
 end
 title('RMS Power variation for FDD hit rate decrease')
 xlabel('FDD hit rate')
-ylabel('RMS Power variation (%)')
-legend(names)
+ylabel('RMS Power variation (W)')
+% legend(names)
+legend('2.2.1 (PID)','2.2.2.1 (SOSMC)','2.2.2.2 (SOSMC with PIDD)','2.2.2.3 (SOSMC Direct)','2.2.3.1 (R-LQR)','2.2.3.2 (R-LQR with rotor failures)','2.2.3.3 (R-LQR with rotor failures and PIDD)','2.2.4 (Mode-Dependent Markovian)')
 savefig([saveDir,'/fddRateXpow.fig'])
 
 % FDD delay X simulationSuccess / delay variation
 figure
 names = []
-for it=1:length(controller)
-    names = [names; controller(it).name];
-    plot(controller(it).graphs.delays,controller(it).graphs.delaySS,'*-','LineWidth',2)
+for it=1:length(plotOrder)
+    names = [names; controller(plotOrder(it)).name];
+    plot(controller(plotOrder(it)).graphs.delays,controller(plotOrder(it)).graphs.delaySS,'*-','LineWidth',2)
     hold on
 end
 title('System stability variation for FDD delay increase')
 xlabel('FDD delay (s)')
-ylabel('Simulation success variation (%)')
-legend(names)
+ylabel('Simulation success variation')
+% legend(names)
+legend('2.2.1 (PID)','2.2.2.1 (SOSMC)','2.2.2.2 (SOSMC with PIDD)','2.2.2.3 (SOSMC Direct)','2.2.3.1 (R-LQR)','2.2.3.2 (R-LQR with rotor failures)','2.2.3.3 (R-LQR with rotor failures and PIDD)','2.2.4 (Mode-Dependent Markovian)')
 savefig([saveDir,'/fddDelayXss.fig'])
 % FDD delay X RMSPositionError / delay variation
 figure
 names = []
-for it=1:length(controller)
-    names = [names; controller(it).name];
-    plot(controller(it).graphs.delays,controller(it).graphs.delayEp,'*-','LineWidth',2)
+for it=1:length(plotOrder)
+    names = [names; controller(plotOrder(it)).name];
+    plot(controller(plotOrder(it)).graphs.delays,controller(plotOrder(it)).graphs.delayEp,'*-','LineWidth',2)
     hold on
 end
 title('Position error variation for FDD delay increase')
 xlabel('FDD delay (s)')
-ylabel('RMS Position error variation (%)')
-legend(names)
+ylabel('RMS Position error variation (m)')
+% legend(names)
+legend('2.2.1 (PID)','2.2.2.1 (SOSMC)','2.2.2.2 (SOSMC with PIDD)','2.2.2.3 (SOSMC Direct)','2.2.3.1 (R-LQR)','2.2.3.2 (R-LQR with rotor failures)','2.2.3.3 (R-LQR with rotor failures and PIDD)','2.2.4 (Mode-Dependent Markovian)')
 savefig([saveDir,'/fddDelayXep.fig'])
 % FDD delay X RMSPositionError / delay variation
 figure
 names = []
-for it=1:length(controller)
-    names = [names; controller(it).name];
-    plot(controller(it).graphs.delays,controller(it).graphs.delayP,'*-','LineWidth',2)
+for it=1:length(plotOrder)
+    names = [names; controller(plotOrder(it)).name];
+    plot(controller(plotOrder(it)).graphs.delays,controller(plotOrder(it)).graphs.delayP,'*-','LineWidth',2)
     hold on
 end
 title('RMS Power variation for FDD delay increase')
 xlabel('FDD delay (s)')
-ylabel('RMS Power variation (%)')
-legend(names)
+ylabel('RMS Power variation (W)')
+% legend(names)
+legend('2.2.1 (PID)','2.2.2.1 (SOSMC)','2.2.2.2 (SOSMC with PIDD)','2.2.2.3 (SOSMC Direct)','2.2.3.1 (R-LQR)','2.2.3.2 (R-LQR with rotor failures)','2.2.3.3 (R-LQR with rotor failures and PIDD)','2.2.4 (Mode-Dependent Markovian)')
 savefig([saveDir,'/fddDelayXpow.fig'])
 %% Table
 table1 = [0 0 0 0 0 0 0; 0 0 0 0 0 0 0];
-for it=1:length(controller)
-    table1 = [table1; 0 controller(it).rateVar.ssVariance controller(it).rateVar.epVariance controller(it).rateVar.PVariance ...
-                    controller(it).delayVar.ssVariance controller(it).delayVar.epVariance controller(it).delayVar.PVariance];
+for it=1:length(plotOrder)
+    table1 = [table1; 0 controller(plotOrder(it)).rateVar.ssVariance controller(plotOrder(it)).rateVar.epVariance controller(plotOrder(it)).rateVar.PVariance ...
+                    controller(plotOrder(it)).delayVar.ssVariance controller(plotOrder(it)).delayVar.epVariance controller(plotOrder(it)).delayVar.PVariance];
 end
-latexTable1 = latex(vpa(table1,2));
+latexTable1 = latex(vpa(table1,4));
 
 

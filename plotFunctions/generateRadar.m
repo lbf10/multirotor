@@ -16,22 +16,25 @@ end
 %% Radar 1 - Overall robustness
 figure
 sr = [];
+epsim = [];
 Vpsim = [];
 Vep = [];
 Vp = [];
 for it=1:length(controller)
     sr = [sr; controller(it).perfectSuccessRate];
+    epsim = [epsim; controller(it).meanSuccessRate];
     Vpsim = [Vpsim; controller(it).ssRobustness.variance];
     Vep = [Vep; controller(it).epRobustness.variance];
     Vp = [Vp; controller(it).PRobustness.variance];
 end
 sr = 1-sr/max(sr);
+epsim = 1-epsim/max(epsim);
 Vpsim = Vpsim/max(Vpsim);
 Vep = Vep/max(Vep);
 Vp = Vp/max(Vp);
-radarPlot2([sr Vpsim Vep Vp]', 'o-','LineWidth', 3, 'MarkerFaceColor', [0,0,0])
+radarPlot2([sr epsim Vpsim Vep Vp]', 'o-','LineWidth', 3, 'MarkerFaceColor', [0,0,0])
 %radarplot([sr Vpsim Vep Vp],{'S_r','V_{p_{sim}}','V_{e_{p,RMS}}','V_{P_{RMS}}'},{},{'b','r','y','m','g'},{},10)
-%legend('1.2.1 (PID)','1.2.2.3 (SOSMC Direct)','1.2.3.2 (R-LQR with rotor failures)','1.2.4 (Mode-Independent Markovian)','1.2.5.2 (Adaptive with PIDD)')
+% legend('1.2.1 (PID)','1.2.2.3 (SOSMC Direct)','1.2.3.2 (R-LQR with rotor failures)','1.2.4 (Mode-Independent Markovian)','1.2.5.2 (Adaptive with PIDD)')
 legend('2.2.1 (PID)','2.2.2.2 (SOSMC with PIDD)','2.2.3.2 (R-LQR with rotor failures)','2.2.4 (Mode-Dependent Markovian)')
 title('Factor-independent robustness metrics')
 %% Radar 2 - Simulation success STf

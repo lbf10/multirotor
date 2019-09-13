@@ -6,6 +6,7 @@ ssh -X -p 63121 leonardof@143.107.239.253
 
 To run optimization: nohup matlab -nodisplay -r "run('main.m'); quit;" &
 To run evaluation: nohup matlab -nodisplay -r "run('callEvaluation.m'); quit;" > nohupEvaluate.out &
+To run evaluation: nohup matlab -nodisplay -r "run('callMerhebEvaluation.m'); quit;" > nohupEvaluate.out &
 
 
 

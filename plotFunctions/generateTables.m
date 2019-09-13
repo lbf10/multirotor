@@ -14,14 +14,14 @@ while ~strcmp(filename,'')
 end
 
 
-table1 = [0 0 0 0 0];
+table1 = [0 0 0 0 0 0];
 table2 = [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0];
 table3 = [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0];
 table4 = [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0];
 table5 = [0 0 0 0 0 0 0 0];
 for it=1:length(controller)
     printCase = controller(it);
-    table1 = [table1; 0 printCase.perfectSuccessRate printCase.ssRobustness.variance printCase.epRobustness.variance printCase.PRobustness.variance];
+    table1 = [table1; 0 printCase.perfectSuccessRate printCase.meanSuccessRate printCase.ssRobustness.variance printCase.epRobustness.variance printCase.PRobustness.variance];
     table2 = [table2; 0 printCase.ssRobustness.STf1 printCase.ssRobustness.STf2 ...
                         printCase.ssRobustness.STf3 printCase.ssRobustness.STf4 ...
                         printCase.ssRobustness.STf5 printCase.ssRobustness.STf6 ...
