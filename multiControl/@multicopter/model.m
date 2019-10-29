@@ -118,15 +118,7 @@ function dydt = model(obj,t,y,simTime,simInput)
             end
             if ~isempty(indexes)
                 dw(indexes) = (-dc(indexes).*w(indexes)'.*abs(w(indexes)')+[obj.rotor_(indexes).Kt].*[obj.rotor_(indexes).motorEfficiency].*(localSetPoint(indexes)-60*w(indexes)'./([obj.rotor_(indexes).Kv].*[obj.rotor_(indexes).motorEfficiency]*2*pi))./[obj.rotor_(indexes).Rm])./ri(indexes);
-            end   
-%             for it=rotorIDs
-%                 switch obj.rotor_(it).status{1}
-%                     case 'stuck'
-%                         dw(it,1) = _______;
-%                     otherwise
-%                         % Do nothing
-%                 end
-%             end
+            end  
             obj.rotorAccAux_(:,end+1) = dw';
        case 'motor inductance on'
             localSetPoint = [obj.rotor_(:).inputSetPoint];
@@ -147,22 +139,17 @@ function dydt = model(obj,t,y,simTime,simInput)
             if ~isempty(indexes)
                 deltat = [obj.rotor_(indexes).stuckTransitionPeriod];
                 dw(indexes,1) = log(0.05).*w(indexes)./deltat;
+                dmCurrent(indexes,1) = log(0.05).*mCurrent(indexes)./deltat;
                 indexes = ~indexes;
             else
                 indexes = rotorIDs;
             end
             if ~isempty(indexes)
-                dw(indexes) = (-dc(indexes).*w(indexes)'.*abs(w(indexes)')+[obj.rotor_(indexes).Kt].*[obj.rotor_(indexes).motorEfficiency].*(localSetPoint(indexes)-60*w(indexes)'./([obj.rotor_(indexes).Kv].*[obj.rotor_(indexes).motorEfficiency]*2*pi))./[obj.rotor_(indexes).Rm])./ri(indexes);
+                dw(indexes) = (-dc(indexes).*w(indexes)'.*abs(w(indexes)')+[obj.rotor_(indexes).Kt].*[obj.rotor_(indexes).motorEfficiency].*mCurrent(indexes)')./ri(indexes);
+                dmCurrent(indexes) = (localSetPoint(indexes)-60*w(indexes)'./([obj.rotor_(indexes).Kv].*[obj.rotor_(indexes).motorEfficiency]*2*pi)-[obj.rotor_(indexes).Rm].*mCurrent(indexes)')./[obj.rotor_(indexes).L];
             end   
-%             for it=rotorIDs
-%                 switch obj.rotor_(it).status{1}
-%                     case 'stuck'
-%                         dw(it,1) = _______;
-%                     otherwise
-%                         % Do nothing
-%                 end
-%             end
             obj.rotorAccAux_(:,end+1) = dw';
+            obj.rotorCurrAux_(:,end+1) = dmCurrent';
         case 'motor dynamics tf on'
             % Limits rotor speed inputs to maximum allowed speeds
             localSetPoint = [obj.rotor_(rotorIDs).inputSetPoint].*[obj.rotor_(rotorIDs).motorEfficiency];
@@ -251,6 +238,8 @@ function dydt = model(obj,t,y,simTime,simInput)
     switch obj.simEffects_{1}
         case 'motor dynamics on'
             dydt = [dydt; dw]; 
+        case 'motor inductance on'
+            dydt = [dydt; dw; dmCurrent]; 
         case 'motor dynamics tf on'
             dydt = [dydt; dw; ddw]; 
         otherwise
