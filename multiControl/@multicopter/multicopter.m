@@ -3246,6 +3246,11 @@ classdef multicopter < handle
         %       brushless motor model from "Permanent Magnet Motor
         %       Technology: Design and Applications", Jacek F. Gieras.
         %       Multicopter inputs become motor voltages.
+        %       - 'motor inductance on': Simulates second-order motor
+        %       dynamics considering motor inductance. Uses brushless model
+        %       from "Permanent Magnet Motor Technology: Design and
+        %       Applications", Jacek F. Gieras. Multicopter inputs become
+        %       motor voltages.
         %       No effectArg needed.
         %       - 'motor dynamics tf on': Simulates motor dynamics as a
         %       transfer function between input reference and motor speed.
@@ -3283,6 +3288,8 @@ classdef multicopter < handle
                     case 'motor dynamics tf on'
                         obj.simEffects_{1} = varargin{i};
                     case 'motor dynamics on'
+                        obj.simEffects_{1} = varargin{i};
+                    case 'motor inductance on'
                         obj.simEffects_{1} = varargin{i};
                     case 'motor dynamics off'                 
                         obj.simEffects_{1} = varargin{i};
