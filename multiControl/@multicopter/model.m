@@ -95,17 +95,6 @@ function dydt = model(obj,t,y,simTime,simInput)
     speedsMax = [obj.rotor_(:).maxSpeed];
     speedsMin = [obj.rotor_(:).minSpeed];
     maxVoltages = [obj.rotor_(:).maxVoltage];
-    
-    switch obj.simEffects_{1}
-        case 'motor dynamics on'
-            % Do nothing
-        case 'motor dynamics tf on'
-            % Do nothing
-        otherwise
-            if isempty(obj.rotorSpeedsAux_)
-                obj.rotorSpeedsAux_ = [obj.previousState_.rotor(:).speed]';
-            end
-    end
 
     switch obj.simEffects_{1}
         case 'motor dynamics on'
@@ -118,6 +107,41 @@ function dydt = model(obj,t,y,simTime,simInput)
             auxSpeed = num2cell(w);
             [obj.previousState_.rotor(:).speed] = auxSpeed{:};
             dw = zeros(obj.numberOfRotors_,1);
+            statuses = vertcat(obj.rotor_(:).status);
+            indexes = find(strcmp(statuses(:,1),'stuck'));
+            if ~isempty(indexes)
+                deltat = [obj.rotor_(indexes).stuckTransitionPeriod];
+                dw(indexes,1) = log(0.05).*w(indexes)./deltat;
+                indexes = ~indexes;
+            else
+                indexes = rotorIDs;
+            end
+            if ~isempty(indexes)
+                dw(indexes) = (-dc(indexes).*w(indexes)'.*abs(w(indexes)')+[obj.rotor_(indexes).Kt].*[obj.rotor_(indexes).motorEfficiency].*(localSetPoint(indexes)-60*w(indexes)'./([obj.rotor_(indexes).Kv].*[obj.rotor_(indexes).motorEfficiency]*2*pi))./[obj.rotor_(indexes).Rm])./ri(indexes);
+            end   
+%             for it=rotorIDs
+%                 switch obj.rotor_(it).status{1}
+%                     case 'stuck'
+%                         dw(it,1) = _______;
+%                     otherwise
+%                         % Do nothing
+%                 end
+%             end
+            obj.rotorAccAux_(:,end+1) = dw';
+       case 'motor inductance on'
+            localSetPoint = [obj.rotor_(:).inputSetPoint];
+            indexes = abs(localSetPoint)>maxVoltages;
+            if any(indexes)
+                localSetPoint(indexes) = [maxVoltages(indexes)].*sign(localSetPoint(indexes));
+            end
+            w = y(14:(13+obj.numberOfRotors_)); 
+            mCurrent = y((14+obj.numberOfRotors_):(13+2*obj.numberOfRotors_));
+            auxSpeed = num2cell(w);
+            [obj.previousState_.rotor(:).speed] = auxSpeed{:};
+            dw = zeros(obj.numberOfRotors_,1);
+            auxCurrent = num2cell(mCurrent);
+            [obj.previousState_.rotor(:).current] = auxCurrent{:};
+            dmCurrent = zeros(obj.numberOfRotors_,1);
             statuses = vertcat(obj.rotor_(:).status);
             indexes = find(strcmp(statuses(:,1),'stuck'));
             if ~isempty(indexes)
@@ -166,6 +190,9 @@ function dydt = model(obj,t,y,simTime,simInput)
                 end
             end
         otherwise  
+            if isempty(obj.rotorSpeedsAux_)
+                obj.rotorSpeedsAux_ = [obj.previousState_.rotor(:).speed]';
+            end
             % Limits rotor speed inputs to maximum allowed speeds
             localSetPoint = [obj.rotor_(rotorIDs).inputSetPoint].*[obj.rotor_(rotorIDs).motorEfficiency];
             indexes = abs(localSetPoint(rotorIDs))>speedsMax;
