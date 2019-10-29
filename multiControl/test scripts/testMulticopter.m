@@ -76,8 +76,8 @@ liftCoeff = [0.00004
             0.00000203398711313428
             0.00000136514255905061
             0];
-multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline');
-multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline');
+multirotor.setRotorLiftCoeff(1:8,[speed liftCoeff],'smoothingspline',1);
+multirotor.setRotorDragCoeff(1:8,[speed dragCoeff],'smoothingspline',1);
 % multirotor.setRotorLiftCoeff(1:8,mean(liftCoeff));
 % multirotor.setRotorDragCoeff(1:8,mean(dragCoeff));
 % Define rotor inertia
@@ -92,6 +92,7 @@ multirotor.setInitialVelocity([0;0;0]);
 multirotor.setInitialPosition([0;0;0]);
 multirotor.setInitialAngularVelocity([0;0;0]);
 multirotor.setRotorRm(1:8,0.0975*ones(1,8));
+multirotor.setRotorL(1:8,0.000033*ones(1,8));
 multirotor.setRotorKt(1:8,0.02498*ones(1,8));
 multirotor.setRotorKv(1:8,340*ones(1,8));
 multirotor.setRotorMaxVoltage(1:8,22*ones(1,8));

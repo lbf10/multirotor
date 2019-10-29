@@ -1046,24 +1046,24 @@ classdef multicopter < handle
         %   SETROTORL(rotorID,L) Sets winding inductance to L.
         %   rotorID may be a scalar or a vector, in arbitrary order, 
         %   specifying which rotors will be configured.
-        %   L may be a numeric scalar or a numeric 
+        %   Rm may be a numeric scalar or a numeric 
         %   vector the same length as rotorID of positive real numbers.
         %   Each vector position relates to the rotor ID specified at the
         %   same position of the rotorID vector.
         %
-        %   SETROTORL can be used during simulation.
+        %   SETROTORRM can be used during simulation.
         %
         %   See also ADDROTOR, SETROTORPOSITION, SETROTORORIENTATION,
         %   SETROTORINERTIA, SETROTORLIFTCOEFF, SETROTORDRAGCOEFFICIENT, 
-        %   SETROTORRM.
+        %   SETROTOR.
         
-            if iscell(L)
+            if iscell(Rm)
                 warning('Input will be converted to numeric array.')
-                L = cell2mat(L);
+                Rm = cell2mat(Rm);
             end
-            if isvector(L) && isnumeric(L) && (length(L)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(L>=0)
-                L = num2cell(L);
-                [obj.rotor_(rotorID).L] = L{:};
+            if isvector(Rm) && isnumeric(Rm) && (length(Rm)==length(rotorID)) && length(rotorID)<=obj.numberOfRotors_ && all(Rm>=0)
+                Rm = num2cell(Rm);
+                [obj.rotor_(rotorID).Rm] = Rm{:};
             else
                 error('Motor winding resistance must be a vector of positive numeric values the same size as rotorID, which must not exceed the number of rotors in the multicopter!')
             end
@@ -2040,25 +2040,7 @@ classdef multicopter < handle
         %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORDRAGCOEFF.
         
             rotorRm = [obj.rotor_(rotorID).Rm];
-        end   
-        function rotorL = rotorL(obj, rotorID)
-        %ROTORRM Returns the winding inductance (Henrys) of the specified rotor.
-        %
-        %   L = ROTORL(rotorID) Returns the winding resistance of rotor
-        %   rotorID.
-        %   rotorID specifies which rotor to return the resistance of.
-        %   rotorID can be a single value or an array of IDs.
-        %   L is an array of size 1xN, where N = length(rotorID) and each
-        %   vector element represents the winding inductance associated with 
-        %   the rotor specified by the respective rotorID. 
-        %
-        %   The winding inductance is specified in Henrys.
-        %
-        %   See also ROTOR,ROTORPOSITION, ROTORORIENTATION, ROTORINERTIA, 
-        %   ROTORLIFTCOEFF, ROTORSTATUS, ROTOREFFICIENCY, ROTORDRAGCOEFF.
-        
-            rotorL = [obj.rotor_(rotorID).L];
-        end 
+        end  
         function rotorKt = rotorKt(obj, rotorID)
         %ROTORKT Returns the torque constant (N.m/A) of the specified rotor.
         %
