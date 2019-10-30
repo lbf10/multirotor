@@ -92,12 +92,12 @@ multirotor.setInitialVelocity([0;0;0]);
 multirotor.setInitialPosition([0;0;0]);
 multirotor.setInitialAngularVelocity([0;0;0]);
 multirotor.setRotorRm(1:8,0.0975*ones(1,8));
-multirotor.setRotorL(1:8,0.000033*ones(1,8));
+multirotor.setRotorL(1:8,0.033*ones(1,8));
 multirotor.setRotorKt(1:8,0.02498*ones(1,8));
 multirotor.setRotorKv(1:8,340*ones(1,8));
 multirotor.setRotorMaxVoltage(1:8,22*ones(1,8));
 
-multirotor.setSimEffects('solver euler','motor dynamics on')
+multirotor.setSimEffects('solver ode45','motor inductance on')
 multirotor.setTimeStep(0.001)
 
 inputs = 22*rotationDirection;
@@ -106,12 +106,16 @@ multirotor.run(inputs,time)
 multirotor.setRotorStatus(1,'motor loss',0.001);
 time = [5.01,10];
 multirotor.run(inputs,time)
-figure
-plot3(multirotor.log().position(1,:),multirotor.log().position(2,:),multirotor.log().position(3,:))
-title('3D Position')
-daspect([1 1 1])
-figure
-plot(multirotor.log().position(3,:))
+% figure
+% plot3(multirotor.log().position(1,:),multirotor.log().position(2,:),multirotor.log().position(3,:))
+% title('3D Position')
+% daspect([1 1 1])
+% figure
+% plot(multirotor.log().position(3,:))
 
 figure
 plot(multirotor.log().time,multirotor.log().rotor(1).speed)
+title('speed')
+figure
+plot(multirotor.log().time,multirotor.log().rotor(1).current)
+title('current')

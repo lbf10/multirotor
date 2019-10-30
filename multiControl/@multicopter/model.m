@@ -149,7 +149,6 @@ function dydt = model(obj,t,y,simTime,simInput)
                 dmCurrent(indexes) = (localSetPoint(indexes)-60*w(indexes)'./([obj.rotor_(indexes).Kv].*[obj.rotor_(indexes).motorEfficiency]*2*pi)-[obj.rotor_(indexes).Rm].*mCurrent(indexes)')./[obj.rotor_(indexes).L];
             end   
             obj.rotorAccAux_(:,end+1) = dw';
-            obj.rotorCurrAux_(:,end+1) = dmCurrent';
         case 'motor dynamics tf on'
             % Limits rotor speed inputs to maximum allowed speeds
             localSetPoint = [obj.rotor_(rotorIDs).inputSetPoint].*[obj.rotor_(rotorIDs).motorEfficiency];
