@@ -34,6 +34,7 @@ classdef multicontrol < multicopter
         velocityFilter_         %Struct containing variables necessary to filter velocities and define desired velocites and accelerations
         roulette
         debug
+        rotorControlInput_
     end
     
     methods
@@ -118,6 +119,7 @@ classdef multicontrol < multicopter
             obj.filterConfig_.linear        = [];
             
             obj.timeStepRelation_   = 10;
+            obj.rotorControlInput_ = [obj.initialState_.rotor(1:obj.numberOfRotors()).speed];
             obj.clearFDD();
             
             obj.positionControlConfig_.kp = [];
@@ -2231,6 +2233,7 @@ classdef multicontrol < multicopter
                 obj.velocityFilter_.Wbe = [0;0;0];
                 obj.velocityFilter_.angularVelocity = [0;0;0];
                 obj.velocityFilter_.desiredAngularVelocity = [0;0;0];
+                obj.rotorControlInput_ = [obj.initialState_.rotor(1:obj.numberOfRotors()).speed];
             end
 
             previousWbe = obj.velocityFilter_.Wbe;
@@ -2256,13 +2259,13 @@ classdef multicontrol < multicopter
             Wbe = desiredAngularVelocity-angularVelocity;
             obj.velocityFilter_.Wbe = Wbe;
             dWbe = (Wbe-previousWbe)/obj.controlTimeStep_;
-%             desiredAngularAcceleration = (desiredAngularVelocity - obj.previousState_.angularVelocity)/obj.controlTimeStep_
-%             desiredAngularVelocity
             desiredAngularAcceleration = (dWbe+angularAcceleration);
-%             desiredAngularAcceleration = [0;0;0];
-%             desiredAngularVelocity = [0;0;0];
-%             desiredAngularAcceleration = 2*(desiredAngularVelocity-angularVelocity)/(obj.controlTimeStep_)
-            
+            switch obj.simEffects_{3}
+                case 'control by set point'  
+                    localRotorSpeeds = obj.rotorControlInput_';
+                otherwise
+                    localRotorSpeeds = [obj.previousState_.rotor(:).speed];
+            end
             switch obj.controlAlg_
                 case 1 %'PID'
                     if ~obj.isRunning()
@@ -2275,7 +2278,7 @@ classdef multicontrol < multicopter
                     index = 2;
                     
                     rotorIDs = 1:obj.numberOfRotors();
-                    torqueAux = [obj.rotor_(rotorIDs).orientation]*([obj.previousState_.rotor(rotorIDs).speed].*obj.rotorInertia(rotorIDs))';
+                    torqueAux = [obj.rotor_(rotorIDs).orientation]*(localRotorSpeeds.*obj.rotorInertia(rotorIDs))';
                     auxA = obj.inertia()*angularVelocity-torqueAux;
                     auxA = [0 -auxA(3) auxA(2) ; auxA(3) 0 -auxA(1) ; -auxA(2) auxA(1) 0 ];
                     auxA = obj.inertia()\auxA;
@@ -2319,7 +2322,7 @@ classdef multicontrol < multicopter
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
                         Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
-                        torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
+                        torqueAux = torqueAux + obj.rotorOrientation(it)*(localRotorSpeeds(it)*obj.rotorInertia(it));
                     end
                     
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
@@ -2371,7 +2374,7 @@ classdef multicontrol < multicopter
                     for it=1:obj.numberOfRotors_
                         Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
                         Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
-                        torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
+                        torqueAux = torqueAux + obj.rotorOrientation(it)*(localRotorSpeeds(it)*obj.rotorInertia(it));
                     end
                     
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
@@ -2464,7 +2467,7 @@ classdef multicontrol < multicopter
                         else
                             Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
-                        torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
+                        torqueAux = torqueAux + obj.rotorOrientation(it)*(localRotorSpeeds(it)*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
                     end
                     
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
@@ -2523,7 +2526,7 @@ classdef multicontrol < multicopter
                             Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                             Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
-                        torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it).*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
+                        torqueAux = torqueAux + obj.rotorOrientation(it)*(localRotorSpeeds(it).*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
                     end  
                     
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
@@ -2612,7 +2615,7 @@ classdef multicontrol < multicopter
                     
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
-                        torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
+                        torqueAux = torqueAux + obj.rotorOrientation(it)*(localRotorSpeeds(it)*obj.rotorInertia(it));
                     end
                     
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;                    
@@ -2664,7 +2667,7 @@ classdef multicontrol < multicopter
                     for it=1:obj.numberOfRotors_
                         Mf = [Mf obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation];
                         Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
-                        torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
+                        torqueAux = torqueAux + obj.rotorOrientation(it)*(localRotorSpeeds(it)*obj.rotorInertia(it));
                     end
                     
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
@@ -2764,7 +2767,7 @@ classdef multicontrol < multicopter
                     
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
-                        torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it))*(diagnosis{it}.propEfficiency^2)*diagnosis{it}.motorEfficiency;
+                        torqueAux = torqueAux + obj.rotorOrientation(it)*(localRotorSpeeds(it)*obj.rotorInertia(it))*(diagnosis{it}.propEfficiency^2)*diagnosis{it}.motorEfficiency;
                     end
                     
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
@@ -2821,7 +2824,7 @@ classdef multicontrol < multicopter
                             Mf = [Mf (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                             Mt = [Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)*(diagnosis{it}.propEfficiency*diagnosis{it}.motorEfficiency^2)];
                         end
-                        torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it).*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
+                        torqueAux = torqueAux + obj.rotorOrientation(it)*(localRotorSpeeds(it).*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
                     end                    
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
                     auxA = cross(auxA,obj.previousAngularVelocity());
@@ -2924,7 +2927,7 @@ classdef multicontrol < multicopter
                     
                     % Calculates current error
                     % deltaU
-                    previousSatInput = [obj.previousState_.rotor(:).speed]';
+                    previousSatInput = localRotorSpeeds';
                     for i=1:obj.numberOfRotors_
                         if abs(previousSatInput(i))>obj.rotor_(i).maxSpeed
                             previousSatInput(i) = obj.rotor_(i).maxSpeed*sign(previousSatInput(i));
@@ -3109,7 +3112,7 @@ classdef multicontrol < multicopter
                     
                     % Calculates current error
                     % deltaU
-                    previousSatInput = [obj.previousState_.rotor(:).speed]';
+                    previousSatInput = localRotorSpeeds';
                     for i=1:obj.numberOfRotors_
                         if abs(previousSatInput(i))>obj.rotor_(i).maxSpeed
                             previousSatInput(i) = obj.rotor_(i).maxSpeed*sign(previousSatInput(i));
@@ -3204,7 +3207,7 @@ classdef multicontrol < multicopter
                     
                     % Calculates current error
                     % deltaU
-                    previousSatInput = [obj.previousState_.rotor(:).speed]';
+                    previousSatInput = localRotorSpeeds';
                     for i=1:obj.numberOfRotors_
                         if abs(previousSatInput(i))>obj.rotor_(i).maxSpeed
                             previousSatInput(i) = obj.rotor_(i).maxSpeed*sign(previousSatInput(i));
@@ -3333,7 +3336,7 @@ classdef multicontrol < multicopter
                     C = obj.controlConfig_{index}.C ;
                     torqueAux = zeros(3,1);
                     for it=1:obj.numberOfRotors_
-                        torqueAux = torqueAux + obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it));
+                        torqueAux = torqueAux + obj.rotorOrientation(it)*(localRotorSpeeds(it)*obj.rotorInertia(it));
                     end
                     
                     auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
@@ -3370,7 +3373,7 @@ classdef multicontrol < multicopter
                     for it=1:numberOfModes
                         torqueAux = zeros(3,1);
                         for jt=1:obj.numberOfRotors_
-                            torqueAux = torqueAux + modes(it,jt)*obj.rotorOrientation(it)*(obj.previousRotorSpeed(it)*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
+                            torqueAux = torqueAux + modes(it,jt)*obj.rotorOrientation(it)*(localRotorSpeeds(it)*obj.rotorInertia(it)*diagnosis{it}.motorEfficiency*(diagnosis{it}.propEfficiency^2));
                         end
                         auxA = obj.inertia()*obj.previousAngularVelocity()-torqueAux;
                         auxA = [0 -auxA(3) auxA(2) ; auxA(3) 0 -auxA(1) ; -auxA(2) auxA(1) 0 ];
@@ -3738,6 +3741,7 @@ classdef multicontrol < multicopter
                 otherwise
                     allocatorOutput = controllerOutput.attitudeController; 
             end
+            obj.rotorControlInput_ = allocatorOutput;
             switch obj.simEffects_{1}
                 case 'motor dynamics on'  
                     allocatorOutput = ([obj.rotor_(:).Rm].*[obj.rotorDragCoeff(1:obj.numberOfRotors_,obj.rotorOperatingPoint_)].*allocatorOutput'.*abs(allocatorOutput')./[obj.rotor_(:).Kt]+60*allocatorOutput'./([obj.rotor_(:).Kv]*2*pi))';
