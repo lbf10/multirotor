@@ -3741,6 +3741,8 @@ classdef multicontrol < multicopter
             switch obj.simEffects_{1}
                 case 'motor dynamics on'  
                     allocatorOutput = ([obj.rotor_(:).Rm].*[obj.rotorDragCoeff(1:obj.numberOfRotors_,obj.rotorOperatingPoint_)].*allocatorOutput'.*abs(allocatorOutput')./[obj.rotor_(:).Kt]+60*allocatorOutput'./([obj.rotor_(:).Kv]*2*pi))';
+                case 'motor inductance on'  
+                    allocatorOutput = ([obj.rotor_(:).Rm].*[obj.rotorDragCoeff(1:obj.numberOfRotors_,obj.rotorOperatingPoint_)].*allocatorOutput'.*abs(allocatorOutput')./[obj.rotor_(:).Kt]+60*allocatorOutput'./([obj.rotor_(:).Kv]*2*pi))';
                 otherwise
                     % does nothing
             end
