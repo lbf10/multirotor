@@ -95,11 +95,13 @@ multirotor.setRotorDirection(1:8,rotationDirection);
 multirotor.setRotorMaxSpeed(1:8,729*ones(1,8));
 multirotor.setRotorMinSpeed(1:8,0*ones(1,8));
 multirotor.setInitialRotorSpeeds(328*rotationDirection);
-multirotor.setInitialInput(9.47*rotationDirection);
+multirotor.setInitialRotorCurrents(1*rotationDirection);
+multirotor.setInitialInput(0*rotationDirection);
 multirotor.setInitialVelocity([0;0;0]);
 multirotor.setInitialPosition([0;0;0]);
 multirotor.setInitialAngularVelocity([0;0;0]);
 multirotor.setRotorRm(1:8,0.0975*ones(1,8));
+multirotor.setRotorL(1:8,0.0033*ones(1,8));
 multirotor.setRotorKt(1:8,0.02498*ones(1,8));
 multirotor.setRotorKv(1:8,340*ones(1,8));
 multirotor.setRotorMaxVoltage(1:8,22*ones(1,8));
@@ -414,7 +416,7 @@ multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2+3*end
 % multirotor.addCommand({'setRotorStatus(1,''prop loss'',0.5)'},0)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.75)'},endTime/2)
-multirotor.setSimEffects('motor dynamics on','solver ode45')
+multirotor.setSimEffects('motor inductance on','solver ode45')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*0*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.2);
 %% Run simulator

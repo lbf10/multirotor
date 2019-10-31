@@ -1595,6 +1595,36 @@ classdef multicopter < handle
                 error('Initial rotor speeds must be a numeric vector of length %d (number of rotors configured)!',obj.numberOfRotors_)
             end
         end      
+        function setInitialRotorCurrents(obj, rotorCurrents)
+        %SETINITIALROTORCURRENTS Sets initial rotor currents for simulation.
+        %
+        %   SETINITIALROTORCURRENTS(C) Sets the initial rotor currents for the
+        %   multicopter, for simulation. C must be a numeric vector the
+        %   same length as the number of rotors already added to the
+        %   multicopter.
+        %
+        %   The initial states are used for simulation at time 0. Every
+        %   time the simulation is reset, the initial states are used.
+        %
+        %   See also SETTIMESTEP, SETINITIALSTATE,
+        %   SETINITIALPOSITION, SETINITIALATTITUDE,
+        %   SETINITIALVELOCITY, SETINITIALANGULARVELOCITY,
+        %   SETINITIALINPUT
+        
+            if iscell(rotorCurrents)
+                warning('Input will be converted to numeric array.')
+                rotorCurrents = cell2mat(rotorCurrents);
+            end
+            if isnumeric(rotorCurrents) && isvector(rotorCurrents) && length(rotorCurrents)==obj.numberOfRotors_
+                if isequal(size(rotorCurrents),[1 obj.numberOfRotors_])
+                    rotorCurrents = rotorCurrents';
+                end
+                aux = num2cell(rotorCurrents);
+                [obj.initialState_.rotor(1:obj.numberOfRotors_).current] = aux{:};
+            else
+                error('Initial rotor currents must be a numeric vector of length %d (number of rotors configured)!',obj.numberOfRotors_)
+            end
+        end      
         function setInitialRotorAccelerations(obj, rotorAccelerations)
         %SETINITIALROTORACCELERATIONS  Sets initial rotor accelerations for simulation.
         %
@@ -2405,6 +2435,25 @@ classdef multicopter < handle
                 initialRotorSpeedVector = [obj.initialState_.rotor(rotorID).speed];
             else
                 initialRotorSpeedVector = [];
+            end
+        end   
+        function initialRotorCurrentVector = initialRotorCurrent(obj, rotorID)
+        %INITIALROTORCURRENT Returns the initial rotor currents.
+        %
+        %   V = INITIALROTORCURRENT(rotorID) Returns the initial rotor
+        %   currents of the specified rotors.   
+        %   rotorID specifies which rotor to return the current of.
+        %   rotorID can be a single value or an array of IDs.  V is a
+        %   vector the length of the number of rotors in the multicopter.
+        %
+        %   See also INITIALPOSITION, INITIALATTITUDE,
+        %   INITIALVELOCITY, INITIALANGULARVELOCITY, INITIALINPUT,
+        %   TIMESTEP, PREVIOUSSTATE, LOG, ISLOGGING, ISRUNNING
+        
+            if ~isempty(obj.initialState_.rotor)
+                initialRotorCurrentVector = [obj.initialState_.rotor(rotorID).current];
+            else
+                initialRotorCurrentVector = [];
             end
         end   
         function initialRotorAccelerationVector = initialRotorAcceleration(obj, rotorID)
