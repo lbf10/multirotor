@@ -219,7 +219,7 @@ classdef multicopter < handle
             obj.log_.power = [];
             obj.isRunning_ = false;
             
-            obj.simEffects_ = {'motor dynamics tf on','solver ode45'};
+            obj.simEffects_ = {'motor dynamics tf on','solver ode45','control by telemetry'};
                 
             obj.opts_ = odeset('RelTol',1e-3,'AbsTol',1e-6);
             
@@ -3381,6 +3381,9 @@ classdef multicopter < handle
         %       - 'solver midpoint': Uses Midpoint method for diff equation
         %       solving (x(t+h) = x(t)+h*dydt(t+h/2,x(t)+h*dydt(t,x(t))/2)).
         %       No effectArg needed.
+        %       - 'control by set point': Simulates a hardware without
+        %       rotor speeds reading, forcing control to consider the speed
+        %       set point instead of the "real" rotor speeds.
         %   
         %   effectType and effectArg can be
         %   defined an arbitrary number of times in function call as long as 
@@ -3410,6 +3413,8 @@ classdef multicopter < handle
                         obj.simEffects_{2} = varargin{i};
                     case 'solver midpoint'
                         obj.simEffects_{2} = varargin{i};
+                    case 'control by set point'
+                        obj.simEffects_{3} = varargin{i};
                     otherwise
                         warning('Simulation configuration unknown.');
                 end
