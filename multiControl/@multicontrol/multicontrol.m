@@ -2918,8 +2918,8 @@ classdef multicontrol < multicopter
                     
                     obj.controlConfig_{index}.Mt = [];
                     for it=1:obj.numberOfRotors_
-                        %obj.controlConfig_{index}.Mt = [obj.controlConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
-                        obj.controlConfig_{index}.Mt = [obj.controlConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        obj.controlConfig_{index}.Mt = [obj.controlConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
+                        %obj.controlConfig_{index}.Mt = [obj.controlConfig_{index}.Mt (obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotorDirection_(it)*obj.rotor_(it).orientation)];
                     end
                     
                     % Calculates current reference state
@@ -3099,10 +3099,10 @@ classdef multicontrol < multicopter
                     Mf = zeros(3,obj.numberOfRotors_);
                     Mt = zeros(3,obj.numberOfRotors_);
                     for it=1:obj.numberOfRotors_
-                        %Mf(:,it) = obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation;
-                        %Mt(:,it) = (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
-                        Mf(:,it) = obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotor_(it).orientation;
-                        Mt(:,it) = (obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
+                        Mf(:,it) = obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation;
+                        Mt(:,it) = (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
+                        %Mf(:,it) = obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotor_(it).orientation;
+                        %Mt(:,it) = (obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
                     end
                     obj.controlConfig_{index}.Mf = Mf;
                     obj.controlConfig_{index}.Mt = Mt;
@@ -3156,8 +3156,10 @@ classdef multicontrol < multicopter
                         Mf = zeros(3,obj.numberOfRotors_);
                         Mt = zeros(3,obj.numberOfRotors_);
                         for it=1:obj.numberOfRotors_
-                            Mf(:,it) = obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotor_(it).orientation;
-                            Mt(:,it) = (obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
+                            Mf(:,it) = obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation;
+                            Mt(:,it) = (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
+                            %Mf(:,it) = obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotor_(it).orientation;
+                            %Mt(:,it) = (obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
                         end
                         Bp = [Mf/obj.mass();obj.inertia()\Mt];
                         obj.controlConfig_{index}.Bp = Bp;
@@ -3196,8 +3198,10 @@ classdef multicontrol < multicopter
                     Mf = zeros(3,obj.numberOfRotors_);
                     Mt = zeros(3,obj.numberOfRotors_);
                     for it=1:obj.numberOfRotors_
-                        Mf(:,it) = obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotor_(it).orientation;
-                        Mt(:,it) = (obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
+                        Mf(:,it) = obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotor_(it).orientation;
+                        Mt(:,it) = (obj.rotorLiftCoeff(it,obj.rotorOperatingPoint_(it))*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.rotorOperatingPoint_(it))*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
+                        %Mf(:,it) = obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotor_(it).orientation;
+                        %Mt(:,it) = (obj.rotorLiftCoeff(it,obj.previousState_.rotor(it).speed)*cross(obj.rotor_(it).position,obj.rotor_(it).orientation)-obj.rotorDragCoeff(it,obj.previousState_.rotor(it).speed)*obj.rotorDirection_(it)*obj.rotor_(it).orientation);
                     end
                     Bp = [Mf/obj.mass();obj.inertia()\Mt];
                     obj.controlConfig_{index}.Bp = Bp;
