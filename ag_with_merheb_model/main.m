@@ -7,8 +7,8 @@ addpath('../multiControl/utils')
 warning('off','all')
 
 %% Algorithms to train
-algorithms = { %'SOSMC Active','Active NMAC';
-               'SOSMC Active Direct','None'};
+algorithms = { %'Markovian RLQ-R Passive Modified','Passive NMAC';
+               'Markovian RLQ-R Passive Modified','Passive NMAC'};
                %'SOSMC Passive Direct','None';
 	       %'Adaptive with PIDD','Passive NMAC';
 	       %'Adaptive Direct','None'}; 
@@ -16,7 +16,7 @@ algorithms = { %'SOSMC Active','Active NMAC';
 for it=1:length(algorithms)
     attitudeController = algorithms{it,1};
     controlAllocator = algorithms{it,2};
-    attitudeReference = 'Active NMAC';
+    attitudeReference = 'Passive NMAC';
 
     fullfilename = 0;
 
@@ -422,10 +422,11 @@ for it=1:length(algorithms)
                 lambda = 1;
                 pij = 0.5;
                 eij = 2;
-                initialPopulation = [initialPopulation,Ef,Eg,k,Er,Eq,lambda,pij,eij];
-                lb = [lb,zeros(1,70),1,zeros(1,70),1e-8*ones(1,3)];
-                ub = [ub,1e5*ones(1,70),500,ones(1,40),1e5*ones(1,30),100*ones(1,3)];
-                nvars = 156;
+                P = 500000*[1e1, 1e1, 1e1,1e1,1e1,1e1];
+                initialPopulation = [initialPopulation,Ef,Eg,k,Er,Eq,lambda,pij,eij,P];
+                lb = [lb,zeros(1,70),1,zeros(1,70),1e-8*ones(1,3),zeros(1,6)];
+                ub = [ub,1e5*ones(1,70),500,ones(1,40),1e5*ones(1,30),100*ones(1,3),1e9*ones(1,6)];
+                nvars = 162;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
@@ -445,6 +446,7 @@ for it=1:length(algorithms)
                     50000*[1e10, 1e10, 1e1,1e-1,1e-1,1e-1] ...
                     50000*[1e10, 1e10, 1e1,1e-1,1e-1,1e-1] ...
                     50000*[1e10, 1e10, 1e1,1e-1,1e-1,1e-1]];
+                P = Q;
                 R = [1*modes(1,:)+~modes(1,:) ...
                      1*modes(2,:)+~modes(2,:) ...
                      1*modes(3,:)+~modes(3,:) ...
@@ -470,10 +472,10 @@ for it=1:length(algorithms)
                 k = 1;
                 mu = 1e10;
                 alpha = 1.5;
-                initialPopulation = [initialPopulation,Q,R,Ef,Eg,H,pij,ei,k,mu,alpha];
-                lb = [lb,zeros(1,170),1e-8*[1 1],1,100,1];
-                ub = [ub,1e9*ones(1,30),1e3*ones(1,40),1e5*ones(1,100),100*[1 1],500,1e30,100];
-                nvars = 187;
+                initialPopulation = [initialPopulation,Q,R,Ef,Eg,H,pij,ei,k,mu,alpha,P];
+                lb = [lb,zeros(1,170),1e-8*[1 1],1,100,1,zeros(1,170)];
+                ub = [ub,1e9*ones(1,30),1e3*ones(1,40),1e5*ones(1,100),100*[1 1],500,1e30,100,1e9*ones(1,30)];
+                nvars = 218;
                 initialPopulation = [initialPopulation,0,0,0.5];
                 lb = [lb,0,0,0];
                 ub = [ub,1,1,1];
