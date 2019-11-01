@@ -3185,7 +3185,6 @@ classdef multicopter < handle
                         otherwise
                             if firstRun == true
                                obj.rotorSpeedsAux_(:,1) = []; 
-                               obj.rotorAccAux_(:,1) = [];
                             end
                     end
                     obj.previousState_.acceleration = dydt(8:10);
