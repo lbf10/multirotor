@@ -416,7 +416,7 @@ multirotor.addCommand({'setRotorStatus(4,''motor loss'',0.001)'},endTime/2+3*end
 % multirotor.addCommand({'setRotorStatus(1,''prop loss'',0.5)'},0)
 % multirotor.addCommand({'setRotorStatus(6,''motor loss'',0.75)'},endTime/2)
 % multirotor.addCommand({'setRotorStatus(7,''motor loss'',0.75)'},endTime/2)
-multirotor.setSimEffects('motor inductance on','solver ode45')
+multirotor.setSimEffects('motor dynamics off','solver euler')
 multirotor.setLinearDisturbance('@(t) [0;1;0]*0*exp(-(t-3.75)^2/(0.5))')
 multirotor.setControlDelay(0.2);
 %% Run simulator
