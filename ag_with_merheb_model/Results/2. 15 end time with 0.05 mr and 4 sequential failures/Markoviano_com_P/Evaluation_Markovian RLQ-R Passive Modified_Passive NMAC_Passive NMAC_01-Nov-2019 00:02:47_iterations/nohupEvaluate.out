@@ -1,0 +1,51 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2015 The MathWorks, Inc.
+                   R2015a (8.5.0.197613) 64-bit (glnxa64)
+                             February 12, 2015
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'ClusterPandora' profile ... connected to 68 workers.
+
+foldername =
+
+Evaluation_Markovian RLQ-R Passive Modified_Passive NMAC_Passive NMAC_01-Nov-2019 00:02:47_iterations
+
+
+attitudeController =
+
+Markovian RLQ-R Passive Modified
+
+
+controlAllocator =
+
+Passive NMAC
+
+
+attitudeReference =
+
+Passive NMAC
+
+Markovian RLQ-R Passive Modified - Starting Controller evaluation 06-Nov-2019 22:04:14
+N0 - Starting samples matrix 06-Nov-2019 22:04:15
+Analyzing and transferring files to the workers ...done.
+N0 - Finished samples matrix 06-Nov-2019 23:57:04
+N1 - Starting samples matrix 06-Nov-2019 23:57:05
+N1 - Finished samples matrix 07-Nov-2019 01:55:39
+N1234567 - Starting samples matrix 07-Nov-2019 01:55:40
+N1234567 - Finished samples matrix 07-Nov-2019 04:06:05
+N2 - Starting samples matrix 07-Nov-2019 04:06:07
+N2 - Finished samples matrix 07-Nov-2019 05:49:09
+N3 - Starting samples matrix 07-Nov-2019 05:49:10
+N3 - Finished samples matrix 07-Nov-2019 07:46:26
+N4 - Starting samples matrix 07-Nov-2019 07:46:28
+N4 - Finished samples matrix 07-Nov-2019 09:40:54
+N5 - Starting samples matrix 07-Nov-2019 09:40:56
+N5 - Finished samples matrix 07-Nov-2019 11:39:13
+N6 - Starting samples matrix 07-Nov-2019 11:39:15
+N6 - Finished samples matrix 07-Nov-2019 13:53:57
+N7 - Starting samples matrix 07-Nov-2019 13:53:59
+N7 - Finished samples matrix 07-Nov-2019 15:52:45
