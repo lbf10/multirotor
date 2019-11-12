@@ -8,7 +8,7 @@ warning('off','all')
 
 %% Algorithms to train
 algorithms = { %'Markovian RLQ-R Passive Modified','Passive NMAC';
-               'Markovian RLQ-R Passive Modified','Passive NMAC'};
+               'Markovian RLQ-R Active Modified','Active NMAC'};
                %'SOSMC Passive Direct','None';
 	       %'Adaptive with PIDD','Passive NMAC';
 	       %'Adaptive Direct','None'}; 
@@ -16,7 +16,7 @@ algorithms = { %'Markovian RLQ-R Passive Modified','Passive NMAC';
 for it=1:length(algorithms)
     attitudeController = algorithms{it,1};
     controlAllocator = algorithms{it,2};
-    attitudeReference = 'Passive NMAC';
+    attitudeReference = 'Active NMAC';
 
     fullfilename = 0;
 
