@@ -4038,10 +4038,11 @@ classdef multicontrol < multicopter
             L = gain(3*n+m+l+1:4*n+m+l,:);
             K = gain(4*n+m+l+1:end,:);
 
-            border = [eye(n);zeros(l,n)]*L-[G;Eg]*K-[F;Ef];
-            middle = [eye(n)/mu - (H*H')/lambda, zeros(n,l); zeros(l,n), eye(l)/lambda];
+            %border = [eye(n);zeros(l,n)]*L-[G;Eg]*K-[F;Ef];
+            %middle = [eye(n)/mu - (H*H')/lambda, zeros(n,l); zeros(l,n), eye(l)/lambda];
 
-            P = L'*P*L+K'*R*K+Q+(border'/middle)*border;
+            P = -gain(n+m+1:2*n+m,:)+[F;Ef]'*gain(2*n+m+1:3*n+m+l,:);
+            %P = L'*P*L+K'*R*K+Q+(border'/middle)*border;
         end
         function [L,K,P] = gainPassiveMarkovian(obj,P,Ea,Eb,Ee,Eq,Er,k,lambda)
             %GAINRLQR Calculates RLQ-R gain and ricatti
